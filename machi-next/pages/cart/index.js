@@ -4,7 +4,7 @@ export default function CartIndex() {
   return (
     <>
       <div className="row mt-5 mx-5">
-        <div className="col-sm-8 cart-area">
+        <div className="col-sm cart-area">
           <h4 className="mb-3">購物車</h4>
           <div className="card mb-3 border-0 cart-card">
             <div className="row g-0">
@@ -153,24 +153,6 @@ export default function CartIndex() {
             </div>
           </div>
           <hr />
-        </div>
-        <div className="col-sm-4">
-          <h4 className="mb-3">摘要</h4>
-
-          <p className="card-text d-flex justify-content-between align-items-center">
-            小計 <span>$4,000.00</span>
-          </p>
-          <hr />
-          <p className="card-text d-flex justify-content-between align-items-center">
-            預估運費與手續費 <span>$300.00</span>
-          </p>
-          <hr />
-          <p className="card-text d-flex justify-content-between align-items-center">
-            總計 <span>$4,300.00</span>
-          </p>
-          <hr />
-          <button className="btn btn-primary w-100 mb-3">會員結帳</button>
-          <button className="btn btn-primary w-100 mb-3">訪客結帳</button>
         </div>
       </div>
       <div className="row mt-5 mx-5">
