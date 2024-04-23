@@ -8,7 +8,14 @@
 
 npm i
 
+## 資料庫建置
+在本機的 mysql 建立一個 machi_big_db 資料庫
+匯入 Machi 資料夾中 machi_big_db 檔案
+新增權限帳號 admin 密碼 12345
+
 ## Github提交流程
 
 預計在4/29開始更改Github提交流程，目前照舊即可，可參考影片:
 https://youtu.be/uj8hjLyEBmU
+
+4/25 Ben 上課時會教
