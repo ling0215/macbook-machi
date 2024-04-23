@@ -1,7 +1,7 @@
 {
   "workbench.colorCustomizations": {
-    "activityBar.background": "#38464c",
-    "titleBar.activeBackground": "#38464c",
+    "activityBar.background": "#272727",
+    "titleBar.activeBackground": "#272727",
     "titleBar.activeForeground": "#FBFAFA"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
