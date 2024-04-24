@@ -3,27 +3,42 @@ import React from 'react'
 export default function CartIndex() {
   return (
     <>
-    
       <div
         className="row mt-0 d-flex  position-relative g-0 "
         style={{ maxWidth: 960, left: '50%', transform: 'translateX(-50%)' }}
       >
         <div className="col d-flex align-content-center justify-content-start  ">
           <div
-            className="d-flex bg-success justify-content-center align-items-center "
-            style={{ height: 40, width: 40, borderRadius: '50%' }}
+            className="d-flex bg-brown   justify-content-center align-items-center "
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: '50%',
+            }}
           >
             <div className="h4 text-white d-flex align-items-center  ">1</div>
           </div>
-          <div className="h4 border-bottom  align-items-center ">
-            確認商品及地址
+          <div className="h4 border-bottom border-brown  align-items-center text-brown ">
+            購物車資訊
           </div>
         </div>
         <div className="col d-flex align-content-center justify-content-center">
-          2
+          <div
+            className="d-flex bg-grey justify-content-center align-items-center "
+            style={{ height: 40, width: 40, borderRadius: '50%' }}
+          >
+            <div className="h4 text-white d-flex align-items-center  ">2</div>
+          </div>
+          <div className="h4  align-items-center text-grey ">確認及填寫</div>
         </div>
         <div className="col d-flex align-content-center justify-content-end">
-          3
+          <div
+            className="d-flex bg-grey justify-content-center align-items-center "
+            style={{ height: 40, width: 40, borderRadius: '50%' }}
+          >
+            <div className="h4 text-white d-flex align-items-center  ">3</div>
+          </div>
+          <div className="h4   align-items-center  text-grey">下單成功</div>
         </div>
       </div>
 

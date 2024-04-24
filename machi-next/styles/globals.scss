@@ -1,19 +1,41 @@
+@import '../node_modules/bootstrap/scss/functions';
+
+@import '../node_modules/bootstrap/scss/variables';
+
 // 檔案位置: styles/global.scss
 // 變數覆蓋用 (Variable overrides)
-// 全站配色 colors
+// 全站配色 colors,自訂scss用
 $white: #ffffff;
 $black: #252525;
-$primary-1: #F7F5EB;
-$primary-dark: #785E4C;
-$brown: #AB927D;
-$light-brown: #CEBEB0;
+$primary-1: #f7f5eb;
+$primary-dark: #785e4c;
+$brown: #ab927d;
+$light-brown: #cebeb0;
 $primary-2: #78aebb;
-$secondary: #F8DC9A;
-$heart: #DB9D9D;
+$secondary: #f8dc9a;
+$heart: #db9d9d;
 $dark-grey: #868686;
-$grey: #C0C0C0;
-$light-grey: #E8E8E8;
+$grey: #c0c0c0;
+$light-grey: #e8e8e8;
+$primary: #ab927d;
 
+// bootstrap 覆寫
+$custom-colors: (
+  'white': #ffffff,
+  'black': #252525,
+  'primary-1': #f7f5eb,
+  'primary-dark': #785e4c,
+  'brown': #ab927d,
+  'light-brown': #cebeb0,
+  'primary-2': #78aebb,
+  'secondary': #f8dc9a,
+  'heart': #db9d9d,
+  'dark-grey': #868686,
+  'grey': #c0c0c0,
+  'light-grey': #e8e8e8,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
 // 按鈕圓角邊 button radius
 $border-radius: 0.2em;
 $border-radius-sm: 0.2em;
