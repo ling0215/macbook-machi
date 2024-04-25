@@ -1,0 +1,39 @@
+.machi_footer {
+  background: #ab927d;
+}
+
+.icon-white {
+  color: white;
+}
+.highlight {
+  color: #785e4c;
+  font-weight: bold;
+}
+.divider {
+  height: 1px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+.logo-machi {
+  /* MACHI */
+
+  /* position: absolute; */
+  width: 141px;
+  height: 47px;
+  left: calc(50% - 141px / 2);
+  top: calc(50% - 47px / 2);
+
+  font-family: 'Zen Tokyo Zoo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* primary-1 */
+  color: #f7f5eb;
+}
+
+
