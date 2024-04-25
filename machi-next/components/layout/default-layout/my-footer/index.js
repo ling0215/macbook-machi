@@ -34,7 +34,7 @@ export default function MyFooter() {
             <div className="col">
               <Link
                 href="#"
-                className={`${styles['highlight']} d-block mb-2 text-decoration-none text-white`}
+                className={`${styles['highlight']} d-block mb-2 text-decoration-none`}
               >
                 會員專區
               </Link>
@@ -67,7 +67,7 @@ export default function MyFooter() {
             <div className="col">
               <Link
                 href="#"
-                className={`${styles['highlight']} d-block mb-2 text-decoration-none text-white`}
+                className={`${styles['highlight']} d-block mb-2 text-decoration-none`}
               >
                 客戶服務
               </Link>
@@ -94,7 +94,7 @@ export default function MyFooter() {
             <div className="col">
               <Link
                 href="#"
-                className={`${styles['highlight']} d-block mb-2 text-decoration-none text-white`}
+                className={`${styles['highlight']} d-block mb-2 text-decoration-none`}
               >
                 關於我們
               </Link>
