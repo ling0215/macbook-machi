@@ -103,26 +103,26 @@ export default function MyFooter() {
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-map-marker-alt" />
+                <i className="fas fa-map-marker-alt fa-fw" />
                 320桃園市中壢區新生路421號
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-envelope" /> machi@gmail.com
+                <i className="fas fa-envelope fa-fw" /> machi@gmail.com
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-phone" /> (03)452-1234
+                <i className="fas fa-phone fa-fw" /> (03)452-1234
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-clock" /> 12:00-20:00
+                <i className="fas fa-clock fa-fw" /> 12:00-20:00
               </Link>
             </div>
           </div>
