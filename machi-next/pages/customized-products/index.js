@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Comment from '@/components/customize/comment'
 
 export default function CustomizedProducts() {
   return (
@@ -33,6 +34,7 @@ export default function CustomizedProducts() {
           <br />
           的客製化蛋糕！
         </p>
+        <Comment />
       </section>
       <section className="lynn_sampleSection">
         <p>

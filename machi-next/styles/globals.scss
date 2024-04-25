@@ -2,6 +2,11 @@
 
 @import '../node_modules/bootstrap/scss/variables';
 
+@import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/solid';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/regular';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/brands';
+
 // 檔案位置: styles/global.scss
 // 變數覆蓋用 (Variable overrides)
 // 全站配色 colors,自訂scss用
@@ -17,7 +22,6 @@ $heart: #db9d9d;
 $dark-grey: #868686;
 $grey: #c0c0c0;
 $light-grey: #e8e8e8;
-$primary: #ab927d;
 
 // bootstrap 覆寫
 $custom-colors: (

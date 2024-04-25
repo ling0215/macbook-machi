@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaRegUser } from 'react-icons/fa6'
-import styles from './customize.module.css'
+// import styles from './customize.module.css'
 
-export default function Comment() {
+export default function Comment2() {
   const commentData = {
     // customerImage:
     //   'https://cdn.builder.io/api/v1/image/assets/TEMP/c21ae4ff45bedf2001bd80ddb8e51d9a915a184056e415b6e80ae0f08bf51b15?apiKey=561d4b94b26f4d038679b81a14a4536c&',
@@ -14,37 +14,35 @@ export default function Comment() {
 
   return (
     <>
-      <div className={styles.testimonialCard}>
+      <div className="testimonial-card">
         <img
           src="../../images/customize/double_comma.svg"
           alt=""
           className="decorative-image"
         />
-        <p className={styles.testimonialText}>{commentData.testimonialText}</p>
+        <p className="testimonial-text">{commentData.testimonialText}</p>
         {/* <img
           src={commentData.customerImage}
           alt={`${commentData.name}'s profile`}
           className="customer-image"
         /> */}
         <hr />
-        <div className={styles.customerInfo}>
+        <div className="customer-info">
           {/* <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d65c4cef5f86141391876191059573d8515577d08d00d0d3d25de9aed760d56?apiKey=561d4b94b26f4d038679b81a14a4536c&"
             alt=""
             className="quote-icon"
           /> */}
-          <FaRegUser className={styles.quoteIcon} style={{ color: 'black' }} />
-          <div className={styles.customerDetails}>
+          <FaRegUser className="quote-icon" style={{ color: 'black' }} />
+          <div className="customer-details">
             {commentData.name}
             <br />
-            <span className={styles.customerTitle}>
-              {commentData.customerTitle}
-            </span>
+            <span className="customer-title">{commentData.customerTitle}</span>
           </div>
         </div>
       </div>
 
-      {/* <style jsx>{`
+      <style jsx>{`
         .testimonial-card {
           align-items: start;
           background-color: var(--Brown, #ab927d);
@@ -105,7 +103,7 @@ export default function Comment() {
         .customer-title {
           color: rgba(171, 146, 125, 1);
         }
-      `}</style> */}
+      `}</style>
     </>
   )
 }
