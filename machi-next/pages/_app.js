@@ -5,6 +5,7 @@ import '@/styles/product.scss'
 import '@/styles/cart.scss'
 import '@/styles/loader.scss'
 import '@/styles/customize.css'
+import '@/styles/blog.scss'
 // 載入購物車context
 import { CartProvider } from '@/hooks/use-cart-state'
 // 載入認証用context
