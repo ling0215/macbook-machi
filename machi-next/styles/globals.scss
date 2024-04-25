@@ -2,10 +2,12 @@
 
 @import '../node_modules/bootstrap/scss/variables';
 
-@import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/solid';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/regular';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/brands';
+
+//導入錯誤
+// @import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+// @import '../node_modules/@fortawesome/fontawesome-free/scss/solid';
+// @import '../node_modules/@fortawesome/fontawesome-free/scss/regular';
+// @import '../node_modules/@fortawesome/fontawesome-free/scss/brands';
 
 // 檔案位置: styles/global.scss
 // 變數覆蓋用 (Variable overrides)

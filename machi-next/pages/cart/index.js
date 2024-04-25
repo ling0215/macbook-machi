@@ -44,7 +44,7 @@ export default function CartIndex() {
 
       <div className="row mt-5 mx-5"></div>
       <div className="col-sm cart-area product-area">
-        <div className="mb-3 d-flex gap-2  product-tittle border-bottom border-2 py-4">
+        <div className="mb-3 d-flex gap-2  product-tittle border-bottom border-2 py-3">
           <div className="custom-checkbox"></div>
           <div className=" h3">MACHI</div>
           <div className=" h3">商品</div>
@@ -78,17 +78,11 @@ export default function CartIndex() {
               </div>
             </div>
             <div className="d-flex g-3 justify-content-between col">
-              <div className="">
-                <select
-                  className="form-select form-select-sm"
-                  aria-label=".form-select-sm example"
-                >
-                  <option selected>0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
+            <div className="btn-group d-flex " role="group" aria-label="Basic mixed styles example " style={{width:'160px', height:'48px'}}>
+  <button className=" btn btn-outline-secondary text-primary-dark h4" style={{width:'28px'}} >-</button>
+  <button className=" btn btn-outline-secondary  text-primary-dark h4">4</button>
+  <button  className=" btn btn-outline-secondary text-primary-dark h4" style={{width:'28px'}}>+</button>
+</div>
               <div className=" h4 ">NT$8888</div>
             </div>
           </div>
