@@ -1,4 +1,8 @@
 /* cart */
+
+@import '../node_modules/bootstrap/scss/functions';
+
+@import '../node_modules/bootstrap/scss/variables';
 .cart-card {
   height: auto;
   // max-width: 700px;
@@ -7,3 +11,29 @@
 .cart-card .iconbar {
   font-size: 18px;
 }
+
+// color
+
+$custom-colors: (
+  'custom-color': #900,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// $custom-colors: (
+//   'white': #ffffff,
+//   'black': #252525,
+//   'primary-1': #f7f5eb,
+//   'primary-dark': #785e4c,
+//   'brown': #ab927d,
+//   'light-brown': #cebeb0,
+//   'primary-2': #78aebb,
+//   'secondary': #f8dc9a,
+//   'heart': #db9d9d,
+//   'dark-grey': #868686,
+//   'grey': #c0c0c0,
+//   'light-grey': #e8e8e8,
+// );
+// $theme-colors: map-merge($theme-colors, $custom-colors);
+
+// @import '../node_modules/bootstrap/scss/bootstrap';
