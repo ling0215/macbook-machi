@@ -3,21 +3,38 @@
 @import '../node_modules/bootstrap/scss/functions';
 
 @import '../node_modules/bootstrap/scss/variables';
+
+$brown: #ab927d;
+
 .cart-card {
   height: auto;
   // max-width: 700px;
+}
+.card-body {
+  height: 140px;
+  padding: 0;
 }
 
 .cart-card .iconbar {
   font-size: 18px;
 }
 
-// color
+.custom-checkbox {
+  color: #c0c0c0;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid;
+  border-color: #c0c0c0;
+  border-radius: 3px;
+}
+.border-custom-borwn {
+  border-bottom: 1px solid var($brown);
+}
 
+//更改範例
 $custom-colors: (
   'custom-color': #900,
 );
-
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
 // $custom-colors: (
@@ -36,4 +53,13 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // );
 // $theme-colors: map-merge($theme-colors, $custom-colors);
 
-// @import '../node_modules/bootstrap/scss/bootstrap';
+// $custom-colors-border: (
+//   'custom-color': #900,
+// );
+
+// $theme-colors-border-subtle: (
+//   $theme-colors-border-subtle,
+//   $custom-colors-border
+// );
+
+@import '../node_modules/bootstrap/scss/bootstrap';
