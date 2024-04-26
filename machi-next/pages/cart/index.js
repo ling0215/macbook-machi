@@ -4,7 +4,7 @@ export default function CartIndex() {
   return (
     <>
       <div
-        className="row mt-0 d-flex  position-relative g-0 "
+        className="row mt-5 mb-2 d-flex  position-relative g-0 "
         style={{ maxWidth: 960, left: '50%', transform: 'translateX(-50%)' }}
       >
         <div className="col d-flex gap-1 align-items-center justify-content-start  ">
@@ -41,10 +41,8 @@ export default function CartIndex() {
           <div className="h4 mb-0 text-grey">下單成功</div>
         </div>
       </div>
-
-      <div className="row mt-5 mx-5"></div>
       <div className="col-sm cart-area product-area">
-        <div className="mb-3 d-flex gap-2  product-tittle border-bottom border-2 py-4">
+        <div className="mb-3 d-flex gap-2  product-tittle border-borwn py-4">
           <div className="custom-checkbox"></div>
           <div className=" h3">MACHI</div>
           <div className=" h3">商品</div>
