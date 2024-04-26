@@ -18,7 +18,9 @@ export default function CartIndex() {
           >
             <div className="h4 mb-0 text-white ">1</div>
           </div>
-          <div className="h4 mb-0  border-bottom  text-brown ">購物車資訊</div>
+          <div className="h4 mb-0 text-border-brown  text-brown">
+            購物車資訊
+          </div>
         </div>
         <div className="col d-flex align-items-center justify-content-center">
           <div
@@ -48,7 +50,6 @@ export default function CartIndex() {
           <div className=" h3">商品</div>
           <div className=" h3">(3)</div>
         </div>
-
         <div className="d-flex  g-0 gap-5 align-items-center py-4">
           <div className="custom-checkbox"></div>
           <div className="">
@@ -58,7 +59,6 @@ export default function CartIndex() {
               style={{ width: 140, height: 140 }}
             />
           </div>
-
           <div className="card-body align-content-start p-0  flex-grow-1 d-flex flex-column">
             <div className="card-title card-text d-flex justify-content-between text-brown col h4">
               草莓有夠派
@@ -76,129 +76,259 @@ export default function CartIndex() {
               </div>
             </div>
             <div className="d-flex g-3 justify-content-between col">
-              <div className="">
-                <select
-                  className="form-select form-select-sm"
-                  aria-label=".form-select-sm example"
+              <div
+                className="btn-group d-flex "
+                role="group"
+                aria-label="Basic mixed styles example "
+                style={{ width: '128px', height: '48px' }}
+              >
+                <button
+                  className=" btn btn-outline-secondary text-primary-dark h4"
+                  style={{ width: '28px' }}
                 >
-                  <option selected>0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
+                  -
+                </button>
+                <button className=" btn btn-outline-secondary  text-primary-dark h4">
+                  4
+                </button>
+                <button
+                  className=" btn btn-outline-secondary text-primary-dark h4"
+                  style={{ width: '28px' }}
+                >
+                  +
+                </button>
               </div>
               <div className=" h4 ">NT$8888</div>
             </div>
           </div>
         </div>
         <hr />
-        <div className="card mb-3 border-0 cart-card">
-          <div className="d-flex g-0 align-items-center ">
-            <div className="custom-checkbox"></div>
-            <div className="">
-              <img
-                src="./images/cart-1.jpeg"
-                className="img-fluid rounded-start"
-                alt="..."
-              />
+        <div className="d-flex  g-0 gap-5 align-items-center py-4 ">
+          <div className="custom-checkbox"></div>
+          <div className="">
+            <img
+              src="./images/cart-1.jpeg"
+              className="product-img-1"
+              style={{ width: 140, height: 140 }}
+            />
+          </div>
+          <div className="card-body align-content-start p-0  flex-grow-1 d-flex flex-column">
+            <div className="card-title card-text d-flex justify-content-between text-brown col h4">
+              草莓有夠派
+              <span>
+                <i className="bi bi-trash3 text-black"></i>
+              </span>
             </div>
-            <div className="">
-              <div className="card-body">
-                <h5 className="card-title card-text d-flex justify-content-between align-items-center">
-                  Nike Air Force 1 PLT.AF.ORM{' '}
-                  <span>
-                    {' '}
-                    <i className="bi bi-trash3"></i>
-                  </span>
-                </h5>
-                <p className="card-text">
-                  Pale Ivory/Light Orewood Brown/白/Summit White
-                </p>
-
-                <div className="row g-3 align-items-center">
-                  <div className="col-auto">
-                    <label htmlFor="inputPassword6" className="col-form-label">
-                      數量:
-                    </label>
-                  </div>
-                  <div className="col-auto">
-                    <select
-                      className="form-select form-select-sm"
-                      aria-label=".form-select-sm example"
-                    >
-                      <option selected>0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="iconbar">
-                  <i className="bi bi-suit-heart"></i>
-                  <i className="bi bi-trash3"></i>
-                </div>
+            <div
+              className="d-flex justify-content-start card-text col "
+              style={{ gap: '0.5rem' }}
+            >
+              <div className="h5 mr-1">規格:</div>
+              <div className="h5">
+                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
               </div>
+            </div>
+            <div className="d-flex g-3 justify-content-between col">
+              <div
+                className="btn-group d-flex "
+                role="group"
+                aria-label="Basic mixed styles example "
+                style={{ width: '128px', height: '48px' }}
+              >
+                <button
+                  className=" btn btn-outline-secondary text-primary-dark h4"
+                  style={{ width: '28px' }}
+                >
+                  -
+                </button>
+                <button className=" btn btn-outline-secondary  text-primary-dark h4">
+                  4
+                </button>
+                <button
+                  className=" btn btn-outline-secondary text-primary-dark h4"
+                  style={{ width: '28px' }}
+                >
+                  +
+                </button>
+              </div>
+              <div className=" h4 ">NT$8888</div>
             </div>
           </div>
         </div>
         <hr />
-        <div className="card mb-3 border-0 cart-card">
-          <div className="row g-0">
-            <div className="col-md-3">
-              <img
-                src="./images/cart-1.jpeg"
-                className="img-fluid rounded-start"
-                alt="..."
-              />
+        <div className="d-flex  g-0 gap-5 align-items-center py-4">
+          <div className="custom-checkbox"></div>
+          <div className="">
+            <img
+              src="./images/cart-1.jpeg"
+              className="product-img-1"
+              style={{ width: 140, height: 140 }}
+            />
+          </div>
+          <div className="card-body align-content-start p-0  flex-grow-1 d-flex flex-column">
+            <div className="card-title card-text d-flex justify-content-between text-brown col h4">
+              草莓有夠派
+              <span>
+                <i className="bi bi-trash3 text-black"></i>
+              </span>
             </div>
-            <div className="col-md-9">
-              <div className="card-body">
-                <h5 className="card-title card-text d-flex justify-content-between align-items-center">
-                  Nike Air Force 1 PLT.AF.ORM{' '}
-                  <span>
-                    {' '}
-                    <i className="bi bi-trash3"></i>
-                  </span>
-                </h5>
-                <p className="card-text">
-                  Pale Ivory/Light Orewood Brown/白/Summit White
-                </p>
-
-                <div className="row g-3 align-items-center">
-                  <div className="col-auto">
-                    <label htmlFor="inputPassword6" className="col-form-label">
-                      數量:
-                    </label>
-                  </div>
-                  <div className="col-auto">
-                    <select
-                      className="form-select form-select-sm"
-                      aria-label=".form-select-sm example"
-                    >
-                      <option selected>0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="iconbar">
-                  <i className="bi bi-suit-heart"></i>
-                  <i className="bi bi-trash3"></i>
-                </div>
+            <div
+              className="d-flex justify-content-start card-text col "
+              style={{ gap: '0.5rem' }}
+            >
+              <div className="h5 mr-1">規格:</div>
+              <div className="h5">
+                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
               </div>
+            </div>
+            <div className="d-flex g-3 justify-content-between col">
+              <div
+                className="btn-group d-flex "
+                role="group"
+                aria-label="Basic mixed styles example "
+                style={{ width: '128px', height: '48px' }}
+              >
+                <button
+                  className=" btn btn-outline-secondary text-primary-dark h4"
+                  style={{ width: '28px' }}
+                >
+                  -
+                </button>
+                <button className=" btn btn-outline-secondary  text-primary-dark h4">
+                  4
+                </button>
+                <button
+                  className=" btn btn-outline-secondary text-primary-dark h4"
+                  style={{ width: '28px' }}
+                >
+                  +
+                </button>
+              </div>
+              <div className=" h4 ">NT$8888</div>
             </div>
           </div>
         </div>
         <hr />
       </div>
-
-      <div className="row mt-5 mx-5">
-        <div className="col-sm-12 cart-area">
-          <h4 className="mb-3">最愛</h4>
-          <p>想要檢視你的最愛嗎？ 加入我們 或 登入</p>
+      <div className="col-sm cart-area class-area">
+        <div className="mb-3 d-flex gap-2  class-tittle border-borwn py-4">
+          <div className="custom-checkbox"></div>
+          <div className=" h3">MACHI</div>
+          <div className=" h3">課程</div>
+          <div className=" h3">(3)</div>
+        </div>
+        <div className="d-flex  g-0 gap-5 align-items-center py-4">
+          <div className="custom-checkbox"></div>
+          <div className="">
+            <img
+              src="./images/cart-1.jpeg"
+              className="product-img-1"
+              style={{ width: 140, height: 140 }}
+            />
+          </div>
+          <div className="card-body align-content-start p-0  flex-grow-1 d-flex flex-column">
+            <div className="card-title card-text d-flex justify-content-between text-brown col h4">
+              手工土鳳梨酥體驗課程
+              <span>
+                <i className="bi bi-trash3 text-black"></i>
+              </span>
+            </div>
+            <div
+              className="d-flex justify-content-start card-text col "
+              style={{ gap: '0.5rem' }}
+            >
+              <div className="h5 mr-1">規格:</div>
+              <div className="h5">
+                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
+              </div>
+            </div>
+            <div className="d-flex g-3 justify-content-between col">
+              <div className="h4">人數:3</div>
+              <div className=" h4 ">NT$8888</div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="d-flex  g-0 gap-5 align-items-center py-4 ">
+          <div className="custom-checkbox"></div>
+          <div className="">
+            <img
+              src="./images/cart-1.jpeg"
+              className="product-img-1"
+              style={{ width: 140, height: 140 }}
+            />
+          </div>
+          <div className="card-body align-content-start p-0  flex-grow-1 d-flex flex-column">
+            <div className="card-title card-text d-flex justify-content-between text-brown col h4">
+              手工土鳳梨酥體驗課程
+              <span>
+                <i className="bi bi-trash3 text-black"></i>
+              </span>
+            </div>
+            <div
+              className="d-flex justify-content-start card-text col "
+              style={{ gap: '0.5rem' }}
+            >
+              <div className="h5 mr-1">規格:</div>
+              <div className="h5">
+                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
+              </div>
+            </div>
+            <div className="d-flex g-3 justify-content-between col">
+              <div className="h4">人數:3</div>
+              <div className=" h4 ">NT$8888</div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="d-flex  g-0 gap-5 align-items-center py-4">
+          <div className="custom-checkbox"></div>
+          <div className="">
+            <img
+              src="./images/cart-1.jpeg"
+              className="product-img-1"
+              style={{ width: 140, height: 140 }}
+            />
+          </div>
+          <div className="card-body align-content-start p-0  flex-grow-1 d-flex flex-column">
+            <div className="card-title card-text d-flex justify-content-between text-brown col h4">
+              手工土鳳梨酥體驗課程
+              <span>
+                <i className="bi bi-trash3 text-black"></i>
+              </span>
+            </div>
+            <div
+              className="d-flex justify-content-start card-text col "
+              style={{ gap: '0.5rem' }}
+            >
+              <div className="h5 mr-1">規格:</div>
+              <div className="h5">
+                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
+              </div>
+            </div>
+            <div className="d-flex g-3 justify-content-between col">
+              <div className="h4">人數:3</div>
+              <div className=" h4 ">NT$8888</div>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
+      <div className="d-flex row justify-content-end g-0 ">
+        <div className=" py-4" style={{ width: '290px' }}>
+          <div className="d-flex justify-content-between  pb-3">
+            <div className="h4">商品數量</div>
+            <div className="h4">6</div>
+          </div>
+          <div className="d-flex justify-content-between">
+            <div className="h4">小計</div>
+            <div className="h4">88888</div>
+          </div>
+        </div>
+        <div className="d-flex justify-content-end pb-5">
+          <div class="cart-button">
+            <div class="cart-button-text">前往結帳</div>
+          </div>
         </div>
       </div>
     </>
