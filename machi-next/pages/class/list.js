@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { CiHeart } from "react-icons/ci";
 
 export default function List() {
   // Toggle the side navigation
@@ -332,7 +333,8 @@ export default function List() {
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="car d-title">抹茶蛋糕卷 </h5>
+                          <h5 class="car d-title">抹茶蛋糕卷  <CiHeart/></h5>
+                          
                           <p class="card-text">
                             課堂地點:台北市北投區裕民六路130號1樓
                           </p>
@@ -362,7 +364,7 @@ export default function List() {
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="car d-title">抹茶蛋糕卷 </h5>
+                          <h5 class="car d-title">抹茶蛋糕卷 <CiHeart /></h5> 
                           <p class="card-text">
                             課堂地點:台北市北投區裕民六路130號1樓
                           </p>
@@ -391,7 +393,7 @@ export default function List() {
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="car d-title">抹茶蛋糕卷 </h5>
+                          <h5 class="car d-title">抹茶蛋糕卷 <CiHeart /></h5> 
                           <p class="card-text">
                             課堂地點:台北市北投區裕民六路130號1樓
                           </p>
@@ -420,7 +422,7 @@ export default function List() {
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="car d-title">抹茶蛋糕卷 </h5>
+                          <h5 class="car d-title">抹茶蛋糕卷 <CiHeart /> </h5>
                           <p class="card-text">
                             課堂地點:台北市北投區裕民六路130號1樓
                           </p>
@@ -441,8 +443,9 @@ export default function List() {
                   </div>
                 </div>
               </div>
+              
               <nav aria-label="Page navigation example">
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                   <li class="page-item">
                     <a class="page-link" href="#">
                       Previous
@@ -470,6 +473,7 @@ export default function List() {
                   </li>
                 </ul>
               </nav>
+              
             </div>
           </div>
         </div>
