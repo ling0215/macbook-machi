@@ -1,6 +1,15 @@
 import styles from './footer.module.scss'
 import Link from 'next/link'
 
+// ICON
+import { FaInstagram } from 'react-icons/fa6'
+import { FaSquareFacebook } from 'react-icons/fa6'
+import { FaLine } from 'react-icons/fa'
+import { FiMapPin } from 'react-icons/fi'
+import { MdOutlineMail } from 'react-icons/md'
+import { FiPhone } from 'react-icons/fi'
+import { MdOutlineAccessTime } from 'react-icons/md'
+
 export default function MyFooter() {
   return (
     <>
@@ -20,15 +29,11 @@ export default function MyFooter() {
               </div>
               <div className="d-flex justify-content-center">
                 {/* 三個小圖標 */}
-                <i
-                  className={`${styles['icon-white']} fa fa-instagram fab fa-instagram fa-2x mx-3`}
-                />
-                <i
-                  className={`${styles['icon-white']} fab fa-facebook fa-2x mx-3`}
-                />
-                <i
-                  className={`${styles['icon-white']} fab fa-line fa-2x mx-3`}
-                />
+                <FaInstagram color="white" size={36} />
+
+                <FaSquareFacebook color="white" size={36} className='mx-3' />
+
+                <FaLine color="white" size={36} />
               </div>
             </div>
             <div className="col">
@@ -103,26 +108,29 @@ export default function MyFooter() {
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-map-marker-alt fa-fw" />
+                <FiMapPin size={20} />
                 320桃園市中壢區新生路421號
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-envelope fa-fw" /> machi@gmail.com
+                <MdOutlineMail size={20} />
+                machi@gmail.com
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-phone fa-fw" /> (03)452-1234
+                <FiPhone size={20} />
+                (03)452-1234
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <i className="fas fa-clock fa-fw" /> 12:00-20:00
+                <MdOutlineAccessTime size={20} />
+                12:00-20:00
               </Link>
             </div>
           </div>
