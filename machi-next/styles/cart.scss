@@ -1,95 +1,80 @@
 /* cart */
-@import '../node_modules/bootstrap/scss/functions';
+// @import '@/node_modules/bootstrap/scss/functions';
 
-@import '../node_modules/bootstrap/scss/variables';
+// @import '@/node_modules/bootstrap/scss/variables';
 
 .body{
   box-sizing: border-box;
 }
-.cart-card {
-  height: auto;
-  // max-width: 700px;
-}
-.card-body {
-  height: 140px;
-  padding: 0;
-}
+// .cart-card {
+//   height: auto;
+//   // max-width: 700px;
+// }
+// .card-body {
+//   height: 140px;
+//   padding: 0;
+// }
 
-.cart-card .iconbar {
-  font-size: 18px;
-}
+// .cart-card .iconbar {
+//   font-size: 18px;
+// }
 
-.custom-checkbox {
-  color: #c0c0c0;
-  width: 30px;
-  height: 30px;
-  border: 1.5px solid;
-  border-color: #c0c0c0;
-  border-radius: 3px;
-}
+// .custom-checkbox {
+//   color: #c0c0c0;
+//   width: 30px;
+//   height: 30px;
+//   border: 1.5px solid;
+//   border-color: #c0c0c0;
+//   border-radius: 3px;
+// }
 
-.text-border-brown{
-  border-bottom: 1px solid #ab927d;  
-}
+// .text-border-brown{
+//   border-bottom: 1px solid #ab927d;  
+// }
 
-.border-borwn{
-  border-bottom: 2px solid #ab927d;  
-}
+// .border-borwn{
+//   border-bottom: 2px solid #ab927d;  
+// }
 
-.cart-button {
-  width: 192px;
-  background: var(--brown, #ab927d);
-  border-radius: 3px;
-  border-style: solid;
-  border-color: var(--primary-dark, #785e4c);
-  border-width: 0.5px;
-  padding: 10px 48px 10px 48px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-}
-.cart-button-text {
-  color: var(--white, #ffffff);
-  text-align: left;
-  font-family: "RobotoMono-Bold", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  position: relative;
-}
-
-
+// .cart-button {
+//   width: 192px;
+//   background: var(--brown, #ab927d);
+//   border-radius: 3px;
+//   border-style: solid;
+//   border-color: var(--primary-dark, #785e4c);
+//   border-width: 0.5px;
+//   padding: 10px 48px 10px 48px;
+//   display: flex;
+//   flex-direction: row;
+//   gap: 10px;
+//   align-items: center;
+//   justify-content: center;
+//   flex-shrink: 0;
+//   position: relative;
+//   overflow: hidden;
+// }
+// .cart-button-text {
+//   color: var(--white, #ffffff);
+//   text-align: left;
+//   font-family: "RobotoMono-Bold", sans-serif;
+//   font-size: 18px;
+//   font-weight: 700;
+//   position: relative;
+// }
 
 
 
 
 
-//更改範例
-$custom-colors: (
-  'custom-color': #900,
-);
-$theme-colors: map-merge($theme-colors, $custom-colors);
 
-// $custom-all-colors: (
-//   'white': #ffffff,
-//   'black': #252525,
-//   'primary-1': #f7f5eb,
-//   'primary-dark': #785e4c,
-//   'brown': #ab927d,
-//   'light-brown': #cebeb0,
-//   'primary-2': #78aebb,
-//   'secondary': #f8dc9a,
-//   'heart': #db9d9d,
-//   'dark-grey': #868686,
-//   'grey': #c0c0c0,
-//   'light-grey': #e8e8e8,
+
+
+// $custom-colors: (
+//   'custom-color': #900,
 // );
-// $colors: map-merge($colors, $custom-all-colors);
+// $theme-colors: map-merge($theme-colors, $custom-colors);
 
 
 
-@import '../node_modules/bootstrap/scss/bootstrap';
+
+// @import '@/node_modules/bootstrap/scss/bootstrap';
