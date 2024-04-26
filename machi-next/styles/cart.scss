@@ -1,26 +1,47 @@
 /* cart */
-
 @import '../node_modules/bootstrap/scss/functions';
 
 @import '../node_modules/bootstrap/scss/variables';
+
 .cart-card {
   height: auto;
   // max-width: 700px;
+}
+.card-body {
+  height: 140px;
+  padding: 0;
 }
 
 .cart-card .iconbar {
   font-size: 18px;
 }
 
-// color
+.custom-checkbox {
+  color: #c0c0c0;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid;
+  border-color: #c0c0c0;
+  border-radius: 3px;
+}
 
+.border-borwn{
+  border-bottom: 2px solid #ab927d;  
+}
+
+
+
+
+
+
+
+//更改範例
 $custom-colors: (
   'custom-color': #900,
 );
-
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
-// $custom-colors: (
+// $custom-all-colors: (
 //   'white': #ffffff,
 //   'black': #252525,
 //   'primary-1': #f7f5eb,
@@ -34,6 +55,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 //   'grey': #c0c0c0,
 //   'light-grey': #e8e8e8,
 // );
-// $theme-colors: map-merge($theme-colors, $custom-colors);
+// $colors: map-merge($colors, $custom-all-colors);
 
-// @import '../node_modules/bootstrap/scss/bootstrap';
+
+
+@import '../node_modules/bootstrap/scss/bootstrap';

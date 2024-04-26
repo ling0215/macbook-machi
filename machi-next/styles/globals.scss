@@ -1,6 +1,9 @@
+
 @import '../node_modules/bootstrap/scss/functions';
 
 @import '../node_modules/bootstrap/scss/variables';
+
+
 
 // 檔案位置: styles/global.scss
 // 變數覆蓋用 (Variable overrides)
@@ -17,7 +20,6 @@ $heart: #db9d9d;
 $dark-grey: #868686;
 $grey: #c0c0c0;
 $light-grey: #e8e8e8;
-$primary: #ab927d;
 
 // bootstrap 覆寫
 $custom-colors: (
