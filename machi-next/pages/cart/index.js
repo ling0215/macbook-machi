@@ -1,11 +1,12 @@
 import React from 'react'
 // eslint-disable-next-line import/no-unresolved
 import CartPage1 from '@/components/cart/cart-page1'
+import CartPage2 from '@/components/cart/cart-page2'
 import CartList from '@/components/cart/list'
 export default function text1() {
   return (
-      <CartList></CartList>
+      // <CartList></CartList>
       // <CartPage1></CartPage1>
-
+      <CartPage2></CartPage2>
   )
 }
