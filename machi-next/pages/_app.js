@@ -4,7 +4,7 @@ import '@/styles/globals.scss'
 import '@/styles/product.scss'
 import '@/styles/cart.scss'
 import '@/styles/loader.scss'
-import '@/styles/customize.css'
+import '@/styles/customize.scss'
 import '@/styles/blog.scss'
 // 載入購物車context
 import { CartProvider } from '@/hooks/use-cart-state'

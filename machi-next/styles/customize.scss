@@ -1,0 +1,92 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.lynn-hero {
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+}
+
+.lynn-title {
+  margin: 100px 400px;
+  h6 {
+    color: #928f8c;
+    font-size: 18px;
+  }
+  hr {
+    width: 40%;
+    margin: 40vh auto;
+    border: 1px solid #928f8c;
+  }
+  p {
+    color: #785e4c;
+    font-size: 16px;
+  }
+}
+
+.lynn-comments {
+  display: flex;
+  background-color: #f7f5eb;
+  padding: 100px 300px;
+  .comments-title {
+    color: var(--Brown, #ab927d);
+    font-size: 18px;
+  }
+  .comments-content {
+    max-width: 900px;
+    margin-left: 250px;
+    justify-content: space-evenly;
+  }
+}
+
+.lynn-sample-section {
+  padding: 100px 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    order: 1;
+    color: var(--Brown, #ab927d);
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+  .sample-img {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    order: 2;
+    img {
+      width: 250px;
+      height: 250px;
+      // flex: 0 0 calc(25% - 10px);
+      margin: 40px;
+    }
+  }
+}
+
+.lynn-start-customize {
+  width: 35%;
+  margin: 0 auto 100px;
+  text-align: center;
+  h4 {
+    color: #e4ae44;
+    font-size: 24px;
+  }
+  .start-text {
+    color: var(--primary-dark, #785e4c);
+    text-align: left;
+    margin: 55px 10px;
+  }
+  button {
+    border-radius: 5px;
+    background: #e6b759;
+    width: 200px;
+    height: 50px;
+    border: none;
+    &:hover {
+      background: #e6a92f;
+    }
+  }
+}

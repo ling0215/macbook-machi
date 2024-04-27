@@ -9,52 +9,67 @@
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.8px;
-  max-width: 211px;
-  padding: 0 19px 61px;
+  max-width: 200px;
+  padding: 0 19px 45px;
+  position: relative;
 }
 
-.decorativeImage {
+.quoteIcon {
+  position: absolute;
+  top: -12px;
+  left: -10px;
   aspect-ratio: 3.03;
-  object-fit: cover;
-  width: 36px;
+  object-fit: contain;
+  width: 75px;
 }
 
 .testimonialText {
   color: var(--primary-1, #f7f5eb);
   font-family: Roboto, sans-serif;
-  margin: 16px 0 0 10px;
+  margin: 25px 15px 0 10px;
+  font-size: 15px;
 }
 
-.customerImage {
+.hr {
+  border: none;
+  border-top: 1.5px solid #333; /* Set the border color */
+  color: #333;
+  background-color: #333;
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* .customerImage {
   aspect-ratio: 1;
   border: 1px solid rgba(0, 0, 0, 1);
   margin: 20px 0 0 10px;
   object-fit: cover;
   width: 100%;
-}
+} */
 
 .customerInfo {
-  color: var(--Brown, #ab927d);
+  color: var(--black, #000000);
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 30px;
   justify-content: space-between;
   line-height: 21px;
-  margin: 19px 0 0 10px;
+  margin-top: 10px;
 }
 
-.quoteIcon {
+.userIcon {
   align-self: end;
   aspect-ratio: 0.85;
-  margin-top: 28px;
+  margin-top: 20px;
   object-fit: cover;
-  width: 30px;
+  width: 50px;
+  color: black;
+  transform: scale(1.5) translateY(-10px);
 }
 
 .customerDetails {
   font-family: Roboto, sans-serif;
-  color: var(--white, #ffffff);
-}
-
-.customerTitle {
-  color: rgba(171, 146, 125, 1);
+  color: var(--primary-1, #f7f5eb);
+  font-size: 18px;
 }
