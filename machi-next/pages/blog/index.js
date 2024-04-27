@@ -2,6 +2,10 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { FaChevronDown } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+
+
 export default function BlogIndex() {
     return (
         <>
@@ -13,16 +17,20 @@ export default function BlogIndex() {
                                 type="text"
                                 className="input-field"
                                 placeholder="請輸入關鍵字"
+                                style={{ flex: '1' }}
                             />
-                            <i className="fa fa-search" />
+                            <FaSearch />
+
                         </div>
                         <br />
                         <div className="latest-articles">
-                            <h6 className="article-sidebar">最新文章</h6>
-                            <ul>
+                            <h6 className="article-sidebar pt-2">最新文章</h6>
+                            <ul className="article-list">
                                 <li>
                                     <div className="image-text">
-                                        <img src="/image/article1.jpg" alt="" />
+                                        <div className="image">
+                                            <img src="/images/blog/article1.jpg" alt="" />
+                                        </div>
                                         <p>
                                             若你是懂吃又懂拍的女孩的話，近期火紅的「Kōhī
                                             Bar」將會是你的新地標！
@@ -32,17 +40,9 @@ export default function BlogIndex() {
                                 </li>
                                 <li>
                                     <div className="image-text">
-                                        <img src="/image/article1.jpg" alt="" />
-                                        <p>
-                                            若你是懂吃又懂拍的女孩的話，近期火紅的「Kōhī
-                                            Bar」將會是你的新地標！
-                                            採外帶式設計，但店門外有一整排的座位區，可供客人休息，下午時間陽光灑下超舒適。療癒的雪人可可不只好喝還很好拍，店內的甜點也堪稱一絕，還有號稱有甜點迷心中前三名的司康。
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="image-text">
-                                        <img src="/image/article1.jpg" alt="" />
+                                        <div className="image">
+                                            <img src="/images/blog/article1.jpg" alt="" />
+                                        </div>
                                         <p>
                                             若你是懂吃又懂拍的女孩的話，近期火紅的「Kōhī
                                             Bar」將會是你的新地標！
@@ -51,62 +51,63 @@ export default function BlogIndex() {
                                     </div>
                                 </li>
                             </ul>
-                            <h6 className="article-sidebar">文章分類</h6>
-                            <ul>
+                            <h6 className="article-sidebar pt-2">文章分類</h6>
+                            <ul className="article-list">
                                 <li>
                                     <div className="article-category py-2">
                                         <input type="checkbox" />
                                         <span className="mx-3">蛋糕</span>
-                                        <i className="fa-solid fa-circle-chevron-down" />
+                                        <FaChevronDown />
                                     </div>
                                 </li>
                                 <li>
                                     <div className="article-category py-2">
                                         <input type="checkbox" />
                                         <span className="mx-3">蛋糕</span>
-                                        <i className="fa-solid fa-circle-chevron-down" />
+                                        <FaChevronDown />
                                     </div>
                                 </li>
                                 <li>
                                     <div className="article-category py-2">
                                         <input type="checkbox" />
                                         <span className="mx-3">蛋糕</span>
-                                        <i className="fa-solid fa-circle-chevron-down" />
+                                        <FaChevronDown />
                                     </div>
                                 </li>
                                 <li>
                                     <div className="article-category py-2">
                                         <input type="checkbox" />
                                         <span className="mx-3">蛋糕</span>
-                                        <i className="fa-solid fa-circle-chevron-down" />
+                                        <FaChevronDown />
                                     </div>
                                 </li>
-                                <h6 className="article-sidebar pt-2">日期區間</h6>
-                                <div>
-                                    <input id="myDatepicker" placeholder="點擊選擇所需日期" />
-                                </div>
                             </ul>
+                            <h6 className="article-sidebar pt-2">日期區間</h6>
+                            <div>
+                                <input id="myDatepicker" placeholder="點擊選擇所需日期" />
+                            </div>
                         </div>
                     </div>
                     <div className="col-9">
                         <div className="container ">
-                            <ul>
+                            <ul className="article-list">
                                 <li>
                                     <div className="article-content">
-                                        <img src="/image/article1.jpg" alt="" />
-                                        <div className="mx-4">
-                                            <ul style={{ display: "flex" }}>
+                                        <div>
+                                            <img src="/images/blog/article2.jpg" alt="" />
+                                        </div>
+                                        <div className="mx-4 article-list">
+                                            <ul className="article-list acticle-tag">
                                                 <li
-                                                    style={{ backgroundColor: "#69833f" }}
                                                     className="p-1 me-3"
                                                 >
                                                     蛋糕
                                                 </li>
-                                                <li style={{ backgroundColor: "#4a5042" }} className="p-1">
+                                                <li className="p-1">
                                                     蛋糕
                                                 </li>
                                             </ul>
-                                            <h5 className="pt-4">甜點控注意！</h5>
+                                            <h3 className="pt-4">甜點控注意！信義安和站甜點咖啡廳 Top 7：肉桂捲、司康、可麗露</h3>
                                             <div className="py-2">time</div>
                                             <p>
                                                 現代人人手一杯咖啡已是常態，不只品嚐咖啡的美味，更成為手上時髦單品。
@@ -114,13 +115,9 @@ export default function BlogIndex() {
                                                 今天則推薦 7
                                                 家捷運信義安和站咖啡廳，不只咖啡好喝甜點也迷人，尤其是肉桂捲更是讓人難忘。
                                             </p>
-                                            <button
-                                                type="button"
-                                                className="btn btn-primary"
-                                                style={{ textAlign: "right" }}
-                                            >
-                                                繼續閱讀
-                                            </button>
+                                            <div className="more">
+                                                <a type="button">READ MORE</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
