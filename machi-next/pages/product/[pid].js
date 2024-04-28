@@ -11,14 +11,12 @@ export default function Detail() {
           </div>
         </div>
         <div className="col-sm-5">
-          <h4>Nike Air Force 1 PLT.AF.ORM</h4>
-          <p>女鞋</p>
-          <p>$4,000</p>
+          <h4>鹿野紅烏龍戚風蛋糕</h4>
+          <p>蛋糕</p>
+          <p>$850</p>
           <p className="product-desc">
-            穿上 Nike Air Force 1 PLT.AF.ORM. 用經典好穿的 AF1 風格脫穎而出。
-            優雅版型搭配加厚中底，為籃球鞋系列注入傲嬌新風貌。
-            皮革鞋面隨形貼合且越穿越柔軟；塑型鞋領加上柔軟如枕的鞋跟，舒適耐穿。
-            一現身就風靡全場。
+            林叔叔在台東鹿野的冠軍茶廠出產的紅烏龍茶葉，好多年都得了金賞，重發酵的紅烏龍，茶味鮮明溫潤帶有一縷天然果香，是我們私下很愛喝的台灣茶之一，所以決定用這個我們都好喜歡的紅烏龍，做成淡雅內斂的戚風蛋糕；若賦予她生命，她絕對是位氣質出眾的女孩。裝飾意象為台灣茶花，吃蛋糕的同時別忘了台灣有世界頂級的好茶！
+            (目前已改版為紅烏龍茶香緹內餡，已不再附上鮮奶油與紅烏龍茶淋醬)
           </p>
           <ul>
             <li>顯示顏色： 白/白/白/Summit White</li>
@@ -140,7 +138,47 @@ export default function Detail() {
         </div>
       </div>
       <div className="row mt-5 mx-2">
-        <div className="col-sm-12">
+        <nav id="navbar-example2" class="navbar navbar-light bg-light justify-content-center align-center-sm flex-space-between">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="#scrollspyHeading1">
+              商品介紹
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#scrollspyHeading2">
+              運送與注意事項
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div
+          data-bs-spy="scroll"
+          data-bs-target="#navbar-example2"
+          data-bs-offset="0"
+          class="scrollspy-example"
+          tabindex="0"
+        >
+          <h4 id="scrollspyHeading1">｜保存與享用｜</h4>
+          <p>產品風味｜紅烏龍茶戚風蛋糕、伊思尼鮮奶油、紅烏龍茶香緹
+          <br />產品尺寸｜6吋 - 13cm(Φ)x7cm(h)、9吋 (產品以手工製作，尺寸僅供參考，略有誤差屬正常現象)
+          </p>
+          <h4 id="scrollspyHeading2">｜保 存 方 式｜</h4>
+          <p>為確保品質，將以低溫宅配運送，收到產品後，可選擇冷藏或冷凍擇一方式保存
+          <br />◼︎ 冷藏 |  3天內為最佳賞味期間 
+          <br />◼︎ 冷凍 |  2週內，請密封保存避免冰箱異味影響風味
+          </p>
+          <h4 id="scrollspyHeading3">｜運送與注意事項｜</h4>
+          <p>◼︎ 為確保商品新鮮及配送安全，宅配產品全程將使用低溫冷凍配送，部分商品因損壞風險較大，恕無法宅配。
+          <br />◼︎ 自取時間為營業日的PM14:00-20:00、快遞服務僅限雙北部分區域。
+          <br />◼︎ 宅配金額$190-$240、桃園以外線市快遞金額$100-$350不等，將依照您的里程數計算
+          <br />◼︎ 訂單送出後，請在24小時內完成付款，付款完成才開始安排訂單製作唷<br />◼︎ 商品皆為新鮮製作，因此最快出貨日為下單後3個工作天，急單請電洽◼︎ 急單請電洽，聯繫電話 (03)452-1234，夥伴們將跟您確認收貨日期相關事宜</p>
+          <h4 id="scrollspyHeading4">｜宅 配 延 遲｜</h4>
+          <p>因疫情升級造成物流繁忙，恕無法於指定日期配送到貨，在商品送達前，敬請多留意黑貓宅配之聯繫電話，也建議您提前預留到貨時間，以確保趕得上您的時程安排。此段期間，商品若有延誤，恕不接受退換貨申請，敬請見諒。若有急單或需於指定日期送達，建議您多加利用快遞服務或前往店面自取。</p>
+          <h4 id="scrollspyHeading5">｜風 險 說 明｜</h4>
+          <p>宅配商品皆進行多次配送實驗，並給予最完善的包裝，配送過程仍有一定的風險，如遇蛋糕位移、側邊損傷或裝飾掉落、微損，或因宅配繁盛期延遲到貨與毀損，均不在毀壞補償範圍內，風險須自行承擔</p>
+        </div>
+        {/* <div className="col-sm-12">
           <h4 className="text-center mb-5">探索 Nike Air Force 1005 女鞋</h4>
           <img
             className="w-100  my-5 "
@@ -156,7 +194,7 @@ export default function Detail() {
           <p className="text-center my-5 font-weight-light fs-4">
             低筒版型，造型俐落簡練。
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   )
