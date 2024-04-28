@@ -210,14 +210,14 @@ const CartPage1 = () => {
            </div>
            <div className='h5 py-2'>運送方式</div>
            <div className='py-2'>
-              <select className="form-select py-2" aria-label="Default select example" style={{width:256}}>
+              <select className={`${styles['cart-custom-bootstrap']} form-select py-2`} aria-label="Default select example" style={{width:256}}>
                 <option selected>選擇配送方式</option>
                 <option value="1">宅配到府</option>
                 <option value="2">超商取貨</option>
               </select>
             </div>
             <div className={`${styles['text-border-brown']} py-2`}>
-              <select className="form-select py-2" aria-label="Default select example" style={{width:256}}>
+              <select className={`${styles['cart-custom-bootstrap']} form-select py-2`} aria-label="Default select example" style={{width:256}}>
                 <option selected>選擇配送廠商</option>
                 <option value="1">黑貓宅急便</option>
                 <option value="2">吉刻救猿</option>
@@ -226,27 +226,27 @@ const CartPage1 = () => {
             <div className='h5 pt-2'>收件人資訊</div>
             <div className={`${styles['h6']} text-grey pb-2`}><MdCheckBoxOutlineBlank size={28}></MdCheckBoxOutlineBlank>同會員資料</div>
             <div className='row d-flex justify-content-between'>
-              <div className='col-4'>
+              <div className={`col-4  `}>
                 <input
                   type="text"
-                  className={`form-control w-100 ${styles['form-control']} `}
-                  placeholder="姓名"
+                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}`}
+                  placeholder="真實姓名"
                 />
               </div>
               <div className='col-6'>
                 <input
                   type="text"
-                  className={`form-control w-100 ${styles['form-control']} `}
-                  placeholder="電話"
+                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}`}
+                  placeholder="09XXXXXXXX"
                 />
               </div>
             </div>
             <div className={`${styles['text-border-brown']} row d-flex pt-2 pb-5 `}>
-              <div className='col'>
+              <div className={`= col `}>
                 <input
                   type="text"
-                  className={`form-control w-100 ${styles['form-control']} `}
-                  placeholder="地址"
+                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} `}
+                  placeholder="請填寫完整地址"
                 />
               </div>
             </div>
