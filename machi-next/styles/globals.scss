@@ -21,6 +21,23 @@ $dark-grey: #868686;
 $grey: #c0c0c0;
 $light-grey: #e8e8e8;
 
+
+//moudle.scss呼喚用
+:root {
+  --white: #ffffff;
+  --black: #252525;
+  --primary-1: #f7f5eb;
+  --primary-dark: #785e4c;
+  --brown: #ab927d;
+  --light-brown: #cebeb0;
+  --primary-2: #78aebb;
+  --secondary: #f8dc9a;
+  --heart: #db9d9d;
+  --dark-grey: #868686;
+  --grey: #c0c0c0;
+  --light-grey: #e8e8e8;
+  }
+
 // bootstrap 覆寫
 $custom-colors: (
   'white': #ffffff,

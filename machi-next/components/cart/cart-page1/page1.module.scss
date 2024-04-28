@@ -55,10 +55,7 @@
   position: relative;
 }
 
-$custom-colors: (
-  'custom-color': #900,
-);
-$theme-colors: map-merge($theme-colors, $custom-colors);
+
 
 
 
