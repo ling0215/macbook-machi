@@ -14,34 +14,49 @@ const menuItems = [
   },
   {
     id: 2,
-    label: '新聞',
-    href: '/news',
+    label: '商品列表',
+    href: '/product',
   },
   {
     id: 3,
-    label: '會員',
-    href: '/member',
-    children: [
-      { id: 32, label: '登入', href: '/member/login' },
-      { id: 33, label: '註冊', href: '/member/register' },
-      { id: 34, label: '忘記密碼', href: '/member/forget-password' },
-    ],
+    label: '客製化蛋糕',
+    href: '/customized-products',
   },
   {
     id: 4,
-    label: '商品',
-    href: '/product',
-    children: [
-      { id: 41, label: '列表', href: '/product/list' },
-      { id: 42, label: '詳細', href: '/product/01' },
-      { id: 43, label: '購物車', href: '/cart' },
-    ],
+    label: '甜點課程',
+    href: '/class',
   },
   {
     id: 5,
-    label: '關於我們',
-    href: '/about',
+    label: '文章專區',
+    href: '/blog',
   },
+  {
+    id: 6,
+    label: '會員專區',
+    href: '/member',
+  },
+  // {
+  //   id: 3,
+  //   label: '會員',
+  //   href: '/member',
+  //   children: [
+  //     { id: 32, label: '登入', href: '/member/login' },
+  //     { id: 33, label: '註冊', href: '/member/register' },
+  //     { id: 34, label: '忘記密碼', href: '/member/forget-password' },
+  //   ],
+  // },
+  // {
+  //   id: 4,
+  //   label: '商品',
+  //   href: '/product',
+  //   children: [
+  //     { id: 41, label: '列表', href: '/product/list' },
+  //     { id: 42, label: '詳細', href: '/product/01' },
+  //     { id: 43, label: '購物車', href: '/cart' },
+  //   ],
+  // },
 ]
 
 export default function MainMenu({ currentRoute = '/' }) {
