@@ -16,8 +16,10 @@ export default function LoginForm() {
     try {
       const response = await login({ email, password })
       // 登入成功，處理 response
+      console.log(response)
     } catch (error) {
       // 登入失敗，處理 error
+      console.error(error)
     }
   }
 

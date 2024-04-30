@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
   // 方式二: 使用模型查詢
   const user = await User.findOne({
     where: {
-      user_name: loginUser.email,
+      user_email: loginUser.email,
     },
     raw: true, // 只需要資料表中資料
   })
@@ -69,7 +69,7 @@ router.post('/login', async (req, res) => {
 
   // compareHash(登入時的密碼純字串, 資料庫中的密碼hash) 比較密碼正確性
   // isValid=true 代表正確
-  const isValid = await compareHash(loginUser.password, user.password)
+  const isValid = await compareHash(loginUser.password, user.user_password)
 
   // isValid=false 代表密碼錯誤
   if (!isValid) {
