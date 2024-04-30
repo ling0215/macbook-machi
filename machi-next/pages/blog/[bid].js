@@ -14,10 +14,6 @@ export default function ArticleDetail() {
           <button>按鈕</button>
           <button>按鈕</button>
           <button>按鈕</button>
-          <button>按鈕</button>
-          <button>按鈕</button>
-          <button>按鈕</button>
-          <button>按鈕</button>
         </div>
         <div className={styles['article-title']}>
           <h3>甜點控注意！信義安和站甜點咖啡廳 Top 7：肉桂捲、司康、可麗露</h3>

@@ -1,16 +1,14 @@
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
+import {useState} from 'react'
 import Latest from '@/components/blog/latest-article'
 import Category from '@/components/blog/article-category'
 import List from '@/components/blog/article-list'
 
 import { FaSearch } from 'react-icons/fa'
-
 import { FaCaretLeft } from 'react-icons/fa'
 import { FaCaretRight } from 'react-icons/fa'
 
 export default function BlogIndex() {
+
   return (
     <>
       <div className="container">
@@ -35,7 +33,8 @@ export default function BlogIndex() {
               <Category />
               <Category />
               <h6 className="article-sidebar pt-2">日期區間</h6>
-              <div>
+              <div
+>
                 <input id="myDatepicker" placeholder="點擊選擇所需日期" />
               </div>
             </div>

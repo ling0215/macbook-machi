@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { FaChevronDown } from 'react-icons/fa'
 import styles from '@/components/blog/article-category.module.scss'
+
+import { FaChevronDown } from 'react-icons/fa'
 
 export default function ArticleCategory() {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,8 +12,8 @@ export default function ArticleCategory() {
         <div onClick={() => setIsOpen(!isOpen)}>
           <input type="checkbox" />
           <span className="mx-3">蛋糕</span>
-          <FaChevronDown 
-            
+          <FaChevronDown
+
           />
         </div>
         {isOpen && (
