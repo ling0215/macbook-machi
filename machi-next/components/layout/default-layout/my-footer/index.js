@@ -22,7 +22,7 @@ export default function MyFooter() {
               <div className={`${styles['logo-machi']} mb-3  mx-auto`}>
                 {/* LOGO */}
                 <Image
-                  src="/machi.svg"
+                  src="/logo-machi-white.svg"
                   alt=""
                   width={145}
                   height={50}

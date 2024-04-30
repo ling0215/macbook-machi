@@ -4,7 +4,7 @@ import '@/styles/globals.scss'
 import '@/styles/product.scss'
 import '@/styles/cart.scss'
 import '@/styles/loader.scss'
-import '@/styles/customize.css'
+import '@/styles/customize.scss'
 import '@/styles/blog.scss'
 // 載入購物車context
 import { CartProvider } from '@/hooks/use-cart-state'
@@ -30,7 +30,7 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <LoaderProvider close={2} CustomLoader={CatLoader}>
-      <CartProvider>{getLayout(<Component {...pageProps} />)}</CartProvider>
+      <CartProvider>{getLayout(<Component {...pageProps} />)}</CartProvider> 
     </LoaderProvider>
   )
 }
