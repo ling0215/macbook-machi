@@ -34,9 +34,8 @@ router.get('/check', authenticate, async (req, res) => {
 router.post('/login', async (req, res) => {
   // 從前端來的資料 req.body = { username:'xxxx', password :'xxxx'}
   const loginUser = req.body
-
   // 檢查從前端來的資料哪些為必要
-  if (!loginUser.username || !loginUser.password) {
+  if (!loginUser.email || !loginUser.password) {
     return res.json({ status: 'fail', data: null })
   }
 
@@ -56,7 +55,7 @@ router.post('/login', async (req, res) => {
   // 方式二: 使用模型查詢
   const user = await User.findOne({
     where: {
-      username: loginUser.username,
+      user_name: loginUser.email,
     },
     raw: true, // 只需要資料表中資料
   })
@@ -79,8 +78,8 @@ router.post('/login', async (req, res) => {
 
   // 存取令牌(access token)只需要id和username就足夠，其它資料可以再向資料庫查詢
   const returnUser = {
-    id: user.id,
-    username: user.username,
+    user_id: user.user_id,
+    user_name: user.user_name,
     google_uid: user.google_uid,
     line_uid: user.line_uid,
   }
