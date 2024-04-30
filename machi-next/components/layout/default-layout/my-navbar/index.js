@@ -24,10 +24,20 @@ export default function MyNavbar() {
   return (
     <>
       <header>
-        <nav className={`${styles[`bg-primary`]} navbar navbar-expand-lg fixed-top navbar-light bg-light`}>
+        <nav
+          className={`${
+            styles[`bg-primary`]
+          } navbar navbar-expand-lg fixed-top navbar-light bg-light`}
+        >
           <div className="container-fluid">
             <Link className="navbar-brand" href="/">
-              <Image src="/logo-machi-brown.svg" alt="" width={100} height={24} priority />
+              <Image
+                src="/logo-machi-brown.svg"
+                alt=""
+                width={100}
+                height={24}
+                priority
+              />
             </Link>
             <button
               className="navbar-toggler"
