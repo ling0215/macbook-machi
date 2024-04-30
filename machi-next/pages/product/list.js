@@ -7,7 +7,7 @@ import {
   IoAppsSharp,
   IoListSharp,
 } from 'react-icons/io5'
-import { Range } from 'react-range'
+// import { Range } from 'react-range'
 export default function List() {
   // Toggle the side navigation
   useEffect(() => {
@@ -49,8 +49,28 @@ export default function List() {
               backgroundColor: 'white',
               borderColor: 'light-brown',
             }}
+            
           />
-          <i className="bi bi-search"></i>
+          <div className="row mt-2 mb-3">
+            <h5 className="card-text d-flex justify-content-between align-items-center">
+              <div className="input-group">
+                <input
+                  type="text"
+                  placeholder="請輸入關鍵字"
+                  className="form-control"
+                  style={{
+                    width: '200px',
+                    height: '40px',
+                    backgroundColor: 'white',
+                    borderColor: 'light-brown',
+                  }}
+                />
+                <span className="input-group-text">
+                  <i className="bi bi-search"></i>
+                </span>
+              </div>
+            </h5>
+          </div>
           <div className="d-flex p-2 justify-content-end align-items-center">
             <span className="ps-3">塔派甜點 (20)</span>
             <div className="toolbar">
@@ -191,97 +211,6 @@ export default function List() {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="accordion-item">
-                    <h2 className="accordion-header">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwo"
-                      >
-                        顏色
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseTwo"
-                      className="accordion-collapse collapse"
-                    >
-                      <div className="accordion-body px-1">
-                        <div className="d-flex flex-row justify-content-around mb-2">
-                          <div className="p-2">
-                            <div className="d-flex flex-column">
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-primary btn-circle"
-                                ></button>
-                              </div>
-                              <div className="color-f">紫色</div>
-                            </div>
-                          </div>
-                          <div className="p-2">
-                            <div className="d-flex flex-column">
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-primary btn-circle"
-                                ></button>
-                              </div>
-                              <div className="color-f">紫色</div>
-                            </div>
-                          </div>
-                          <div className="p-2">
-                            <div className="d-flex flex-column">
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-primary btn-circle"
-                                ></button>
-                              </div>
-                              <div className="color-f">紫色</div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="d-flex flex-row justify-content-around mb-2">
-                          <div className="p-2">
-                            <div className="d-flex flex-column">
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-primary btn-circle"
-                                ></button>
-                              </div>
-                              <div className="color-f">紫色</div>
-                            </div>
-                          </div>
-                          <div className="p-2">
-                            <div className="d-flex flex-column">
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-primary btn-circle"
-                                ></button>
-                              </div>
-                              <div className="color-f">紫色</div>
-                            </div>
-                          </div>
-                          <div className="p-2">
-                            <div className="d-flex flex-column">
-                              <div>
-                                <button
-                                  type="button"
-                                  className="btn btn-primary btn-circle"
-                                ></button>
-                              </div>
-                              <div className="color-f">紫色</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
                   <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button
@@ -345,6 +274,17 @@ export default function List() {
                       </div>
                     </div>
                   </div>
+                    <label htmlFor="range" className="form-label mt-3">
+                      價格區間
+                    </label>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min={10}
+                      max={3000}
+                      step="10"
+                      id="range"
+                    />
                 </div>
               </div>
             </div>

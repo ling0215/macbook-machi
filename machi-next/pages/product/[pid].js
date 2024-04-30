@@ -1,5 +1,12 @@
 import React from 'react'
 import Carousel from '@/components/product/carousel'
+import {
+  IoCartOutline,
+  IoHeartOutline,
+  IoIosSearch,
+  IoAppsSharp,
+  IoListSharp,
+} from 'react-icons/io5'
 
 export default function Detail() {
   return (
@@ -18,13 +25,15 @@ export default function Detail() {
             林叔叔在台東鹿野的冠軍茶廠出產的紅烏龍茶葉，好多年都得了金賞，重發酵的紅烏龍，茶味鮮明溫潤帶有一縷天然果香，是我們私下很愛喝的台灣茶之一，所以決定用這個我們都好喜歡的紅烏龍，做成淡雅內斂的戚風蛋糕；若賦予她生命，她絕對是位氣質出眾的女孩。裝飾意象為台灣茶花，吃蛋糕的同時別忘了台灣有世界頂級的好茶！
             (目前已改版為紅烏龍茶香緹內餡，已不再附上鮮奶油與紅烏龍茶淋醬)
           </p>
-          <ul>
-            <li>顯示顏色： 白/白/白/Summit White</li>
-            <li>款式： DJ9946-100</li>
-          </ul>
-          <button className="btn btn-primary w-100 mb-3">加入購物車</button>
-          <button className="btn btn-outline-primary w-100">
-            <i className="bi bi-suit-heart"></i> 最愛
+          <button className="btn btn-outline-brown col-2">6吋</button>
+          <button className="btn btn-outline-brown col-2">9吋</button>
+          <div className="row justify-content-evenly">
+            <button className="btn btn-outline-brown w-50 col-3">
+            <IoCartOutline /> 加入購物車</button>
+            <button className="btn btn-brown w-50 col-3">立即購買</button>
+          </div>
+          <button className="btn btn-outline-primary w-50 mt-3">
+            <i className="bi bi-suit-heart"></i> 我的最愛
           </button>
           <div className="product-info my-5">
             <div
