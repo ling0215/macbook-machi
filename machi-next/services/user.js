@@ -105,7 +105,12 @@ export const updatePassword = async (id = 0, password = {}) => {
  * 獲得會員有加在我的最愛的商品id，回傳為id陣列
  */
 export const getFavs = async () => {
-  return await axiosInstance.get('/favorites')
+  try {
+    return await axiosInstance.get('/favorites')
+  } catch (error) {
+    console.error(error)
+    // 你可以在這裡添加更多的錯誤處理邏輯
+  }
 }
 /**
  * 新增商品id在該會員的我的最愛清單中的

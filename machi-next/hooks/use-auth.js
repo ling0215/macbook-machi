@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
   const handleGetFavorites = async () => {
     const res = await getFavs()
     //console.log(res.data)
-    if (res.data.status === 'success') {
+    if (res && res.data && res.data.status === 'success') {
       setFavorites(res.data.data.favorites)
     }
   }
@@ -89,9 +89,11 @@ export const AuthProvider = ({ children }) => {
       const dbUser = res.data.data.user
       const userData = { ...initUserData }
 
-      for (const key in userData) {
-        if (Object.hasOwn(dbUser, key)) {
-          userData[key] = dbUser[key] || ''
+      if (dbUser) {
+        for (const key in userData) {
+          if (Object.hasOwn(dbUser, key)) {
+            userData[key] = dbUser[key] || ''
+          }
         }
       }
       // 設到全域狀態中
