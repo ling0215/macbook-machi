@@ -1,3 +1,11 @@
+import Steps from '@/components/customize/steps'
+
 export default function CustomizedDeco() {
-  return <div>CustomizedDeco</div>
+  return (
+    <>
+      <div>
+        <Steps />
+      </div>
+    </>
+  )
 }

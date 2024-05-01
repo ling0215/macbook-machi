@@ -10,7 +10,6 @@ import ToturialPanel from './tutorial-panel'
 
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-
 export default function MyNavbar() {
   // currentRoute是用來套用active樣式(目前區域對應選單項目)，需傳入MainMenu中
   const router = useRouter()
@@ -24,10 +23,20 @@ export default function MyNavbar() {
   return (
     <>
       <header>
-        <nav className={`${styles[`bg-primary`]} navbar navbar-expand-lg fixed-top navbar-light bg-light`}>
+        <nav
+          className={`${
+            styles[`bg-primary`]
+          } navbar navbar-expand-lg fixed-top navbar-light bg-light`}
+        >
           <div className="container-fluid">
             <Link className="navbar-brand" href="/">
-              <Image src="/logo-machi-brown.svg" alt="" width={100} height={24} priority />
+              <Image
+                src="/logo-machi-brown.svg"
+                alt=""
+                width={100}
+                height={24}
+                priority
+              />
             </Link>
             <button
               className="navbar-toggler"

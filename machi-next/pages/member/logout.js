@@ -1,5 +1,10 @@
 import React from 'react'
+import { logout } from '@/services/user'
 
 export default function Logout() {
-  return <div>Logout</div>
+  return (
+    <>
+      <button onClick={logout}>Logout</button>
+    </>
+  )
 }

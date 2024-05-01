@@ -1,3 +1,4 @@
+/* comments */
 .testimonialCard {
   align-items: start;
   background-color: var(--Brown, #ab927d);
@@ -10,7 +11,7 @@
   font-weight: 400;
   letter-spacing: 0.8px;
   max-width: 200px;
-  padding: 0 19px 45px;
+  padding: 0 25px 40px;
   position: relative;
 }
 
@@ -64,7 +65,7 @@
   margin-top: 20px;
   object-fit: cover;
   width: 50px;
-  color: black;
+  color: var(--darkBrown, #7d5f4d);
   transform: scale(1.5) translateY(-10px);
 }
 
@@ -72,4 +73,16 @@
   font-family: Roboto, sans-serif;
   color: var(--primary-1, #f7f5eb);
   font-size: 18px;
+}
+
+/* steps */
+.bg-yellow {
+  background-color: #e6b759;
+}
+.text-border-yellow {
+  font-size: 20px;
+  font-weight: 500;
+  color: #e6b759;
+  border-bottom: 1.5px solid #e6b759;
+  line-height: 2rem;
 }

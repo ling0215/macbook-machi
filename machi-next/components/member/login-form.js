@@ -4,18 +4,37 @@ import Link from 'next/link'
 import LineLogo from '@/components/icons/line-logo'
 import GoogleLogo from '@/components/icons/google-logo'
 import FacebookLogo from '@/components/icons/facebook-logo'
+import { useState } from 'react'
+import { login } from '@/services/user'
 
 export default function LoginForm() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await login({ email, password })
+      // 登入成功，處理 response
+      console.log(response)
+    } catch (error) {
+      // 登入失敗，處理 error
+      console.error(error)
+    }
+  }
+
   return (
     <main className={`form-member w-100 m-auto text-center`}>
       <h2 className="text-center mb-5">會員登入</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col-sm-12">
             <input
               type="email"
               className={`form-control w-100 ${styles['form-control']} `}
               placeholder="電子郵件地址"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className={`${styles['error']} my-2 text-start`}>
@@ -28,6 +47,8 @@ export default function LoginForm() {
               type="password"
               className={`form-control w-100 ${styles['form-control']} ${styles['invalid']} `}
               placeholder="密碼"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className={`${styles['error']} my-2 text-start`}>
