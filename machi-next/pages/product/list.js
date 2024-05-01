@@ -7,6 +7,7 @@ import {
   IoAppsSharp,
   IoListSharp,
 } from 'react-icons/io5'
+import { CiSearch } from "react-icons/ci";
 // import { Range } from 'react-range'
 export default function List() {
   // Toggle the side navigation
@@ -39,18 +40,6 @@ export default function List() {
     <>
       <div className="row mt-2 mb-3">
         <h5 className="card-text d-flex justify-content-between align-items-center">
-          <input
-            type="text"
-            placeholder="請輸入關鍵字"
-            className="input-field"
-            style={{
-              width: '200px',
-              height: '40px',
-              backgroundColor: 'white',
-              borderColor: 'light-brown',
-            }}
-            
-          />
           <div className="row mt-2 mb-3">
             <h5 className="card-text d-flex justify-content-between align-items-center">
               <div className="input-group">
@@ -72,8 +61,11 @@ export default function List() {
             </h5>
           </div>
           <div className="d-flex p-2 justify-content-end align-items-center">
-            <span className="ps-3">塔派甜點 (20)</span>
-            <div className="toolbar">
+          <div className="toolbar">
+              <span className="ps-3">塔派甜點 (20)</span>
+          </div>
+            
+            {/* <div className="toolbar">
               <button className="btn" id="sidebarToggle">
                 隱藏篩選條件 <i className="bi bi-toggles"></i>
               </button>
@@ -104,8 +96,10 @@ export default function List() {
                   </a>
                 </li>
               </ul>
-            </div>
-            <div className="viewtype">
+            </div> */}
+
+            {/* 排序切換顯示 */}
+            <div className="viewtype"> 
               <button className="btn" id="gridview">
                 <i className="bi bi-grid"></i>
               </button>
@@ -139,7 +133,7 @@ export default function List() {
                   </div>
                   <div>
                     <button type="button" className="btn">
-                      點心
+                      精緻點心
                     </button>
                   </div>
                 </div>
