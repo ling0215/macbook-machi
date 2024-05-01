@@ -34,7 +34,7 @@ function Customize() {
             <p>
               他們也都喜歡Machi
               <br />
-              的客製化蛋糕！
+              的客製化蛋糕！!
             </p>
           </div>
           <div className="comments-content d-flex">

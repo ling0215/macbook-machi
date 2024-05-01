@@ -31,7 +31,7 @@ export default function Steps() {
           >
             <div className={`h5 mb-0 text-white d-flex`}>2</div>
           </div>
-          <div className={`h5 mb-0 text-grey`}>確認及填寫</div>
+          <div className={`h5 mb-0 text-grey`}>選擇蛋糕口味及樣式</div>
         </div>
         <div
           className={`col d-flex gap-1 align-items-center justify-content-end`}
@@ -44,7 +44,7 @@ export default function Steps() {
               3
             </div>
           </div>
-          <div className={`h5 mb-0 text-grey`}>下單成功</div>
+          <div className={`h5 mb-0 text-grey`}>加入購物車</div>
         </div>
       </div>
     </>
