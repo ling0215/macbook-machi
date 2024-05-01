@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 export default function CartList() {
   const { cart, items, decrement, increment, removeItem } = useCart()
 
-  // 添加一些假数据
+  // 添加一些假数据22
   useEffect(() => {
     const fakeItems = [
       { id: 1, name: '商品1', price: 10, quantity: 2, subtotal: 20 },
