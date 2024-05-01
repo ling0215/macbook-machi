@@ -10,7 +10,6 @@ import ToturialPanel from './tutorial-panel'
 
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-
 export default function MyNavbar() {
   // currentRoute是用來套用active樣式(目前區域對應選單項目)，需傳入MainMenu中
   const router = useRouter()

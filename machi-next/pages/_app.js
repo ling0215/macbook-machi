@@ -5,7 +5,7 @@ import '@/styles/product.scss'
 import '@/styles/cart.scss'
 import '@/styles/loader.scss'
 import '@/styles/customize.scss'
-import '@/styles/blog.scss'
+import '@/styles/blog/blog.scss'
 // 載入購物車context
 import { CartProvider } from '@/hooks/use-cart-state'
 // 載入認証用context
@@ -29,8 +29,10 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
-    <LoaderProvider close={2} CustomLoader={CatLoader}>
-      <CartProvider>{getLayout(<Component {...pageProps} />)}</CartProvider> 
-    </LoaderProvider>
+    // <AuthProvider>
+      <LoaderProvider close={2} CustomLoader={CatLoader}>
+        <CartProvider>{getLayout(<Component {...pageProps} />)}</CartProvider>
+      </LoaderProvider>
+    // </AuthProvider>
   )
 }

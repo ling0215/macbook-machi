@@ -9,13 +9,14 @@
 
 .image-text {
     display: flex;
+
     // align-items: center;
     p {
+        color: $primary-dark;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        
     }
 
     img {
@@ -30,23 +31,42 @@
     display: flex;
     align-items: center
 }
+
 .input-field {
+    font-weight: bold;
     padding: 5px;
     margin-right: 10px;
+    background-color: $primary-1;
+}
+
+input::placeholder {
+    color: $primary-dark ;
+}
+
+//文章分類
+.article-category {
+    span {
+        color: $primary-dark;
+    }
 }
 
 // 文章列表
 .article-content {
     display: flex;
+
+    h4 {
+        color: $primary-dark;
+    }
+
     p {
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        color: $primary-dark;
-        
-    }
+        color: $brown;
+        margin-bottom: 0;
 
+    }
     img {
         width: 190px;
         height: 220px;
@@ -54,28 +74,36 @@
     }
 }
 
+.article-text {
+    padding-bottom: 30px;
+    span {
+        color: $light-grey;
+    }
+}
+
 .list-array {
     display: flex;
-  flex-direction: column;
+    flex-direction: column;
 }
+
 .acticle-tag {
     display: flex;
-    li{
+
+    li {
         background-color: $secondary;
         color: $primary-dark;
     }
 }
 
-.article-list{
+.article-list {
     list-style-type: none;
     padding: 0px;
-    li {
-        margin-top: 10px;
-    }
 }
+
 .more {
     display: flex;
     justify-content: flex-end;
+    color: $brown;
 }
 
 //分頁按鈕
@@ -83,9 +111,9 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
-  }
-  
-  .page-btn {
+}
+
+.page-btn {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -95,9 +123,8 @@
     margin: 0 5px;
     cursor: pointer;
     font-weight: bold;
-  }
-  
-  .page-btn:hover {
+}
+
+.page-btn:hover {
     background-color: $secondary;
-  }
-  
+}

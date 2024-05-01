@@ -35,19 +35,13 @@ export default function Carousel() {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src="/images/product/slide/t1.jpg" />
+          <img src="/images/product/slide/p1.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/t2.jpg" />
+          <img src="/images/product/slide/p2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/t3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/product/slide/t4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/product/slide/t5.jpg" />
+          <img src="/images/product/slide/p3.jpg" />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -60,19 +54,13 @@ export default function Carousel() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="/images/product/slide/t1.jpg" />
+          <img src="/images/product/slide/p1.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/t2.jpg" />
+          <img src="/images/product/slide/p2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/t3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/product/slide/t4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/product/slide/t5.jpg" />
+          <img src="/images/product/slide/p3.jpg" />
         </SwiperSlide>
       </Swiper>
     </>
