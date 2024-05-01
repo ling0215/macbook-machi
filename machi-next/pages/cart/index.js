@@ -7,8 +7,8 @@ import CartList from '@/components/cart/list'
 
 export default function Text1() {
   return (
-    // <CartList></CartList>
-    <CartPage1></CartPage1>
+    <CartList></CartList>
+    // <CartPage1></CartPage1>
     // <CartPage2></CartPage2>
     // <CartPage3></CartPage3>
   )
