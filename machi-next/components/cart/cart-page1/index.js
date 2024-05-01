@@ -1,7 +1,24 @@
 import React from 'react'
 import styles from './page1.module.scss'
+import '@/node_modules/bootstrap/scss/bootstrap.scss'
 
-import '@/node_modules/bootstrap/scss/bootstrap.scss';
+const initialProducts = [
+  {
+    id: 0,
+    name: '小熊餅乾',
+    count: 1,
+  },
+  {
+    id: 1,
+    name: '巧克力豆餅乾',
+    count: 5,
+  },
+  {
+    id: 2,
+    name: '小老板海苔',
+    count: 2,
+  },
+]
 
 const CartPage1 = () => {
   return (
@@ -10,7 +27,9 @@ const CartPage1 = () => {
         className={`row mt-5 mb-2 d-flex  position-relative g-0 `}
         style={{ maxWidth: 960, left: '50%', transform: 'translateX(-50%)' }}
       >
-        <div className={`col d-flex gap-1 align-items-center justify-content-start  `}>
+        <div
+          className={`col d-flex gap-1 align-items-center justify-content-start  `}
+        >
           <div
             className={`d-flex bg-brown align-items-center justify-content-center  `}
             style={{ height: 40, width: 40, borderRadius: '50%' }}
@@ -21,7 +40,9 @@ const CartPage1 = () => {
             購物車資訊
           </div>
         </div>
-        <div className={`col d-flex gap-1 align-items-center justify-content-center`}>
+        <div
+          className={`col d-flex gap-1 align-items-center justify-content-center`}
+        >
           <div
             className={`d-flex bg-grey justify-content-center align-items-center `}
             style={{ height: 40, width: 40, borderRadius: '50%' }}
@@ -30,7 +51,9 @@ const CartPage1 = () => {
           </div>
           <div className={`h4 mb-0   text-grey `}>確認及填寫</div>
         </div>
-        <div className={`col d-flex gap-1 align-items-center justify-content-end`}>
+        <div
+          className={`col d-flex gap-1 align-items-center justify-content-end`}
+        >
           <div
             className={`d-flex bg-grey justify-content-center align-items-center `}
             style={{ height: 40, width: 40, borderRadius: '50%' }}
@@ -43,7 +66,9 @@ const CartPage1 = () => {
         </div>
       </div>
       <div className={`col-sm cart-area product-area`}>
-        <div className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}>
+        <div
+          className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
+        >
           <div className={`${styles['custom-checkbox']}`}></div>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>商品</div>
@@ -58,8 +83,12 @@ const CartPage1 = () => {
               style={{ width: 140, height: 140 }}
             />
           </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
+          <div
+            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+          >
+            <div
+              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
+            >
               草莓有夠派
               <span>
                 <i className={`bi bi-trash3 text-black`}></i>
@@ -87,11 +116,13 @@ const CartPage1 = () => {
                 >
                   -
                 </button>
-                <button className={` btn btn-outline-secondary  text-primary-dark h4`}>
+                <button
+                  className={` btn btn-outline-secondary  text-primary-dark h4 `}
+                >
                   4
                 </button>
                 <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
+                  className={` btn btn-outline-secondary text-primary-dark h4 `}
                   style={{ width: '28px' }}
                 >
                   +
@@ -111,8 +142,12 @@ const CartPage1 = () => {
               style={{ width: 140, height: 140 }}
             />
           </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
+          <div
+            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+          >
+            <div
+              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
+            >
               草莓有夠派
               <span>
                 <i className={`bi bi-trash3 text-black`}></i>
@@ -140,7 +175,9 @@ const CartPage1 = () => {
                 >
                   -
                 </button>
-                <button className={` btn btn-outline-secondary  text-primary-dark h4`}>
+                <button
+                  className={` btn btn-outline-secondary  text-primary-dark h4`}
+                >
                   4
                 </button>
                 <button
@@ -157,7 +194,9 @@ const CartPage1 = () => {
         <hr />
       </div>
       <div className={`col-sm cart-area class-area`}>
-        <div className={`mb-3 d-flex gap-2  class-tittle ${styles['border-borwn']} py-4`}>
+        <div
+          className={`mb-3 d-flex gap-2  class-tittle ${styles['border-borwn']} py-4`}
+        >
           <div className={`${styles['custom-checkbox']}`}></div>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>課程</div>
@@ -172,8 +211,12 @@ const CartPage1 = () => {
               style={{ width: 140, height: 140 }}
             />
           </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
+          <div
+            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+          >
+            <div
+              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
+            >
               手工土鳳梨酥體驗課程
               <span>
                 <i className={`bi bi-trash3 text-black`}></i>
@@ -204,8 +247,12 @@ const CartPage1 = () => {
               style={{ width: 140, height: 140 }}
             />
           </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
+          <div
+            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+          >
+            <div
+              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
+            >
               手工土鳳梨酥體驗課程
               <span>
                 <i className={`bi bi-trash3 text-black`}></i>
@@ -249,4 +296,4 @@ const CartPage1 = () => {
   )
 }
 
-export default CartPage1;
+export default CartPage1
