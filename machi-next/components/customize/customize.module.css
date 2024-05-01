@@ -86,3 +86,36 @@
   border-bottom: 1.5px solid #e6b759;
   line-height: 2rem;
 }
+
+/* step-titles */
+
+.step-title {
+  display: flex;
+  width: 90%;
+  margin: 5vh auto;
+  justify-content: center;
+  color: #7d5f4d;
+  text-align: center;
+  letter-spacing: 0.1rem;
+  padding: 2vh 0;
+  font: 600 1.2rem Roboto, sans-serif;
+  border-bottom: 1.9px solid #7d5f4d;
+  position: relative;
+  .step-button {
+    background-color: var(--secondary, #f8dc9a);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--primary-dark, #785e4c);
+    position: absolute;
+    left: 92%;
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .step-title {
+    max-width: 100%;
+  }
+}
