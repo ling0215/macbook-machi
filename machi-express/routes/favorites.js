@@ -6,15 +6,15 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 
 import authenticate from '#middlewares/authenticate.js'
 import sequelize from '#configs/db.js'
-const { Favorite } = sequelize.models
+const { ProductFavorite } = sequelize.models
 
 // 獲得某會員id的有加入到我的最愛清單中的商品id們
 // 此路由只有登入會員能使用
 router.get('/', authenticate, async (req, res) => {
-  const pids = await Favorite.findAll({
-    attributes: ['pid'],
+  const pids = await ProductFavorite.findAll({
+    attributes: ['product_favorite_id'],
     where: {
-      uid: req.user.id,
+      user_id_fk: req.user.user_id,
     },
     raw: true, //只需要資料
   })
@@ -29,12 +29,12 @@ router.put('/:id', authenticate, async (req, res, next) => {
   const pid = getIdParam(req)
   const uid = req.user.id
 
-  const existFav = await Favorite.findOne({ where: { pid, uid } })
+  const existFav = await ProductFavorite.findOne({ where: { pid, uid } })
   if (existFav) {
     return res.json({ status: 'error', message: '資料已經存在，新增失敗' })
   }
 
-  const newFav = await Favorite.create({ pid, uid })
+  const newFav = await ProductFavorite.create({ pid, uid })
 
   // console.log(newFav.id)
 
@@ -53,7 +53,7 @@ router.delete('/:id', authenticate, async (req, res, next) => {
   const pid = getIdParam(req)
   const uid = req.user.id
 
-  const affectedRows = await Favorite.destroy({
+  const affectedRows = await ProductFavorite.destroy({
     where: {
       pid,
       uid,

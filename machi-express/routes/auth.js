@@ -27,13 +27,16 @@ router.get('/check', authenticate, async (req, res) => {
   })
 
   // 不回傳密碼值
-  delete user.password
+  if (user) {
+    delete user.password
+  }
   return res.json({ status: 'success', data: { user } })
 })
 
 router.post('/login', async (req, res) => {
   // 從前端來的資料 req.body = { username:'xxxx', password :'xxxx'}
   const loginUser = req.body
+  console.log(loginUser)
   // 檢查從前端來的資料哪些為必要
   if (!loginUser.email || !loginUser.password) {
     return res.json({ status: 'fail', data: null })
@@ -86,7 +89,7 @@ router.post('/login', async (req, res) => {
 
   // 產生存取令牌(access token)，其中包含會員資料
   const accessToken = jsonwebtoken.sign(returnUser, accessTokenSecret, {
-    expiresIn: '3d',
+    expiresIn: '6h',
   })
 
   // 使用httpOnly cookie來讓瀏覽器端儲存access token
