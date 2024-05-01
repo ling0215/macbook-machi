@@ -12,6 +12,10 @@
   font-size: 18px;
 }
 
+.pay-area{
+  position: sticky;
+}
+
 .text-border-brown{
   border-bottom: 1px solid #ab927d;  
 }
@@ -75,6 +79,8 @@
 
 .pay-content{
   border: 3px solid #785e4c;
+  margin-top: 48px;
+  top: 60px;
 }
 
 .pay-button {

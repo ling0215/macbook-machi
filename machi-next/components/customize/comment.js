@@ -16,7 +16,7 @@ export default function Comment() {
     <>
       <div className={styles.testimonialCard}>
         <img
-          src="../../images/customize/double_comma.svg"
+          src="../../images/customize/double_comma.svg" 
           alt=""
           className={styles.quoteIcon}
         />
