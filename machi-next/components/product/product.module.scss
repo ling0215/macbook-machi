@@ -1,14 +1,14 @@
 
 
-.cardProduct{
+.cardBody{
     position: relative;
     
 }
-.cardBody {
+.cardInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 20px 0;
+    margin: 20px 20px;
 }
 
 .badge {
@@ -31,15 +31,22 @@
 }
 
 .heartIcon {
+    font-size: 30px;
+    color: var(--white);
     position: absolute;
     top: 1vh;
-    left: 16.5vw;
+    left: 15vw;
+}
+
+.cartIcon {
+    font-size: 20px;
+    color: var(--white);
 }
 
 .btnCart {
     background-color: var(--light-brown);
     color: var(--white);
-    width: 80%;
+    width: 15vh;
     height: 5vh;
     margin-top: 0.5vh;
     border: none;

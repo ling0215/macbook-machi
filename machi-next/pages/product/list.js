@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import ProductCard from '@/components/product/product-card'
+import ProductFilter from '@/components/product/product-filter'
 import { useEffect } from 'react'
-import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 
 // import { Range } from 'react-range'
@@ -59,14 +59,14 @@ export default function List() {
           </div>
           <div className="d-flex p-2 justify-content-end align-items-center">
             <div className="toolbar">
-              <span className="ps-3">塔派甜點 (20)</span>
+              <span className="ps-3">塔派甜點 (12)</span>
             </div>
 
             {/* <div className="toolbar">
               <button className="btn" id="sidebarToggle">
                 隱藏篩選條件 <i className="bi bi-toggles"></i>
               </button>
-            </div>
+            </div> */}
             <div className="dropdown">
               <button
                 className="btn dropdown-toggle"
@@ -93,7 +93,7 @@ export default function List() {
                   </a>
                 </li>
               </ul>
-            </div> */}
+            </div>
 
             {/* 排序切換顯示 */}
             <div className="viewtype">
@@ -105,6 +105,7 @@ export default function List() {
               </button>
             </div>
           </div>
+          
         </h5>
       </div>
       <div className="row">
