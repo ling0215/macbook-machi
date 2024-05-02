@@ -6,12 +6,11 @@ import CustomizeLayout from '@/components/layout/customize/customize-layout'
 function Customize() {
   return (
     <>
-      <div className="container-full">
+      <div>
         <img
           className="lynn-hero"
           src="/images/customize/customized-hero.jpg"
           alt=""
-          style={{ width: '100%' }}
         />
         <header className="lynn-title">
           <h6 className="text-center my-3">
@@ -35,13 +34,19 @@ function Customize() {
             <p>
               他們也都喜歡Machi
               <br />
-              的客製化蛋糕！
+              的客製化蛋糕！!
             </p>
           </div>
-          <div className="comments-content d-flex w-100">
-            <Comment />
-            <Comment />
-            <Comment />
+          <div className="comments-content d-flex">
+            <div className="comment1">
+              <Comment />
+            </div>
+            <div className="comment2">
+              <Comment />
+            </div>
+            <div className="mobile-none">
+              <Comment />
+            </div>
           </div>
         </section>
         <section className="lynn-sample-section">

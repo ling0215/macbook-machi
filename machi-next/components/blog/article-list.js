@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+import styles from '@/components/blog/article-list.module.scss'
 
 import { FaCaretRight } from "react-icons/fa";
 
@@ -28,8 +30,8 @@ export default function ArticleList() {
                 家捷運信義安和站咖啡廳，不只咖啡好喝甜點也迷人，尤其是肉桂捲更是讓人難忘。
               </p>
               <div className="more">
-                <a type="button">READ MORE<FaCaretRight />
-                </a>
+                <Link href={"/blog/1"} type="button" className={styles[`link-style`]}>READ MORE<FaCaretRight />
+                </Link>
               </div>
             </div>
           </div>

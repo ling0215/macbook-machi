@@ -16,15 +16,14 @@ export const initState = {
 //   quantity: 0,
 //   price: 0,
 // }
-//
+
 // 可自行定義擴充屬性例如: color, size, name, picture, description...
 // const item = {
 //   id: '',
 //   quantity: 0,
 //   name: '',
 //   price: 0,
-//   color: '',
-//   size: '',
+//   subtotal: 0,
 // }
 /**
  * `findOneById(items, id)` 依照某id找出項目。如果沒有找到，則返回空物件。
