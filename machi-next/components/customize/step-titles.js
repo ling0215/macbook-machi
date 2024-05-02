@@ -1,12 +1,26 @@
 import React from 'react'
 import styles from './customize.module.css'
 
-export default function StepTitle() {
-  const title = 'Step1: 選擇蛋糕尺寸'
+export default function StepTitle({ title, shouldHide1, shouldHide2 }) {
   return (
-    <h6 className={styles['step-title']}>
-      <button className={styles['step-button']}>下一步</button>
-      {title}
-    </h6>
+    <>
+      <div>
+        <h6 className={styles['step-title']}>
+          {title}
+          <button
+            className={styles['prv-step-button']}
+            style={{ display: shouldHide1 ? 'none' : 'block' }}
+          >
+            上一步
+          </button>
+          <button
+            className={styles['next-step-button']}
+            style={{ display: shouldHide2 ? 'none' : 'block' }}
+          >
+            下一步
+          </button>
+        </h6>
+      </div>
+    </>
   )
 }
