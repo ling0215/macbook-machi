@@ -39,13 +39,22 @@ function Customize() {
           </div>
           <div className="comments-content d-flex">
             <div className="comment1">
-              <Comment />
+              <Comment
+                comment="蛋糕口感清爽不甜膩，家人很滿意。會再推薦給朋友！"
+                name="Iris Lin"
+              />
             </div>
             <div className="comment2">
-              <Comment />
+              <Comment
+                comment="店家提供貼心的服務，蛋糕質感超好，會再次回購。"
+                name="Jane Li"
+              />
             </div>
             <div className="mobile-none">
-              <Comment />
+              <Comment
+                comment="同事收到蛋糕時很感動，謝謝Machi讓我們留下完美的回憶！"
+                name="Peggy"
+              />
             </div>
           </div>
         </section>
