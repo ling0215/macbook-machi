@@ -324,7 +324,7 @@ const CartPage1 = () => {
             <FaTruckFast className={' mx-1'} size={24}></FaTruckFast>
             請輸入完整資料
           </div>
-          <div className={`${styles['pay-content']} px-3 py-4 sticky-md-top  `}>
+          <div className={`${styles['pay-content']} px-3 py-4 sticky-md-top mb-3 `}>
             <div className="h5">付款方式</div>
             <div
               className={`d-flex justify-content-between pb-3 ${styles['text-border-brown']} `}
@@ -338,29 +338,6 @@ const CartPage1 = () => {
               <div className={`${styles['pay-button']} ${styles['h6']}`}>
                 <RiCheckboxBlankCircleLine></RiCheckboxBlankCircleLine>Line pay
               </div>
-            </div>
-            <div className="h5 py-2">運送方式</div>
-            <div className="py-2">
-              <select
-                className={`${styles['cart-custom-bootstrap']} form-select py-2`}
-                aria-label="Default select example"
-                style={{ width: 256 }}
-              >
-                <option selected>選擇配送方式</option>
-                <option value="1">宅配到府</option>
-                <option value="2">超商取貨</option>
-              </select>
-            </div>
-            <div className={`${styles['text-border-brown']} py-2`}>
-              <select
-                className={`${styles['cart-custom-bootstrap']} form-select py-2`}
-                aria-label="Default select example"
-                style={{ width: 256 }}
-              >
-                <option selected>選擇配送廠商</option>
-                <option value="1">黑貓宅急便</option>
-                <option value="2">吉刻救猿</option>
-              </select>
             </div>
             <div className="h5 pt-2">收件人資訊</div>
             <div className={`${styles['h6']} text-grey pb-2`}>

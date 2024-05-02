@@ -3,27 +3,7 @@ import { useCart } from '@/hooks/use-cart-state'
 import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 
-<<<<<<< HEAD
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
-=======
-const initialProducts = [
-  {
-    id: 0,
-    name: '小熊餅乾',
-    count: 1,
-  },
-  {
-    id: 1,
-    name: '巧克力豆餅乾',
-    count: 5,
-  },
-  {
-    id: 2,
-    name: '小老板海苔',
-    count: 2,
-  },
-]
->>>>>>> origin/cart_dev
 
 const CartPage1 = ({ onClick }) => {
   const handleClick = () => {
@@ -130,20 +110,12 @@ const CartPage1 = ({ onClick }) => {
                   -
                 </button>
                 <button
-<<<<<<< HEAD
                   className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
-=======
-                  className={` btn btn-outline-secondary  text-primary-dark h4 `}
->>>>>>> origin/cart_dev
                 >
                   4
                 </button>
                 <button
-<<<<<<< HEAD
                   className={` btn btn-outline-light text-primary-dark h4  mb-0`}
-=======
-                  className={` btn btn-outline-secondary text-primary-dark h4 `}
->>>>>>> origin/cart_dev
                   style={{ width: '28px' }}
                 >
                   +
@@ -154,7 +126,6 @@ const CartPage1 = ({ onClick }) => {
           </div>
         </div>
         <hr />
-<<<<<<< HEAD
 
         {items.map((item) => (
           <div
@@ -168,27 +139,6 @@ const CartPage1 = ({ onClick }) => {
                 alt={item.name}
                 style={{ width: 140, height: 140 }}
               />
-=======
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-          <div className={`${styles['custom-checkbox']}`}></div>
-          <div className={``}>
-            <img
-              src="./images/cart-1.jpeg"
-              className={`product-img-1`}
-              style={{ width: 140, height: 140 }}
-            />
-          </div>
-          <div
-            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-          >
-            <div
-              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
-            >
-              草莓有夠派
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
->>>>>>> origin/cart_dev
             </div>
             <div
               className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
@@ -196,7 +146,6 @@ const CartPage1 = ({ onClick }) => {
               <div
                 className={`card-title card-text d-flex justify-content-between text-brown col h4`}
               >
-<<<<<<< HEAD
                 {item.name}
                 <div>
                   <button
@@ -262,25 +211,6 @@ const CartPage1 = ({ onClick }) => {
                   </button>
                 </div>
                 <div className={` h4 `}>小計NT${item.subtotal}</div>
-=======
-                <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
-                  style={{ width: '28px' }}
-                >
-                  -
-                </button>
-                <button
-                  className={` btn btn-outline-secondary  text-primary-dark h4`}
-                >
-                  4
-                </button>
-                <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
-                  style={{ width: '28px' }}
-                >
-                  +
-                </button>
->>>>>>> origin/cart_dev
               </div>
             </div>
           </div>
@@ -307,50 +237,9 @@ const CartPage1 = ({ onClick }) => {
           <div
             className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
           >
-<<<<<<< HEAD
-=======
             <div
               className={`card-title card-text d-flex justify-content-between text-brown col h4`}
             >
-              手工土鳳梨酥體驗課程
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
-            </div>
->>>>>>> origin/cart_dev
-            <div
-              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
-            >
-<<<<<<< HEAD
-=======
-              <div className={`h5 mr-1`}>規格:</div>
-              <div className={`h5`}>
-                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-              </div>
-            </div>
-            <div className={`d-flex g-3 justify-content-between col`}>
-              <div className={`h4`}>人數:3</div>
-              <div className={` h4 `}>NT$8888</div>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-          <div className={`${styles['custom-checkbox']}`}></div>
-          <div className={``}>
-            <img
-              src="./images/cart-1.jpeg"
-              className={`product-img-1`}
-              style={{ width: 140, height: 140 }}
-            />
-          </div>
-          <div
-            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-          >
-            <div
-              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
-            >
->>>>>>> origin/cart_dev
               手工土鳳梨酥體驗課程
               <div>
                 <i className={`bi bi-trash3 text-black btn btn-light`}></i>
