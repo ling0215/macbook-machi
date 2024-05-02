@@ -6,7 +6,6 @@
 
 
 
-
 .card-body {
   height: 140px;
   padding: 0;
@@ -25,8 +24,16 @@
   border-bottom: 1px solid #ab927d;  
 }
 
+.text-border-grey{
+  border-bottom: 1px solid #c0c0c0;  
+}
 .border-borwn{
   border-bottom: 2px solid #ab927d;  
+}
+
+.addbuton{
+ border: 1px solid #ab927d;  
+ margin-bottom: 0;
 }
 
 .cart-button {
@@ -45,6 +52,10 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  &:hover{
+    
+    background: #785e4cab;
+  }
 }
 .cart-button-text {
   color: var(--white, #ffffff);

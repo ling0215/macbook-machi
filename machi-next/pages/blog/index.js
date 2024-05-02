@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import Link from "next/link";
+import Link from 'next/link'
 import Latest from '@/components/blog/latest-article'
 import Category from '@/components/blog/article-category'
 import List from '@/components/blog/article-list'
@@ -10,22 +10,18 @@ import { FaCaretLeft } from 'react-icons/fa'
 import { FaCaretRight } from 'react-icons/fa'
 
 export default function BlogIndex() {
+  function AirDatepickerReact(props) {
+    let $input = useRef()
+    let dp = useRef()
 
-function AirDatepickerReact(props) {
-  let $input = useRef();
-  let dp = useRef();
+    useEffect(() => {
+      dp.current = new AirDatepicker($input.current, { ...props })
+    }, [])
 
-  // Start init
-  useEffect(() => {
-    // Save instance for the further update
-    dp.current = new AirDatepicker($input.current, { ...props });
-  }, []);
-
-  useEffect(() => {
-    // Update if props are changed
-    dp.current.update({ ...props });
-  }, [props]);
-}
+    useEffect(() => {
+      dp.current.update({ ...props })
+    }, [props])
+  }
   return (
     <>
       <div className="container">
@@ -51,7 +47,7 @@ function AirDatepickerReact(props) {
               <Category />
               <h6 className="article-sidebar pt-2">日期區間</h6>
               <div>
-              <Date range={true} />
+                <Date range={true} />
               </div>
             </div>
           </div>

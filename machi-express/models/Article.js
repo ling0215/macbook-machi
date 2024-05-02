@@ -8,6 +8,7 @@ export default async function (sequelize) {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
+        autoIncrement: true, // 新增這一行
       },
       user_id_fk: {
         type: DataTypes.INTEGER,
