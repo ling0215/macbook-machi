@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { upload } from '@/services/blog'
 // import { CKEditor } from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -8,28 +9,7 @@ class MyUploadAdapter {
   }
 
   upload() {
-    return this.loader.file.then(
-      (file) =>
-        new Promise((resolve, reject) => {
-          const formData = new FormData()
-          formData.append('articleImage', file)
-          fetch('/api/upload2', {
-            method: 'POST',
-            body: formData,
-          })
-            .then((response) => {
-              console.log(response)
-              return response.json()
-            })
-            .then((result) => {
-              console.log(`upload result : ${result.url}`)
-              resolve({
-                default: result.url,
-              })
-            })
-            .catch(reject)
-        })
-    )
+    return this.loader.file.then(upload)
   }
 }
 
