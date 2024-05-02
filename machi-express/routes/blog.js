@@ -11,7 +11,7 @@ const router = express.Router()
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/images/article')
+    cb(null, '../machi-next/public/images/blog/article')
   },
   filename: function (req, file, cb) {
     const fileExt = path.extname(file.originalname)
@@ -41,6 +41,22 @@ router.post('/publish', upload.single('articleImage'), async (req, res) => {
   } catch (err) {
     console.error(err)
     res.status(500).json({ message: '無法發布文章' })
+  }
+})
+
+router.post('/upload', upload.single('articleImage'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: '檔案未上傳成功' })
+    }
+    let params = {
+      message: '檔案上傳成功',
+      url: '/images/blog/article/' + req.file.filename,
+    }
+    res.status(200).json(params)
+  } catch (error) {
+    console.error('處理過程中發生錯誤:', error)
+    res.status(500).json({ message: '伺服器錯誤' })
   }
 })
 
