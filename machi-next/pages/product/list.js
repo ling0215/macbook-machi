@@ -1,13 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+import ProductCard from '@/components/product/product-card'
 import { useEffect } from 'react'
-import {
-  IoCartOutline,
-  IoHeartOutline,
-  IoIosSearch,
-  IoAppsSharp,
-  IoListSharp,
-} from 'react-icons/io5'
-import { CiSearch } from "react-icons/ci";
+import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
+import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
+
 // import { Range } from 'react-range'
 export default function List() {
   // Toggle the side navigation
@@ -41,14 +37,15 @@ export default function List() {
       <div className="row mt-2 mb-3">
         <h5 className="card-text d-flex justify-content-between align-items-center">
           <div className="row mt-2 mb-3">
-            <h5 className="card-text d-flex justify-content-between align-items-center">
+            <h5 className="card-text d-flex justify-content-between align-items-center">{/* padding-left: 22px */}
+            
               <div className="input-group">
                 <input
                   type="text"
                   placeholder="請輸入關鍵字"
                   className="form-control"
                   style={{
-                    width: '200px',
+                    width: '150px',
                     height: '40px',
                     backgroundColor: 'white',
                     borderColor: 'light-brown',
@@ -61,10 +58,10 @@ export default function List() {
             </h5>
           </div>
           <div className="d-flex p-2 justify-content-end align-items-center">
-          <div className="toolbar">
+            <div className="toolbar">
               <span className="ps-3">塔派甜點 (20)</span>
-          </div>
-            
+            </div>
+
             {/* <div className="toolbar">
               <button className="btn" id="sidebarToggle">
                 隱藏篩選條件 <i className="bi bi-toggles"></i>
@@ -99,7 +96,7 @@ export default function List() {
             </div> */}
 
             {/* 排序切換顯示 */}
-            <div className="viewtype"> 
+            <div className="viewtype">
               <button className="btn" id="gridview">
                 <i className="bi bi-grid"></i>
               </button>
@@ -268,17 +265,17 @@ export default function List() {
                       </div>
                     </div>
                   </div>
-                    <label htmlFor="range" className="form-label mt-3">
-                      價格區間
-                    </label>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min={10}
-                      max={3000}
-                      step="10"
-                      id="range"
-                    />
+                  <label htmlFor="range" className="form-label mt-3">
+                    價格區間
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    min={10}
+                    max={3000}
+                    step="10"
+                    id="range"
+                  />
                 </div>
               </div>
             </div>
@@ -286,7 +283,7 @@ export default function List() {
             <div id="page-content-wrapper">
               <div className="container-fluid">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
-                  <div className="col">
+                  {/* <div className="col">
                     <div className="card w-350 no-border f-16">
                       <img
                         src="/images/product/list/strawberry-tart-01.jpg"
@@ -294,195 +291,38 @@ export default function List() {
                         alt="..."
                       />
                       <div className="card-body no-space-x">
-                        {/* <p className="card-text note-text">新品上市</p> */}
+                        <p className="card-text note-text">新品上市</p>
                         <p className="card-text">小山園草莓塔</p>
                         <p className="card-text type-text">塔派甜點</p>
-                        {/* <p className="card-text type-text mb-2">3 種顏色</p> */}
+                        <p className="card-text type-text mb-2">3 種顏色</p>
                         <span className="h-currency bold h-now">$480</span>
                       </div>
                     </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x">
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card w-350 no-border f-16">
-                      <img
-                        src="/images/product/list/strawberry-tart-01.jpg"
-                        className="card-img-top overflow-hidden"
-                        alt="..."
-                      />
-                      <div className="card-body no-space-x d-flex flex-column align-items-center">
-                        <span className="position-absolute top-0 end-0">
-                          <div
-                            style={{
-                              position: 'relative',
-                              display: 'inline-block',
-                              width: '30px',
-                              height: '30px',
-                              overflow: 'hidden',
-                            }}
-                          >
-                            <IoHeartOutline size={30} color="white" />
-                            <div
-                              style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                backgroundColor: '#DADADA',
-                                opacity: 0.5,
-                              }}
-                            />
-                          </div>
-                        </span>
-                        <p className="card-text">小山園草莓塔</p>
-                        <p className="card-text type-text">塔派甜點</p>
-                        <span className="h-currency bold h-now">$480</span>
-                        <button className="btn btn-light-brown text-white w-50 mt-2">
-                          <IoCartOutline /> 加入購物車
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  </div> */}
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                  <ProductCard />
+                </div>
+                {/* 切換頁面按鈕 */}
+                <div className="pagination mb-5">
+                  <button className="page-btn">
+                    <FaCaretLeft />
+                  </button>
+                  <button className="page-btn">1</button>
+                  <button className="page-btn">2</button>
+                  <button className="page-btn">3</button>
+                  <button className="page-btn">
+                    <FaCaretRight />
+                  </button>
                 </div>
               </div>
             </div>

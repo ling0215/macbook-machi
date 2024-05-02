@@ -32,11 +32,11 @@ export default function Detail() {
           </div>
           <div className="mb-4">
             <button className="btn btn-outline-brown col-5 me-3">
-            <IoCartOutline /> 加入購物車</button>
+            <IoCartOutline style={{ fontSize: "20px", color: "light-brown" }} /> 加入購物車</button>
             <button className="btn btn-brown col-5">立即購買</button>
           </div>
           <button className="btn btn-outline-gary col-3 outline-none">
-            <i className="bi bi-suit-heart"></i> 我的最愛
+          <IoHeartOutline style={{ fontSize: "24px", color: "light-brown" }} /> 我的最愛
           </button>
           <div className="product-info my-5">
             <div
