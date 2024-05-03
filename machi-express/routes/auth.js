@@ -22,13 +22,13 @@ const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 // 檢查登入狀態用
 router.get('/check', authenticate, async (req, res) => {
   // 查詢資料庫目前的資料
-  const user = await User.findByPk(req.user.id, {
+  const user = await User.findByPk(req.user.user_id, {
     raw: true, // 只需要資料表中資料
   })
 
   // 不回傳密碼值
   if (user) {
-    delete user.password
+    delete user.user_password
   }
   return res.json({ status: 'success', data: { user } })
 })
@@ -83,6 +83,11 @@ router.post('/login', async (req, res) => {
   const returnUser = {
     user_id: user.user_id,
     user_name: user.user_name,
+    user_nickname: user.user_nickname,
+    user_account: user.user_account,
+    user_email: user.user_email,
+    user_phone: user.user_phone,
+    user_address: user.user_address,
     google_uid: user.google_uid,
     line_uid: user.line_uid,
   }
