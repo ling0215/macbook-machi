@@ -3,31 +3,7 @@ import { useCart } from '@/hooks/use-cart-state'
 import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
-=======
-const initialProducts = [
-  {
-    id: 0,
-    name: '小熊餅乾',
-    count: 1,
-  },
-  {
-    id: 1,
-    name: '巧克力豆餅乾',
-    count: 5,
-  },
-  {
-    id: 2,
-    name: '小老板海苔',
-    count: 2,
-  },
-]
->>>>>>> cart_dev
-=======
-import '@/node_modules/bootstrap/scss/bootstrap.scss'
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
 
 const CartPage1 = ({ onClick }) => {
   const handleClick = () => {
@@ -134,28 +110,12 @@ const CartPage1 = ({ onClick }) => {
                   -
                 </button>
                 <button
-<<<<<<< HEAD
-<<<<<<< HEAD
                   className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
-=======
-                  className={` btn btn-outline-secondary  text-primary-dark h4 `}
->>>>>>> cart_dev
-=======
-                  className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
                 >
                   4
                 </button>
                 <button
-<<<<<<< HEAD
-<<<<<<< HEAD
                   className={` btn btn-outline-light text-primary-dark h4  mb-0`}
-=======
-                  className={` btn btn-outline-secondary text-primary-dark h4 `}
->>>>>>> cart_dev
-=======
-                  className={` btn btn-outline-light text-primary-dark h4  mb-0`}
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
                   style={{ width: '28px' }}
                 >
                   +
@@ -166,10 +126,6 @@ const CartPage1 = ({ onClick }) => {
           </div>
         </div>
         <hr />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
 
         {items.map((item) => (
           <div
@@ -183,30 +139,6 @@ const CartPage1 = ({ onClick }) => {
                 alt={item.name}
                 style={{ width: 140, height: 140 }}
               />
-<<<<<<< HEAD
-=======
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-          <div className={`${styles['custom-checkbox']}`}></div>
-          <div className={``}>
-            <img
-              src="./images/cart-1.jpeg"
-              className={`product-img-1`}
-              style={{ width: 140, height: 140 }}
-            />
-          </div>
-          <div
-            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-          >
-            <div
-              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
-            >
-              草莓有夠派
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
->>>>>>> cart_dev
-=======
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
             </div>
             <div
               className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
@@ -214,10 +146,6 @@ const CartPage1 = ({ onClick }) => {
               <div
                 className={`card-title card-text d-flex justify-content-between text-brown col h4`}
               >
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
                 {item.name}
                 <div>
                   <button
@@ -283,28 +211,6 @@ const CartPage1 = ({ onClick }) => {
                   </button>
                 </div>
                 <div className={` h4 `}>小計NT${item.subtotal}</div>
-<<<<<<< HEAD
-=======
-                <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
-                  style={{ width: '28px' }}
-                >
-                  -
-                </button>
-                <button
-                  className={` btn btn-outline-secondary  text-primary-dark h4`}
-                >
-                  4
-                </button>
-                <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
-                  style={{ width: '28px' }}
-                >
-                  +
-                </button>
->>>>>>> cart_dev
-=======
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
               </div>
             </div>
           </div>
@@ -331,57 +237,10 @@ const CartPage1 = ({ onClick }) => {
           <div
             className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
           >
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
             <div
               className={`card-title card-text d-flex justify-content-between text-brown col h4`}
             >
               手工土鳳梨酥體驗課程
-<<<<<<< HEAD
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
-            </div>
->>>>>>> cart_dev
-            <div
-              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
-            >
-<<<<<<< HEAD
-=======
-              <div className={`h5 mr-1`}>規格:</div>
-              <div className={`h5`}>
-                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-              </div>
-            </div>
-            <div className={`d-flex g-3 justify-content-between col`}>
-              <div className={`h4`}>人數:3</div>
-              <div className={` h4 `}>NT$8888</div>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-          <div className={`${styles['custom-checkbox']}`}></div>
-          <div className={``}>
-            <img
-              src="./images/cart-1.jpeg"
-              className={`product-img-1`}
-              style={{ width: 140, height: 140 }}
-            />
-          </div>
-          <div
-            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-          >
-            <div
-              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
-            >
->>>>>>> cart_dev
-              手工土鳳梨酥體驗課程
-=======
->>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
               <div>
                 <i className={`bi bi-trash3 text-black btn btn-light`}></i>
               </div>
