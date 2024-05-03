@@ -60,7 +60,7 @@ router.post('/upload', upload.single('articleImage'), (req, res) => {
   }
 })
 
-router.get('/', async (req, res) => {
+router.get('/articles', async (req, res) => {
   try {
     const articles = await Article.findAll()
     res.status(200).json(articles)
