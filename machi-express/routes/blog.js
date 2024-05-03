@@ -60,4 +60,14 @@ router.post('/upload', upload.single('articleImage'), (req, res) => {
   }
 })
 
+router.get('/', async (req, res) => {
+  try {
+    const articles = await Article.findAll()
+    res.status(200).json(articles)
+  } catch (error) {
+    console.error('處理過程中發生錯誤:', error)
+    res.status(500).json({ message: '伺服器錯誤' })
+  }
+})
+
 export default router

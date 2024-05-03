@@ -64,25 +64,10 @@ router.get('/:id', authenticate, async function (req, res) {
 })
 
 // POST - 新增會員資料
-router.post('/', async function (req, res) {
-  // req.body資料範例
-  // {
-  //     "name":"金妮",
-  //     "email":"ginny@test.com",
-  //     "username":"ginny",
-  //     "password":"12345"
-  // }
-
-  // 要新增的會員資料
+router.post('/register', async function (req, res) {
   const newUser = req.body
-
   // 檢查從前端來的資料哪些為必要(name, username...)
-  if (
-    !newUser.username ||
-    !newUser.email ||
-    !newUser.name ||
-    !newUser.password
-  ) {
+  if (!newUser.account || !newUser.password || !newUser.email) {
     return res.json({ status: 'error', message: '缺少必要資料' })
   }
 
@@ -90,10 +75,11 @@ router.post('/', async function (req, res) {
   // where指的是不可以有相同的資料，如username與email不能有相同的
   // defaults用於建立新資料用
   const [user, created] = await User.findOrCreate({
-    where: { username: newUser.username, email: newUser.email },
+    where: { user_account: newUser.account, user_email: newUser.email },
     defaults: {
-      name: newUser.name,
-      password: newUser.password,
+      user_password: newUser.password,
+      user_createtime: new Date(), // 提供 user_createtime 的值
+      user_updatetime: new Date(), // 提供 user_updatetime 的值
     },
   })
 

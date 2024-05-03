@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import styles from '@/components/blog/article-list.module.scss'
 
-import { FaCaretRight } from "react-icons/fa";
+import { FaCaretRight } from 'react-icons/fa'
 
 export default function ArticleList() {
   return (
@@ -21,7 +21,7 @@ export default function ArticleList() {
               <h4 className="pt-2">
                 甜點控注意！信義安和站甜點咖啡廳 Top 7：肉桂捲、司康、可麗露
               </h4>
-              
+
               <span>time</span>
               <p>
                 現代人人手一杯咖啡已是常態，不只品嚐咖啡的美味，更成為手上時髦單品。
@@ -30,7 +30,13 @@ export default function ArticleList() {
                 家捷運信義安和站咖啡廳，不只咖啡好喝甜點也迷人，尤其是肉桂捲更是讓人難忘。
               </p>
               <div className="more">
-                <Link href={"/blog/1"} type="button" className={styles[`link-style`]}>READ MORE<FaCaretRight />
+                <Link
+                  href={'/blog/1'}
+                  type="button"
+                  className={styles[`link-style`]}
+                >
+                  READ MORE
+                  <FaCaretRight />
                 </Link>
               </div>
             </div>
