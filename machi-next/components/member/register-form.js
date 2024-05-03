@@ -2,13 +2,7 @@ import { useState } from 'react'
 import styles from './member.module.css'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-
-// Datepicker relies on browser APIs like document
-// dynamically load a component on the client side,
-// use the ssr option to disable server-rendering.
-const InputDatePicker = dynamic(() => import('../common/input-date-picker'), {
-  ssr: false,
-})
+import { register } from '@/services/user'
 
 export default function RegisterForm() {
   const [account, setAccount] = useState('')
@@ -19,7 +13,7 @@ export default function RegisterForm() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const response = await login({ email, password })
+      const response = await register({ account, password, email })
       // 登入成功，處理 response
       console.log(response)
     } catch (error) {
@@ -94,10 +88,8 @@ export default function RegisterForm() {
           </div> */}
             </div>
 
-
-
             <button type="submit" className=" text-white btn btn-brown w-100">
-              登入
+              註冊
             </button>
 
             <div className="row mt-2">

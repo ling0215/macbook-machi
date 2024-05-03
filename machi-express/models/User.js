@@ -18,6 +18,10 @@ export default async function (sequelize) {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      user_account: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       user_password: {
         type: DataTypes.STRING,
         allowNull: false,
