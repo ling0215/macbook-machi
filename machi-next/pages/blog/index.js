@@ -55,8 +55,6 @@ export default function BlogIndex() {
             <div className="container ">
               <ul className="article-list">
                 <List />
-                <List />
-                <List />
               </ul>
             </div>
             <div className="pagination">

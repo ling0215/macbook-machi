@@ -24,3 +24,14 @@ export function upload(file) {
       .catch(reject)
   })
 }
+
+const fetchArticles = async () => {
+  const response = await axiosInstance.get('/blog/articles')
+  if (response.status !== 200) {
+    console.error('Failed to fetch articles:', response.statusText)
+    return
+  }
+  return response.data
+}
+
+export default fetchArticles

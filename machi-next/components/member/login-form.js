@@ -33,7 +33,7 @@ export default function LoginForm() {
               <div className="col-sm-12">
                 <input
                   type="email"
-                  className={`form-control w-100 bg-light-grey ${styles['form-control']} `}
+                  className={`form-control w-100 ${styles['form-control']} `}
                   placeholder="電子郵件地址"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -65,8 +65,15 @@ export default function LoginForm() {
                     type="checkbox"
                     id="gridCheck1"
                   />
+                  <label
+                    className={`form-check-label  ${styles['notice']}`}
+                    htmlFor="gridCheck1"
+                  >
+                    保持登入狀態
+                  </label>
                 </div>
               </div>
+
               <div className="col-sm-4 offset-sm-2 test-end">
                 <Link
                   href="/member/forget-password"

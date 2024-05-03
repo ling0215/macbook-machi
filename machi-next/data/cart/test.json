@@ -1,22 +1,22 @@
 [{
-  "id": 1,
-  "quantity": 1,
-  "price": 30,
-  "name": "花花餅",
-  "image":"@/public/images/cart-test/cookie1.jpg"
+  "product_id": 1,
+  "product_count": 10,
+  "product_price": 30,
+  "prodcut_name": "花花餅",
+  "image":"/images/cart-test/cookie1.jpg"
 
 },{
   "id": 2,
   "quantity": 4,
   "price": 20,
   "name": "貓貓餅",
-  "image":"@/public/images/cart-test/cookie2.jpg"
+  "image":"/images/cart-test/cookie2.jpg"
 }
 ,{
   "id": 3,
   "quantity": 3,
   "price": 10,
   "name": "卡三餅",
-  "image":"@/public/images/cart-test/cookie3.jpg"
+  "image":"/images/cart-test/cookie3.jpg"
 }
 ]
