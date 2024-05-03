@@ -12,7 +12,7 @@ export default function CakeSize({ imageSize, size, price }) {
           width={imageSize}
           height={imageSize}
         />
-        <p className={`text-center mt-4 ${styles.size}`}>{size}</p>
+        <p className={`text-center ${styles.size}`}>{size}</p>
         <p className={`text-center ${styles.price}`}>{price}</p>
       </div>
     </>
