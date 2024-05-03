@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useCart } from '@/hooks/use-cart-state'
 import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
-
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
+import { FaCheck } from 'react-icons/fa6'
 
-const CartPage1 = ({ onClick }) => {
-  const handleClick = () => {
-    history.push('/another-page') // 导航到路径为 '/another-page' 的页面
-  }
+const CartPage1 = ({ onClickPage }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
+  const [isChecked, setIsChecked] = useState(false)
+  const checkClick = () => {
+    setIsChecked(!isChecked)
+  }
   return (
     <>
       <div
@@ -58,13 +59,27 @@ const CartPage1 = ({ onClick }) => {
         <div
           className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
         >
-          <div className={`${styles['custom-checkbox']}`}></div>
+          <button
+            className={`${styles['custom-checkbox']} `}
+            onClick={checkClick}
+          >
+            {isChecked ? (
+              <FaCheck size={30} className={`${styles['checkgood']}`} />
+            ) : null}
+          </button>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>商品</div>
           <div className={` h3`}>(3)</div>
         </div>
         <div className={`d-flex  g-0 gap-5 align-items-center py-4   `}>
-          <div className={`${styles['custom-checkbox']}`}></div>
+          <button
+            className={`${styles['custom-checkbox']} `}
+            onClick={checkClick}
+          >
+            {isChecked ? (
+              <FaCheck size={30} className={`${styles['checkgood']}`} />
+            ) : null}
+          </button>
           <div className={``}>
             <img
               src="https://media.nownews.com/nn_media/thumbnail/2024/01/1705794711197-849ae9783db744c998f9504de98f12b4-678x518.webp?unShow=false&waterMark=false"
@@ -132,7 +147,7 @@ const CartPage1 = ({ onClick }) => {
             className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
             key={item.id}
           >
-            <div className={`${styles['custom-checkbox']}`}></div>
+            <button className={`${styles['custom-checkbox']}`}></button>
             <div className={``}>
               <img
                 src={item.image}
@@ -220,16 +235,19 @@ const CartPage1 = ({ onClick }) => {
         <div
           className={`mb-3 d-flex gap-2  class-tittle ${styles['border-borwn']} py-4`}
         >
-          <div className={`${styles['custom-checkbox']}`}></div>
+          <button
+            className={`${styles['custom-checkbox']}`}
+            onClick={() => {}}
+          ></button>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>課程</div>
           <div className={` h3`}>({Object.keys(items).length})</div>
         </div>
         <div className={`d-flex  g-0 gap-5 align-items-center py-4`}>
-          <div className={`${styles['custom-checkbox']}`}></div>
+          <button className={`${styles['custom-checkbox']}`}></button>
           <div className={``}>
             <img
-              src="./images/cart-1.jpeg"
+              src="/images/cart-test/cookie2.jpg"
               className={`product-img-1`}
               style={{ width: 140, height: 140 }}
             />
@@ -274,7 +292,7 @@ const CartPage1 = ({ onClick }) => {
           </div>
         </div>
         <div className={`d-flex justify-content-end pb-5`}>
-          <button className={`${styles['cart-button']}`} onClick={onClick}>
+          <button className={`${styles['cart-button']}`} onClick={onClickPage}>
             <div className={`${styles['cart-button-text']}`}>前往結帳</div>
           </button>
         </div>

@@ -21,7 +21,7 @@ import DefaultLayout from '@/components/layout/default-layout'
 import { CatLoader, NoLoader } from '@/hooks/use-loader/components'
 
 export default function MyApp({ Component, pageProps }) {
-  console.log(dataCartItems)
+  // console.log(dataCartItems)
 
   // 導入bootstrap的JS函式庫
   useEffect(() => {
