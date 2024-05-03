@@ -6,8 +6,4 @@ function Login() {
   return <LoginForm />
 }
 
-Login.getLayout = function getLayout(page) {
-  return <LoginLayout>{page}</LoginLayout>
-}
-
 export default Login
