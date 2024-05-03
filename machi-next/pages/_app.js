@@ -6,6 +6,9 @@ import '@/styles/cart.scss'
 import '@/styles/loader.scss'
 import '@/styles/customize.scss'
 import '@/styles/blog/blog.scss'
+
+//測試資料
+import dataCartItems from '@/data/cart/test.json'
 // 載入購物車context
 import { CartProvider } from '@/hooks/use-cart-state'
 // 載入認証用context
@@ -18,6 +21,8 @@ import DefaultLayout from '@/components/layout/default-layout'
 import { CatLoader, NoLoader } from '@/hooks/use-loader/components'
 
 export default function MyApp({ Component, pageProps }) {
+  // console.log(dataCartItems)
+
   // 導入bootstrap的JS函式庫
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap')
@@ -30,9 +35,11 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     // <AuthProvider>
-      <LoaderProvider close={2} CustomLoader={CatLoader}>
-        <CartProvider>{getLayout(<Component {...pageProps} />)}</CartProvider>
-      </LoaderProvider>
+    <LoaderProvider close={2} CustomLoader={CatLoader}>
+      <CartProvider initialCartItems={dataCartItems}>
+        {getLayout(<Component {...pageProps} />)}
+      </CartProvider>
+    </LoaderProvider>
     // </AuthProvider>
   )
 }

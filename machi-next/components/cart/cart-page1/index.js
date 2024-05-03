@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useCart } from '@/hooks/use-cart-state'
 import styles from './page1.module.scss'
+import '@/node_modules/bootstrap/scss/bootstrap.scss'
+import '@/node_modules/bootstrap/scss/bootstrap.scss'
+import { FaCheck } from 'react-icons/fa6'
 
-import '@/node_modules/bootstrap/scss/bootstrap.scss';
-
-const CartPage1 = () => {
+const CartPage1 = ({ onClickPage }) => {
+  const { cart, items, decrement, increment, removeItem } = useCart()
+  const [isChecked, setIsChecked] = useState(false)
+  const checkClick = () => {
+    setIsChecked(!isChecked)
+  }
   return (
     <>
       <div
         className={`row mt-5 mb-2 d-flex  position-relative g-0 `}
         style={{ maxWidth: 960, left: '50%', transform: 'translateX(-50%)' }}
       >
-        <div className={`col d-flex gap-1 align-items-center justify-content-start  `}>
+        <div
+          className={`col d-flex gap-1 align-items-center justify-content-start  `}
+        >
           <div
             className={`d-flex bg-brown align-items-center justify-content-center  `}
             style={{ height: 40, width: 40, borderRadius: '50%' }}
@@ -21,7 +30,9 @@ const CartPage1 = () => {
             購物車資訊
           </div>
         </div>
-        <div className={`col d-flex gap-1 align-items-center justify-content-center`}>
+        <div
+          className={`col d-flex gap-1 align-items-center justify-content-center`}
+        >
           <div
             className={`d-flex bg-grey justify-content-center align-items-center `}
             style={{ height: 40, width: 40, borderRadius: '50%' }}
@@ -30,7 +41,9 @@ const CartPage1 = () => {
           </div>
           <div className={`h4 mb-0   text-grey `}>確認及填寫</div>
         </div>
-        <div className={`col d-flex gap-1 align-items-center justify-content-end`}>
+        <div
+          className={`col d-flex gap-1 align-items-center justify-content-end`}
+        >
           <div
             className={`d-flex bg-grey justify-content-center align-items-center `}
             style={{ height: 40, width: 40, borderRadius: '50%' }}
@@ -43,27 +56,47 @@ const CartPage1 = () => {
         </div>
       </div>
       <div className={`col-sm cart-area product-area`}>
-        <div className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}>
-          <div className={`${styles['custom-checkbox']}`}></div>
+        <div
+          className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
+        >
+          <button
+            className={`${styles['custom-checkbox']} `}
+            onClick={checkClick}
+          >
+            {isChecked ? (
+              <FaCheck size={30} className={`${styles['checkgood']}`} />
+            ) : null}
+          </button>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>商品</div>
           <div className={` h3`}>(3)</div>
         </div>
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4`}>
-          <div className={`${styles['custom-checkbox']}`}></div>
+        <div className={`d-flex  g-0 gap-5 align-items-center py-4   `}>
+          <button
+            className={`${styles['custom-checkbox']} `}
+            onClick={checkClick}
+          >
+            {isChecked ? (
+              <FaCheck size={30} className={`${styles['checkgood']}`} />
+            ) : null}
+          </button>
           <div className={``}>
             <img
-              src="./images/cart-1.jpeg"
+              src="https://media.nownews.com/nn_media/thumbnail/2024/01/1705794711197-849ae9783db744c998f9504de98f12b4-678x518.webp?unShow=false&waterMark=false"
               className={`product-img-1`}
               style={{ width: 140, height: 140 }}
             />
           </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
+          <div
+            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+          >
+            <div
+              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
+            >
               草莓有夠派
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
+              <div>
+                <i className={`bi bi-trash3 text-black btn btn-light`}></i>
+              </div>
             </div>
             <div
               className={`d-flex justify-content-start card-text col `}
@@ -74,24 +107,30 @@ const CartPage1 = () => {
                 6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
               </div>
             </div>
-            <div className={`d-flex g-3 justify-content-between col`}>
+            <div className={`d-flex g-3 justify-content-between col addbuton`}>
               <div
-                className={`btn-group d-flex `}
+                className={`btn-group d-flex   `}
                 role={`group`}
                 aria-label={`Basic mixed styles example `}
-                style={{ width: '128px', height: '48px' }}
+                style={{
+                  width: '128px',
+                  height: '48px',
+                  border: '1px solid #ab927d;',
+                }}
               >
                 <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
+                  className={` btn btn-outline-light text-primary-dark h4 mb-0`}
                   style={{ width: '28px' }}
                 >
                   -
                 </button>
-                <button className={` btn btn-outline-secondary  text-primary-dark h4`}>
+                <button
+                  className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
+                >
                   4
                 </button>
                 <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
+                  className={` btn btn-outline-light text-primary-dark h4  mb-0`}
                   style={{ width: '28px' }}
                 >
                   +
@@ -102,114 +141,127 @@ const CartPage1 = () => {
           </div>
         </div>
         <hr />
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-          <div className={`${styles['custom-checkbox']}`}></div>
-          <div className={``}>
-            <img
-              src="./images/cart-1.jpeg"
-              className={`product-img-1`}
-              style={{ width: 140, height: 140 }}
-            />
-          </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
-              草莓有夠派
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
+
+        {items.map((item) => (
+          <div
+            className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
+            key={item.id}
+          >
+            <button className={`${styles['custom-checkbox']}`}></button>
+            <div className={``}>
+              <img
+                src={item.image}
+                alt={item.name}
+                style={{ width: 140, height: 140 }}
+              />
             </div>
             <div
-              className={`d-flex justify-content-start card-text col `}
-              style={{ gap: '0.5rem' }}
+              className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
             >
-              <div className={`h5 mr-1`}>規格:</div>
-              <div className={`h5`}>
-                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-              </div>
-            </div>
-            <div className={`d-flex g-3 justify-content-between col`}>
               <div
-                className={`btn-group d-flex `}
-                role={`group`}
-                aria-label={`Basic mixed styles example `}
-                style={{ width: '128px', height: '48px' }}
+                className={`card-title card-text d-flex justify-content-between text-brown col h4`}
               >
-                <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
-                  style={{ width: '28px' }}
-                >
-                  -
-                </button>
-                <button className={` btn btn-outline-secondary  text-primary-dark h4`}>
-                  4
-                </button>
-                <button
-                  className={` btn btn-outline-secondary text-primary-dark h4`}
-                  style={{ width: '28px' }}
-                >
-                  +
-                </button>
+                {item.name}
+                <div>
+                  <button
+                    className={`bi bi-trash3 text-black btn btn-light`}
+                    onClick={() => removeItem(item.id)}
+                  ></button>
+                </div>
               </div>
-              <div className={` h4 `}>NT$8888</div>
+              <div
+                className={`d-flex justify-content-between card-text col `}
+                style={{ gap: '0.5rem' }}
+              >
+                <div className="d-fex">
+                  <div className={`h5 mr-1`}>規格:</div>
+                  <div className={`h5`}>{item.specification}</div>
+                </div>
+                <div className="d-fex row justify-content-end">
+                  <div
+                    className={`h5 mr-1 col d-inline px-0`}
+                    style={{ whiteSpace: 'nowrap' }}
+                  >
+                    單價:
+                  </div>
+                  <div
+                    className={`h5 col d-inline`}
+                    style={{ whiteSpace: 'nowrap' }}
+                  >
+                    NT${item.price}
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`d-flex g-3 justify-content-between col addbuton`}
+              >
+                <div
+                  className={`btn-group d-flex   `}
+                  role={`group`}
+                  aria-label={`Basic mixed styles example `}
+                  style={{
+                    width: '128px',
+                    height: '48px',
+                    border: '1px solid #ab927d;',
+                  }}
+                >
+                  <button
+                    className={` btn btn-outline-light text-primary-dark h4 mb-0`}
+                    style={{ width: '28px' }}
+                    onClick={() => decrement(item.id)} // 减少数量的点击事件
+                  >
+                    -
+                  </button>
+                  <button
+                    className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
+                  >
+                    {item.quantity}
+                  </button>
+                  <button
+                    className={` btn btn-outline-light text-primary-dark h4  mb-0`}
+                    style={{ width: '28px' }}
+                    onClick={() => increment(item.id)} // 增加数量的点击事件
+                  >
+                    +
+                  </button>
+                </div>
+                <div className={` h4 `}>小計NT${item.subtotal}</div>
+              </div>
             </div>
           </div>
-        </div>
-        <hr />
+        ))}
       </div>
       <div className={`col-sm cart-area class-area`}>
-        <div className={`mb-3 d-flex gap-2  class-tittle ${styles['border-borwn']} py-4`}>
-          <div className={`${styles['custom-checkbox']}`}></div>
+        <div
+          className={`mb-3 d-flex gap-2  class-tittle ${styles['border-borwn']} py-4`}
+        >
+          <button
+            className={`${styles['custom-checkbox']}`}
+            onClick={() => {}}
+          ></button>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>課程</div>
-          <div className={` h3`}>(3)</div>
+          <div className={` h3`}>({Object.keys(items).length})</div>
         </div>
         <div className={`d-flex  g-0 gap-5 align-items-center py-4`}>
-          <div className={`${styles['custom-checkbox']}`}></div>
+          <button className={`${styles['custom-checkbox']}`}></button>
           <div className={``}>
             <img
-              src="./images/cart-1.jpeg"
+              src="/images/cart-test/cookie2.jpg"
               className={`product-img-1`}
               style={{ width: 140, height: 140 }}
             />
           </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
-              手工土鳳梨酥體驗課程
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
-            </div>
+          <div
+            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+          >
             <div
-              className={`d-flex justify-content-start card-text col `}
-              style={{ gap: '0.5rem' }}
+              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
             >
-              <div className={`h5 mr-1`}>規格:</div>
-              <div className={`h5`}>
-                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-              </div>
-            </div>
-            <div className={`d-flex g-3 justify-content-between col`}>
-              <div className={`h4`}>人數:3</div>
-              <div className={` h4 `}>NT$8888</div>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-          <div className={`${styles['custom-checkbox']}`}></div>
-          <div className={``}>
-            <img
-              src="./images/cart-1.jpeg"
-              className={`product-img-1`}
-              style={{ width: 140, height: 140 }}
-            />
-          </div>
-          <div className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}>
-            <div className={`card-title card-text d-flex justify-content-between text-brown col h4`}>
               手工土鳳梨酥體驗課程
-              <span>
-                <i className={`bi bi-trash3 text-black`}></i>
-              </span>
+              <div>
+                <i className={`bi bi-trash3 text-black btn btn-light`}></i>
+              </div>
             </div>
             <div
               className={`d-flex justify-content-start card-text col `}
@@ -240,13 +292,13 @@ const CartPage1 = () => {
           </div>
         </div>
         <div className={`d-flex justify-content-end pb-5`}>
-          <div className={`${styles['cart-button']}`}>
+          <button className={`${styles['cart-button']}`} onClick={onClickPage}>
             <div className={`${styles['cart-button-text']}`}>前往結帳</div>
-          </div>
+          </button>
         </div>
       </div>
     </>
   )
 }
 
-export default CartPage1;
+export default CartPage1
