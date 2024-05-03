@@ -26,7 +26,7 @@ export function upload(file) {
 }
 
 const fetchArticles = async () => {
-  const response = await axiosInstance.get('/blog')
+  const response = await axiosInstance.get('/blog/articles')
   if (response.status !== 200) {
     console.error('Failed to fetch articles:', response.statusText)
     return
