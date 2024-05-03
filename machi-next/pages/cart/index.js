@@ -5,6 +5,9 @@ import CartPage2 from '@/components/cart/cart-page2'
 import CartPage3 from '@/components/cart/cart-page3'
 import CartList from '@/components/cart/list'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
 export default function Text1() {
   const [ShowPage, setShowPage] = useState(true)
   const handleClick = () => {
@@ -12,6 +15,7 @@ export default function Text1() {
   }
   return (
     <div>{ShowPage ? <CartPage1 onClick={handleClick} /> : <CartPage2 />}</div>
+<<<<<<< HEAD
 =======
 
 export default function Text1() {
@@ -21,5 +25,7 @@ export default function Text1() {
     // <CartPage2></CartPage2>
     // <CartPage3></CartPage3>
 >>>>>>> cart_dev
+=======
+>>>>>>> 39830741ee8e6f1b069b016f1a6734d1816b62dd
   )
 }
