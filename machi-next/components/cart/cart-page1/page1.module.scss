@@ -65,6 +65,11 @@
   font-weight: 700;
   position: relative;
 }
+.btn-outline-secondary {
+  :hover{
+    --bs-btn-hover-color: #ffffff;
+  }
+}
 
 
 

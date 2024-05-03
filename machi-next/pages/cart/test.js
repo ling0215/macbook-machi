@@ -1,28 +1,41 @@
+import React from 'react'
 import { useCart } from '@/hooks/use-cart-state'
 import { useEffect, useState } from 'react'
 
 export default function CartList() {
-  // 使用hooks 解出所需的狀態與函式(自context)
-
   const { cart, items, decrement, increment, removeItem } = useCart()
 
-  // 修正 Next hydration 問題
-  // https://stackoverflow.com/questions/72673362/error-text-content-does-not-match-server-rendered-html
+<<<<<<< HEAD
+  // 添加一些假数据22
+=======
+  // 添加一些假数据
+>>>>>>> 1093aaba833f2d2b0189ae5e23374aaf5e08dc6f
+  useEffect(() => {
+    const fakeItems = [
+      { id: 1, name: '商品1', price: 10, quantity: 2, subtotal: 20 },
+      { id: 2, name: '商品2', price: 15, quantity: 1, subtotal: 15 },
+      { id: 3, name: '商品3', price: 20, quantity: 3, subtotal: 60 },
+    ]
+
+    // 将假数据添加到购物车中
+    items.forEach((item) => {
+      removeItem(item.id)
+    })
+    fakeItems.forEach((item) => {
+      increment(item)
+    })
+  }, [])
+
   const [hydrated, setHydrated] = useState(false)
-
-
 
   useEffect(() => {
     setHydrated(true)
   }, [])
 
-  
-
   if (!hydrated) {
     return null
   }
-
-  
+  // 修正 end
 
   return (
     <div>
@@ -46,7 +59,7 @@ export default function CartList() {
         <tbody>
           {items.map((v, i) => {
             return (
-              <tr key={v.id}>   
+              <tr key={v.id}>
                 <td>{v.id}</td>
                 <td>{v.name} </td>
                 <td>{v.price}</td>
