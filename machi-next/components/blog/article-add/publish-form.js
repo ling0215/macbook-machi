@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '@/styles/blog/Articles.module.sass'
+import styles from './publish-form.module.scss'
 import Link from 'next/link'
 import Myeditor from '@/components/blog/article-add/Myeditor'
 import { useState, useEffect } from 'react'
