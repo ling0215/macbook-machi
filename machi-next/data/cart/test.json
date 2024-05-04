@@ -1,22 +1,15 @@
 [{
   "product_id": 1,
-  "product_count": 10,
+  "product_quantity": 10,
   "product_price": 30,
   "prodcut_name": "花花餅",
-  "image":"/images/cart-test/cookie1.jpg"
+  "prodcut_image":"/images/cart-test/cookie1.jpg"
 
 },{
-  "id": 2,
-  "quantity": 4,
-  "price": 20,
-  "name": "貓貓餅",
-  "image":"/images/cart-test/cookie2.jpg"
-}
-,{
-  "id": 3,
-  "quantity": 3,
-  "price": 10,
-  "name": "卡三餅",
-  "image":"/images/cart-test/cookie3.jpg"
+  "calss_id": 2,
+  "class_quantity": 4,
+  "class_price": 20,
+  "class_name": "做肥皂",
+  "class_image":"/images/cart-test/cookie2.jpg"
 }
 ]

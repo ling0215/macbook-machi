@@ -8,39 +8,6 @@ import { FaCheck } from 'react-icons/fa6'
 const CartPage1 = ({ onClickPage2 }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
 
-  let itemsType
-  switch (true) {
-    case items.some((item) => item.product_id !== undefined):
-      itemsType = 'productItem'
-      break
-    case items.some((item) => item.class_id !== undefined):
-      itemsType = 'classItem'
-      break
-    default:
-      itemsType = items
-      break
-  }
-
-  const productItems = items.map((item) => {
-    if (itemsType === 'productItem') {
-      return (
-        <tr key={item.id}>
-          <td className={styles.center}>
-            <input
-              type="checkbox"
-              checked={itemChecked[item.id] || false}
-              onChange={() => handleItemCheck(item.id)}
-            />
-          </td>
-          <td>{item.product_id}</td>
-          <td>{item.product_price}</td>
-          <td className={styles.center}>{item.quantity}</td>
-        </tr>
-      )
-    }
-    return null
-  })
-
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
   // 全選/全不選狀態
