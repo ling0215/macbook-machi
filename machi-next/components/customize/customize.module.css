@@ -1,6 +1,6 @@
 /* comments */
 .testimonialCard {
-  align-items: start;
+  align-items: flex-start;
   background-color: var(--Brown, #ab927d);
   border-radius: 0px 25px 25px 25px;
   box-shadow: 3px 5px 4px 0px rgba(0, 0, 0, 0.2);
@@ -115,15 +115,16 @@
 .step-title {
   display: flex;
   width: 90%;
-  margin: 5vh auto;
+  margin: 5vh auto 5vh;
   justify-content: center;
   color: #7d5f4d;
   text-align: center;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
   padding: 2vh 0;
   font: 600 1.2rem Roboto, sans-serif;
   border-bottom: 1.9px solid #7d5f4d;
   position: relative;
+  white-space: pre-wrap;
 
   .prv-step-button,
   .next-step-button {
@@ -147,14 +148,72 @@
 
 /* cake-size */
 .size {
+  text-align: center;
   font-size: 1.1rem;
   font-weight: 700;
   margin: 28px 0 6px;
 }
 .price {
+  text-align: center;
   font-size: 1rem;
   font-weight: 700;
   color: #785e4c;
+}
+
+/* cake-preview */
+.preview-overview {
+  position: relative;
+}
+.preview-size {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.preview-photo {
+  width: 7vw;
+  height: 7vw;
+  background-color: #e3e3e3;
+  border-radius: 50%;
+  margin: 2vh auto 1vh;
+}
+.preview-photo-overview {
+  display: flex;
+  flex-direction: column;
+  width: 10vw;
+  align-items: center;
+}
+.preview-photo-text {
+  font-size: 0.9rem;
+  text-align: center;
+}
+.preview-arrow {
+  margin: 0 0 0 6.5vw;
+}
+
+/* deco-selection */
+.deco-titles {
+  color: #787878;
+  line-height: 1rem;
+}
+.hr-brown {
+  border: 0;
+  border-top: 1.5px solid #7d5f4d;
+  width: 90%;
+}
+.deco-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2vh 0;
+}
+.deco-select {
+  display: flex;
+  gap: 0.5rem;
+}
+.deco-checkbox > * {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
 }
 
 @media (max-width: 400px) {
@@ -170,12 +229,13 @@
   }
   .custom-text-border-yellow {
     line-height: 1.5rem;
+    /* text-align: center; */
   }
 
   /* step-titles */
   .step-title {
     max-width: 100%;
-    font-size: 1rem;
+    font-size: 0.8rem;
     .prv-step-button,
     .next-step-button {
       font-size: 0.7rem;
