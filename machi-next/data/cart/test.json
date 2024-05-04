@@ -1,8 +1,8 @@
 [{
-  "id": 1,
-  "quantity": 1,
-  "price": 30,
-  "name": "花花餅",
+  "product_id": 1,
+  "product_count": 10,
+  "product_price": 30,
+  "prodcut_name": "花花餅",
   "image":"/images/cart-test/cookie1.jpg"
 
 },{

@@ -111,6 +111,17 @@ body {
 }
 
 // deco
+.lynn-custom-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  gap: 0;
+  max-width: 960px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .lynn-choose-size {
   display: flex;
   flex-wrap: wrap;
@@ -208,5 +219,12 @@ body {
       width: 32vw;
       height: 5vh;
     }
+  }
+  // deco
+  .lynn-choose-size {
+    flex-direction: column;
+    align-items: center;
+    margin: 5vh 0;
+    gap: 1.5rem;
   }
 }

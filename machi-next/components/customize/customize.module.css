@@ -68,47 +68,50 @@
 }
 
 /* steps */
-.step-row {
+.custom-col {
   display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  margin: 4rem auto;
-  max-width: 960px;
-}
-.steps {
-  display: flex;
-  flex: 1;
   gap: 0.25rem;
   align-items: center;
-  justify-content: flex-start;
 }
-.step1 {
+
+.custom-circle {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e6b759;
   height: 40px;
   width: 40px;
   border-radius: 50%;
+}
+
+.bg-yellow {
   background-color: #e6b759;
 }
-.step1-num {
+
+.bg-grey {
+  background-color: #c0c0c0;
+}
+
+.custom-text {
   font-size: 1.25rem;
-  line-height: 1.2;
   margin-bottom: 0;
   color: white;
 }
-.step1-text {
+
+.custom-text-border-yellow {
+  font-size: 1.25rem;
   margin-bottom: 0;
-  font-size: 20px;
-  font-weight: 500;
   color: #e6b759;
   border-bottom: 1.5px solid #e6b759;
   line-height: 2rem;
 }
 
-/* step-titles */
+.custom-text-grey {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  color: #c0c0c0;
+}
 
+/* step-titles */
 .step-title {
   display: flex;
   width: 90%;
@@ -121,8 +124,10 @@
   font: 600 1.2rem Roboto, sans-serif;
   border-bottom: 1.9px solid #7d5f4d;
   position: relative;
+
   .prv-step-button,
   .next-step-button {
+    display: flex;
     background-color: var(--secondary, #f8dc9a);
     border: none;
     border-radius: 5px;
@@ -130,8 +135,10 @@
     font-weight: 900;
     color: var(--primary-dark, #785e4c);
     position: absolute;
-    left: 92%;
     padding: 3px 10px;
+  }
+  .next-step-button {
+    left: 92%;
   }
   .prv-step-button {
     left: 2.5%;
@@ -142,6 +149,7 @@
 .size {
   font-size: 1.1rem;
   font-weight: 700;
+  margin: 28px 0 6px;
 }
 .price {
   font-size: 1rem;
@@ -151,13 +159,39 @@
 
 @media (max-width: 400px) {
   /* steps */
-  .bg-yellow {
-    height: 10px;
-    width: 10px;
+  .custom-circle {
+    height: 24px;
+    width: 24px;
+  }
+  .custom-text,
+  .custom-text-border-yellow,
+  .custom-text-grey {
+    font-size: 0.8rem;
+  }
+  .custom-text-border-yellow {
+    line-height: 1.5rem;
   }
 
   /* step-titles */
   .step-title {
     max-width: 100%;
+    font-size: 1rem;
+    .prv-step-button,
+    .next-step-button {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 8px;
+    }
+    .next-step-button {
+      left: 83%;
+    }
+  }
+  /* cake-size */
+  .size {
+    font-size: 1rem;
+    margin: 20px 0 4px;
+  }
+  .price {
+    font-size: 0.9rem;
   }
 }

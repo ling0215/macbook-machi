@@ -11,6 +11,8 @@ export default function Text1() {
     setShowPage(!ShowPage)
   }
   return (
-    <div>{ShowPage ? <CartPage1 onClick={handleClick} /> : <CartPage2 />}</div>
+    <div>
+      {ShowPage ? <CartPage1 onClickPage2={handleClick} /> : <CartPage2 />}
+    </div>
   )
 }
