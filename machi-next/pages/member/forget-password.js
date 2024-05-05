@@ -1,5 +1,5 @@
 import React from 'react'
-import ForgetPasswordForm from '@/components/member/forget-password-form'
+import ForgetPasswordForm from '@/components/member/is-not-auth/forget-password-form'
 import LoginNavBar from '@/components/member/is-not-auth/login-navbar'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'

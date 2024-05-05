@@ -170,7 +170,7 @@ router.put('/:id/password', authenticate, async function (req, res) {
 
   // compareHash(登入時的密碼純字串, 資料庫中的密碼hash) 比較密碼正確性
   // isValid=true 代表正確
-  const isValid = await compareHash(userPassword.origin, dbUser.password)
+  const isValid = await compareHash(userPassword.origin, dbUser.user_password)
 
   // isValid=false 代表密碼錯誤
   if (!isValid) {
@@ -182,7 +182,7 @@ router.put('/:id/password', authenticate, async function (req, res) {
     { password: userPassword.new },
     {
       where: {
-        id,
+        user_id: id,
       },
       individualHooks: true, // 更新時要加密密碼字串 trigger the beforeUpdate hook
     }
@@ -202,7 +202,7 @@ router.put('/:id/profile', authenticate, async function (req, res) {
   const id = getIdParam(req)
 
   // 檢查是否為授權會員，只有授權會員可以存取自己的資料
-  if (req.user.id !== id) {
+  if (req.user.user_id !== id) {
     return res.json({ status: 'error', message: '存取會員資料失敗' })
   }
 
@@ -210,7 +210,7 @@ router.put('/:id/profile', authenticate, async function (req, res) {
   const user = req.body
 
   // 檢查從前端瀏覽器來的資料，哪些為必要(name, ...)
-  if (!id || !user.name) {
+  if (!id) {
     return res.json({ status: 'error', message: '缺少必要資料' })
   }
 
@@ -225,19 +225,21 @@ router.put('/:id/profile', authenticate, async function (req, res) {
   }
 
   // 有些特殊欄位的值沒有時要略過更新，不然會造成資料庫錯誤
-  if (!user.birth_date) {
-    delete user.birth_date
-  }
+  // if (!user.birth_date) {
+  //   delete user.birth_date
+  // }
 
   // 對資料庫執行update
   const [affectedRows] = await User.update(user, {
     where: {
-      id,
+      user_id: id,
     },
   })
 
   // 沒有更新到任何資料 -> 失敗或沒有資料被更新
   if (!affectedRows) {
+    console.log(user);
+    console.log(id);
     return res.json({ status: 'error', message: '更新失敗或沒有資料被更新' })
   }
 
@@ -248,7 +250,6 @@ router.put('/:id/profile', authenticate, async function (req, res) {
 
   // password資料不需要回應給瀏覽器
   delete updatedUser.password
-  //console.log(updatedUser)
   // 回傳
   return res.json({ status: 'success', data: { user: updatedUser } })
 })

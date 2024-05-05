@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './member.module.css'
+import styles from '../member.module.css'
 import Link from 'next/link'
 import { requestOtpToken } from '@/services/user'
 import { resetPassword } from '@/services/user'

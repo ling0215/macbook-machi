@@ -32,10 +32,12 @@ const AuthContext = createContext(null)
 // !!注意JWT存取令牌中只有id, username, google_uid, line_uid在登入時可以得到
 export const initUserData = {
   user_id: 0,
-  username: '',
+  user_name: '',
   user_nickname: '',
   user_account: '',
   user_email: '',
+  user_gender: '',
+  user_birthday: '',
   user_phone: '',
   user_address: '',
   google_uid: '',

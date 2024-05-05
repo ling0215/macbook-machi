@@ -1,13 +1,15 @@
 import React from 'react'
-import styles from './member.module.css'
+import styles from '../member.module.css'
 import Link from 'next/link'
 import LineLogo from '@/components/icons/line-logo'
 import GoogleLogo from '@/components/icons/google-logo'
 import FacebookLogo from '@/components/icons/facebook-logo'
 import { useState } from 'react'
 import { login } from '@/services/user'
+import { useAuth } from '@/hooks/use-auth';
 
 export default function LoginForm() {
+  const { setAuth } = useAuth();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -16,7 +18,9 @@ export default function LoginForm() {
     try {
       const response = await login({ email, password })
       // 登入成功，處理 response
+      setAuth({ isAuth: true, userData: response.data.user });
       console.log(response)
+
     } catch (error) {
       // 登入失敗，處理 error
       console.error(error)

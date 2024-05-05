@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/use-auth'
-import LoginForm from '@/components/member/login-form'
+import LoginForm from '@/components/member/is-not-auth/login-form'
 import LoginNavBar from '@/components/member/is-not-auth/login-navbar'
 // import LoginLayout from '@/components/layout/member/login-layout'
 

@@ -86,6 +86,8 @@ router.post('/login', async (req, res) => {
     user_nickname: user.user_nickname,
     user_account: user.user_account,
     user_email: user.user_email,
+    user_gender: user.user_gender,
+    user_birthday: user.user_birthday,
     user_phone: user.user_phone,
     user_address: user.user_address,
     google_uid: user.google_uid,
