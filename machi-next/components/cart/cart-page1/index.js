@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCart } from '@/hooks/use-cart-state'
 import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
@@ -7,6 +7,7 @@ import { FaCheck } from 'react-icons/fa6'
 
 const CartPage1 = ({ onClickPage2 }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
+
 
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
@@ -97,6 +98,19 @@ const CartPage1 = ({ onClickPage2 }) => {
     setCourseChecked(newCheckedCourses);
   };
   
+    // 當物件被勾選時，更新 checktype 的 useEffect
+    useEffect(() => {
+      const checkedItems = Object.keys(itemChecked).filter(key => itemChecked[key]);
+      checkedItems.forEach(id => {
+        // 找到對應的物件並將其 checktype 改為 true
+        const itemToUpdate = items.find(item => item.id === id);
+        if (itemToUpdate) {
+          // 請確保在你的狀態管理系統中更新物件
+          // 例如，如果物件存儲在購物車中，請在那裡更新
+          console.log(`Updating checktype for item ${id}`);
+        }
+      });
+    }, [itemChecked]);
   
   return (
     <>
@@ -147,9 +161,7 @@ const CartPage1 = ({ onClickPage2 }) => {
           className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
         >
           <button
-            className={`${styles['custom-checkbox']} ${
-              selectAll ? styles['custom-checkbox-active'] : ''
-            }`}
+            className={`${styles['custom-checkbox']} `}
             onClick={handleSelectAll}
           >
             {selectAll && <FaCheck size={20} className={styles['checkgood']} />}
@@ -165,9 +177,7 @@ const CartPage1 = ({ onClickPage2 }) => {
             key={item.id}
           >
             <button
-              className={`${styles['custom-checkbox']} ${
-                itemChecked[item.id] ? styles['custom-checkbox-active'] : ''
-              }`}
+              className={`${styles['custom-checkbox']} `}
               onClick={() => handleItemCheck(item.id)}
             >
               {itemChecked[item.id] && (
@@ -263,9 +273,7 @@ const CartPage1 = ({ onClickPage2 }) => {
           className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
         >
           <button
-            className={`${styles['custom-checkbox']} ${
-              selectCustomAll ? styles['custom-checkbox-active'] : ''
-            }`}
+            className={`${styles['custom-checkbox']} `}
             onClick={handleSelectCustomAll}
           >
             {selectCustomAll && <FaCheck size={20} className={styles['checkgood']} />}
@@ -281,9 +289,7 @@ const CartPage1 = ({ onClickPage2 }) => {
     key={item.id}
   >
     <button
-      className={`${styles['custom-checkbox']} ${
-        customItemChecked[item.id] ? styles['custom-checkbox-active'] : ''
-      }`}
+      className={`${styles['custom-checkbox']}`}
       onClick={() => handleCustomItemCheck(item.id)} // Change here
     >
       {customItemChecked[item.id] && (
@@ -377,9 +383,7 @@ const CartPage1 = ({ onClickPage2 }) => {
       <div className={`col-sm cart-area class-area`}>
   <div className={`mb-3 d-flex gap-2  class-tittle ${styles['border-borwn']} py-4`}>
     <button
-      className={`${styles['custom-checkbox']} ${
-        selectCourseAll ? styles['custom-checkbox-active'] : ''
-      }`}
+      className={`${styles['custom-checkbox']} `}
       onClick={handleSelectCourseAll}
     >
       {selectCourseAll && <FaCheck size={20} className={styles['checkgood']} />}
@@ -392,9 +396,7 @@ const CartPage1 = ({ onClickPage2 }) => {
   {items.filter((item) => item.type === 'class').map((item) => (
     <div className={`d-flex  g-0  align-items-center py-4 ${styles['text-border-grey']} pe-0`} key={item.id}>
       <button
-        className={`${styles['custom-checkbox']} ${
-          courseChecked[item.id] ? styles['custom-checkbox-active'] : ''
-        }`}
+        className={`${styles['custom-checkbox']} `}
         onClick={() => handleCourseCheck(item.id)}
       >
         {courseChecked[item.id] && (

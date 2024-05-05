@@ -21,7 +21,8 @@ export default function Text1() {
         price: item.product_price,
         name: item.prodcut_name,
         image: item.prodcut_image,
-        type: 'product'
+        type: 'product',
+        checkType:false
       };
     } else if (item.calss_id) {
       return {
@@ -30,7 +31,8 @@ export default function Text1() {
         price: item.class_price,
         name: item.class_name,
         image: item.class_image,
-        type: 'class'
+        type: 'class',
+        checkType:false
       };
     } else if (item.custom_id) {
       return {
@@ -39,7 +41,8 @@ export default function Text1() {
         price: item.custom_price,
         name: item.custom_name,
         image: item.custom_image,
-        type: 'custom'
+        type: 'custom',
+        checkType:false
       };
     }
   });
