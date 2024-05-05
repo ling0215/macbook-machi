@@ -16,7 +16,7 @@ ${otpToken}
     
 敬上
 
-台灣 NextJS Inc. 網站`
+台灣 Machi Inc. 網站`
 
 // create otp
 router.post('/otp', async (req, res, next) => {
@@ -35,9 +35,9 @@ router.post('/otp', async (req, res, next) => {
   // 寄送email
   const mailOptions = {
     // 這裡要改寄送人名稱，email在.env檔中代入
-    from: `"support"<${process.env.SMTP_TO_EMAIL}>`,
+    from: `"machi-support"<${process.env.SMTP_TO_EMAIL}>`,
     to: email,
-    subject: '重設密碼要求的電子郵件驗証碼',
+    subject: 'Machi-重設密碼要求的電子郵件驗証碼',
     text: mailText(otp.token),
   }
 

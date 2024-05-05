@@ -30,6 +30,15 @@ export default async function (sequelize) {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      user_gender: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: '不願透漏',
+      },
+      user_birthday: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
       user_image: {
         type: DataTypes.STRING,
         allowNull: true,
