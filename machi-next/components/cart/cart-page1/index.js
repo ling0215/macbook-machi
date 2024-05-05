@@ -191,7 +191,7 @@ const CartPage1 = ({ onClickPage2 }) => {
                 <div>
                   <button
                     className={`bi bi-trash3 text-black btn btn-light`}
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItem(item.id,item.type)}
                   ></button>
                 </div>
               </div>
@@ -234,7 +234,7 @@ const CartPage1 = ({ onClickPage2 }) => {
                   <button
                     className={` btn btn-outline-light text-primary-dark h4 mb-0`}
                     style={{ width: '28px' }}
-                    onClick={() => decrement(item.id)} // 减少数量的点击事件
+                    onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
                   >
                     -
                   </button>
@@ -246,7 +246,7 @@ const CartPage1 = ({ onClickPage2 }) => {
                   <button
                     className={` btn btn-outline-light text-primary-dark h4  mb-0`}
                     style={{ width: '28px' }}
-                    onClick={() => increment(item.id)} // 增加数量的点击事件
+                    onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
                   >
                     +
                   </button>
@@ -307,7 +307,7 @@ const CartPage1 = ({ onClickPage2 }) => {
         <div>
           <button
             className={`bi bi-trash3 text-black btn btn-light`}
-            onClick={() => removeItem(item.id)}
+            onClick={() => removeItem(item.id,item.type)}
           ></button>
         </div>
       </div>
@@ -350,7 +350,7 @@ const CartPage1 = ({ onClickPage2 }) => {
           <button
             className={` btn btn-outline-light text-primary-dark h4 mb-0`}
             style={{ width: '28px' }}
-            onClick={() => decrement(item.id)} // 减少数量的点击事件
+            onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
           >
             -
           </button>
@@ -362,7 +362,7 @@ const CartPage1 = ({ onClickPage2 }) => {
           <button
             className={` btn btn-outline-light text-primary-dark h4  mb-0`}
             style={{ width: '28px' }}
-            onClick={() => increment(item.id)} // 增加数量的点击事件
+            onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
           >
             +
           </button>
@@ -416,7 +416,7 @@ const CartPage1 = ({ onClickPage2 }) => {
         >
           {item.name}
           <div>
-            <butt className={`bi bi-trash3 text-black btn btn-light`} onClick={() => removeItem(item.id)}></butt>
+            <butt className={`bi bi-trash3 text-black btn btn-light`} onClick={() => removeItem(item.id,item.type)}></butt>
           </div>
         </div>
         <div
@@ -441,11 +441,11 @@ const CartPage1 = ({ onClickPage2 }) => {
       <div className={`d-flex row justify-content-end g-0 `}>
         <div className={` py-4`} style={{ width: '290px' }}>
           <div className={`d-flex justify-content-between  pb-3`}>
-            <div className={`h4`}>商品數量</div>
-            <div className={`h4`}></div>
+            <div className={`h4`}>購買數量</div>
+            <div className={`h4`}>{items.reduce((a, b) => a + b.quantity, 0)}</div>
           </div>
           <div className={`d-flex justify-content-between`}>
-            <div className={`h4`}>小計</div>
+            <div className={`h4`}>總計</div>
             <div className={`h4`}>88888</div>
           </div>
         </div>
