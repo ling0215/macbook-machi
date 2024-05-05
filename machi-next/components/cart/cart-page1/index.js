@@ -98,19 +98,33 @@ const CartPage1 = ({ onClickPage2 }) => {
     setCourseChecked(newCheckedCourses);
   };
   
-    // 當物件被勾選時，更新 checktype 的 useEffect
-    useEffect(() => {
-      const checkedItems = Object.keys(itemChecked).filter(key => itemChecked[key]);
-      checkedItems.forEach(id => {
-        // 找到對應的物件並將其 checktype 改為 true
-        const itemToUpdate = items.find(item => item.id === id);
-        if (itemToUpdate) {
-          // 請確保在你的狀態管理系統中更新物件
-          // 例如，如果物件存儲在購物車中，請在那裡更新
-          console.log(`Updating checktype for item ${id}`);
-        }
-      });
-    }, [itemChecked]);
+  const getSelectedItems = () => {
+    // 從商品、自訂商品和課程中篩選出已被選中的物件
+    const selectedItems = items.filter((item) => {
+      if (item.type === 'product') {
+        return itemChecked[item.id];
+      } else if (item.type === 'custom') {
+        return customItemChecked[item.id];
+      } else if (item.type === 'class') {
+        return courseChecked[item.id];
+      }
+      return false;
+    });
+  
+    // 將每個選中的物件的 checkType 設置為 true
+    const updatedSelectedItems = selectedItems.map((item) => ({
+      ...item,
+      checkType: true,
+    }));
+  
+    return updatedSelectedItems;
+  };
+
+  const selectedItems = getSelectedItems();
+  
+console.log(selectedItems);
+
+
   
   return (
     <>
