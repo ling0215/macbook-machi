@@ -7,10 +7,12 @@ function Customize() {
   return (
     <>
       <div>
-        <img
+        <Image
           className="lynn-hero"
           src="/images/customize/customized-hero.jpg"
           alt=""
+          width={100}
+          height={20}
         />
         <header className="lynn-title">
           <h6 className="text-center my-3">
@@ -90,7 +92,7 @@ function Customize() {
             </p>
           </div>
 
-          <Link href="/customized-products/deco" passHref>
+          <Link href="/customized-products/size" passHref>
             <button>開始訂製</button>
           </Link>
         </section>

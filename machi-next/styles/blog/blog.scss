@@ -74,8 +74,10 @@ input::placeholder {
     }
 }
 
+
+
 .article-text {
-    padding-bottom: 30px;
+    padding-bottom: 50px;
     span {
         color: $light-grey;
     }
@@ -97,7 +99,7 @@ input::placeholder {
 
 .article-list {
     list-style-type: none;
-    padding: 0px;
+    // padding: 0px;
 }
 
 .more {
