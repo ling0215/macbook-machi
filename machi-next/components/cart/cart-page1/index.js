@@ -1,50 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCart } from '@/hooks/use-cart-state'
 import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaCheck } from 'react-icons/fa6'
 
-const CartPage1 = ({ onClickPage2 }) => {
+const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
-
-  let itemsType
-  switch (true) {
-    case items.some((item) => item.product_id !== undefined):
-      itemsType = 'productItem'
-      break
-    case items.some((item) => item.class_id !== undefined):
-      itemsType = 'classItem'
-      break
-    default:
-      itemsType = items
-      break
-  }
-
-  const productItems = items.map((item) => {
-    if (itemsType === 'productItem') {
-      return (
-        <tr key={item.id}>
-          <td className={styles.center}>
-            <input
-              type="checkbox"
-              checked={itemChecked[item.id] || false}
-              onChange={() => handleItemCheck(item.id)}
-            />
-          </td>
-          <td>{item.product_id}</td>
-          <td>{item.product_price}</td>
-          <td className={styles.center}>{item.quantity}</td>
-        </tr>
-      )
-    }
-    return null
-  })
 
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
-  // 全選/全不選狀態
+  // 自訂商品選中狀態
+  const [customItemChecked, setCustomItemChecked] = useState({})
+  //課程選中狀態
+  const [courseChecked, setCourseChecked] = useState({})
+
+  // 商品全選/全不選狀態
   const [selectAll, setSelectAll] = useState(false)
+  // 自訂商品全選/全不選狀態
+  const [selectCustomAll, setSelectCustomAll] = useState(false)
+  //課程全選/全不選狀態
+  const [selectCourseAll, setSelectCourseAll] = useState(false)
 
   // 商品 checkbox 點擊事件處理函數
   const handleItemCheck = (itemId) => {
@@ -55,8 +31,39 @@ const CartPage1 = ({ onClickPage2 }) => {
     setItemChecked(newCheckedItems)
 
     // 更新全選的狀態
-    const allItemsSelected = Object.values(newCheckedItems).every(Boolean)
+    const allItemsSelected =
+      Object.values(newCheckedItems).filter(Boolean).length ===
+      items.filter((item) => item.type === 'product').length
     setSelectAll(allItemsSelected)
+  }
+
+  // 自訂商品 checkbox 點擊事件處理函數
+  const handleCustomItemCheck = (itemId) => {
+    const newCheckedCustomItems = {
+      ...customItemChecked,
+      [itemId]: !customItemChecked[itemId],
+    }
+    setCustomItemChecked(newCheckedCustomItems)
+
+    // 更新自訂商品全選的狀態
+    const allCustomItemsSelected =
+      Object.values(newCheckedCustomItems).filter(Boolean).length ===
+      items.filter((item) => item.type === 'custom').length
+    setSelectCustomAll(allCustomItemsSelected)
+  }
+  //課程 checkbox 點擊事件處理函數
+  const handleCourseCheck = (itemId) => {
+    const newCheckedCourses = {
+      ...courseChecked,
+      [itemId]: !courseChecked[itemId],
+    }
+    setCourseChecked(newCheckedCourses)
+
+    // 更新全選的狀態
+    const allCoursesSelected =
+      Object.values(newCheckedCourses).filter(Boolean).length ===
+      items.filter((item) => item.type === 'class').length
+    setSelectCourseAll(allCoursesSelected)
   }
 
   // 全選/全不選 checkbox 點擊事件處理函數
@@ -69,8 +76,106 @@ const CartPage1 = ({ onClickPage2 }) => {
       newCheckedItems[item.id] = newSelectAll
     })
     setItemChecked(newCheckedItems)
-    console.log(newCheckedItems)
   }
+
+  // 自訂商品全選/全不選 checkbox 點擊事件處理函數
+  const handleSelectCustomAll = () => {
+    const newSelectCustomAll = !selectCustomAll
+    setSelectCustomAll(newSelectCustomAll)
+    // 更新所有自訂商品的選中狀態
+    const newCheckedCustomItems = {}
+    items
+      .filter((item) => item.type === 'custom')
+      .forEach((item) => {
+        newCheckedCustomItems[item.id] = newSelectCustomAll
+      })
+    setCustomItemChecked(newCheckedCustomItems)
+  }
+  //課程全選/全不選 checkbox 點擊事件處理函數
+  const handleSelectCourseAll = () => {
+    const newSelectCourseAll = !selectCourseAll
+    setSelectCourseAll(newSelectCourseAll)
+    // 更新所有課程的選中狀態
+    const newCheckedCourses = {}
+    items
+      .filter((item) => item.type === 'class')
+      .forEach((item) => {
+        newCheckedCourses[item.id] = newSelectCourseAll
+      })
+    setCourseChecked(newCheckedCourses)
+  }
+
+
+  //確認是否有選擇項目 並跳轉至下一頁
+  const handleClickConfirm = () => {
+    const { totalQuantity, totalPrice } = calculateTotal()
+    const hasSelectedItem =
+      Object.keys(itemChecked).length +
+        Object.keys(customItemChecked).length +
+        Object.keys(courseChecked).length >
+      0
+    if (!hasSelectedItem) {
+      alert('請選擇購買項目')
+      return
+    }
+    const hasProduct = items.some(
+      (item) => item.type === 'product' && itemChecked[item.id]
+    )
+    const hasCustom = items.some(
+      (item) => item.type === 'custom' && customItemChecked[item.id]
+    )
+    const hasCourse = items.some(
+      (item) => item.type === 'class' && courseChecked[item.id]
+    )
+    if (!hasProduct && !hasCustom && !hasCourse) {
+      alert('請選擇購買項目')
+      return
+    }
+    onClickPage(2, { totalQuantity, totalPrice })
+  }
+
+
+
+  //回傳父元件用
+  useEffect(() => {
+    const selectedItems = {
+      products: items.filter(
+        (item) => item.type === 'product' && itemChecked[item.id]
+      ),
+      custom: items.filter(
+        (item) => item.type === 'custom' && customItemChecked[item.id]
+      ),
+      courses: items.filter(
+        (item) => item.type === 'class' && courseChecked[item.id]
+      ),
+    }
+    onSelectItems(selectedItems)
+  }, [itemChecked, customItemChecked, courseChecked])
+
+  console.log('樓下為page1')
+
+  console.log(selectedItems)
+  //計算勾選金額跟數量用
+  const calculateTotal = () => {
+    const selectedItems = items.filter(
+      (item) =>
+        (item.type === 'product' && itemChecked[item.id]) ||
+        (item.type === 'custom' && customItemChecked[item.id]) ||
+        (item.type === 'class' && courseChecked[item.id])
+    )
+
+    const totalQuantity = selectedItems.reduce(
+      (total, item) => total + item.quantity,
+      0
+    )
+    const totalPrice = selectedItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    )
+
+    return { totalQuantity, totalPrice }
+  }
+
   return (
     <>
       <div
@@ -120,178 +225,327 @@ const CartPage1 = ({ onClickPage2 }) => {
           className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
         >
           <button
-            className={`${styles['custom-checkbox']} ${
-              selectAll ? styles['custom-checkbox-active'] : ''
-            }`}
+            className={`${styles['custom-checkbox']} `}
             onClick={handleSelectAll}
           >
             {selectAll && <FaCheck size={20} className={styles['checkgood']} />}
           </button>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>商品</div>
-          <div className={` h3`}>(3)</div>
+          <div className={` h3`}>
+            ({items.filter((item) => item.type === 'product').length})
+          </div>
         </div>
 
-        {items.map((item) => (
-          <div
-            className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
-            key={item.product_id}
-          >
-            <button
-              className={`${styles['custom-checkbox']} ${
-                itemChecked[item.id] ? styles['custom-checkbox-active'] : ''
-              }`}
-              onClick={() => handleItemCheck(item.id)}
-            >
-              {itemChecked[item.id] && (
-                <FaCheck size={20} className={styles['checkgood']} />
-              )}
-            </button>
-            <div className={``}>
-              <img
-                src={item.image}
-                alt={item.name}
-                style={{ width: 140, height: 140 }}
-              />
-            </div>
+        {items
+          .filter((item) => item.type === 'product')
+          .map((item) => (
             <div
-              className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+              className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
+              key={item.id}
             >
-              <div
-                className={`card-title card-text d-flex justify-content-between text-brown col h4`}
+              <button
+                className={`${styles['custom-checkbox']} `}
+                onClick={() => handleItemCheck(item.id)}
               >
-                {item.prodcut_name}
-                <div>
-                  <button
-                    className={`bi bi-trash3 text-black btn btn-light`}
-                    onClick={() => removeItem(item.id)}
-                  ></button>
-                </div>
+                {itemChecked[item.id] && (
+                  <FaCheck size={20} className={styles['checkgood']} />
+                )}
+              </button>
+              <div className={``}>
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  style={{ width: 140, height: 140 }}
+                />
               </div>
               <div
-                className={`d-flex justify-content-between card-text col `}
-                style={{ gap: '0.5rem' }}
-              >
-                <div className="d-fex">
-                  <div className={`h5 mr-1`}>規格:</div>
-                  <div className={`h5`}>{item.specification}</div>
-                </div>
-                <div className="d-fex row justify-content-end">
-                  <div
-                    className={`h5 mr-1 col d-inline px-0`}
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    單價:
-                  </div>
-                  <div
-                    className={`h5 col d-inline`}
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    NT${item.product_price}
-                  </div>
-                </div>
-              </div>
-              <div
-                className={`d-flex g-3 justify-content-between col addbuton`}
+                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
               >
                 <div
-                  className={`btn-group d-flex   `}
-                  role={`group`}
-                  aria-label={`Basic mixed styles example `}
-                  style={{
-                    width: '128px',
-                    height: '48px',
-                    border: '1px solid #ab927d;',
-                  }}
+                  className={`card-title card-text d-flex justify-content-between text-brown col h4`}
                 >
-                  <button
-                    className={` btn btn-outline-light text-primary-dark h4 mb-0`}
-                    style={{ width: '28px' }}
-                    onClick={() => decrement(item.product_id)} // 减少数量的点击事件
-                  >
-                    -
-                  </button>
-                  <button
-                    className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
-                  >
-                    {item.product_count}
-                  </button>
-                  <button
-                    className={` btn btn-outline-light text-primary-dark h4  mb-0`}
-                    style={{ width: '28px' }}
-                    onClick={() => increment(item.product_id)} // 增加数量的点击事件
-                  >
-                    +
-                  </button>
+                  {item.name}
+                  <div>
+                    <button
+                      className={`bi bi-trash3 text-black btn btn-light`}
+                      onClick={() => removeItem(item.id, item.type)}
+                    ></button>
+                  </div>
                 </div>
-                <div className={` h4 `}>小計NT${item.subtotal}</div>
+                <div
+                  className={`d-flex justify-content-between card-text col `}
+                  style={{ gap: '0.5rem' }}
+                >
+                  <div className="d-fex">
+                    <div className={`h5 mr-1`}>規格:</div>
+                    <div className={`h5`}>{item.specification}</div>
+                  </div>
+                  <div className="d-fex row justify-content-end">
+                    <div
+                      className={`h5 mr-1 col d-inline px-0`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      單價:
+                    </div>
+                    <div
+                      className={`h5 col d-inline`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      NT${item.price}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className={`d-flex g-3 justify-content-between col addbuton`}
+                >
+                  <div
+                    className={`btn-group d-flex   `}
+                    role={`group`}
+                    aria-label={`Basic mixed styles example `}
+                    style={{
+                      width: '128px',
+                      height: '48px',
+                      border: '1px solid #ab927d;',
+                    }}
+                  >
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4 mb-0`}
+                      style={{ width: '28px' }}
+                      onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                    >
+                      -
+                    </button>
+                    <button
+                      className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
+                    >
+                      {item.quantity}
+                    </button>
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4  mb-0`}
+                      style={{ width: '28px' }}
+                      onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className={` h4 `}>小計NT${item.subtotal}</div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
+
+      <div className={`col-sm cart-area product-area`}>
+        <div
+          className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
+        >
+          <button
+            className={`${styles['custom-checkbox']} `}
+            onClick={handleSelectCustomAll}
+          >
+            {selectCustomAll && (
+              <FaCheck size={20} className={styles['checkgood']} />
+            )}
+          </button>
+          <div className={` h3`}>MACHI</div>
+          <div className={` h3`}>自訂商品</div>
+          <div className={` h3`}>
+            ({items.filter((item) => item.type === 'custom').length})
+          </div>
+        </div>
+
+        {items
+          .filter((item) => item.type === 'custom')
+          .map((item) => (
+            <div
+              className={`d-flex g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
+              key={item.id}
+            >
+              <button
+                className={`${styles['custom-checkbox']}`}
+                onClick={() => handleCustomItemCheck(item.id)} // Change here
+              >
+                {customItemChecked[item.id] && (
+                  <FaCheck size={20} className={styles['checkgood']} />
+                )}
+              </button>
+              <div className={``}>
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  style={{ width: 140, height: 140 }}
+                />
+              </div>
+              <div
+                className={`${styles['card-body']} align-content-start p-0 flex-grow-1 d-flex flex-column`}
+              >
+                <div
+                  className={`card-title card-text d-flex justify-content-between text-brown col h4`}
+                >
+                  {item.name}
+                  <div>
+                    <button
+                      className={`bi bi-trash3 text-black btn btn-light`}
+                      onClick={() => removeItem(item.id, item.type)}
+                    ></button>
+                  </div>
+                </div>
+                <div
+                  className={`d-flex justify-content-between card-text col `}
+                  style={{ gap: '0.5rem' }}
+                >
+                  <div className="d-fex">
+                    <div className={`h5 mr-1`}>規格:</div>
+                    <div className={`h5`}>{item.specification}</div>
+                  </div>
+                  <div className="d-fex row justify-content-end">
+                    <div
+                      className={`h5 mr-1 col d-inline px-0`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      單價:
+                    </div>
+                    <div
+                      className={`h5 col d-inline`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      NT${item.price}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className={`d-flex g-3 justify-content-between col addbuton`}
+                >
+                  <div
+                    className={`btn-group d-flex   `}
+                    role={`group`}
+                    aria-label={`Basic mixed styles example `}
+                    style={{
+                      width: '128px',
+                      height: '48px',
+                      border: '1px solid #ab927d;',
+                    }}
+                  >
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4 mb-0`}
+                      style={{ width: '28px' }}
+                      onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                    >
+                      -
+                    </button>
+                    <button
+                      className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
+                    >
+                      {item.quantity}
+                    </button>
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4  mb-0`}
+                      style={{ width: '28px' }}
+                      onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className={` h4 `}>小計NT${item.subtotal}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+      </div>
+
       <div className={`col-sm cart-area class-area`}>
         <div
           className={`mb-3 d-flex gap-2  class-tittle ${styles['border-borwn']} py-4`}
         >
           <button
-            className={`${styles['custom-checkbox']}`}
-            onClick={() => {}}
-          ></button>
+            className={`${styles['custom-checkbox']} `}
+            onClick={handleSelectCourseAll}
+          >
+            {selectCourseAll && (
+              <FaCheck size={20} className={styles['checkgood']} />
+            )}
+          </button>
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>課程</div>
-          <div className={` h3`}>({Object.keys(items).length})</div>
-        </div>
-        <div className={`d-flex  g-0 gap-5 align-items-center py-4`}>
-          <button className={`${styles['custom-checkbox']}`}></button>
-          <div className={``}>
-            <img
-              src="/images/cart-test/cookie2.jpg"
-              className={`product-img-1`}
-              style={{ width: 140, height: 140 }}
-            />
-          </div>
-          <div
-            className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-          >
-            <div
-              className={`card-title card-text d-flex justify-content-between text-brown col h4`}
-            >
-              手工土鳳梨酥體驗課程
-              <div>
-                <i className={`bi bi-trash3 text-black btn btn-light`}></i>
-              </div>
-            </div>
-            <div
-              className={`d-flex justify-content-start card-text col `}
-              style={{ gap: '0.5rem' }}
-            >
-              <div className={`h5 mr-1`}>規格:</div>
-              <div className={`h5`}>
-                6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-              </div>
-            </div>
-            <div className={`d-flex g-3 justify-content-between col`}>
-              <div className={`h4`}>人數:3</div>
-              <div className={` h4 `}>NT$8888</div>
-            </div>
+          <div className={` h3`}>
+            ({items.filter((item) => item.type === 'class').length})
           </div>
         </div>
-        <hr />
+
+        {items
+          .filter((item) => item.type === 'class')
+          .map((item) => (
+            <div
+              className={`d-flex  g-0  align-items-center py-4 ${styles['text-border-grey']} pe-0`}
+              key={item.id}
+            >
+              <button
+                className={`${styles['custom-checkbox']} `}
+                onClick={() => handleCourseCheck(item.id)}
+              >
+                {courseChecked[item.id] && (
+                  <FaCheck size={20} className={styles['checkgood']} />
+                )}
+              </button>
+              <div className={`ms-5`}>
+                <img
+                  src={item.image}
+                  className={`product-img-1`}
+                  style={{ width: 140, height: 140 }}
+                />
+              </div>
+              <div
+                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+              >
+                <div
+                  className={`card-title card-text d-flex justify-content-between text-brown col h4 ps-5`}
+                >
+                  {item.name}
+                  <div>
+                    <butt
+                      className={`bi bi-trash3 text-black btn btn-light`}
+                      onClick={() => removeItem(item.id, item.type)}
+                    ></butt>
+                  </div>
+                </div>
+                <div
+                  className={`d-flex justify-content-start card-text col ps-5`}
+                  style={{ gap: '0.5rem' }}
+                >
+                  <div className={`h5 mr-1`}>上課時間:</div>
+                  <div className={`h5`}>{item.classtime}</div>
+                </div>
+                <div
+                  className={`d-flex justify-content-start card-text col ps-5`}
+                  style={{ gap: '0.5rem' }}
+                >
+                  <div className={`h5 mr-1`}>地點:</div>
+                  <div className={`h5`}>{item.address}</div>
+                </div>
+                <div className={`d-flex g-3 justify-content-between col ps-5`}>
+                  <div className={`h4`}>人數:{item.quantity}</div>
+                  <div className={` h4 `}>NT{item.subtotal}</div>
+                </div>
+              </div>
+              <hr />
+            </div>
+          ))}
       </div>
+
       <div className={`d-flex row justify-content-end g-0 `}>
         <div className={` py-4`} style={{ width: '290px' }}>
           <div className={`d-flex justify-content-between  pb-3`}>
-            <div className={`h4`}>商品數量</div>
-            <div className={`h4`}>6</div>
+            <div className={`h4`}>購買數量</div>
+            <div className={`h4`}>{calculateTotal().totalQuantity}</div>
           </div>
           <div className={`d-flex justify-content-between`}>
-            <div className={`h4`}>小計</div>
-            <div className={`h4`}>88888</div>
+            <div className={`h4`}>總計</div>
+            <div className={`h4`}>{calculateTotal().totalPrice}</div>
           </div>
         </div>
         <div className={`d-flex justify-content-end pb-5`}>
-          <button className={`${styles['cart-button']}`} onClick={onClickPage2}>
+          <button className={`${styles['cart-button']}`} onClick={handleClickConfirm}>
             <div className={`${styles['cart-button-text']}`}>前往結帳</div>
           </button>
         </div>
