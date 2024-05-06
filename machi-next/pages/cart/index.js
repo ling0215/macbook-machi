@@ -1,19 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import dataCartItems from '@/data/cart/test.json'
 import { CartProvider } from '@/hooks/use-cart-state'
 import CartPage1 from '@/components/cart/cart-page1'
 import CartPage2 from '@/components/cart/cart-page2'
-import CartList from '@/components/cart/list'
-
-// 剛剛格式化後的購物車初始項目
 
 export default function Text1() {
-  const [ShowPage, setShowPage] = useState(true)
+  const [showPage, setShowPage] = useState(true)
+  const [selectedItems, setSelectedItems] = useState()
+
   const handleClick = () => {
-    setShowPage(!ShowPage)
+    setShowPage(!showPage)
   }
 
-  const formattedCartItems = dataCartItems.map(item => {
+  useEffect(() => {
+    // 監聽父元件的 selectedItems 變化並更新本地狀態
+    setSelectedItems(selectedItems)
+  }, [selectedItems])
+
+  const handleSelectedItems = (items) => {
+    setSelectedItems(items)
+  }
+
+  const formattedCartItems = dataCartItems.map((item) => {
     if (item.product_id) {
       return {
         id: item.product_id,
@@ -22,8 +30,8 @@ export default function Text1() {
         name: item.prodcut_name,
         image: item.prodcut_image,
         type: 'product',
-        checkType:false
-      };
+        checkType: false,
+      }
     } else if (item.calss_id) {
       return {
         id: item.calss_id,
@@ -32,8 +40,10 @@ export default function Text1() {
         name: item.class_name,
         image: item.class_image,
         type: 'class',
-        checkType:false
-      };
+        checkType: false,
+        classtime: '2024/08/10',
+        address: '復興堡',
+      }
     } else if (item.custom_id) {
       return {
         id: item.custom_id,
@@ -42,14 +52,26 @@ export default function Text1() {
         name: item.custom_name,
         image: item.custom_image,
         type: 'custom',
-        checkType:false
-      };
+        checkType: false,
+      }
     }
-  });
-  
+  })
+
   return (
     <CartProvider initialCartItems={formattedCartItems}>
-      {ShowPage ? <CartPage1 onClickPage2={handleClick} /> : <CartPage2 />}
+      {showPage ? (
+        <CartPage1
+          onClickPage={handleClick}
+          selectedItems={selectedItems}
+          onSelectItems={handleSelectedItems}
+        />
+      ) : (
+        <CartPage2
+          onClickPage={handleClick}
+          selectedItems={selectedItems}
+          onSelectItems={handleSelectedItems}
+        />
+      )}
     </CartProvider>
   )
 }
