@@ -13,7 +13,7 @@ function Login() {
   // 使用 useEffect 來監聽 auth.isAuth 的變化
   useEffect(() => {
     if (auth.isAuth) {
-      router.push('/member-center') // 如果 auth.isAuth 為 true，則導向會員中心
+      router.push('/member/account') // 如果 auth.isAuth 為 true，則導向會員中心
     }
   }, [auth.isAuth, router])
 
