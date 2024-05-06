@@ -7,31 +7,30 @@ import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 export default function ProductCard() {
   return (
     <>
-      <div className={styles.card}>
-        <div className={styles.cardBody}>
-          <Link href="/product/detail" passHref>
-            <img
-              src="/images/product/list/strawberry-tart-01.jpg"
-              className={styles.cardImg}
-              alt="productImg"
-              placeholder="blur"
-            />
-          </Link>
-          <div className={styles.cardInfo}>
-              <IoHeartOutline className={styles.heartIcon} />
-            <h5 className={styles.cardText}>小山園草莓塔</h5>
-            <p className={styles.typeText}>塔派甜點</p>
-            <h5 className={styles.currency}>NT$ 680</h5>
-            <button className={styles.btnCart}>
-              <IoCartOutline className={styles.cartIcon} /> 加入購物車
-            </button>
-          </div>
+    <div className="col-6">   
+      <div className={styles.cardBody}>
+        <Link href="/product/detail" passHref>
+          <img
+            src="/images/product/list/strawberry-tart-01.jpg"
+            className={styles.cardImg}
+            alt="productImg"
+            placeholder="blur"
+          />
+        </Link>
+        <div className={styles.cardInfo}>
+          <IoHeartOutline className={styles.heartIcon} />
+          <h5 className={styles.cardText}>小山園草莓塔</h5>
+          <p className={styles.typeText}>塔派甜點</p>
+          <h5 className={styles.currency}>NT$ 680</h5>
+          <button className={styles.cartBtn}>
+            <IoCartOutline className={styles.cartIcon} /> 加入購物車
+          </button>
         </div>
       </div>
+    </div>
     </>
   )
 }
-
 
 {/* 原始檔案 */}
 {/* <div className="col">

@@ -36,7 +36,7 @@ export default function List() {
       <SortBox />
       {/* 左側篩選 */}
       <div className="row">
-        <div className="col-sm-12 ">
+        <div className="col-sm-12">
           <div className="d-flex" id="wrapper">
             <div className="bg-white me-3" id="sidebar-wrapper">
               <div className="scroll sticky-md-top">
@@ -66,7 +66,7 @@ export default function List() {
                 <div
                   className="accordion accordion-flush"
                   id="accordionFlushExample"
-                >
+                  >
                   <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button
@@ -77,7 +77,7 @@ export default function List() {
                         data-bs-target="#panelsStayOpen-collapseOne"
                         aria-controls="panelsStayOpen-collapseOne"
                       >
-                        口味選擇
+                        塔派甜點
                       </button>
                     </h2>
                     <div
@@ -96,7 +96,7 @@ export default function List() {
                             className="form-check-label"
                             htmlFor="flexCheckDefault"
                           >
-                            水果
+                            塔
                           </label>
                         </div>
                         <div className="form-check">
@@ -110,7 +110,7 @@ export default function List() {
                             className="form-check-label"
                             htmlFor="flexCheckChecked"
                           >
-                            抹茶
+                            派
                           </label>
                         </div>
                         <div className="form-check">
@@ -130,7 +130,8 @@ export default function List() {
                       </div>
                     </div>
                   </div>
-                  <div className="accordion-item">
+                  
+                  {/* <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button
                         className="accordion-button collapsed"
@@ -192,7 +193,7 @@ export default function List() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <label htmlFor="range" className="form-label mt-3">
                     價格區間
                   </label>
@@ -204,29 +205,86 @@ export default function List() {
                     step="10"
                     id="range"
                   />
+                  {/* <div className="col-md-3 hidden-md">
+                    <ul id="collection_menu_shelf_top" className="sidebar">
+                      <li>
+                        <ul
+                          id="collection_menu_shelf_second_1"
+                          className="collapse_collection_menu_1 shelf_second collapse"
+                          style={{}}
+                        >
+                          <li>
+                            <Link href={{
+                              pathname: '/collections/allcollection',
+                              query
+                              }}/>所有商品
+                          </li>
+                          <li>
+                            <a href="/products/withurbanbotany">遊牧晨花課</a>
+                          </li>
+                          <li>
+                            <a href="/collections/fruit_cake">水果味NO.1</a>
+                          </li>
+                          <li>
+                            <a href="/collections/chiffons">人氣戚風蛋糕</a>
+                          </li>
+                          <li>
+                            <a href="/collections/鍾愛巧克力">鍾愛巧克力</a>
+                          </li>
+                          <li>
+                            <a href="/collections/輕盈慕斯">輕盈慕斯</a>
+                          </li>
+                          <li>
+                            <a href="/collections/不簡單磅蛋糕">不簡單磅蛋糕</a>
+                          </li>
+                          <li>
+                            <a href="/collections/dacquoise">達克瓦茲全口味</a>
+                          </li>
+                          <li>
+                            <a href="/collections/all_cookies">最愛吃餅乾</a>
+                          </li>
+                          <li>
+                            <a href="https://www.tentendenden.com/collections/others">周邊商品</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="/collections/matcha">獻給抹茶迷</a>
+                      </li>
+                      <li>
+                        <a href="/products/dacquoise_package">達克瓦茲好茶禮盒</a>
+                      </li>
+                      <li>
+                        <a href="/collections/happybirthday">生日蛋糕</a>
+                      </li>
+                      <li>
+                        <a href="/collections/delivery_cat">安心宅配專區</a>
+                      </li>
+                    </ul>
+                  </div> */}
                 </div>
               </div>
             </div>
             {/* 商品列表 */}
             <div id="page-content-wrapper">
               <div className="container-fluid">
-                <div className="row row-cols-1 row-cols-md-4 g-4">
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
-                  <ProductCard />
+                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
                 </div>
                 {/* 切換頁面按鈕 */}
                 <div className="pagination mb-5">

@@ -29,7 +29,7 @@ export default function SortBox() {
     <>
     {/* 上方搜尋 & 排序依據 */}
     <div className="row mt-2 mb-3">
-    <h5 className="card-text d-flex justify-content-between align-items-center">
+    <h5 className="card-text d-flex justify-content-between text-center">
       <div className="row mt-2 mb-3">
         <h5 className="card-text d-flex justify-content-between align-items-center">{/* padding-left: 22px */}
         
