@@ -105,6 +105,37 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     setCourseChecked(newCheckedCourses)
   }
 
+
+  //確認是否有選擇項目 並跳轉至下一頁
+  const handleClickConfirm = () => {
+    const { totalQuantity, totalPrice } = calculateTotal()
+    const hasSelectedItem =
+      Object.keys(itemChecked).length +
+        Object.keys(customItemChecked).length +
+        Object.keys(courseChecked).length >
+      0
+    if (!hasSelectedItem) {
+      alert('請選擇購買項目')
+      return
+    }
+    const hasProduct = items.some(
+      (item) => item.type === 'product' && itemChecked[item.id]
+    )
+    const hasCustom = items.some(
+      (item) => item.type === 'custom' && customItemChecked[item.id]
+    )
+    const hasCourse = items.some(
+      (item) => item.type === 'class' && courseChecked[item.id]
+    )
+    if (!hasProduct && !hasCustom && !hasCourse) {
+      alert('請選擇購買項目')
+      return
+    }
+    onClickPage(2, { totalQuantity, totalPrice })
+  }
+
+
+
   //回傳父元件用
   useEffect(() => {
     const selectedItems = {
@@ -514,7 +545,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
           </div>
         </div>
         <div className={`d-flex justify-content-end pb-5`}>
-          <button className={`${styles['cart-button']}`} onClick={onClickPage}>
+          <button className={`${styles['cart-button']}`} onClick={handleClickConfirm}>
             <div className={`${styles['cart-button-text']}`}>前往結帳</div>
           </button>
         </div>
