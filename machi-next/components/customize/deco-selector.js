@@ -47,7 +47,7 @@ export default function DecoSelector({
                 <input
                   type={displayType}
                   id={option.value}
-                  name="layer"
+                  name={option.name}
                   value={option.label}
                   style={{ display: displayType === 'radio' ? 'flex' : 'none' }}
                 />
@@ -56,7 +56,7 @@ export default function DecoSelector({
                 <input
                   type="checkbox"
                   id={option.value}
-                  name="decos"
+                  name={option.label}
                   value={option.label}
                   style={{
                     display: displayType === 'checkbox' ? 'flex' : 'none',

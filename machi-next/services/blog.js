@@ -34,4 +34,22 @@ const fetchArticles = async () => {
   return response.data
 }
 
+export const fetchRawArticle = async (url) => {
+  console.log(url)
+
+  try {
+    const response = await axiosInstance.get(url)
+    if (response.data.status === 'success') {
+      const { article } = response.data.data
+      return article
+    } else {
+      console.error('Failed to fetch article:', response.data.message)
+      return []
+    }
+  } catch (error) {
+    console.error('Error fetching article:', error)
+    return []
+  }
+}
+
 export default fetchArticles

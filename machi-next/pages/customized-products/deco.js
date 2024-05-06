@@ -40,9 +40,9 @@ export default function CustomizedDeco() {
               decoTitle="請選擇蛋糕體層數"
               decoSubtitle="*3層為基本，每加一層 + NT$50"
               options={[
-                { value: 'layer3', label: '3層' },
-                { value: 'layer4', label: '4層' },
-                { value: 'layer5', label: '5層' },
+                { name: 'layer', value: 'layer3', label: '3層' },
+                { name: 'layer', value: 'layer4', label: '4層' },
+                { name: 'layer', value: 'layer5', label: '5層' },
               ]}
               displayType="radio"
             />
@@ -50,9 +50,9 @@ export default function CustomizedDeco() {
               decoTitle="請選擇蛋糕口味"
               decoSubtitle=""
               options={[
-                { value: 'earl-grey', label: '伯爵' },
-                { value: 'matcha', label: '抹茶' },
-                { value: 'choco', label: '巧克力' },
+                { name: 'flavor', value: 'earl-grey', label: '伯爵' },
+                { name: 'flavor', value: 'matcha', label: '抹茶' },
+                { name: 'flavor', value: 'choco', label: '巧克力' },
               ]}
               displayType="radio"
             />
@@ -61,13 +61,13 @@ export default function CustomizedDeco() {
                 decoTitle="請選擇蛋糕表面裝飾"
                 decoSubtitle="*每加一項裝飾 + NT$20"
                 options={[
-                  { value: 'strawberry', label: '草莓' },
-                  { value: 'cherry', label: '櫻桃' },
-                  { value: 'chocolate', label: '巧克力' },
-                  { value: 'macaron', label: '馬卡龍' },
-                  { value: 'orange', label: '蜜漬橙片' },
-                  { value: 'blueberry', label: '藍莓' },
-                  { value: 'photo', label: '其他：上傳圖片' },
+                  { name: 'decos', value: 'strawberry', label: '草莓' },
+                  { name: 'decos', value: 'cherry', label: '櫻桃' },
+                  { name: 'decos', value: 'chocolate', label: '巧克力' },
+                  { name: 'decos', value: 'macaron', label: '馬卡龍' },
+                  { name: 'decos', value: 'orange', label: '蜜漬橙片' },
+                  { name: 'decos', value: 'blueberry', label: '藍莓' },
+                  { name: 'decos', value: 'photo', label: '其他：上傳圖片' },
                 ]}
                 displayType="checkbox"
               />
