@@ -34,12 +34,12 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return (
-    // <AuthProvider>
-    <CartProvider>
-      <LoaderProvider close={2} CustomLoader={CatLoader}>
-        {getLayout(<Component {...pageProps} />)}
-      </LoaderProvider>
-    </CartProvider>
-    // </AuthProvider>
+    <AuthProvider>
+      <CartProvider>
+        <LoaderProvider close={2} CustomLoader={CatLoader}>
+          {getLayout(<Component {...pageProps} />)}
+        </LoaderProvider>
+      </CartProvider>
+    </AuthProvider>
   )
 }
