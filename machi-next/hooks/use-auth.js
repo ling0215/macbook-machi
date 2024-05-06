@@ -31,12 +31,17 @@ const AuthContext = createContext(null)
 // 只需要必要的資料即可，沒有要多個頁面或元件用的資料不需要加在這裡
 // !!注意JWT存取令牌中只有id, username, google_uid, line_uid在登入時可以得到
 export const initUserData = {
-  id: 0,
-  username: '',
+  user_id: 0,
+  user_name: '',
+  user_nickname: '',
+  user_account: '',
+  user_email: '',
+  user_gender: '',
+  user_birthday: '',
+  user_phone: '',
+  user_address: '',
   google_uid: '',
   line_uid: '',
-  name: '',
-  email: '',
 }
 
 export const AuthProvider = ({ children }) => {
@@ -70,11 +75,11 @@ export const AuthProvider = ({ children }) => {
   const router = useRouter()
 
   // 登入頁路由
-  const loginRoute = '/test/user'
+  const loginRoute = '/member/login'
   // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
   const protectedRoutes = [
-    '/test/user/status',
-    '/test/user/profile',
+    '/member/login/status',
+    '/member/login/profile',
     '/test/user/profile-password',
   ]
 
@@ -98,6 +103,7 @@ export const AuthProvider = ({ children }) => {
       }
       // 設到全域狀態中
       setAuth({ isAuth: true, userData })
+      console.log(userData)
     } else {
       console.warn(res.data)
 

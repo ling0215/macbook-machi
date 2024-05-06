@@ -23,7 +23,7 @@ const createOtp = async (email, exp = 30, limit = 60) => {
   // 檢查使用者email是否存在
   const user = await User.findOne({
     where: {
-      email,
+      user_email: email,
     },
     raw: true, // 只需要資料表中資料
   })
@@ -80,7 +80,7 @@ const createOtp = async (email, exp = 30, limit = 60) => {
 
   // 建立otp物件
   const newOtp = {
-    user_id: user.id,
+    user_id: user.user_id,
     email,
     token,
     exp_timestamp,
@@ -118,10 +118,10 @@ const updatePassword = async (email, token, password) => {
 
   // 修改密碼
   await User.update(
-    { password },
+    { user_password: password },
     {
       where: {
-        id: foundOtp.user_id,
+        user_id: foundOtp.user_id,
       },
       individualHooks: true, // 密碼進資料表前要加密 trigger the beforeUpdate hook
     }
