@@ -16,15 +16,14 @@ export const initState = {
 //   quantity: 0,
 //   price: 0,
 // }
-//
+
 // 可自行定義擴充屬性例如: color, size, name, picture, description...
 // const item = {
 //   id: '',
 //   quantity: 0,
 //   name: '',
 //   price: 0,
-//   color: '',
-//   size: '',
+//   subtotal: 0,
 // }
 /**
  * `findOneById(items, id)` 依照某id找出項目。如果沒有找到，則返回空物件。
@@ -44,9 +43,9 @@ export const updateOne = (items, updateItem) => {
 /**
  * `incrementOne(items, id)` 依照某id更新項目的數量+1
  */
-export const incrementOne = (items, id) => {
+export const incrementOne = (items, id,type) => {
   return items.map((item) => {
-    if (String(item.id) === String(id))
+    if (String(item.id) === String(id) && item.type===type)
       return { ...item, quantity: item.quantity + 1 }
     else return item
   })
@@ -54,15 +53,16 @@ export const incrementOne = (items, id) => {
 /**
  * `decrementOne(items, id)` 依照某id更新項目的數量-1。最小為1。
  */
-export const decrementOne = (items, id) => {
+export const decrementOne = (items, id,type) => {
   return items.map((item) => {
-    if (String(item.id) === String(id)) {
+    if (String(item.id) === String(id) && item.type===type) {
       return {
         ...item,
-        quantity: item.quantity - 1 > 0 ? item.quantity - 1 : 1,
+        quantity: item.quantity - 1 > 0 ? item.quantity - 1 : 0,
+        
       }
     } else return item
-  })
+  }).filter((item) => item.quantity > 0);
 }
 /**
  * `addOne(items, newItem)` 加入項目於items中。同id項目只會增加數量，不會重複加入。
@@ -90,8 +90,8 @@ export const addOne = (items, newItem) => {
 /**
  * `removeOne(items, id)` 移除項目於items中。同id項目只會移除一個。
  */
-export const removeOne = (items, id) => {
-  return items.filter((item) => String(item.id) !== String(id))
+export const removeOne = (items, id,type) => {
+  return items.filter((item) => String(item.id) !== String(id)&&item.type!==type)
 }
 
 // 以下為最後計算三者itemTotal(每項目種小計), totalItems(整體項目), cartTotal(整體總計)
