@@ -70,19 +70,19 @@ router.get('/articles', async (req, res) => {
   }
 })
 
-router.get('/blog/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const articleId = req.params.id // 從路由參數中獲取文章的 ID
   try {
-    console.log(req.params.id)
-    const article = await Article.findById(articleId) // 使用文章 ID 查詢單筆文章資料
+    const article = await Article.findByPk(articleId) // 使用文章 ID 查詢單筆文章資料
     if (!article) {
       // 如果找不到文章，返回 404 錯誤
-      return res.status(404).json({ message: '文章不存在' });
+      return res.status(404).json({ message: '文章不存在' })
     }
     // 如果找到文章，以 JSON 格式返回
     res.status(200).json(article)
+    console.log(article)
   } catch (error) {
-    console.error('處理過程中發生錯誤:', error);
+    console.error('處理過程中發生錯誤:', error)
     res.status(500).json({ message: '伺服器錯誤' })
   }
 })

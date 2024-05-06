@@ -25,7 +25,7 @@ export function upload(file) {
   })
 }
 
-const fetchArticles = async () => {
+export const fetchArticles = async () => {
   const response = await axiosInstance.get('/blog/articles')
   if (response.status !== 200) {
     console.error('Failed to fetch articles:', response.statusText)
@@ -34,16 +34,16 @@ const fetchArticles = async () => {
   return response.data
 }
 
-export const fetchRawArticle = async (url) => {
+export const fetchRawArticle = async (url = 0) => {
+  console.log('這裡')
   console.log(url)
-
+  console.log('這裡')
   try {
-    const response = await axiosInstance.get(url)
-    if (response.data.status === 'success') {
-      const { article } = response.data.data
-      return article
+    const response = await axiosInstance.get(`/blog/${url}`)
+    if (response.status === 200) {
+      return response.data
     } else {
-      console.error('Failed to fetch article:', response.data.message)
+      console.error('Failed to fetch article:', response.statusText)
       return []
     }
   } catch (error) {
@@ -51,5 +51,3 @@ export const fetchRawArticle = async (url) => {
     return []
   }
 }
-
-export default fetchArticles

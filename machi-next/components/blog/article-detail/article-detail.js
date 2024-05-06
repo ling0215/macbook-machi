@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import fetchRawArticle from '@/services/blog'
+import { fetchRawArticle } from '@/services/blog'
 import styles from '@/styles/blog/article-detail.module.scss'
 
 const ArticleDetail = ({ articleId }) => {
@@ -8,8 +8,8 @@ const ArticleDetail = ({ articleId }) => {
   useEffect(() => {
     const getArticleData = async () => {
       try {
-        const articleData = await fetchRawArticle(`/api/article/${articleId}`)
-        // console.log('Article Data:', articleData)
+        const articleData = await fetchRawArticle(`${articleId}`)
+        console.log('Article Data:', articleData)
         if (articleData) {
           setArticle(articleData)
         } else {
