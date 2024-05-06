@@ -35,11 +35,11 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     // <AuthProvider>
+    <CartProvider>
       <LoaderProvider close={2} CustomLoader={CatLoader}>
-        <CartProvider initialCartItems={dataCartItems}>
-          {getLayout(<Component {...pageProps} />)}
-        </CartProvider>
+        {getLayout(<Component {...pageProps} />)}
       </LoaderProvider>
-    // {/* </AuthProvider> */}
+    </CartProvider>
+    // </AuthProvider>
   )
 }

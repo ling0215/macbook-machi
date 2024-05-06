@@ -48,8 +48,8 @@ export const CartProvider = ({
     setCartItems(addOne(cartItems, item))
   }
 
-  const removeItem = (id) => {
-    setCartItems(removeOne(cartItems, id))
+  const removeItem = (id,type) => {
+    setCartItems(removeOne(cartItems, id,type))
   }
 
   const updateItem = (item) => {
@@ -71,12 +71,13 @@ export const CartProvider = ({
     return cartItems.some((item) => item.id === id)
   }
 
-  const increment = (id) => {
-    setCartItems(incrementOne(cartItems, id))
+  const increment = (id,type) => {
+    setCartItems(incrementOne(cartItems, id,type))
   }
 
-  const decrement = (id) => {
-    setCartItems(decrementOne(cartItems, id))
+  const decrement = (id,type) => {
+    setCartItems(decrementOne(cartItems, id,type))
+    console.log(type)
   }
 
   return (
