@@ -4,6 +4,7 @@ import CakePreview from '@/components/customize/cake-preview'
 import CakeSize from '@/components/customize/cake-size'
 import DecoSelector from '@/components/customize/deco-selector'
 import styles from '@/components/customize/customize.module.css'
+import Link from 'next/link'
 
 export default function CustomizedDeco() {
   return (
@@ -12,8 +13,9 @@ export default function CustomizedDeco() {
         <div className="lynn-custom-row">
           <Steps stepNumber="1" stepText="選擇蛋糕尺寸" />
           <Steps
-            bgStyle={styles['bg-yellow']}
-            textStyle={styles['custom-text-border-yellow']}
+            // bgStyle={styles['bg-yellow']}
+            // textStyle={styles['custom-text-border-yellow']}
+            active={true}
             stepNumber="2"
             stepText="選擇蛋糕口味及樣式"
           />
@@ -38,9 +40,9 @@ export default function CustomizedDeco() {
               decoTitle="請選擇蛋糕體層數"
               decoSubtitle="*3層為基本，每加一層 + NT$50"
               options={[
-                { value: 'layer3', label: '3層' },
-                { value: 'layer4', label: '4層' },
-                { value: 'layer5', label: '5層' },
+                { name: 'layer', value: 'layer3', label: '3層' },
+                { name: 'layer', value: 'layer4', label: '4層' },
+                { name: 'layer', value: 'layer5', label: '5層' },
               ]}
               displayType="radio"
             />
@@ -48,9 +50,9 @@ export default function CustomizedDeco() {
               decoTitle="請選擇蛋糕口味"
               decoSubtitle=""
               options={[
-                { value: 'earl-grey', label: '伯爵' },
-                { value: 'matcha', label: '抹茶' },
-                { value: 'choco', label: '巧克力' },
+                { name: 'flavor', value: 'earl-grey', label: '伯爵' },
+                { name: 'flavor', value: 'matcha', label: '抹茶' },
+                { name: 'flavor', value: 'choco', label: '巧克力' },
               ]}
               displayType="radio"
             />
@@ -59,17 +61,29 @@ export default function CustomizedDeco() {
                 decoTitle="請選擇蛋糕表面裝飾"
                 decoSubtitle="*每加一項裝飾 + NT$20"
                 options={[
-                  { value: 'strawberry', label: '草莓' },
-                  { value: 'cherry', label: '櫻桃' },
-                  { value: 'chocolate', label: '巧克力' },
-                  { value: 'macaron', label: '馬卡龍' },
-                  { value: 'orange', label: '蜜漬橙片' },
-                  { value: 'blueberry', label: '藍莓' },
-                  { value: 'photo', label: '其他：上傳圖片' },
+                  { name: 'decos', value: 'strawberry', label: '草莓' },
+                  { name: 'decos', value: 'cherry', label: '櫻桃' },
+                  { name: 'decos', value: 'chocolate', label: '巧克力' },
+                  { name: 'decos', value: 'macaron', label: '馬卡龍' },
+                  { name: 'decos', value: 'orange', label: '蜜漬橙片' },
+                  { name: 'decos', value: 'blueberry', label: '藍莓' },
+                  { name: 'decos', value: 'photo', label: '其他：上傳圖片' },
                 ]}
                 displayType="checkbox"
               />
-              <input type="file" id="deco-photo" name="deco-photo" accept="*" />
+            </div>
+            <hr className="lynn-done-select" />
+            <div className="lynn-deco-price">
+              <span>小計：</span>
+              <span>NT$1,080</span>
+            </div>
+            <div className="lynn-deco-confirm">
+              <Link href="/customized-products/deco" passHref>
+                <button className="lynn-btn-grey">清除重填</button>
+              </Link>
+              <Link href="/customized-products/cart" passHref>
+                <button className="lynn-btn-brown">確定</button>
+              </Link>
             </div>
           </div>
         </div>

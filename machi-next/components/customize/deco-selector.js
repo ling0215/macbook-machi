@@ -15,7 +15,7 @@ export default function DecoSelector({
       </div>
       <hr className={styles['hr-brown']} />
       <div className={styles['deco-options']}>
-        {options.map((option) => (
+        {/* {options.map((option) => (
           <div className={styles['deco-select']} key={option.value}>
             <input
               type={displayType}
@@ -34,10 +34,49 @@ export default function DecoSelector({
                 display: displayType === 'checkbox' ? 'flex' : 'none',
               }}
             />
-            {/* <label htmlFor={option.value}>&nbsp;&nbsp;{option.label}</label> */}
             <label htmlFor={option.value}>{option.label}</label>
+            {option.value === 'photo' && (
+              <input type="file" id="deco-photo" name="deco-photo" accept="*" />
+            )}
           </div>
-        ))}
+        ))} */}
+        <div className={styles['deco-options']}>
+          {options.map((option) => (
+            <div className={styles['deco-select']} key={option.value}>
+              <div className={styles['deco-radio']}>
+                <input
+                  type={displayType}
+                  id={option.value}
+                  name={option.name}
+                  value={option.label}
+                  style={{ display: displayType === 'radio' ? 'flex' : 'none' }}
+                />
+              </div>
+              <div className={styles['deco-checkbox']}>
+                <input
+                  type="checkbox"
+                  id={option.value}
+                  name={option.label}
+                  value={option.label}
+                  style={{
+                    display: displayType === 'checkbox' ? 'flex' : 'none',
+                  }}
+                />
+              </div>
+              <div className={styles['label-and-upload']}>
+                <label htmlFor={option.value}>{option.label}</label>
+                {option.value === 'photo' && (
+                  <input
+                    type="file"
+                    id="deco-photo"
+                    name="deco-photo"
+                    accept="*"
+                  />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

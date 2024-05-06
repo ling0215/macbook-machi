@@ -49,7 +49,7 @@ router.get('/:id', authenticate, async function (req, res) {
   const id = getIdParam(req)
 
   // 檢查是否為授權會員，只有授權會員可以存取自己的資料
-  if (req.user.id !== id) {
+  if (req.user.user_id !== id) {
     return res.json({ status: 'error', message: '存取會員資料失敗' })
   }
 
@@ -58,8 +58,7 @@ router.get('/:id', authenticate, async function (req, res) {
   })
 
   // 不回傳密碼
-  delete user.password
-
+  delete user.user_password
   return res.json({ status: 'success', data: { user } })
 })
 
@@ -238,8 +237,8 @@ router.put('/:id/profile', authenticate, async function (req, res) {
 
   // 沒有更新到任何資料 -> 失敗或沒有資料被更新
   if (!affectedRows) {
-    console.log(user);
-    console.log(id);
+    console.log(user)
+    console.log(id)
     return res.json({ status: 'error', message: '更新失敗或沒有資料被更新' })
   }
 

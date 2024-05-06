@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import styles from './page2.module.scss'
@@ -8,7 +8,13 @@ import { FaTruckFast } from 'react-icons/fa6'
 import { RiCheckboxBlankCircleLine } from 'react-icons/ri'
 import { MdCheckBoxOutlineBlank } from 'react-icons/md'
 
-const CartPage1 = () => {
+const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
+  console.log('樓下為page2')
+  console.log(selectedItems)
+
+  useEffect(() => {
+    window.scrollTo(0, 0) // 每当组件重新渲染时，将窗口滚动到顶部
+  }, [])
   return (
     <>
       <div
@@ -57,259 +63,198 @@ const CartPage1 = () => {
       </div>
       <div className="main-area row">
         <div className="cart-area col-md-6">
-          <div div className={` ${styles['step-button']}`}>
+          <button
+            div
+            className={` ${styles['step-button']}`}
+            onClick={onClickPage}
+          >
             <div className={` ${styles['step-button-text']} `}>上一步</div>
-          </div>
-          <div className={` product-area`}>
+          </button>
+          <div
+            className={` product-area`}
+            style={{
+              display: selectedItems.products.length > 0 ? 'block' : 'none',
+            }}
+          >
             <div
               className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
               style={{ height: 64 }}
             >
               <div className={` h3`}>MACHI</div>
               <div className={` h3`}>商品</div>
-              <div className={` h3`}>(3)</div>
+              <div className={` h3`}>({selectedItems.products.length})</div>
             </div>
-            <div className={`d-flex  g-0 gap-5 align-items-center py-4`}>
-              <div className={``}>
-                <img
-                  src="./images/cart-1.jpeg"
-                  className={`product-img-1`}
-                  style={{ width: 140, height: 140 }}
-                />
-              </div>
-              <div
-                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-              >
-                <div
-                  className={`card-title card-text d-flex justify-content-start text-brown col h4`}
-                >
-                  草莓有夠派
-                </div>
-                <div
-                  className={`d-flex justify-content-start card-text col `}
-                  style={{ gap: '0.5rem' }}
-                >
-                  <div
-                    className={`h5 d-inline`}
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    規格:
-                  </div>
-                  <div className={`h5`}>
-                    6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-                  </div>
-                </div>
-                <div className={`d-flex g-3 justify-content-between col`}>
-                  <div className={` h4 `}>數量:1</div>
-                  <div className={` h4 `}>NT$8888</div>
-                </div>
-              </div>
-            </div>
-            <hr />
 
-            <div className={`d-flex  g-0 gap-5 align-items-center py-4`}>
-              <div className={``}>
-                <img
-                  src="./images/cart-1.jpeg"
-                  className={`product-img-1`}
-                  style={{ width: 140, height: 140 }}
-                />
-              </div>
+            {selectedItems.products.map((item, index) => (
               <div
-                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+                key={index}
+                className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
               >
-                <div
-                  className={`card-title card-text d-flex justify-content-start text-brown col h4`}
-                >
-                  草莓有夠派
+                <div className={``}>
+                  <img
+                    src={item.image}
+                    className={`product-img-1`}
+                    style={{ width: 140, height: 140 }}
+                  />
                 </div>
                 <div
-                  className={`d-flex justify-content-start card-text col `}
-                  style={{ gap: '0.5rem' }}
+                  className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
                 >
                   <div
-                    className={`h5 d-inline`}
-                    style={{ whiteSpace: 'nowrap' }}
+                    className={`card-title card-text d-flex justify-content-start text-brown col h4`}
                   >
-                    規格:
+                    {item.name}
                   </div>
-                  <div className={`h5`}>
-                    6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-                  </div>
-                </div>
-                <div className={`d-flex g-3 justify-content-between col`}>
-                  <div className={` h4 `}>數量:1</div>
-                  <div className={` h4 `}>NT$8888</div>
-                </div>
-              </div>
-            </div>
-            <hr />
-
-            <div className={`d-flex  g-0 gap-5 align-items-center py-4`}>
-              <div className={``}>
-                <img
-                  src="./images/cart-1.jpeg"
-                  className={`product-img-1`}
-                  style={{ width: 140, height: 140 }}
-                />
-              </div>
-              <div
-                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-              >
-                <div
-                  className={`card-title card-text d-flex justify-content-start text-brown col h4`}
-                >
-                  草莓有夠派
-                </div>
-                <div
-                  className={`d-flex justify-content-start card-text col `}
-                  style={{ gap: '0.5rem' }}
-                >
                   <div
-                    className={`h5 d-inline`}
-                    style={{ whiteSpace: 'nowrap' }}
+                    className={`d-flex justify-content-start card-text col `}
+                    style={{ gap: '0.5rem' }}
                   >
-                    規格:
+                    <div
+                      className={`h5 d-inline`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      規格:
+                    </div>
+                    <div className={`h5`}>{item.description}</div>
                   </div>
-                  <div className={`h5`}>
-                    6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
+                  <div className={`d-flex g-3 justify-content-between col`}>
+                    <div className={` h4 `}>數量:{item.quantity}</div>
+                    <div className={` h4 `}>
+                      NT${item.price * item.quantity}
+                    </div>
                   </div>
                 </div>
-                <div className={`d-flex g-3 justify-content-between col`}>
-                  <div className={` h4 `}>數量:1</div>
-                  <div className={` h4 `}>NT$8888</div>
-                </div>
+                <hr />
               </div>
-            </div>
-            <hr />
-            <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-              <div className={``}>
-                <img
-                  src="./images/cart-1.jpeg"
-                  className={`product-img-1`}
-                  style={{ width: 140, height: 140 }}
-                />
-              </div>
-              <div
-                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-              >
-                <div
-                  className={`card-title card-text d-flex justify-content-start text-brown col h4`}
-                >
-                  草莓有夠派
-                </div>
-                <div
-                  className={`d-flex justify-content-start card-text col `}
-                  style={{ gap: '0.5rem' }}
-                >
-                  <div
-                    className={`h5 d-inline`}
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    規格:
-                  </div>
-                  <div className={`h5`}>
-                    6吋 4層 草莓內陷 派皮加厚 表面巧克力 去冰微糖{' '}
-                  </div>
-                </div>
-                <div className={`d-flex g-3 justify-content-between col`}>
-                  <div className="h4">數量:1</div>
-                  <div className={` h4 `}>NT$8888</div>
-                </div>
-              </div>
-            </div>
-            <hr />
+            ))}
           </div>
-          <div className={`col-sm  class-area`}>
+
+          <div
+            className={` custom-area`}
+            style={{
+              display: selectedItems.custom.length > 0 ? 'block' : 'none',
+            }}
+          >
             <div
-              className={` d-flex gap-2  class-tittle ${styles['border-borwn']} py-3`}
+              className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
+              style={{ height: 64 }}
+            >
+              <div className={` h3`}>MACHI</div>
+              <div className={` h3`}>客製商品</div>
+              <div className={` h3`}>({selectedItems.custom.length})</div>
+            </div>
+
+            {selectedItems.custom.map((item, index) => (
+              <div
+                key={index}
+                className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
+              >
+                <div className={``}>
+                  <img
+                    src={item.image}
+                    className={`product-img-1`}
+                    style={{ width: 140, height: 140 }}
+                  />
+                </div>
+                <div
+                  className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+                >
+                  <div
+                    className={`card-title card-text d-flex justify-content-start text-brown col h4`}
+                  >
+                    {item.name}
+                  </div>
+                  <div
+                    className={`d-flex justify-content-start card-text col `}
+                    style={{ gap: '0.5rem' }}
+                  >
+                    <div
+                      className={`h5 d-inline`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      規格:
+                    </div>
+                    <div className={`h5`}>{item.description}</div>
+                  </div>
+                  <div className={`d-flex g-3 justify-content-between col`}>
+                    <div className={` h4 `}>數量:{item.quantity}</div>
+                    <div className={` h4 `}>
+                      NT${item.price * item.quantity}
+                    </div>
+                  </div>
+                </div>
+                <hr />
+              </div>
+            ))}
+          </div>
+
+          <div
+            className={`col-sm  class-area`}
+            style={{
+              display: selectedItems.courses.length > 0 ? 'block' : 'none',
+            }}
+          >
+            <div
+              style={{
+                height: 64,
+              }}
+              className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
             >
               <div className={` h3`}>MACHI</div>
               <div className={` h3`}>課程</div>
-              <div className={` h3`}>(3)</div>
+              <div className={` h3`}>( {selectedItems.courses.length} )</div>
             </div>
-            <div className={`d-flex  g-0 gap-5 align-items-center py-4 m-0`}>
-              <div className={``}>
-                <img
-                  src="./images/cart-1.jpeg"
-                  className={`product-img-1`}
-                  style={{ width: 140, height: 140 }}
-                />
-              </div>
+            {selectedItems.courses.map((item) => (
               <div
-                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column gap-2`}
+                key={item.id}
+                className={`d-flex  g-0 gap-5 align-items-center py-4 m-0 ${styles['text-border-grey']}`}
               >
+                <div className={``}>
+                  <img
+                    src={item.image}
+                    className={`product-img-1`}
+                    style={{ width: 140, height: 140 }}
+                  />
+                </div>
                 <div
-                  className={`card-title card-text d-flex justify-content-start text-brown col h4`}
+                  className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column gap-2`}
                 >
-                  手工土鳳梨酥體驗課程
-                </div>
-                <div className={`d-flex justify-content-start card-text col `}>
                   <div
-                    className={`h5 d-inline mb-0`}
-                    style={{ whiteSpace: 'nowrap' }}
+                    className={`card-title card-text d-flex justify-content-start text-brown col h4`}
                   >
-                    上課時間:
+                    {item.name}
                   </div>
-                  <div className={`h5 mb-0`}>2024/06/01 PM.11:00</div>
-                </div>
-                <div className={`d-flex justify-content-start card-text col `}>
                   <div
-                    className={`h5 d-inline mb-0`}
-                    style={{ whiteSpace: 'nowrap' }}
+                    className={`d-flex justify-content-start card-text col `}
                   >
-                    地點:
+                    <div
+                      className={`h5 d-inline mb-0`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      上課時間:
+                    </div>
+                    <div className={`h5 mb-0`}>{item.classtime}</div>
                   </div>
-                  <div className={`h5 mb-0`}>復興堡</div>
-                </div>
-                <div className={`d-flex g-3 justify-content-between col`}>
-                  <div className={`h4`}>人數:3</div>
-                  <div className={` h4 `}>NT$8888</div>
+                  <div
+                    className={`d-flex justify-content-start card-text col `}
+                  >
+                    <div
+                      className={`h5 d-inline mb-0`}
+                      style={{ whiteSpace: 'nowrap' }}
+                    >
+                      地點:
+                    </div>
+                    <div className={`h5 mb-0`}>{item.address}</div>
+                  </div>
+                  <div className={`d-flex g-3 justify-content-between col`}>
+                    <div className={`h4`}>人數:{item.quantity}</div>
+                    <div className={` h4 `}>
+                      NT${item.price * item.quantity}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <hr />
-            <div className={`d-flex  g-0 gap-5 align-items-center py-4 `}>
-              <div className={``}>
-                <img
-                  src="./images/cart-1.jpeg"
-                  className={`product-img-1`}
-                  style={{ width: 140, height: 140 }}
-                />
-              </div>
-              <div
-                className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
-              >
-                <div
-                  className={`card-title card-text d-flex justify-content-start text-brown col h4`}
-                >
-                  手工土鳳梨酥體驗課程
-                </div>
-                <div className={`d-flex justify-content-start card-text col `}>
-                  <div
-                    className={`h5 d-inline mb-0`}
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    上課時間:
-                  </div>
-                  <div className={`h5 mb-0`}>2024/06/01 PM.11:00</div>
-                </div>
-                <div className={`d-flex justify-content-start card-text col `}>
-                  <div
-                    className={`h5 d-inline mb-0`}
-                    style={{ whiteSpace: 'nowrap' }}
-                  >
-                    地點:
-                  </div>
-                  <div className={`h5 mb-0`}>復興堡</div>
-                </div>
-                <div className={`d-flex g-3 justify-content-between col`}>
-                  <div className={`h4`}>人數:3</div>
-                  <div className={` h4 `}>NT$8888</div>
-                </div>
-              </div>
-            </div>
-            <hr />
+            ))}
           </div>
         </div>
         <div className="col"></div>
@@ -324,7 +269,9 @@ const CartPage1 = () => {
             <FaTruckFast className={' mx-1'} size={24}></FaTruckFast>
             請輸入完整資料
           </div>
-          <div className={`${styles['pay-content']} px-3 py-4 sticky-md-top mb-3 `}>
+          <div
+            className={`${styles['pay-content']} px-3 py-4 sticky-md-top mb-3 `}
+          >
             <div className="h5">付款方式</div>
             <div
               className={`d-flex justify-content-between pb-3 ${styles['text-border-brown']} `}
@@ -407,4 +354,4 @@ const CartPage1 = () => {
   )
 }
 
-export default CartPage1
+export default CartPage2
