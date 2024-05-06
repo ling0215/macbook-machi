@@ -11,8 +11,9 @@ export default function CustomizedCart() {
           <Steps stepNumber="1" stepText="選擇蛋糕尺寸" />
           <Steps stepNumber="2" stepText="選擇蛋糕口味及樣式" />
           <Steps
-            bgStyle={styles['bg-yellow']}
-            textStyle={styles['custom-text-border-yellow']}
+            active={true}
+            // bgStyle={styles['bg-yellow']}
+            // textStyle={styles['custom-text-border-yellow']}
             stepNumber="3"
             stepText="加入購物車"
           />

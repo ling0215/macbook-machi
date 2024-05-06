@@ -4,6 +4,7 @@ import CakePreview from '@/components/customize/cake-preview'
 import CakeSize from '@/components/customize/cake-size'
 import DecoSelector from '@/components/customize/deco-selector'
 import styles from '@/components/customize/customize.module.css'
+import Link from 'next/link'
 
 export default function CustomizedDeco() {
   return (
@@ -12,8 +13,9 @@ export default function CustomizedDeco() {
         <div className="lynn-custom-row">
           <Steps stepNumber="1" stepText="選擇蛋糕尺寸" />
           <Steps
-            bgStyle={styles['bg-yellow']}
-            textStyle={styles['custom-text-border-yellow']}
+            // bgStyle={styles['bg-yellow']}
+            // textStyle={styles['custom-text-border-yellow']}
+            active={true}
             stepNumber="2"
             stepText="選擇蛋糕口味及樣式"
           />
@@ -69,7 +71,19 @@ export default function CustomizedDeco() {
                 ]}
                 displayType="checkbox"
               />
-              <input type="file" id="deco-photo" name="deco-photo" accept="*" />
+            </div>
+            <hr className="lynn-done-select" />
+            <div className="lynn-deco-price">
+              <span>小計：</span>
+              <span>NT$1,080</span>
+            </div>
+            <div className="lynn-deco-confirm">
+              <Link href="/customized-products/deco" passHref>
+                <button className="lynn-btn-grey">清除重填</button>
+              </Link>
+              <Link href="/customized-products/cart" passHref>
+                <button className="lynn-btn-brown">確定</button>
+              </Link>
             </div>
           </div>
         </div>
