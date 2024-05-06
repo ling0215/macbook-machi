@@ -1,22 +1,65 @@
 import React from 'react'
-import styles from './member.module.css'
+import styles from '../member.module.css'
 import Link from 'next/link'
 import LineLogo from '@/components/icons/line-logo'
 import GoogleLogo from '@/components/icons/google-logo'
 import FacebookLogo from '@/components/icons/facebook-logo'
 import { useState } from 'react'
 import { login } from '@/services/user'
+import { useAuth } from '@/hooks/use-auth'
+import { checkAuth, getFavs } from '@/services/user'
 
 export default function LoginForm() {
+  const { setAuth } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const initUserData = {
+    user_id: 0,
+    user_name: '',
+    user_nickname: '',
+    user_account: '',
+    user_email: '',
+    user_gender: '',
+    user_birthday: '',
+    user_phone: '',
+    user_address: '',
+    google_uid: '',
+    line_uid: '',
+  }
+
+  const handleCheckAuth = async () => {
+    const res = await checkAuth()
+
+    // 伺服器api成功的回應為 { status:'success', data:{ user } }
+    if (res.data.status === 'success') {
+      // 只需要initUserData的定義屬性值
+      const dbUser = res.data.data.user
+      const userData = { ...initUserData }
+
+      if (dbUser) {
+        for (const key in userData) {
+          if (Object.hasOwn(dbUser, key)) {
+            userData[key] = dbUser[key] || ''
+          }
+        }
+      }
+      // 設到全域狀態中
+      setAuth({ isAuth: true, userData })
+      console.log(userData)
+    } else {
+      console.warn(res.data)
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
       const response = await login({ email, password })
+
       // 登入成功，處理 response
       console.log(response)
+      handleCheckAuth()
     } catch (error) {
       // 登入失敗，處理 error
       console.error(error)
