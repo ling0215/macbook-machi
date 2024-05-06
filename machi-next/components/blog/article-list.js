@@ -17,13 +17,13 @@ const ArticlesList = () => {
     getArticles()
   }, [])
 
-const stripHtmlTagsAndEntities = (htmlContent) => {
-  // 去除 HTML 标签
-  const htmlContentTag = htmlContent.replace(/<[^>]*>/g, '');
-  // 去除特殊字符实体
-  const htmlContentCharacters = htmlContentTag.replace(/&[^;]+;/g, '');
-  return htmlContentCharacters;
-};
+  const stripHtmlTagsAndEntities = (htmlContent) => {
+    // 去除 HTML 标签
+    const htmlContentTag = htmlContent.replace(/<[^>]*>/g, '')
+    // 去除特殊字符实体
+    const htmlContentCharacters = htmlContentTag.replace(/&[^;]+;/g, '')
+    return htmlContentCharacters
+  }
 
   return (
     <>
