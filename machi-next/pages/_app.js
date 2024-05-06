@@ -25,7 +25,7 @@ export default function MyApp({ Component, pageProps }) {
 
   // 導入bootstrap的JS函式庫
   useEffect(() => {
-    import('bootstrap/dist/js/bootstrap') 
+    import('bootstrap/dist/js/bootstrap')
   }, [])
 
   // 使用預設排版檔案，對應`components/layout/default-layout/index.js`
@@ -35,9 +35,11 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     // <AuthProvider>
-    <LoaderProvider close={2} CustomLoader={CatLoader}>
+    <CartProvider>
+      <LoaderProvider close={2} CustomLoader={CatLoader}>
         {getLayout(<Component {...pageProps} />)}
-    </LoaderProvider>
+      </LoaderProvider>
+    </CartProvider>
     // </AuthProvider>
   )
 }

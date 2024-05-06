@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import dataCartItems from '@/data/cart/test.json'
-import { CartProvider } from '@/hooks/use-cart-state'
+import { CartTypeProvider } from '@/hooks/cart-type-state'
 import CartPage1 from '@/components/cart/cart-page1'
 import CartPage2 from '@/components/cart/cart-page2'
 
@@ -11,11 +11,6 @@ export default function Text1() {
   const handleClick = () => {
     setShowPage(!showPage)
   }
-
-  useEffect(() => {
-    // 監聽父元件的 selectedItems 變化並更新本地狀態
-    setSelectedItems(selectedItems)
-  }, [selectedItems])
 
   const handleSelectedItems = (items) => {
     setSelectedItems(items)
@@ -58,7 +53,7 @@ export default function Text1() {
   })
 
   return (
-    <CartProvider initialCartItems={formattedCartItems}>
+    <CartTypeProvider initialCartItems={formattedCartItems}>
       {showPage ? (
         <CartPage1
           onClickPage={handleClick}
@@ -72,6 +67,6 @@ export default function Text1() {
           onSelectItems={handleSelectedItems}
         />
       )}
-    </CartProvider>
+    </CartTypeProvider>
   )
 }
