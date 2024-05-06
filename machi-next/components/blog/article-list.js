@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from '@/components/blog/article-list.module.scss'
-import fetchArticles from '@/services/blog'
+import { fetchArticles } from '@/services/blog'
 import { FaCaretRight } from 'react-icons/fa'
 
 const ArticlesList = () => {
