@@ -13,8 +13,9 @@ export default function CustomizedDeco() {
         <div className="lynn-custom-row">
           <Steps stepNumber="1" stepText="選擇蛋糕尺寸" />
           <Steps
-            bgStyle={styles['bg-yellow']}
-            textStyle={styles['custom-text-border-yellow']}
+            // bgStyle={styles['bg-yellow']}
+            // textStyle={styles['custom-text-border-yellow']}
+            active={true}
             stepNumber="2"
             stepText="選擇蛋糕口味及樣式"
           />

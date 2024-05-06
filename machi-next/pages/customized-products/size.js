@@ -9,8 +9,9 @@ export default function CustomizedSize() {
       <div>
         <div className="lynn-custom-row">
           <Steps
-            bgStyle={styles['bg-yellow']}
-            textStyle={styles['custom-text-border-yellow']}
+            // bgStyle={styles['bg-yellow']}
+            // textStyle={styles['custom-text-border-yellow']}
+            active={true}
             stepNumber="1"
             stepText="選擇蛋糕尺寸"
           />
