@@ -17,6 +17,14 @@ const ArticlesList = () => {
     getArticles()
   }, [])
 
+  const stripHtmlTagsAndEntities = (htmlContent) => {
+    // 去除 HTML 标签
+    const htmlContentTag = htmlContent.replace(/<[^>]*>/g, '')
+    // 去除特殊字符实体
+    const htmlContentCharacters = htmlContentTag.replace(/&[^;]+;/g, '')
+    return htmlContentCharacters
+  }
+
   return (
     <>
       {articles.map((article) => (
@@ -34,10 +42,11 @@ const ArticlesList = () => {
                 <h4 className="pt-2">{article.article_title}</h4>
 
                 <span>{article.article_createtime}</span>
-                <p>{article.article_content}</p>
+                <p>{stripHtmlTagsAndEntities(article.article_content)}</p>
+
                 <div className="more">
                   <Link
-                    href={`/article/${article.id}`}
+                    href={`/blog/${article.article_id}`}
                     type="button"
                     className={styles[`link-style`]}
                   >
