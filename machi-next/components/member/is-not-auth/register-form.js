@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from './member.module.css'
+import styles from '../member.module.css'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { register } from '@/services/user'
