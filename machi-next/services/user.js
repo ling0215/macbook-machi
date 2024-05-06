@@ -53,6 +53,7 @@ export const login = async (loginData = {}) => {
  * 登出用
  */
 export const logout = async () => {
+
   return await axiosInstance.post('/auth/logout', {})
 }
 /**
