@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
-import { Virtual, Navigation, Pagination } from 'swiper/modules';
+import { Virtual, Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from './featured.module.scss';
+
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// import './styles.css';
 
 export default function Featured() {
   const [swiperRef, setSwiperRef] = useState(null);
@@ -39,7 +40,7 @@ export default function Featured() {
   return (
     <>
       <Swiper
-        modules={[Virtual, Navigation, Pagination]}
+        modules={[Virtual, Navigation, Pagination, Autoplay]}
         onSwiper={setSwiperRef}
         slidesPerView={3}
         centeredSlides={true}
@@ -47,7 +48,12 @@ export default function Featured() {
         pagination={{
           type: 'fraction',
         }}
+        autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+        }}
         navigation={true}
+        loop={true}
         virtual
       >
         {slides.map((slideContent, index) => (
@@ -56,7 +62,7 @@ export default function Featured() {
           </SwiperSlide>
         ))}
       </Swiper>
-
+        
       <p className="append-buttons text-center p-3">
         <button onClick={() => prepend()} className="btn btn-outline-brown prepend-2-slides">
           Prepend 2 Slides
