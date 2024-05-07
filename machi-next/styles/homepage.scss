@@ -1,0 +1,84 @@
+// homepage
+
+// 輪播滿版
+.HomeCarousel {
+    width: 100vw;   
+    position: relative; 
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw; 
+}
+
+// 關於我們區塊
+.about-title {
+  color: var(--primary-dark);
+}
+.lead {
+  color: var(--primary-dark);
+}
+.about-text {
+    color: var(--brown);
+}
+.about-btn {
+    color: var(--white);
+    background-color: var(--brown);
+    & :hover {
+        color: var(--white);
+        background-color: var(--primary-dark);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about-btn {
+        text-align: center;
+    }
+}
+
+
+// 熱銷商品區塊
+.section-heading-product {
+  color: var(--primary-dark);
+}
+
+.full-background {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background-image: url('/images/section-2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+.featured {
+    background-image: url('/public/background.png');
+    background-size: 75% ;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0px 5px 53.9px 0px rgba(166, 166, 166, 0.25);
+}
+
+
+// 產品卡片
+.featured-card-product {
+    width: 80%;
+}
+.card-title {
+    color: var(--primary-dark);
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+
+// 熱銷課程區塊
+.featured-card-class {
+    width: 80%;
+}

@@ -6,6 +6,7 @@ import '@/styles/cart.scss'
 import '@/styles/loader.scss'
 import '@/styles/customize.scss'
 import '@/styles/blog/blog.scss'
+import '@/styles/homepage.scss'
 
 //測試資料
 import dataCartItems from '@/data/cart/test.json'

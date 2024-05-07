@@ -9,7 +9,7 @@ import {
   incrementOne,
   decrementOne,
   generateCartState,
-} from './cart-reducer-state'
+} from './cart-type-state-reducer'
 import useLocalStorage from './use-localstorage'
 
 const CartContext = createContext(null)

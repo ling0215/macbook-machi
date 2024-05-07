@@ -183,15 +183,15 @@ export default function Detail() {
         </div>
       </div>
       <div className="row mt-5 mx-2">
-        <nav id="navbar-example2" class="navbar navbar-light bg-light justify-content-center align-center-sm flex-space-between">
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link" href="#scrollspyHeading1">
+        <nav id="navbar" className="navbar navbar-light bg-light justify-content-center">
+          <ul className="nav nav-pills">
+            <li className="nav-item">
+              <a className="nav-link" href="#scrollspyHeading1">
                 商品介紹
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#scrollspyHeading2">
+            <li className="nav-item">
+              <a className="nav-link" href="#scrollspyHeading2">
                 運送與注意事項
               </a>
             </li>
@@ -199,7 +199,7 @@ export default function Detail() {
         </nav>
         <div
           data-bs-spy="scroll"
-          data-bs-target="#navbar-example2"
+          data-bs-target="#navbar"
           data-bs-offset="0"
           class="scrollspy-example"
           tabindex="0"
