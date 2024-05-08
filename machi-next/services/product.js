@@ -10,13 +10,15 @@ export const getProducts = async (
   sort = 'date',
   order = 'desc',
   search = '',
-  category = '',
+  category = 'ddd',
   page = 1,
   perpage = 16
 ) => {
   return await axiosInstance.get(
-    `/products?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&search=${search}&category=${category}`
-  );
+    `/products?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&search=${encodeURIComponent(
+      search
+    )}&category=${encodeURIComponent(category)}`
+  )
 };
 
 export const fetchProducts = (url) =>
