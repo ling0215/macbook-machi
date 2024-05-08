@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import Link from 'next/link'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import styles from './page2.module.scss'
 
@@ -15,6 +15,33 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
   useEffect(() => {
     window.scrollTo(0, 0) // 每当组件重新渲染时，将窗口滚动到顶部
   }, [])
+
+  const checkTotal =
+    (selectedItems.products.length > 0
+      ? selectedItems.products.reduce(
+          (acc, cur) => acc + cur.price * cur.quantity,
+          0
+        )
+      : 0) +
+    (selectedItems.courses.length > 0
+      ? selectedItems.courses.reduce(
+          (acc, cur) => acc + cur.price * cur.quantity,
+          0
+        )
+      : 0) +
+    (selectedItems.custom.length > 0
+      ? selectedItems.custom.reduce(
+          (acc, cur) => acc + cur.price * cur.quantity,
+          0
+        )
+      : 0)
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null)
+
+  const handlePaymentMethodClick = (method) => {
+    setSelectedPaymentMethod(method)
+  }
+
   return (
     <>
       <div
@@ -70,193 +97,209 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
           >
             <div className={` ${styles['step-button-text']} `}>上一步</div>
           </button>
-          <div
-            className={` product-area`}
-            style={{
-              display: selectedItems.products.length > 0 ? 'block' : 'none',
-            }}
-          >
-            <div
-              className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
-              style={{ height: 64 }}
-            >
-              <div className={` h3`}>MACHI</div>
-              <div className={` h3`}>商品</div>
-              <div className={` h3`}>({selectedItems.products.length})</div>
-            </div>
 
-            {selectedItems.products.map((item, index) => (
+          {selectedItems &&
+            selectedItems.products &&
+            selectedItems.products.length > 0 && (
               <div
-                key={index}
-                className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
+                className={` product-area`}
+                style={{
+                  display: selectedItems.products.length > 0 ? 'block' : 'none',
+                }}
               >
-                <div className={``}>
-                  <img
-                    src={item.image}
-                    className={`product-img-1`}
-                    style={{ width: 140, height: 140 }}
-                  />
-                </div>
                 <div
-                  className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
+                  style={{ height: 64 }}
                 >
-                  <div
-                    className={`card-title card-text d-flex justify-content-start text-brown col h4`}
-                  >
-                    {item.name}
-                  </div>
-                  <div
-                    className={`d-flex justify-content-start card-text col `}
-                    style={{ gap: '0.5rem' }}
-                  >
-                    <div
-                      className={`h5 d-inline`}
-                      style={{ whiteSpace: 'nowrap' }}
-                    >
-                      規格:
-                    </div>
-                    <div className={`h5`}>{item.description}</div>
-                  </div>
-                  <div className={`d-flex g-3 justify-content-between col`}>
-                    <div className={` h4 `}>數量:{item.quantity}</div>
-                    <div className={` h4 `}>
-                      NT${item.price * item.quantity}
-                    </div>
-                  </div>
+                  <div className={` h3`}>MACHI</div>
+                  <div className={` h3`}>商品</div>
+                  <div className={` h3`}>({selectedItems.products.length})</div>
                 </div>
-                <hr />
+
+                {selectedItems.products.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
+                  >
+                    <div className={``}>
+                      <img
+                        src={item.image}
+                        className={`product-img-1`}
+                        style={{ width: 140, height: 140 }}
+                      />
+                    </div>
+                    <div
+                      className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+                    >
+                      <div
+                        className={`card-title card-text d-flex justify-content-start text-brown col h4`}
+                      >
+                        {item.name}
+                      </div>
+                      <div
+                        className={`d-flex justify-content-start card-text col `}
+                        style={{ gap: '0.5rem' }}
+                      >
+                        <div
+                          className={`h5 d-inline`}
+                          style={{ whiteSpace: 'nowrap' }}
+                        >
+                          規格:
+                        </div>
+                        <div className={`h5`}>{item.description}</div>
+                      </div>
+                      <div className={`d-flex g-3 justify-content-between col`}>
+                        <div className={` h4 `}>數量:{item.quantity}</div>
+                        <div className={` h4 `}>
+                          NT${item.price * item.quantity}
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            )}
 
-          <div
-            className={` custom-area`}
-            style={{
-              display: selectedItems.custom.length > 0 ? 'block' : 'none',
-            }}
-          >
-            <div
-              className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
-              style={{ height: 64 }}
-            >
-              <div className={` h3`}>MACHI</div>
-              <div className={` h3`}>客製商品</div>
-              <div className={` h3`}>({selectedItems.custom.length})</div>
-            </div>
-
-            {selectedItems.custom.map((item, index) => (
+          {selectedItems &&
+            selectedItems.custom &&
+            selectedItems.custom.length > 0 && (
               <div
-                key={index}
-                className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
+                className={` custom-area`}
+                style={{
+                  display: selectedItems.custom.length > 0 ? 'block' : 'none',
+                }}
               >
-                <div className={``}>
-                  <img
-                    src={item.image}
-                    className={`product-img-1`}
-                    style={{ width: 140, height: 140 }}
-                  />
-                </div>
                 <div
-                  className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
+                  style={{ height: 64 }}
                 >
-                  <div
-                    className={`card-title card-text d-flex justify-content-start text-brown col h4`}
-                  >
-                    {item.name}
-                  </div>
-                  <div
-                    className={`d-flex justify-content-start card-text col `}
-                    style={{ gap: '0.5rem' }}
-                  >
-                    <div
-                      className={`h5 d-inline`}
-                      style={{ whiteSpace: 'nowrap' }}
-                    >
-                      規格:
-                    </div>
-                    <div className={`h5`}>{item.description}</div>
-                  </div>
-                  <div className={`d-flex g-3 justify-content-between col`}>
-                    <div className={` h4 `}>數量:{item.quantity}</div>
-                    <div className={` h4 `}>
-                      NT${item.price * item.quantity}
-                    </div>
-                  </div>
+                  <div className={` h3`}>MACHI</div>
+                  <div className={` h3`}>客製商品</div>
+                  <div className={` h3`}>({selectedItems.custom.length})</div>
                 </div>
-                <hr />
-              </div>
-            ))}
-          </div>
 
-          <div
-            className={`col-sm  class-area`}
-            style={{
-              display: selectedItems.courses.length > 0 ? 'block' : 'none',
-            }}
-          >
-            <div
-              style={{
-                height: 64,
-              }}
-              className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
-            >
-              <div className={` h3`}>MACHI</div>
-              <div className={` h3`}>課程</div>
-              <div className={` h3`}>( {selectedItems.courses.length} )</div>
-            </div>
-            {selectedItems.courses.map((item) => (
-              <div
-                key={item.id}
-                className={`d-flex  g-0 gap-5 align-items-center py-4 m-0 ${styles['text-border-grey']}`}
-              >
-                <div className={``}>
-                  <img
-                    src={item.image}
-                    className={`product-img-1`}
-                    style={{ width: 140, height: 140 }}
-                  />
-                </div>
-                <div
-                  className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column gap-2`}
-                >
+                {selectedItems.custom.map((item, index) => (
                   <div
-                    className={`card-title card-text d-flex justify-content-start text-brown col h4`}
+                    key={index}
+                    className={`d-flex  g-0 gap-5 align-items-center py-4 ${styles['text-border-grey']}`}
                   >
-                    {item.name}
-                  </div>
-                  <div
-                    className={`d-flex justify-content-start card-text col `}
-                  >
+                    <div className={``}>
+                      <img
+                        src={item.image}
+                        className={`product-img-1`}
+                        style={{ width: 140, height: 140 }}
+                      />
+                    </div>
                     <div
-                      className={`h5 d-inline mb-0`}
-                      style={{ whiteSpace: 'nowrap' }}
+                      className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column`}
                     >
-                      上課時間:
+                      <div
+                        className={`card-title card-text d-flex justify-content-start text-brown col h4`}
+                      >
+                        {item.name}
+                      </div>
+                      <div
+                        className={`d-flex justify-content-start card-text col `}
+                        style={{ gap: '0.5rem' }}
+                      >
+                        <div
+                          className={`h5 d-inline`}
+                          style={{ whiteSpace: 'nowrap' }}
+                        >
+                          規格:
+                        </div>
+                        <div className={`h5`}>{item.description}</div>
+                      </div>
+                      <div className={`d-flex g-3 justify-content-between col`}>
+                        <div className={` h4 `}>數量:{item.quantity}</div>
+                        <div className={` h4 `}>
+                          NT${item.price * item.quantity}
+                        </div>
+                      </div>
                     </div>
-                    <div className={`h5 mb-0`}>{item.classtime}</div>
+                    <hr />
                   </div>
-                  <div
-                    className={`d-flex justify-content-start card-text col `}
-                  >
-                    <div
-                      className={`h5 d-inline mb-0`}
-                      style={{ whiteSpace: 'nowrap' }}
-                    >
-                      地點:
-                    </div>
-                    <div className={`h5 mb-0`}>{item.address}</div>
-                  </div>
-                  <div className={`d-flex g-3 justify-content-between col`}>
-                    <div className={`h4`}>人數:{item.quantity}</div>
-                    <div className={` h4 `}>
-                      NT${item.price * item.quantity}
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            )}
+
+          {selectedItems &&
+            selectedItems.courses &&
+            selectedItems.courses.length > 0 && (
+              <div
+                className={`col-sm  class-area`}
+                style={{
+                  display: selectedItems.courses.length > 0 ? 'block' : 'none',
+                }}
+              >
+                <div
+                  style={{
+                    height: 64,
+                  }}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
+                >
+                  <div className={` h3`}>MACHI</div>
+                  <div className={` h3`}>課程</div>
+                  <div className={` h3`}>
+                    ( {selectedItems.courses.length} )
+                  </div>
+                </div>
+                {selectedItems.courses.map((item) => (
+                  <div
+                    key={item.id}
+                    className={`d-flex  g-0 gap-5 align-items-center py-4 m-0 ${styles['text-border-grey']}`}
+                  >
+                    <div className={``}>
+                      <img
+                        src={item.image}
+                        className={`product-img-1`}
+                        style={{ width: 140, height: 140 }}
+                      />
+                    </div>
+                    <div
+                      className={`${styles['card-body']} align-content-start p-0  flex-grow-1 d-flex flex-column gap-2`}
+                    >
+                      <div
+                        className={`card-title card-text d-flex justify-content-start text-brown col h4`}
+                      >
+                        {item.name}
+                      </div>
+                      <div
+                        className={`d-flex justify-content-start card-text col `}
+                      >
+                        <div
+                          className={`h5 d-inline mb-0`}
+                          style={{ whiteSpace: 'nowrap' }}
+                        >
+                          上課時間:
+                        </div>
+                        <div className={`h5 mb-0`}>{item.classtime}</div>
+                      </div>
+                      <div
+                        className={`d-flex justify-content-start card-text col `}
+                      >
+                        <div
+                          className={`h5 d-inline mb-0`}
+                          style={{ whiteSpace: 'nowrap' }}
+                        >
+                          地點:
+                        </div>
+                        <div className={`h5 mb-0`}>{item.address}</div>
+                      </div>
+                      <div className={`d-flex g-3 justify-content-between col`}>
+                        <div className={`h4`}>人數:{item.quantity}</div>
+                        <div className={` h4 `}>
+                          NT${item.price * item.quantity}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
         </div>
+
         <div className="col"></div>
         <div className={`${styles['pay-area']} col-md-5 ticky-md-top `}>
           <div></div>
@@ -269,22 +312,40 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
             <FaTruckFast className={' mx-1'} size={24}></FaTruckFast>
             請輸入完整資料
           </div>
-          <div
+          <form
             className={`${styles['pay-content']} px-3 py-4 sticky-md-top mb-3 `}
+            method="post"
           >
             <div className="h5">付款方式</div>
             <div
               className={`d-flex justify-content-between pb-3 ${styles['text-border-brown']} `}
             >
-              <div className={`${styles['pay-button']} ${styles['h6']}`}>
+              <button
+                className={`${styles['pay-button']} ${styles['h6']}`}
+                type="button"
+              >
                 <RiCheckboxBlankCircleLine></RiCheckboxBlankCircleLine>銀行轉帳
-              </div>
-              <div className={`${styles['pay-button']} ${styles['h6']}`}>
-                <RiCheckboxBlankCircleLine></RiCheckboxBlankCircleLine>信用卡
-              </div>
-              <div className={`${styles['pay-button']} ${styles['h6']}`}>
-                <RiCheckboxBlankCircleLine></RiCheckboxBlankCircleLine>Line pay
-              </div>
+              </button>
+              <button
+                className={`${styles['pay-button']} ${styles['h6']} ${
+                  selectedPaymentMethod === 'credit-card' && styles['selected']
+                }`}
+                type="button"
+                onClick={() => handlePaymentMethodClick('credit-card')}
+              >
+                <RiCheckboxBlankCircleLine />
+                信用卡
+              </button>
+              <button
+                className={`${styles['pay-button']} ${styles['h6']} ${
+                  selectedPaymentMethod === 'line-pay' && styles['selected']
+                }`}
+                type="button"
+                onClick={() => handlePaymentMethodClick('line-pay')}
+              >
+                <RiCheckboxBlankCircleLine />
+                Line pay
+              </button>
             </div>
             <div className="h5 pt-2">收件人資訊</div>
             <div className={`${styles['h6']} text-grey pb-2`}>
@@ -295,14 +356,16 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               <div className={`col-4  `}>
                 <input
                   type="text"
-                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}`}
+                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
+                  key={'transName'}
                   placeholder="真實姓名"
                 />
               </div>
               <div className="col-6">
                 <input
                   type="text"
-                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}`}
+                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
+                  key={'transPhone'}
                   placeholder="09XXXXXXXX"
                 />
               </div>
@@ -313,7 +376,8 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               <div className={`= col `}>
                 <input
                   type="text"
-                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} `}
+                  className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}  ${styles['form-control']} ${styles['custom-input']}`}
+                  key={''}
                   placeholder="請填寫完整地址"
                 />
               </div>
@@ -323,14 +387,17 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               <button className={`${styles['coupon-button']} `}>
                 <div className={`${styles['text']} `}>選擇</div>
               </button>
+<<<<<<< HEAD
             </div>
             <div className={`d-flex justify-content-between py-2`}>
               <div className={`${styles['h6']} `}>運費</div>
               <div className={`${styles['h6']} `}>NT$ 1</div>
+=======
+>>>>>>> 9f514158422b4caa6f4d233e4ca1504cb79a8bbd
             </div>
             <div className={`d-flex justify-content-between py-2`}>
               <div className={`${styles['h6']} `}>商品總計</div>
-              <div className={`${styles['h6']} `}>NT$ 8888</div>
+              <div className={`${styles['h6']} `}>{checkTotal}</div>
             </div>
             <div
               className={`${styles['text-border-brown']} d-flex justify-content-between py-2 pb-4`}
@@ -343,11 +410,15 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               <div className={`${styles['h6']} `}>NT$ 5432</div>
             </div>
             <div className={`d-flex justify-content-center`}>
-              <div className={`${styles['cart-button']}`}>
-                <div className={`${styles['text']}`}>前往結帳</div>
-              </div>
+              <Link href="/cart/cart-order" passHref>
+                <button className={`${styles['cart-button']} `}>
+                  <div className={`${styles['text']} ${styles['link-button']}`}>
+                    前往結帳
+                  </div>
+                </button>
+              </Link>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>
