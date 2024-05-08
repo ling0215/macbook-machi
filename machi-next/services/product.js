@@ -7,15 +7,19 @@ import { useState } from 'react'
  * 載入商品的資料，一般的axios使用get方式
  */
 export const getProducts = async (
-  searchCriteria = {},
-  pageNow = 1,
-  perpage = 10
+  sort = 'date',
+  order = 'desc',
+  search = '',
+  category = 'ddd',
+  page = 1,
+  perpage = 16
 ) => {
-  const searchParams = new URLSearchParams(searchCriteria)
   return await axiosInstance.get(
-    `/products?&page=${pageNow}&perpage=${perpage}&${searchParams.toString()}`
+    `/products?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&search=${encodeURIComponent(
+      search
+    )}&category=${encodeURIComponent(category)}`
   )
-}
+};
 
 export const fetchProducts = (url) =>
   axiosInstance.get(url).then((res) => {
