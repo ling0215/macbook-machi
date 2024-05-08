@@ -320,9 +320,9 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
             </div>
             <div className={`d-flex justify-content-between py-2`}>
               <div className={`${styles['h6']} `}>選擇優惠券</div>
-              <div className={`${styles['coupon-button']} `}>
+              <button className={`${styles['coupon-button']} `}>
                 <div className={`${styles['text']} `}>選擇</div>
-              </div>
+              </button>
             </div>
             <div className={`d-flex justify-content-between py-2`}>
               <div className={`${styles['h6']} `}>運費</div>
