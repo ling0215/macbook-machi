@@ -32,7 +32,7 @@ const ArticlesList = () => {
           <div className="list-array">
             <div className="article-content">
               <div>
-                <img src="/images/blog/article2.jpg" alt="" />
+                <img src={article.firstImageUrl} alt="" />
               </div>
               <div className="mx-4 article-text">
                 <ul className="article-list acticle-tag">

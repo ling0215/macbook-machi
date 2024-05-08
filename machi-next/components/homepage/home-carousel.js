@@ -18,8 +18,13 @@ export default function HomeCarousel() {
         id="HomeCarousel"
         className="HomeCarousel"
         data-bs-ride="carousel"
-        style={{
+        style={{    // 輪播滿版
+          width: '100vw',
           position: 'relative',
+          left: '50%',
+          right: '50%',
+          marginLeft: '-50vw',
+          marginRight: '-50vw',
         }}
       >
         <div className="carousel-indicators">

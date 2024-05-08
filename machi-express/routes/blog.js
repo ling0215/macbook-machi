@@ -2,6 +2,7 @@ import express from 'express'
 import multer from 'multer'
 import { v4 as uuidv4 } from 'uuid'
 import path from 'path'
+import { JSDOM } from 'jsdom'
 
 import { QueryTypes } from 'sequelize'
 import sequelize from '#configs/db.js'
@@ -60,10 +61,32 @@ router.post('/upload', upload.single('articleImage'), (req, res) => {
   }
 })
 
+// router.get('/articles', async (req, res) => {
+//   try {
+//     const articles = await Article.findAll()
+//     res.status(200).json(articles)
+//   } catch (error) {
+//     console.error('處理過程中發生錯誤:', error)
+//     res.status(500).json({ message: '伺服器錯誤' })
+//   }
+// })
+
 router.get('/articles', async (req, res) => {
   try {
     const articles = await Article.findAll()
-    res.status(200).json(articles)
+    const articlesWithFirstImage = articles.map((article) => {
+      const dom = new JSDOM(article.article_content)
+      const firstImage = dom.window.document.querySelector('img')
+      let firstImageUrl = ''
+
+      if (firstImage) {
+        firstImageUrl = firstImage.getAttribute('src')
+      }
+      console.log(firstImage)
+      // 將文章物件轉換為 JSON 格式，並加入 firstImageUrl 屬性
+      return { ...article.toJSON(), firstImageUrl }
+    })
+    res.status(200).json(articlesWithFirstImage)
   } catch (error) {
     console.error('處理過程中發生錯誤:', error)
     res.status(500).json({ message: '伺服器錯誤' })
