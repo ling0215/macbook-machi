@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchRawArticle } from '@/services/blog'
 import styles from '@/styles/blog/article-detail.module.scss'
+import DOMPurify from 'dompurify'
 
 const ArticleDetail = ({ articleId }) => {
   console.log(articleId)
@@ -27,6 +28,8 @@ const ArticleDetail = ({ articleId }) => {
     return <p>Loading...</p>
   }
 
+  const cleanHTML = DOMPurify.sanitize(article.article_content)
+
   return (
     <div className={`container ${styles['article-text']}`}>
       <div className={styles['article-user']}>
@@ -41,7 +44,7 @@ const ArticleDetail = ({ articleId }) => {
         <span>{article.article_createtime}</span>
       </div>
       <div>
-        <div>{article.article_content}</div>
+        <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
       </div>
     </div>
   )

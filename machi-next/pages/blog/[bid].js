@@ -3,13 +3,8 @@ import styles from '@/styles/blog/article-detail.module.scss'
 import { useRouter } from 'next/router'
 export default function ArticleDetail() {
   const router = useRouter()
-  const { id } = router.query.bid // 从路由参数中获取文章 ID
-  console.log('這個')
-  console.log(router)
-  console.log(router.query)
-  console.log(router.query.bid)
-  console.log(id)
-  console.log('這個')
+  const  id  = router.query.bid // 从路由参数中获取文章 ID
+  console.log({ id })
   return (
     <>
       <Article articleId={router.query.bid} />
