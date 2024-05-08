@@ -387,13 +387,6 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               <button className={`${styles['coupon-button']} `}>
                 <div className={`${styles['text']} `}>選擇</div>
               </button>
-<<<<<<< HEAD
-            </div>
-            <div className={`d-flex justify-content-between py-2`}>
-              <div className={`${styles['h6']} `}>運費</div>
-              <div className={`${styles['h6']} `}>NT$ 1</div>
-=======
->>>>>>> 9f514158422b4caa6f4d233e4ca1504cb79a8bbd
             </div>
             <div className={`d-flex justify-content-between py-2`}>
               <div className={`${styles['h6']} `}>商品總計</div>
