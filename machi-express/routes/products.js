@@ -20,6 +20,8 @@ router.get('/', async (req, res) => {
     order = 'desc', // string, 排序順序 用於 ORDER BY 'asc' | 'desc', 預設為'desc'
     search = '', // string, 對應 name 欄位, `name LIKE '%search%'`
     category = '', // string`
+    min = 0, // 新增的查詢參數
+    max = 3000, // 新增的查詢參數
   } = req.query
 
   console.log(111111111111)
@@ -51,6 +53,12 @@ router.get('/', async (req, res) => {
             [Op.eq]: value,
           },
         }
+      case 'price': // 新增的條件
+        return {
+          product_price_small: {
+            [Op.between]: [min, max],
+          },
+        }
       default:
         return ''
     }
@@ -65,6 +73,11 @@ router.get('/', async (req, res) => {
 
   if (category) {
     conditions.push(genClause('category', category))
+  }
+
+  if (min && max) {
+    // 如果有提供 min 和 max 參數，則添加價格過濾條件
+    conditions.push(genClause('price', [min, max]))
   }
 
   console.log(conditions)

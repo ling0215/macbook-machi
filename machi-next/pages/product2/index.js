@@ -12,7 +12,7 @@ export default function ProductPage() {
   ])
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('')
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 0 })
+  const [priceRange, setPriceRange] = useState(3000)
 
   const [sort, setSort] = useState('')
   const [order, setOrder] = useState('')
@@ -44,7 +44,7 @@ export default function ProductPage() {
   ])
 
   useEffect(() => {
-    getProducts(sort, order, search, category, page)
+    getProducts(sort, order, search, category, page, 16, priceRange)
       .then((response) => {
         console.log(response.data) // 打印後端的回應
         return response.data
@@ -60,7 +60,7 @@ export default function ProductPage() {
           console.error('No data returned from the server.')
         }
       })
-  }, [search, category, sort, order, page])
+  }, [search, category, sort, order, page, priceRange])
 
   return (
     <div>

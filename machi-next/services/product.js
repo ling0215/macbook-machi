@@ -2,6 +2,7 @@ import axiosInstance from './axios-instance'
 import useSWR from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { useState } from 'react'
+import { max, min } from 'lodash'
 
 /**
  * 載入商品的資料，一般的axios使用get方式
@@ -10,16 +11,17 @@ export const getProducts = async (
   sort = 'date',
   order = 'desc',
   search = '',
-  category = 'ddd',
+  category = '',
   page = 1,
-  perpage = 16
+  perpage = 16,
+  priceRange = 3000
 ) => {
   return await axiosInstance.get(
-    `/products?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&search=${encodeURIComponent(
+    `/products?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&min=0&max=${priceRange}&search=${encodeURIComponent(
       search
     )}&category=${encodeURIComponent(category)}`
   )
-};
+}
 
 export const fetchProducts = (url) =>
   axiosInstance.get(url).then((res) => {
