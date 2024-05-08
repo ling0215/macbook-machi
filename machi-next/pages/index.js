@@ -1,6 +1,7 @@
 // pages/index.js
 import Link from 'next/link'
 import Image from 'next/image'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeCarousel from '@/components/homepage/home-carousel'
 import Featured from '@/components/homepage/featured'
 import PlaceholderText from '@/components/common/placeholder-text'
@@ -51,8 +52,8 @@ export default function Home() {
             <h2 className="pb-2 border-bottom mb-5 text-center section-heading-product">
               熱銷商品
             </h2>
-            <div className="row row-cols-2 row-cols-md-4 g-4 px-2">
-              <div className="col-md-3">
+            <div className="row row-cols-2 row-cols-md-4 g-4 px-2 justify-content-center">
+              <div className="col-md-3 col-sm-6 d-flex justify-content-center">
                 <div className="w-350 no-border f-16 featured-card-product">
                   <Link
                     href="/product/detail"
@@ -252,19 +253,22 @@ export default function Home() {
         </div>
       </div>
       <Featured />
+      <latestNews />
+
+
 
       <div className="container px-4 py-5" id="custom-cards">
         <h2 className="pb-2 border-bottom">Custom cards</h2>
 
-        <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div className="row row-cols-2 row-cols-lg-6 align-items-stretch g-4 py-5">
           <div className="col">
             <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+              className="card card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg"
               style={{
                 backgroundImage: "url('/images/features/unsplash-photo-1.jpg')",
               }}
             >
-              <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <div className="d-flex flex-column p-5 pb-3 text-white text-shadow-1">
                 <h3 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
                   Short title, long jacket
                 </h3>
@@ -278,14 +282,14 @@ export default function Home() {
                       className="rounded-circle border border-white"
                     />
                   </li>
-                  <li className="d-flex align-items-center me-3 ">
+                  {/* <li className="d-flex align-items-center me-3 ">
                     <i className="bi bi-geo-fill me-2"></i>
                     <small>Earth</small>
                   </li>
                   <li className="d-flex align-items-center">
                     <i className="bi bi-calendar3 me-2"></i>
                     <small>3d</small>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -312,14 +316,7 @@ export default function Home() {
                       className="rounded-circle border border-white"
                     />
                   </li>
-                  <li className="d-flex align-items-center me-3">
-                    <i className="bi bi-geo-fill me-2"></i>
-                    <small>Pakistan</small>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <i className="bi bi-calendar3 me-2"></i>
-                    <small>4d</small>
-                  </li>
+                  
                 </ul>
               </div>
             </div>

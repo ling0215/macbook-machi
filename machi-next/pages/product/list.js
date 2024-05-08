@@ -5,6 +5,23 @@ import { useEffect } from 'react'
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 
 export default function List() {
+  // const product = [
+  //   {
+  //     id: 1,
+  //     title: "蛋糕的乐趣，糕点生活的精彩",
+  //     description: "这个蛋糕非常好吃，是我们的热销产品。",
+  //     date: "2024.02.20",
+  //     imageUrl: "/course.jpg"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "蛋糕的乐趣，糕点生活的精彩",
+  //     description: "这个蛋糕非常好吃，是我们的热销产品。",
+  //     date: "2024.02.20",
+  //     imageUrl: "/course.jpg"
+  //   }
+  // ];
+
   // Toggle the side navigation
   useEffect(() => {
     // fix next issue
@@ -269,23 +286,35 @@ export default function List() {
             <div id="page-content-wrapper">
               <div className="container-fluid">
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                {product.map(product => (
+                  <ProductCard
+                    key={product.id}
+                    title={product.title}
+                    description={product.description}
+                    date={product.date}
+                    imageUrl={product.imageUrl}
+                  />
+                ))}
                 </div>
+          
+      
+                    {/* <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                    <ProductCard />
+                </div> */}
                 {/* 切換頁面按鈕 */}
                 <div className="pagination mb-5">
                   <button className="page-btn">

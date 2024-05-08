@@ -4,7 +4,7 @@ export default function SearchForm() {
   return (
     <div className="ms-auto pe-3 mt-3 mt-lg-2">
       <form className="d-flex" role="search">
-        <div className="input-group position-relative d-inline-flex align-items-center">
+        <div className="input-group position-relative d-inline-flex align-items-center just">
           <input
             type="text"
             className="form-control border-end-0"
