@@ -5,7 +5,7 @@ import styles from './page2.module.scss'
 
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaTruckFast } from 'react-icons/fa6'
-import { RiCheckboxBlankCircleLine } from 'react-icons/ri'
+import { RiCheckboxBlankCircleLine,RiCheckboxCircleLine  } from 'react-icons/ri'
 import { MdCheckBoxOutlineBlank } from 'react-icons/md'
 
 const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
@@ -36,11 +36,18 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
         )
       : 0)
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null)
-
-  const handlePaymentMethodClick = (method) => {
-    setSelectedPaymentMethod(method)
-  }
+      const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+      const [isYellow, setIsYellow] = useState(false); // 新增狀態以控制黃色背景
+    
+      const handlePaymentMethodClick = (method) => {
+        setSelectedPaymentMethod(method);
+      };
+    
+      // 當點擊按鈕時切換狀態以改變黃色背景
+      const toggleYellow = () => {
+        setIsYellow(!isYellow);
+      };
+    
 
   return (
     <>
@@ -327,25 +334,38 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
                 <RiCheckboxBlankCircleLine></RiCheckboxBlankCircleLine>銀行轉帳
               </button>
               <button
-                className={`${styles['pay-button']} ${styles['h6']} ${
-                  selectedPaymentMethod === 'credit-card' && styles['selected']
-                }`}
-                type="button"
-                onClick={() => handlePaymentMethodClick('credit-card')}
-              >
-                <RiCheckboxBlankCircleLine />
-                信用卡
-              </button>
-              <button
-                className={`${styles['pay-button']} ${styles['h6']} ${
-                  selectedPaymentMethod === 'line-pay' && styles['selected']
-                }`}
-                type="button"
-                onClick={() => handlePaymentMethodClick('line-pay')}
-              >
-                <RiCheckboxBlankCircleLine />
-                Line pay
-              </button>
+        className={`${styles['pay-button']} ${styles['h6']} ${isYellow ? styles['selected'] : ''}`}
+        type="button"
+        onClick={() => {
+          handlePaymentMethodClick('credit-card');
+          toggleYellow(); // 點擊按鈕時切換狀態
+        }}
+      >
+        {selectedPaymentMethod === 'credit-card' ? (
+          <RiCheckboxCircleLine />
+        ) : (
+          <RiCheckboxBlankCircleLine />
+        )}
+        信用卡
+      </button>
+
+      <button
+        className={`${styles['pay-button']} ${styles['h6']} ${
+          selectedPaymentMethod === 'line-pay' && styles['selected']
+        }`}
+        type="button"
+        onClick={() => {
+          handlePaymentMethodClick('line-pay');
+          toggleYellow(); // 點擊按鈕時切換狀態
+        }}
+      >
+        {selectedPaymentMethod === 'line-pay' ? (
+          <RiCheckboxCircleLine />
+        ) : (
+          <RiCheckboxBlankCircleLine />
+        )}
+        Line pay
+      </button>
             </div>
             <div className="h5 pt-2">收件人資訊</div>
             <div className={`${styles['h6']} text-grey pb-2`}>
