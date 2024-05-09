@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 
 export default function List() {
+
   // Toggle the side navigation
   useEffect(() => {
     // fix next issue
@@ -130,70 +131,6 @@ export default function List() {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* <div className="accordion-item">
-                    <h2 className="accordion-header">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseThree"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseThree"
-                      >
-                        價格範圍
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseThree"
-                      className="accordion-collapse collapse"
-                    >
-                      <div className="accordion-body px-1">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="flexCheckDefault"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexCheckDefault"
-                          >
-                            $500以下
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="flexCheckChecked"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexCheckChecked"
-                          >
-                            $501 - $1,000
-                          </label>
-                        </div>
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="flexCheckChecked"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexCheckChecked"
-                          >
-                            $1,001 - $2,000
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
                   <label htmlFor="range" className="form-label mt-3">
                     價格區間
                   </label>
@@ -205,63 +142,6 @@ export default function List() {
                     step="10"
                     id="range"
                   />
-                  {/* <div className="col-md-3 hidden-md">
-                    <ul id="collection_menu_shelf_top" className="sidebar">
-                      <li>
-                        <ul
-                          id="collection_menu_shelf_second_1"
-                          className="collapse_collection_menu_1 shelf_second collapse"
-                          style={{}}
-                        >
-                          <li>
-                            <Link href={{
-                              pathname: '/collections/allcollection',
-                              query
-                              }}/>所有商品
-                          </li>
-                          <li>
-                            <a href="/products/withurbanbotany">遊牧晨花課</a>
-                          </li>
-                          <li>
-                            <a href="/collections/fruit_cake">水果味NO.1</a>
-                          </li>
-                          <li>
-                            <a href="/collections/chiffons">人氣戚風蛋糕</a>
-                          </li>
-                          <li>
-                            <a href="/collections/鍾愛巧克力">鍾愛巧克力</a>
-                          </li>
-                          <li>
-                            <a href="/collections/輕盈慕斯">輕盈慕斯</a>
-                          </li>
-                          <li>
-                            <a href="/collections/不簡單磅蛋糕">不簡單磅蛋糕</a>
-                          </li>
-                          <li>
-                            <a href="/collections/dacquoise">達克瓦茲全口味</a>
-                          </li>
-                          <li>
-                            <a href="/collections/all_cookies">最愛吃餅乾</a>
-                          </li>
-                          <li>
-                            <a href="https://www.tentendenden.com/collections/others">周邊商品</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="/collections/matcha">獻給抹茶迷</a>
-                      </li>
-                      <li>
-                        <a href="/products/dacquoise_package">達克瓦茲好茶禮盒</a>
-                      </li>
-                      <li>
-                        <a href="/collections/happybirthday">生日蛋糕</a>
-                      </li>
-                      <li>
-                        <a href="/collections/delivery_cat">安心宅配專區</a>
-                      </li>
-                    </ul>
-                  </div> */}
                 </div>
               </div>
             </div>

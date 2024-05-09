@@ -47,12 +47,12 @@ export default function Home() {
       {/* 熱銷商品區塊 */}
       <div className="px-4 py-5 full-background">
         <div className="container col-xxl-10 px-1 py-5 featured">
-          <div className="container text-center mt-5 mb-5">
-            <h2 className="pb-2 border-bottom mb-5 text-center section-heading-product">
+          <div className="container text-center">
+            <h2 className="pb-2 border-bottom mb-5 text-center mt-2 section-heading">
               熱銷商品
             </h2>
-            <div className="row row-cols-2 row-cols-md-4 g-4 px-2">
-              <div className="col-md-3">
+            <div className="row row-cols-2 row-cols-md-4 d-flex ">
+              <div className="col-md-3 d-flex justify-content-center">
                 <div className="w-350 no-border f-16 featured-card-product">
                   <Link
                     href="/product/detail"
@@ -80,7 +80,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 d-flex justify-content-center">
                 <div className="w-350 no-border f-16 featured-card-product">
                   <Link
                     href="/product/detail"
@@ -108,7 +108,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 d-flex justify-content-center">
                 <div className="w-350 no-border f-16 featured-card-product">
                   <Link
                     href="/product/detail"
@@ -136,7 +136,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 d-flex justify-content-center">
                 <div className="w-350 no-border f-16 featured-card-product">
                   <Link
                     href="/product/detail"
@@ -166,12 +166,32 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="container text-center mt-5 mb-5">
-            <h2 className="pb-2 border-bottom mb-5 text-center section-heading-class">
+          <div className="container text-center">
+            <h2 className="pb-2 border-bottom mb-5 text-center mt-5 section-heading">
               熱門課程
             </h2>
             <div className="row row-cols-2 row-cols-md-4 g-4">
-              <div className="col-md-3">
+              {/* 這層加d-flex justify-content-center */}
+              <div className="col-md-3 d-flex justify-content-center">
+                <div className="w-350 no-border f-16 featured-card-class jusity-content-center">
+                  <Link href="/class/detail" passHref className="no-underline">
+                    <img src="/course.jpg" className="card-img-top" alt="" />
+                    <div className="card-body no-space-x">
+                      <h5 className="card-text fw-bold card-title mt-3">
+                        法式甜點課程
+                      </h5>
+                      <p className="card-text type-text mb-2">講師：呂昇達</p>
+                      <p className="h-currency bold h-now">
+                        NT$2,000 &nbsp;
+                        <span className="text-decoration-line-through type-text">
+                          NT$2,500
+                        </span>
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+              <div className="col-md-3 d-flex justify-content-center">
                 <div className="w-350 no-border f-16 featured-card-class">
                   <Link href="/class/detail" passHref className="no-underline">
                     <img src="/course.jpg" className="card-img-top" alt="" />
@@ -190,7 +210,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 d-flex justify-content-center">
                 <div className="w-350 no-border f-16 featured-card-class">
                   <Link href="/class/detail" passHref className="no-underline">
                     <img src="/course.jpg" className="card-img-top" alt="" />
@@ -209,27 +229,8 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3">
-                <div className="w-350 no-border f-16 featured-card-class">
-                  <Link href="/class/detail" passHref className="no-underline">
-                    <img src="/course.jpg" className="card-img-top" alt="" />
-                    <div className="card-body no-space-x">
-                      <h5 className="card-text fw-bold card-title mt-3">
-                        法式甜點課程
-                      </h5>
-                      <p className="card-text type-text mb-2">講師：呂昇達</p>
-                      <p className="h-currency bold h-now">
-                        NT$2,000 &nbsp;
-                        <span className="text-decoration-line-through type-text">
-                          NT$2,500
-                        </span>
-                      </p>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="w-350 no-border f-16 featured-card-class">
+              <div className="col-md-3 d-flex justify-content-center">
+                <div className=" no-border f-16 featured-card-class">
                   <Link href="/class/detail" passHref className="no-underline">
                     <img src="/course.jpg" className="card-img-top" alt="" />
                     <div className="card-body no-space-x">
@@ -252,6 +253,63 @@ export default function Home() {
         </div>
       </div>
       <Featured />
+      <div className="px-4 py-5 full-background">
+        <div className="container col-xxl-10 px-1 py-5 featured">
+          <div className="container text-center mt-5 mb-5 article-block">
+            <h2 className="pb-2 border-bottom mb-5 text-center section-heading">
+              最新文章
+            </h2>
+            <div className="row row-cols-1 row-cols-md-2 d-flex align-items-center article-section">
+              <div className="col-md-6 d-flex justify-content-center">
+                <Link
+                  href="/blog/detail"
+                  passHref
+                  className="no-underline d-flex align-items-center"
+                >
+                  <img
+                    loading="lazy"
+                    src="/course.jpg"
+                    className="img-fluid"
+                    alt="文章圖片"
+                  />
+                </Link>
+              </div>
+              <div className="col-md-6 article-right">
+                <div className="mb-2 d-flex article-title">
+                  踏入春日的序曲，編寫生活的篇章
+                </div>
+                <br />
+                <div className="text-muted d-flex mb-3">2024.02.20</div>
+                <button className="btn btn-grey read-more">閱讀更多</button>
+              </div>
+            </div>
+            <div className="row row-cols-1 row-cols-md-2 d-flex align-items-center article-section">
+              <div className="col-md-6 d-flex justify-content-center">
+                <Link
+                  href="/blog/detail"
+                  passHref
+                  className="no-underline d-flex align-items-center"
+                >
+                  <img
+                    loading="lazy"
+                    src="/course.jpg"
+                    className="img-fluid"
+                    alt="文章圖片"
+                  />
+                </Link>
+              </div>
+              <div className="col-md-6 article-right">
+                <div className="mb-2 d-flex article-title">
+                  踏入春日的序曲，編寫生活的篇章
+                </div>
+                <br />
+                <div className="text-muted d-flex mb-3">2024.02.20</div>
+                <button className="btn btn-grey read-more">閱讀更多</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="container px-4 py-5" id="custom-cards">
         <h2 className="pb-2 border-bottom">Custom cards</h2>
@@ -269,7 +327,7 @@ export default function Home() {
                   Short title, long jacket
                 </h3>
                 <ul className="d-flex list-unstyled mt-auto">
-                  <li className="me-auto">
+                  {/* <li className="me-auto">
                     <img
                       src="https://github.com/twbs.png"
                       alt="Bootstrap"
@@ -277,7 +335,7 @@ export default function Home() {
                       height="32"
                       className="rounded-circle border border-white"
                     />
-                  </li>
+                  </li> */}
                   <li className="d-flex align-items-center me-3 ">
                     <i className="bi bi-geo-fill me-2"></i>
                     <small>Earth</small>
@@ -337,7 +395,7 @@ export default function Home() {
                   Another longer title belongs here
                 </h3>
                 <ul className="d-flex list-unstyled mt-auto">
-                  <li className="me-auto">
+                  {/* <li className="me-auto">
                     <img
                       src="https://github.com/twbs.png"
                       alt="Bootstrap"
@@ -345,7 +403,7 @@ export default function Home() {
                       height="32"
                       className="rounded-circle border border-white"
                     />
-                  </li>
+                  </li> */}
                   <li className="d-flex align-items-center me-3">
                     <i className="bi bi-geo-fill me-2"></i>
                     <small>California</small>

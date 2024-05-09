@@ -8,6 +8,18 @@
   padding: 0;
 }
 
+.link-button {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-button:focus,
+.link-button:hover,
+.link-button:active {
+  outline: none;
+  text-decoration: none;
+}
+
 .h6{
   font-size: 18px;
 }
@@ -91,7 +103,7 @@
   border-radius: 3px;
   border-style: solid;
   border-color: var(--primary-dark, #785e4c);
-  border-width: 0.5px;
+  border-width: 1px;
   display: flex;
   flex-direction: row;
   gap: 5px;
@@ -103,6 +115,10 @@
   position: relative;
   box-shadow: var(---box-shadow, 3px 4px 4px 0px rgba(0, 0, 0, 0.25));
   overflow: hidden;
+  white-space: nowrap;
+  &:hover{
+    border-width: 2px;
+  }
 }
 
 .coupon-button {
@@ -154,6 +170,7 @@
     font-size: 18px;
     font-weight: 700;
     position: relative;
+    
   }
 }
 
@@ -163,7 +180,21 @@
   border-color: #868686;
 }
 
+.custom-input:focus {
+  border-color: #ab927d;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* 添加阴影效果，可选 */
+}
 
+/* 取消 Bootstrap 的默认外框效果 */
+.custom-input:focus,
+.custom-input:active {
+  border-color: #ab927d !important; /* 用 !important 来覆盖 Bootstrap 的样式 */
+  box-shadow: none; /* 可选，取消阴影效果 */
+}
+
+.selected {
+  background-color: #f8dc9a; /* 修改为您想要的选中时的背景颜色 */
+}
 
 
 

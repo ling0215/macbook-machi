@@ -1,8 +1,9 @@
-import React from 'react'
+// import React from 'react'
 import Link from 'next/link'
 import styles from './product.module.scss'
 import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 // import LoadingImageSvg from './loading-image-svg'
+
 
 export default function ProductCard() {
   return (
