@@ -4,7 +4,7 @@ import { CartTypeProvider } from '@/hooks/cart-type-state'
 import CartPage1 from '@/components/cart/cart-page1'
 import CartPage2 from '@/components/cart/cart-page2'
 
-export default function Text1() {
+export default function CartMain() {
   const [showPage, setShowPage] = useState(true)
   const [selectedItems, setSelectedItems] = useState()
 

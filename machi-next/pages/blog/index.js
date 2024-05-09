@@ -40,8 +40,6 @@ export default function BlogIndex() {
             <div className="">
               <h6 className="article-sidebar pt-2">最新文章</h6>
               <Latest />
-              <Latest />
-              <Latest />
               <h6 className="article-sidebar pt-2">文章分類</h6>
               <Category />
               <Category />

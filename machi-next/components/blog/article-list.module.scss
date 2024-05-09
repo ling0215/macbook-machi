@@ -2,3 +2,28 @@
     text-decoration: none;
     color: #ab927d;
 }
+.image {
+    img{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        padding-right: 10px;
+    }
+}
+
+.image-text {
+
+    display: flex;
+
+    // align-items: center;
+    p {
+        color: #785e4c;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+
+}
+
