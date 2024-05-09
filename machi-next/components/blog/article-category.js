@@ -4,19 +4,18 @@ import styles from '@/components/blog/article-category.module.scss'
 import { FaChevronDown } from 'react-icons/fa'
 
 export default function ArticleCategory() {
-  const [isOpen, setIsOpen] = useState(false)
+  // const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
       <div className="article-category py-2">
-        <div onClick={() => setIsOpen(!isOpen)}>
+        {/* <div onClick={() => setIsOpen(!isOpen)}> */}
+        <div>
           <input type="checkbox" />
           <span className="mx-3">蛋糕</span>
-          <FaChevronDown
-
-          />
+          <FaChevronDown />
         </div>
-        {isOpen && (
+        {/* {isOpen && (
           <div className={styles['submenu']}>
             <input type="checkbox" />
             <span>123</span>
@@ -27,7 +26,7 @@ export default function ArticleCategory() {
             <input type="checkbox" />
             <span>123</span>
           </div>
-        )}
+        )} */}
       </div>
     </>
   )
