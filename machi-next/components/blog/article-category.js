@@ -29,7 +29,13 @@ export default function ArticleCategory() {
             <span className="mx-3">蛋糕</span>
             <FaChevronDown />
           </div>
-          {/* {isOpen && (
+          <div>
+          <input type="checkbox" />
+          <span className="mx-3">蛋糕</span>
+          <FaChevronDown />
+        </div>
+
+        {/* {isOpen && (
           <div className={styles['submenu']}>
             <input type="checkbox" />
             <span>123</span>

@@ -51,12 +51,28 @@ const en = {
   firstDay: 0,
 }
 
-function AirDatepickerReact(props) {
+function AirDatepickerReact({ setStartDate, setEndDate, ...props }) {
   let $input = useRef(null)
   let dp = useRef(null)
 
   useEffect(() => {
-    dp.current = new AirDatepicker($input.current, { ...props, locale: en })
+    dp.current = new AirDatepicker($input.current, {
+      ...props,
+      locale: en,
+      onSelect: (formattedDate, date, inst) => {
+        console.log('onSelect called with:', formattedDate, date, inst)
+        // 檢查 date 是否存在
+        if (formattedDate.formattedDate) {
+          // 更新開始日期和結束日期狀態
+          setStartDate(formattedDate.formattedDate[0])
+          setEndDate(formattedDate.formattedDate[1])
+        }
+        // 如果有其他 onSelect 處理程序，也調用它
+        if (props.onSelect) {
+          props.onSelect(formattedDate, date, inst)
+        }
+      },
+    })
   }, [])
 
   useEffect(() => {

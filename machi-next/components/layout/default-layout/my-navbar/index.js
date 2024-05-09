@@ -56,7 +56,7 @@ export default function MyNavbar() {
               <div className="offcanvas-header">
                 <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
                   <Image
-                    src="/next.svg"
+                    src="/logo-machi-brown.svg"
                     alt=""
                     width={80}
                     height={20}
