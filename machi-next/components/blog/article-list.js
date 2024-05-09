@@ -41,7 +41,7 @@ const ArticlesList = () => {
                 </ul>
                 <h4 className="pt-2">{article.article_title}</h4>
 
-                <span>{article.article_createtime}</span>
+                <span>{article.article_createtime.split('T')[0]}</span>
                 <p>{stripHtmlTagsAndEntities(article.article_content)}</p>
 
                 <div className="more">
