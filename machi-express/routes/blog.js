@@ -6,6 +6,7 @@ import { JSDOM } from 'jsdom'
 import { QueryTypes, Op } from 'sequelize'
 
 import sequelize from '#configs/db.js'
+import { Op } from 'sequelize'
 import { ar } from '@faker-js/faker'
 const { Article } = sequelize.models
 
@@ -232,7 +233,39 @@ router.get('/:id', async (req, res) => {
     }
     // 如果找到文章，以 JSON 格式返回
     res.status(200).json(article)
-    console.log(article)
+    // console.log(article)
+  } catch (error) {
+    console.error('處理過程中發生錯誤:', error)
+    res.status(500).json({ message: '伺服器錯誤' })
+  }
+})
+
+// router.get('/categorys', async (req, res) => {
+//   try {
+//     const categorys = await Article.findAll()
+//     if(categorys) {
+//       return { ...categorys.toJSON() }
+//     }
+//     res.status(200).json(categorys)
+//   } catch (error) {
+//     console.error('處理過程中發生錯誤:', error)
+//     res.status(500).json({ message: '伺服器錯誤' })
+//   }
+// })
+
+router.get('/search', async (req, res) => {
+  const { keyword } = req.query
+
+  try {
+    const articles = await Article.findAll({
+      where: {
+        title: {
+          [Op.like]: `%${keyword}%`,
+        },
+      },
+    })
+
+    res.status(200).json(articles)
   } catch (error) {
     console.error('處理過程中發生錯誤:', error)
     res.status(500).json({ message: '伺服器錯誤' })
