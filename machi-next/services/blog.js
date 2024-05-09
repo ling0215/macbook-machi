@@ -34,6 +34,21 @@ export const fetchArticles = async () => {
   return response.data
 }
 
+export const fetchBetterArticles = async (
+  search = '',
+  category = '',
+  page = 1,
+  perpage = 16,
+  startDate = '01/01/1970',
+  endDate = '01/01/2050'
+) => {
+  return await axiosInstance.get(
+    `/blog/articles/better?page=${page}&perpage=${perpage}&start=${startDate}&end=${endDate}&search=${encodeURIComponent(
+      search
+    )}&category=${encodeURIComponent(category)}`
+  )
+}
+
 export const fetchRawArticle = async (url = 0) => {
   console.log('這裡')
   console.log(url)

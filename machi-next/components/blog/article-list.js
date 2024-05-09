@@ -4,7 +4,7 @@ import styles from '@/components/blog/article-list.module.scss'
 import { fetchArticles } from '@/services/blog'
 import { FaCaretRight } from 'react-icons/fa'
 
-const ArticlesList = () => {
+const ArticlesList = (dataa) => {
   const [articles, setArticles] = useState([])
   useEffect(() => {
     const getArticles = async () => {
@@ -16,6 +16,8 @@ const ArticlesList = () => {
 
     getArticles()
   }, [])
+  console.log(11)
+  console.log(dataa.dataa)
 
   const stripHtmlTagsAndEntities = (htmlContent) => {
     // 去除 HTML 标签
@@ -24,6 +26,8 @@ const ArticlesList = () => {
     const htmlContentCharacters = htmlContentTag.replace(/&[^;]+;/g, '')
     return htmlContentCharacters
   }
+  console.log(22)
+  console.log(articles)
 
   return (
     <>
