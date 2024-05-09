@@ -4,12 +4,54 @@ import Latest from '@/components/blog/latest-article'
 import Category from '@/components/blog/article-category'
 import List from '@/components/blog/article-list'
 import Date from '@/components/blog/article-date'
+import { fetchBetterArticles } from '@/services/blog'
+import Pagination from '@/components/product2/product-list/pagination'
 
 import { FaSearch } from 'react-icons/fa'
 import { FaCaretLeft } from 'react-icons/fa'
 import { FaCaretRight } from 'react-icons/fa'
 
 export default function BlogIndex() {
+  const [articless, setArticless] = useState([
+    { id: 1, name: 'Default Product 1', price: 100 },
+  ])
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('')
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+
+  const [startDate, setStartDate] = useState('01/01/1970')
+  const [endDate, setEndDate] = useState('01/01/2050')
+
+  // useEffect(() => {
+  //   console.log('articles:', articles)
+  //   console.log('search:', search)
+  //   console.log('category:', category)
+  //   console.log('page:', page)
+  //   console.log('totalPages:', totalPages)
+  //   console.log('startDate:', startDate)
+  //   console.log('endDate:', endDate)
+  // }, [articles, search, category, page, totalPages, startDate, endDate])
+
+  useEffect(() => {
+    fetchBetterArticles(search, category, page, 16, startDate, endDate)
+      .then((response) => {
+        console.log(response.data) // 打印後端的回應
+        return response.data
+      })
+      .then((data) => {
+        if (data && data.data && data.data.articles) {
+          setArticless(data.data.articles)
+          setTotalPages(data.data.pageCount)
+        } else {
+          // 設置一個預設值或者顯示一個錯誤消息
+          setArticless([])
+          setTotalPages(0)
+          console.error('No data returned from the server.')
+        }
+      })
+  }, [search, category, page, startDate, endDate])
+
   function AirDatepickerReact(props) {
     let $input = useRef()
     let dp = useRef()
@@ -22,6 +64,7 @@ export default function BlogIndex() {
       dp.current.update({ ...props })
     }, [props])
   }
+
   return (
     <>
       <div className="container">
@@ -33,6 +76,7 @@ export default function BlogIndex() {
                 className="input-field"
                 placeholder="請輸入關鍵字"
                 style={{ flex: '1' }}
+                onChange={(event) => setSearch(event.target.value)}
               />
               <FaSearch />
             </div>
@@ -45,26 +89,25 @@ export default function BlogIndex() {
               <Category />
               <h6 className="article-sidebar pt-2">日期區間</h6>
               <div>
-                <Date range={true} />
+                <Date
+                  range={true}
+                  setStartDate={setStartDate}
+                  setEndDate={setEndDate}
+                />
               </div>
             </div>
           </div>
           <div className="col-9">
             <div className="container ">
               <ul className="article-list">
-                <List />
+                <List dataa={articless} />
               </ul>
             </div>
-            <div className="pagination">
-              <button className="page-btn">
-                <FaCaretLeft />
-              </button>
-              <button className="page-btn">1</button>
-              <button className="page-btn">2</button>
-              <button className="page-btn">
-                <FaCaretRight />
-              </button>
-            </div>
+            <Pagination
+              totalPages={totalPages}
+              currentPage={page}
+              onPageChange={setPage}
+            />
           </div>
         </div>
       </div>

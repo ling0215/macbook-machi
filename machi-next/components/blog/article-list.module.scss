@@ -5,25 +5,25 @@
 .image {
     img{
         width: 120px;
-        height: 120px;
+        height: 90px;
         object-fit: cover;
         padding-right: 10px;
     }
 }
 
 .image-text {
-
+    margin-block: 10px;
     display: flex;
-
-    // align-items: center;
+    align-items: center;
     p {
-        color: #785e4c;
+        color: #ab927d;
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
     }
-
-
 }
 
+.test {
+    height: 1200px;
+}
