@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import dataCartItems from '@/data/cart/test.json'
 import { CartTypeProvider } from '@/hooks/cart-type-state'
+import { useAuth } from '@/hooks/use-auth'
 import CartPage1 from '@/components/cart/cart-page1'
 import CartPage2 from '@/components/cart/cart-page2'
 
@@ -8,7 +9,10 @@ export default function CartMain() {
   const [showPage, setShowPage] = useState(true)
   const [selectedItems, setSelectedItems] = useState()
   const [cartItems, setCartItems] = useState([]);
-
+  const  {auth}=useAuth();
+  useEffect(() => {
+    console.log(auth.userData)
+  },[])
   useEffect(() => {
     // 发送 HTTP 请求获取数据
     fetch('/api/cartItems')
@@ -65,7 +69,7 @@ export default function CartMain() {
   })
 
   return (
-    <CartTypeProvider initialCartItems={formattedCartItems}>
+    <CartTypeProvider  initialCartItems={formattedCartItems}>
       {showPage ? (
         <CartPage1
           onClickPage={handleClick}
