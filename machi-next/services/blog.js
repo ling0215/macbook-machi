@@ -34,15 +34,6 @@ export const fetchArticles = async () => {
   return response.data
 }
 
-// export const fetchCategorys = async () => {
-//   const response = await axiosInstance.get('/blog/Categorys')
-//   if (response.status !== 200) {
-//     console.error('Failed to fetch Categorys:', response.statusText)
-//     return
-//   }
-//   return response.data
-// }
-
 export const fetchBetterArticles = async (
   search = '',
   category = '',
@@ -74,20 +65,4 @@ export const fetchRawArticle = async (url = 0) => {
     console.error('Error fetching article:', error)
     return []
   }
-}
-
-export async function searchArticles(keyword) {
-  const response = await fetch(`/search?keyword=${keyword}`)
-
-  if (!response.ok) {
-    throw new Error(`Server responded with status code ${response.status}`)
-  }
-
-  const contentType = response.headers.get('Content-Type')
-  if (!contentType || !contentType.includes('application/json')) {
-    throw new Error('Server response is not JSON')
-  }
-
-  const data = await response.json()
-  return data
 }
