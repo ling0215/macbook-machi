@@ -1,6 +1,7 @@
-import Reactㄝ, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/components/blog/article-list.module.scss'
 import { fetchArticles } from '@/services/blog'
+import Link from 'next/link'
 
 export default function LatestArticles() {
   const ArticlesList = () => {
@@ -35,7 +36,13 @@ export default function LatestArticles() {
                 <div className={styles[`image`]}>
                   <img src={article.firstImageUrl} alt="" />
                 </div>
-                <p>{stripHtmlTagsAndEntities(article.article_content)}</p>
+                <Link
+                  href={`/blog/${article.article_id}`}
+                  type="button"
+                  className={styles[`link-style`]}
+                >
+                  <p>{stripHtmlTagsAndEntities(article.article_content)}</p>
+                </Link>
               </div>
             </li>
           ))}
