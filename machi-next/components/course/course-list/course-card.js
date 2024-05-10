@@ -4,15 +4,15 @@ import styles from './course.module.scss'
 import Image from 'next/image'
 import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 
-export default function CourseCard({ product }) {
-  const imageUrl = `/images/product/card/${product.product_id}1.jpg`
+export default function CourseCard({ course }) {
+  // const imageUrl = `/images/product/card/${product.product_id}1.jpg`//暫時標記
   return (
     <>
       <div className="col-6">
         <div className={styles.cardBody}>
           <Link href="/product/detail" passHref>
             <Image
-              src={imageUrl}
+              // src={imageUrl}
               className={styles.cardImg}
               alt="productImg"
               placeholder="blur"
@@ -23,9 +23,9 @@ export default function CourseCard({ product }) {
           </Link>
           <div className={styles.cardInfo}>
             <IoHeartOutline className={styles.heartIcon} />
-            <h5 className={styles.cardText}>{product.product_name}</h5>
-            <p className={styles.typeText}>{product.product_category}</p>
-            <h5 className={styles.currency}>NT${product.product_price_small}</h5>
+            <h5 className={styles.cardText}>{course.course_name}</h5>
+            <p className={styles.typeText}>{course.course_category}</p>
+            <h5 className={styles.currency}>NT${course.course_price}</h5>
             <button className={styles.cartBtn}>
               <IoCartOutline className={styles.cartIcon} /> 加入購物車
             </button>

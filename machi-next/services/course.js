@@ -7,7 +7,7 @@ import { max, min } from 'lodash'
 /**
  * 載入商品的資料，一般的axios使用get方式
  */
-export const getProducts = async (
+export const getCourses = async (
   sort = 'date',
   order = 'desc',
   search = '',

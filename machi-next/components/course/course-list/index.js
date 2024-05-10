@@ -1,11 +1,11 @@
 import React from 'react';
 import CourseCard from './course-card';
 
-export default function CourseList({ products }) {
+export default function CourseList({ courses }) {
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-      {products.map(product => (
-        <CourseCard key={product.id} product={product} name={product.name} />
+      {courses.map(course => (
+        <CourseCard key={course.id} course={course} name={course.name} />
       ))}
     </div>
   );
