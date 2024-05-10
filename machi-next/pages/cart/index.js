@@ -8,21 +8,22 @@ import CartPage2 from '@/components/cart/cart-page2'
 export default function CartMain() {
   const [showPage, setShowPage] = useState(true)
   const [selectedItems, setSelectedItems] = useState()
-  const [cartItems, setCartItems] = useState([]);
-  const  {auth}=useAuth();
+  const [cartItems, setCartItems] = useState([])
+  const { auth } = useAuth()
   useEffect(() => {
     console.log(auth.userData)
-  },[])
+  }, [])
   useEffect(() => {
     // 发送 HTTP 请求获取数据
-    fetch('/api/cartItems')
-      .then(response => response.json())
-      .then(data => {
+    fetch('/api/cart')
+      .then((response) => response.json())
+      .then((data) => {
         // 接收数据并更新状态
-        setCartItems(data);
+        setCartItems(data)
+        console.log(data)
       })
-      .catch(error => console.error('Error fetching cart items:', error));
-  }, []);
+      .catch((error) => console.error('Error fetching cart items:', error))
+  }, [])
 
   const handleClick = () => {
     setShowPage(!showPage)
@@ -69,7 +70,7 @@ export default function CartMain() {
   })
 
   return (
-    <CartTypeProvider  initialCartItems={formattedCartItems}>
+    <CartTypeProvider initialCartItems={formattedCartItems}>
       {showPage ? (
         <CartPage1
           onClickPage={handleClick}

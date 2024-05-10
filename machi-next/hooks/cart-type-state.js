@@ -10,7 +10,7 @@ import {
   decrementOne,
   generateCartState,
 } from './cart-type-state-reducer'
-// import useLocalStorage from './use-localstorage'
+import useLocalStorage from './use-localstorage'
 
 const CartContext = createContext(null)
 
@@ -35,14 +35,14 @@ export const CartTypeProvider = ({
 
   const [cartItems, setCartItems] = useState(items)
   const [cartState, setCartState] = useState(init(initialCartItems))
-  // const [storedValue, setValue] = useLocalStorage(localStorageKey, items)
+  const [storedValue, setValue] = useLocalStorage(localStorageKey, items)
 
-  // useEffect(() => {
-  //   if (JSON.stringify(cartItems) !== storedValue) {
-  //     setValue(cartItems)
-  //   }
-  //   setCartState(generateCartState(cartState, cartItems))
-  // }, [cartItems])
+  useEffect(() => {
+    if (JSON.stringify(cartItems) !== storedValue) {
+      setValue(cartItems)
+    }
+    setCartState(generateCartState(cartState, cartItems))
+  }, [cartItems])
 
   const addItem = (item) => {
     setCartItems(addOne(cartItems, item))
