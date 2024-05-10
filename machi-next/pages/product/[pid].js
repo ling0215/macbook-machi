@@ -1,6 +1,8 @@
 import React from 'react'
 import Carousel from '@/components/product/carousel'
 import {IoCartOutline, IoHeartOutline} from 'react-icons/io5'
+import ProductIntro from '@/components/product/product-detail/product-intro'
+import { useCart } from '@/hooks/use-cart-state'
 
 
 
@@ -10,6 +12,7 @@ export default function Detail() {
 //       history.push('/another-page') // 导航到路径为 '/another-page' 的页面
 //     }
 //     const { cart, items, decrement, increment, removeItem } = useCart()
+       const { cart, items, decrement, increment, removeItem } = useCart()
   return (
     <>
       <div className="row mt-5 mx-2">
@@ -31,6 +34,41 @@ export default function Detail() {
             <button className="btn btn-outline-brown col-2 me-3">6吋</button>
             <button className="btn btn-outline-brown col-2" >9吋</button>
           </div>
+          <div
+                  className={`d-flex g-3 justify-content-between col addbuton`}
+                >
+                  <div
+                    className={`btn-group d-flex   `}
+                    role={`group`}
+                    aria-label={`Basic mixed styles example `}
+                    style={{
+                      width: '128px',
+                      height: '48px',
+                      border: '1px solid #ab927d;',
+                    }}
+                  >
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4 mb-0`}
+                      style={{ width: '28px' }}
+                      // onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                    >
+                      -
+                    </button>
+                    <button
+                      className={` btn btn-outline-light  text-primary-dark h4  mb-0`}
+                    >
+                      {/* {item.quantity} */}
+                    </button>
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4  mb-0`}
+                      style={{ width: '28px' }}
+                      // onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                    >
+                      +
+                    </button>
+                  </div>
+                  {/* <div className={` h4 `}>小計NT${item.subtotal}</div> */}
+                </div>
           {/* 數量按鈕 */}
           {/* <div
             className={`btn-group d-flex   `}
@@ -133,7 +171,7 @@ export default function Detail() {
                   </div>
                 </div>
               </div>
-              <div className="accordion-item">
+              {/* <div className="accordion-item">
                 <h2 className="accordion-header">
                   <button
                     className="accordion-button collapsed"
@@ -177,26 +215,15 @@ export default function Detail() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
       <div className="row mt-5 mx-2">
-        <nav id="navbar" className="navbar navbar-light bg-light justify-content-center">
-          <ul className="nav nav-pills">
-            <li className="nav-item">
-              <a className="nav-link" href="#scrollspyHeading1">
-                商品介紹
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#scrollspyHeading2">
-                運送與注意事項
-              </a>
-            </li>
-          </ul>
-        </nav>
+        
+      <ProductIntro />
+
         <div
           data-bs-spy="scroll"
           data-bs-target="#navbar"
@@ -204,24 +231,7 @@ export default function Detail() {
           class="scrollspy-example"
           tabindex="0"
         >
-          <h4 id="scrollspyHeading1">｜保存與享用｜</h4>
-          <p>產品風味｜紅烏龍茶戚風蛋糕、伊思尼鮮奶油、紅烏龍茶香緹
-            <br />產品尺寸｜6吋 - 13cm(Φ)x7cm(h)、9吋 (產品以手工製作，尺寸僅供參考，略有誤差屬正常現象)
-          </p>
-          <h4 id="scrollspyHeading2">｜保 存 方 式｜</h4>
-          <p>為確保品質，將以低溫宅配運送，收到產品後，可選擇冷藏或冷凍擇一方式保存
-            <br />◼︎ 冷藏 |  3天內為最佳賞味期間
-            <br />◼︎ 冷凍 |  2週內，請密封保存避免冰箱異味影響風味
-          </p>
-          <h4 id="scrollspyHeading3">｜運送與注意事項｜</h4>
-          <p>◼︎ 為確保商品新鮮及配送安全，宅配產品全程將使用低溫冷凍配送，部分商品因損壞風險較大，恕無法宅配。
-            <br />◼︎ 自取時間為營業日的PM14:00-20:00、快遞服務僅限雙北部分區域。
-            <br />◼︎ 宅配金額$190-$240、桃園以外線市快遞金額，將依照您的里程數計算
-            <br />◼︎ 訂單送出後，請在24小時內完成付款，付款完成才開始安排訂單製作唷<br />◼︎ 商品皆為新鮮製作，因此最快出貨日為下單後3個工作天，急單請電洽◼︎ 急單請電洽，聯繫電話 (03)452-1234，夥伴們將跟您確認收貨日期相關事宜</p>
-          <h4 id="scrollspyHeading4">｜宅 配 延 遲｜</h4>
-          <p>因疫情升級造成物流繁忙，恕無法於指定日期配送到貨，在商品送達前，敬請多留意黑貓宅配之聯繫電話，也建議您提前預留到貨時間，以確保趕得上您的時程安排。此段期間，商品若有延誤，恕不接受退換貨申請，敬請見諒。若有急單或需於指定日期送達，建議您多加利用快遞服務或前往店面自取。</p>
-          <h4 id="scrollspyHeading5">｜風 險 說 明｜</h4>
-          <p>宅配商品皆進行多次配送實驗，並給予最完善的包裝，配送過程仍有一定的風險，如遇蛋糕位移、側邊損傷或裝飾掉落、微損，或因宅配繁盛期延遲到貨與毀損，均不在毀壞補償範圍內，風險須自行承擔</p>
+          
         </div>
         {/* <div className="col-sm-12">
           <h4 className="text-center mb-5">探索 Nike Air Force 1005 女鞋</h4>

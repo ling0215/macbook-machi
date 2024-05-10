@@ -1,0 +1,23 @@
+#fill-tab .nav-tabs {
+    border-bottom: none;
+  }
+  
+.intro {
+    background-color: var(--secondary);
+    border: 1px solid var(--grey);
+    color: var(--brown);
+}
+
+.other {
+    background-color: var(--secondary);
+    border: 1px solid var(--grey);
+    color: var(--brown);
+}
+
+.list-group-item {
+    border-bottom: none !important; // 去除下底线
+  }
+
+.list {
+    list-style: none;
+}
