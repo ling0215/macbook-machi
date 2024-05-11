@@ -7,8 +7,8 @@ export default async function (sequelize) {
       cart_item_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
         allowNull: false,
+        autoIncrement: true, // 新增這一行
       },
       user_id_fk: {
         type: DataTypes.INTEGER,
@@ -16,57 +16,59 @@ export default async function (sequelize) {
       },
       product_id_fk: {
         type: DataTypes.INTEGER,
+        allowNull: true,
       },
       product_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
+        allowNull: false,
       },
       product_subtitle: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
       },
       product_price: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
       },
       product_count: {
         type: DataTypes.INTEGER,
       },
       product_total: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
       },
       class_id_fk: {
         type: DataTypes.INTEGER,
       },
       class_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
       },
       class_price: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
       },
       class_count: {
         type: DataTypes.INTEGER,
       },
       class_total: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
       },
       custom_size: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       custom_layer: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       custom_flavor: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       custom_decor: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
       },
       custom_price: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
       },
       custom_count: {
         type: DataTypes.INTEGER,
       },
       custom_total: {
-        type: DataTypes.DECIMAL(10, 2),
+        type: DataTypes.INTEGER,
       },
     },
     {
