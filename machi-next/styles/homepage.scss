@@ -43,6 +43,7 @@
   }
 
 .featured {
+    border-radius: 5px;
     background-image: url('/public/background.png');
     background-size: 75% ;
     background-attachment: fixed;
@@ -53,10 +54,19 @@
 }
 
 
-// 產品卡片
-.featured-card-product {
-    width: 80%;
+// 產品 & 課程卡片 元件用
+.featured-card {
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    
+    &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 }
+
 .card-title {
     color: var(--primary-dark);
 }
@@ -66,25 +76,41 @@
 }
 
 
-// 熱銷課程
-.featured-card-class {
-    width: 80%;
-}
 
-// 最新消息
-.latest-news img {
-    width: 100%; 
+
+
+
+
+// 最新消息 文章區塊
+
+.article-section {
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 30px;
 }
 
 .article-block {
+    display: flex;
+    flex-direction:initial; // 左右並排
     justify-content: space-between;
+    text-align: left;
 }
 
-.article-section {
+.article-card {
+    width: 50%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--grey, #C0C0C0);
+    background: var(--white, #FFF);
+    box-shadow: 0px 5px 53.9px 0px rgba(166, 166, 166, 0.25);
+    &:hover {
+        box-shadow: 0px 5px 53.9px 0px rgba(166, 166, 166, 0.5);
+    }
+    img {
+        width: 100%;
+        overflow: hidden; // 內容溢出容器會被隱藏
+        object-fit: cover;
+    }
 }
 
 .article-right {
@@ -104,6 +130,15 @@
     border-left-style: solid;
     border-left-color: var(--brown);
     padding-left: 10px;
+    height: 50px;
+    &:hover {
+        color: var(--brown);
+    }
+
+}
+
+.article-date {
+    color: var(--primary-dark);
 }
 
 .btn-grey {
@@ -111,5 +146,26 @@
     &:hover { 
         background-color: var(--dark-grey);
         color: var(--white);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .featured {
+        
+    }
+
+    .article-block {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .article-card {
+        width: 100%;
+        margin-bottom: 10px;
+        &:hover {
+            box-shadow: 0px 5px 53.9px 0px rgba(166, 166, 166, 0.25);
+        }
+        
     }
 }
