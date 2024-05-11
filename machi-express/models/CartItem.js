@@ -16,26 +16,21 @@ export default async function (sequelize) {
       },
       product_id_fk: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       product_name: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       product_subtitle: {
         type: DataTypes.STRING,
       },
       product_price: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
       },
       product_count: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       product_total: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
       },
       class_id_fk: {
         type: DataTypes.INTEGER,

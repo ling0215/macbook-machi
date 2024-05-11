@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { fetchCart } from '@/services/cart'
 // import dataCartItems from '@/data/cart/test.json'
 import { CartTypeProvider } from '@/hooks/cart-type-state'
 import { useAuth } from '@/hooks/use-auth'
@@ -9,21 +10,32 @@ export default function CartMain() {
   const [showPage, setShowPage] = useState(true)
   const [selectedItems, setSelectedItems] = useState()
   const [cartItems, setCartItems] = useState([])
+
+  //導入使用的Hook
+  const [error, setError] = useState(null)
+  const [total, setTotal] = useState(0)
   const { auth } = useAuth()
   useEffect(() => {
-    console.log(auth.userData)
+    console.log(auth.userData.user_id)
   }, [])
   useEffect(() => {
-    // 发送 HTTP 请求获取数据
-    fetch('/api/cart')
-      .then((response) => response.json())
-      .then((data) => {
-        // 接收数据并更新状态
-        setCartItems(data)
-        console.log(data)
-      })
-      .catch((error) => console.error('Error fetching cart items:', error))
-  }, [])
+    if (auth.userData && auth.userData.user_id) {
+      fetchCart(auth.userData.user_id)
+        .then((data) => {
+          if (data.error) {
+            setError('获取购物车数据失败')
+          } else {
+            setCartItems(data.items || []) // 假设返回的数据中有 items 字段
+          }
+        })
+        .catch((error) => {
+          setError('加载购物车数据失败')
+          console.error(error)
+        })
+    }
+  }, [auth.userData])
+
+  console.log(cartItems)
 
   const handleClick = () => {
     setShowPage(!showPage)
