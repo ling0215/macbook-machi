@@ -13,6 +13,8 @@ export default function Sidebar({ setCategory, setPriceRange }) {
     setCategory(value)
   }
 
+  
+
   return (
     <>
       {/* 左側篩選 */}
@@ -91,25 +93,25 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           role="button"
                           tabIndex={0}
                           className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('戚風蛋糕')}
+                          onClick={() => handleCategoryChange('蛋糕')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
-                              handleCategoryChange('戚風蛋糕')
+                              handleCategoryChange('蛋糕')
                           }}
                         >
-                          戚風蛋糕
+                          蛋糕
                         </div>
                         <div
                           role="button"
                           tabIndex={0}
                           className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('千層蛋糕')}
+                          onClick={() => handleCategoryChange('餅乾')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
-                              handleCategoryChange('千層蛋糕')
+                              handleCategoryChange('餅乾')
                           }}
                         >
-                          千層蛋糕
+                          餅乾
                         </div>
                         <div
                           role="button"
@@ -121,7 +123,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                               handleCategoryChange('乳酪蛋糕')
                           }}
                         >
-                          乳酪蛋糕
+                          台北市
                         </div>
                         <div
                           role="button"
@@ -262,8 +264,8 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                     type="range"
                     className="form-range"
                     min={0}
-                    max={3000}
-                    step="100"
+                    max={10000}
+                    step="1000"
                     id="range"
                     onChange={handleRangeChange}
                   />

@@ -8,7 +8,7 @@ import { getCourses } from '@/services/course' // 請根據實際路徑進行調
 
 export default function CoursePage() {
   const [courses, setCourses] = useState([
-    { id: 1, name: 'Default Product 1', price: 100 },
+    { id: 1, name: 'Default Course 1', price: 100 },
   ])
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('')

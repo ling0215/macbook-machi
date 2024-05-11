@@ -26,6 +26,7 @@ export default function CourseCard({ course }) {
             <h5 className={styles.cardText}>{course.course_name}</h5>
             <p className={styles.typeText}>{course.course_category}</p>
             <h5 className={styles.currency}>NT${course.course_price}</h5>
+            <h5 className={styles.currency}>NT${course.course_location}</h5>
             <button className={styles.cartBtn}>
               <IoCartOutline className={styles.cartIcon} /> 加入購物車
             </button>

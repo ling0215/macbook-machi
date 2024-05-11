@@ -17,7 +17,7 @@ export const getCourses = async (
   priceRange = 3000
 ) => {
   return await axiosInstance.get(
-    `/products?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&min=0&max=${priceRange}&search=${encodeURIComponent(
+    `/course?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&min=0&max=${priceRange}&search=${encodeURIComponent(
       search
     )}&category=${encodeURIComponent(category)}`
   )
