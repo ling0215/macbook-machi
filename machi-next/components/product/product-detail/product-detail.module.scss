@@ -1,23 +1,33 @@
-#fill-tab .nav-tabs {
-    border-bottom: none;
-  }
-  
+.buttonActive {
+  background-color: white;
+  color: black;
+}
+
 .intro {
-    background-color: var(--secondary);
-    border: 1px solid var(--grey);
-    color: var(--brown);
+  // background-color: var(--secondary);
+  border: 1px solid var(--grey);
+  color: var(--primary-dark);
+  width: 50%;
+  height: 40px;
+  font-size: large;
 }
 
 .other {
-    background-color: var(--secondary);
-    border: 1px solid var(--grey);
-    color: var(--brown);
+  // background-color: var(--secondary);
+  border: 1px solid var(--grey);
+  color: var(--primary-dark);
+  width: 50%;
+  height: 40px;
+  font-size: large;
 }
 
-.list-group-item {
-    border-bottom: none !important; // 去除下底线
-  }
+.content {
+  width: 100%; 
+  border: 1px solid var(--grey);
+}
 
-.list {
-    list-style: none;
+@media (max-width: 768px) {
+  .label {
+      flex-direction: column; 
+  }
 }
