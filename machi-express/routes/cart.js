@@ -10,7 +10,7 @@ const { CartItem } = sequelize.models
 
 // 獲得某會員id的有加入到購物清單中的商品id們
 // 此路由只有登入會員能使用
-router.get('/cart', authenticate, async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
   console.log('Received user ID:', req.query.user_id)
   try {
     const userId = req.query.user_id // 从查询参数中获取用户 ID

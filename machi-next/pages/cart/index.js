@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { fetchCart } from '@/services/cart'
-// import dataCartItems from '@/data/cart/test.json'
+import dataCartItems from '@/data/cart/test.json'
 import { CartTypeProvider } from '@/hooks/cart-type-state'
 import { useAuth } from '@/hooks/use-auth'
 import CartPage1 from '@/components/cart/cart-page1'
@@ -25,7 +25,7 @@ export default function CartMain() {
           if (data.error) {
             setError('获取购物车数据失败')
           } else {
-            setCartItems(data.items || []) // 假设返回的数据中有 items 字段
+            setCartItems(data || []) // 假设返回的数据中有 items 字段
           }
         })
         .catch((error) => {
@@ -45,7 +45,7 @@ export default function CartMain() {
     setSelectedItems(items)
   }
 
-  const formattedCartItems = cartItems.map((item) => {
+  const formattedCartItems = dataCartItems.map((item) => {
     if (item.product_id) {
       return {
         id: item.product_id,
