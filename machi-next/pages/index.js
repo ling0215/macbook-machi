@@ -319,18 +319,15 @@ function Home() {
         </div>
       </div>
 
-      <div className="container px-4 py-5" id="custom-cards">
+      <div className="container">
         <h2 className="pb-2 border-bottom text-center section-heading">商品類別</h2>
-
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-5 align-items-stretch">
-          <div className="col-md-6 d-flex justify-content-center">
+        <div className="row row-cols-1 row-cols-md-4 g-4 pt-5 ">
+          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
             <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark text-center rounded-4 shadow-lg"
+              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
               style={{
-                width: "18rem",
-                backgroundImage: "url('/images/customize/pexels-katrin-bolovtsova-5702721.jpg')",
-                //圖片效果 
-                filter: 'brightness(0.5)',
+                backgroundImage: "url('/images/features/category-img.jpg')"
+                //圖片效果
               }}
             >
               <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
@@ -340,85 +337,48 @@ function Home() {
               </div>
             </div>
           </div>
-
-          <div className="col-md-6">
+          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
             <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
               style={{
-                backgroundImage: "url('/images/customize/pexels-katrin-bolovtsova-5702721.jpg')",
+                backgroundImage: "url('/images/features/category-img.jpg')",
+                //圖片效果
               }}
             >
               <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
                 <h4 className="display-6 lh-1 fw-bold">
-                  蛋糕
+                  塔派甜點
                 </h4>
               </div>
             </div>
           </div>
-
-          <div className="col">
+          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
             <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
               style={{
-                backgroundImage: "url('/images/features/unsplash-photo-3.jpg')",
+                backgroundImage: "url('/images/features/category-img.jpg')",
+                //圖片效果
               }}
             >
-              <div className="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                <h3 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                  Another longer title belongs here
-                </h3>
-                <ul className="d-flex list-unstyled mt-auto">
-                  <li className="me-auto">
-                    <img
-                      src="https://github.com/twbs.png"
-                      alt="Bootstrap"
-                      width="32"
-                      height="32"
-                      className="rounded-circle border border-white"
-                    />
-                  </li>
-                  <li className="d-flex align-items-center me-3">
-                    <i className="bi bi-geo-fill me-2"></i>
-                    <small>California</small>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <i className="bi bi-calendar3 me-2"></i>
-                    <small>5d</small>
-                  </li>
-                </ul>
+              <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
+                <h4 className="display-6 lh-1 fw-bold">
+                  塔派甜點
+                </h4>
               </div>
             </div>
           </div>
-          <div className="col">
+          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
             <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
               style={{
-                backgroundImage: "url('/images/features/unsplash-photo-3.jpg')",
+                backgroundImage: "url('/images/features/category-img.jpg')",
+                //圖片效果
               }}
             >
-              <div className="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                <h3 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                  Another longer title belongs here
-                </h3>
-                <ul className="d-flex list-unstyled mt-auto">
-                  {/* <li className="me-auto">
-                    <img
-                      src="https://github.com/twbs.png"
-                      alt="Bootstrap"
-                      width="32"
-                      height="32"
-                      className="rounded-circle border border-white"
-                    />
-                  </li> */}
-                  <li className="d-flex align-items-center me-3">
-                    <i className="bi bi-geo-fill me-2"></i>
-                    <small>California</small>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <i className="bi bi-calendar3 me-2"></i>
-                    <small>5d</small>
-                  </li>
-                </ul>
+              <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
+                <h4 className="display-6 lh-1 fw-bold">
+                  塔派甜點
+                </h4>
               </div>
             </div>
           </div>

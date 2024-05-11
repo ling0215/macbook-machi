@@ -30,7 +30,7 @@ export default function Detail() {
             <button className={`btn btn-outline-brown col-md-2`}>9吋</button>
           </div>
           {/* 數量按鈕 */}
-          <div className={`d-flex g-3 justify-content-between  align-items-center mb-4 addbuton`}>
+          <div className={`d-flex g-3 justify-content-between align-items-center mb-4 addbuton`}>
             <div
               className={`btn-group d-flex   `}
               role={`group`}

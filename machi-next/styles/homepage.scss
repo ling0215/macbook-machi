@@ -76,11 +76,6 @@
 }
 
 
-
-
-
-
-
 // 最新消息 文章區塊
 
 .article-section {
@@ -107,7 +102,6 @@
         box-shadow: 0px 5px 53.9px 0px rgba(166, 166, 166, 0.5);
     }
     img {
-        width: 100%;
         overflow: hidden; // 內容溢出容器會被隱藏
         object-fit: cover;
     }
@@ -150,10 +144,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    .featured {
-        
-    }
-
     .article-block {
         flex-direction: column;
         align-items: center;
@@ -169,3 +159,12 @@
         
     }
 }
+
+// 商品類別區
+.category-card {
+    margin-top: 0; 
+    margin: 5px;
+    height: 200px;
+
+}
+
