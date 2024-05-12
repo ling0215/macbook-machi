@@ -38,7 +38,7 @@ export const fetchBetterArticles = async (
   search = '',
   category = '',
   page = 1,
-  perpage = 16,
+  perpage = 4,
   startDate = '01/01/1970',
   endDate = '01/01/2050'
 ) => {
@@ -66,3 +66,4 @@ export const fetchRawArticle = async (url = 0) => {
     return []
   }
 }
+
