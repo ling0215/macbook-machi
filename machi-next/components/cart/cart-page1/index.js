@@ -8,6 +8,7 @@ import { FaCheck } from 'react-icons/fa6'
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
   console.log(items)
+  console.log(cart)
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
   // 自訂商品選中狀態
@@ -105,7 +106,6 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     setCourseChecked(newCheckedCourses)
   }
 
-
   //確認是否有選擇項目 並跳轉至下一頁
   const handleClickConfirm = () => {
     const { totalQuantity, totalPrice } = calculateTotal()
@@ -133,8 +133,6 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     }
     onClickPage(2, { totalQuantity, totalPrice })
   }
-
-
 
   //回傳父元件用
   useEffect(() => {
@@ -545,7 +543,10 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
           </div>
         </div>
         <div className={`d-flex justify-content-end pb-5`}>
-          <button className={`${styles['cart-button']}`} onClick={handleClickConfirm}>
+          <button
+            className={`${styles['cart-button']}`}
+            onClick={handleClickConfirm}
+          >
             <div className={`${styles['cart-button-text']}`}>前往結帳</div>
           </button>
         </div>

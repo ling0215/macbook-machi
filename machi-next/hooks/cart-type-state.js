@@ -38,6 +38,11 @@ export const CartTypeProvider = ({
   const [storedValue, setValue] = useLocalStorage(localStorageKey, items)
 
   useEffect(() => {
+    setCartItems(initialCartItems) // 更新 cartItems 以匹配最新的 initialCartItems
+    setCartState(init(initialCartItems)) // 重新初始化 cartState
+  }, [initialCartItems])
+
+  useEffect(() => {
     if (JSON.stringify(cartItems) !== storedValue) {
       setValue(cartItems)
     }
