@@ -56,7 +56,7 @@ export const useProduct = (searchCriteria = {}, pageNow = 1, perpage = 10) => {
   const searchParams = new URLSearchParams(searchCriteria)
 
   const { data, error, isLoading } = useSWR(
-    `/products?&page=${pageNow}&perpage=${perpage}&${searchParams.toString()}`,
+    `/course?&page=${pageNow}&perpage=${perpage}&${searchParams.toString()}`,
     fetchProducts
   )
 

@@ -8,7 +8,9 @@ export default function CourseCard({ course }) {
   // const imageUrl = `/images/product/card/${product.product_id}1.jpg`//暫時標記
   return (
     <>
+    
       <div className="col-6">
+        
         <div className={styles.cardBody}>
           <Link href="/product/detail" passHref>
             <Image
@@ -22,7 +24,10 @@ export default function CourseCard({ course }) {
             />
           </Link>
           <div className={styles.cardInfo}>
+            
+          <Link href={`/course/${course.course_id}`}>
             <IoHeartOutline className={styles.heartIcon} />
+            
             <h5 className={styles.cardText}>{course.course_name}</h5>
             <p className={styles.typeText}>{course.course_category}</p>
             <h5 className={styles.currency}>NT${course.course_price}</h5>
@@ -30,6 +35,7 @@ export default function CourseCard({ course }) {
             <button className={styles.cartBtn}>
               <IoCartOutline className={styles.cartIcon} /> 加入購物車
             </button>
+            </Link>
           </div>
         </div>
       </div>
