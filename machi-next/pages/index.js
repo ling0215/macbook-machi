@@ -1,20 +1,31 @@
 // pages/index.js
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import HomeCarousel from '@/components/homepage/home-carousel'
 import Featured from '@/components/homepage/featured'
+import CategoryCard from '@/components/homepage/category-card'
 import CustomizeLayout from '@/components/layout/customize/customize-layout'
 import PlaceholderText from '@/components/common/placeholder-text'
+import { fetchCategory } from '@/services/index'
+ // 請根據實際路徑進行調整
 
 function Home() {
+  const [category, setCategory] = useState([]) //[變數名稱, 狀態變數]
+  useEffect(() => { // 當狀態變動時執行
+    fetchCategory().then((response) => { //services的fetchCategory()方法
+        console.log(response) // 打印後端的回應
+        setCategory(response) // 更新狀態
+      })
+  }, []);
   return (
     <>
       <HomeCarousel />
-      <div className="container col-xxl-10 px-1 py-2">
+      <div className="container col-xxl-10 px-4 py-2">
         <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
           <div className="col-lg-6 about">
-            <h2 className="about-title fw-bold lh-1 mb-3">關於 Machi</h2>
-            <p className="lead">Since 2015</p>
+            <h2 className="fw-bold lh-1 mb-3 about-title">關於 Machi</h2>
+            <p className="about-text">Since 2015</p>
             <p className="about-text">
               「machi」的名字源自日語中的「街」，象徵著一條小街道，充滿了美好的氛圍與風情，就像來到一個溫馨舒適的地方，您可以在這裡放鬆身心，品嚐法式甜點的絕妙滋味。
               <br />
@@ -45,13 +56,73 @@ function Home() {
           </div>
         </div>
       </div>
-      {/* 熱銷商品區塊 */}
       <div className="px-4 py-5 full-background">
-        <div className="container col-xxl-10 px-1 py-5 featured">
+        {/* <div className="container col-xxl-10 px-5 py-5 featured"> */}
+          <div className="container text-center px-5 my-5 article-section">
+            <h2 className="pb-2 mb-5 text-center section-heading"
+                style={{ borderBottom: '1px solid #785e4c' }}>最新消息</h2>
+            <div className="article-block">
+              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
+                <div className="col-md-6 d-flex justify-content-center">
+                  <Link
+                    href="/blog/detail"
+                    passHref
+                    className="no-underline d-flex align-items-center"
+                  >
+                    <img
+                      loading="lazy"
+                      src="/course.jpg"
+                      className="img-fluid"
+                      alt="文章圖片"
+                    />
+                  </Link>
+                </div>
+                <div className="col-md-6 article-right">
+                  <div className="mt-2 mb-2 d-flex article-title">
+                    踏入春日的序曲，編寫生活的篇章
+                  </div>
+                  <br />
+                  <div className="d-flex mb-3 article-date">2024.02.20</div>
+                  <button className="btn btn-grey read-more btn-sm">
+                    閱讀更多
+                  </button>
+                </div>
+              </div>
+
+              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
+                <div className="col-md-6 d-flex justify-content-center">
+                  <Link
+                    href="/blog/detail"
+                    passHref
+                    className="no-underline d-flex align-items-center"
+                  >
+                    <img
+                      loading="lazy"
+                      src="/course.jpg"
+                      className="img-fluid"
+                      alt="文章圖片"
+                    />
+                  </Link>
+                </div>
+                <div className="col-md-6 article-right">
+                  <div className="mt-2 mb-2 d-flex  article-title">
+                    踏入春日的序曲，編寫生活的篇章
+                  </div>
+                  <br />
+                  <div className="d-flex mb-3 article-date">2024.02.20</div>
+                  <button className="btn btn-grey read-more btn-sm">
+                    閱讀更多
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {/* </div> */}
+      </div>
+        <div className="container col-xxl-10 px-5 py-5 mt-5 featured">
           <div className="container text-center">
-            <h2 className="pb-2 border-bottom mb-5 text-center mt-2 section-heading">
-              熱銷商品
-            </h2>
+            <h2 className="pb-2 mb-5 text-center mt-2 section-heading"
+                style={{ borderBottom: '1px solid #785e4c' }}>熱銷商品</h2>
             <div className="row row-cols-2 row-cols-md-4 d-flex ">
               <div className="col-md-3 d-flex justify-content-center mb-4">
                 <div className="w-350 no-border f-16 featured-card">
@@ -168,7 +239,8 @@ function Home() {
             </div>
           </div>
           <div className="container text-center">
-            <h2 className="pb-2 border-bottom mb-5 text-center mt-5 section-heading">
+            <h2 className="pb-2 mb-5 text-center mt-5 section-heading"
+                style={{ borderBottom: '1px solid #785e4c' }}>
               熱門課程
             </h2>
             <div className="row row-cols-2 row-cols-md-4 g-4">
@@ -252,139 +324,8 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <Featured />
-      <div className="px-4 py-5 full-background">
-        <div className="container col-xxl-10 px-1 py-5 featured">
-          <div className="container text-center mt-3 mb-5 article-section">
-            <h2 className="pb-2 border-bottom mb-5 text-center section-heading">
-              最新消息
-            </h2>
-            <div className="article-block">
-              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
-                <div className="col-md-6 d-flex justify-content-center">
-                  <Link
-                    href="/blog/detail"
-                    passHref
-                    className="no-underline d-flex align-items-center"
-                  >
-                    <img
-                      loading="lazy"
-                      src="/course.jpg"
-                      className="img-fluid"
-                      alt="文章圖片"
-                    />
-                  </Link>
-                </div>
-                <div className="col-md-6 article-right">
-                  <div className="mt-2 mb-2 d-flex article-title">
-                    踏入春日的序曲，編寫生活的篇章
-                  </div>
-                  <br />
-                  <div className="d-flex mb-3 article-date">2024.02.20</div>
-                  <button className="btn btn-grey read-more btn-sm">
-                    閱讀更多
-                  </button>
-                </div>
-              </div>
-
-              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
-                <div className="col-md-6 d-flex justify-content-center">
-                  <Link
-                    href="/blog/detail"
-                    passHref
-                    className="no-underline d-flex align-items-center"
-                  >
-                    <img
-                      loading="lazy"
-                      src="/course.jpg"
-                      className="img-fluid"
-                      alt="文章圖片"
-                    />
-                  </Link>
-                </div>
-                <div className="col-md-6 article-right">
-                  <div className="mt-2 mb-2 d-flex  article-title">
-                    踏入春日的序曲，編寫生活的篇章
-                  </div>
-                  <br />
-                  <div className="d-flex mb-3 article-date">2024.02.20</div>
-                  <button className="btn btn-grey read-more btn-sm">
-                    閱讀更多
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <h2 className="pb-2 border-bottom text-center section-heading">商品類別</h2>
-        <div className="row row-cols-1 row-cols-md-4 g-4 pt-5 ">
-          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
-            <div
-              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
-              style={{
-                backgroundImage: "url('/images/features/category-img.jpg')"
-                //圖片效果
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
-                <h4 className="display-6 lh-1 fw-bold">
-                  塔派甜點
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
-            <div
-              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
-              style={{
-                backgroundImage: "url('/images/features/category-img.jpg')",
-                //圖片效果
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
-                <h4 className="display-6 lh-1 fw-bold">
-                  塔派甜點
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
-            <div
-              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
-              style={{
-                backgroundImage: "url('/images/features/category-img.jpg')",
-                //圖片效果
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
-                <h4 className="display-6 lh-1 fw-bold">
-                  塔派甜點
-                </h4>
-              </div>
-            </div>
-          </div>
-          <div className="col-3 d-flex justify-content-center px-0 py-0 category-card">
-            <div
-              className="card card-cover h-100 overflow-hidden text-bg-light text-center rounded-4 shadow-lg"
-              style={{
-                backgroundImage: "url('/images/features/category-img.jpg')",
-                //圖片效果
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 justify-content-center text-white text-shadow-1">
-                <h4 className="display-6 lh-1 fw-bold">
-                  塔派甜點
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+      {/* <Featured /> */}
+      <CategoryCard category={category}/>
 
       <style global jsx>
         {`
