@@ -22,6 +22,10 @@ export default function BlogIndex() {
 
   const [startDate, setStartDate] = useState('01/01/1970')
   const [endDate, setEndDate] = useState('01/01/2050')
+  const [selectedCategories, setSelectedCategories] = useState([])
+
+
+
 
   // useEffect(() => {
   //   console.log('articles:', articles)
@@ -34,7 +38,7 @@ export default function BlogIndex() {
   // }, [articles, search, category, page, totalPages, startDate, endDate])
 
   useEffect(() => {
-    fetchBetterArticles(search, category, page, 16, startDate, endDate)
+    fetchBetterArticles(search, category, page, 4, startDate, endDate, selectedCategories)
       .then((response) => {
         // console.log(response.data) // 打印後端的回應
         return response.data
@@ -50,7 +54,7 @@ export default function BlogIndex() {
           console.error('No data returned from the server.')
         }
       })
-  }, [search, category, page, startDate, endDate])
+  }, [search, category, page, startDate, endDate, selectedCategories])
 
   function AirDatepickerReact(props) {
     let $input = useRef()
@@ -85,7 +89,7 @@ export default function BlogIndex() {
               <h6 className="article-sidebar pt-2">最新文章</h6>
               <Latest />
               <h6 className="article-sidebar pt-2">文章分類</h6>
-              <Category articles={articless}/>
+              <Category articles={articless} />
               <h6 className="article-sidebar pt-2">日期區間</h6>
               <div>
                 <Date
