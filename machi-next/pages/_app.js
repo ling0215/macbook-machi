@@ -17,6 +17,8 @@ import { AuthProvider } from '@/hooks/use-auth'
 // 載入動畫context
 import { LoaderProvider } from '@/hooks/use-loader'
 
+import { CustomizeProvider } from '@/hooks/use-customize'
+
 import DefaultLayout from '@/components/layout/default-layout'
 // 自訂用載入動畫元件
 import { CatLoader, NoLoader } from '@/hooks/use-loader/components'
@@ -36,11 +38,13 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <AuthProvider>
-      <CartProvider>
-        <LoaderProvider close={2} CustomLoader={CatLoader}>
-          {getLayout(<Component {...pageProps} />)}
-        </LoaderProvider>
-      </CartProvider>
+      <CustomizeProvider>
+        <CartProvider>
+          <LoaderProvider close={2} CustomLoader={CatLoader}>
+            {getLayout(<Component {...pageProps} />)}
+          </LoaderProvider>
+        </CartProvider>
+      </CustomizeProvider>
     </AuthProvider>
   )
 }

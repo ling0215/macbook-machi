@@ -1,9 +1,17 @@
 import Steps from '@/components/customize/steps'
 import StepTitle from '@/components/customize/step-titles'
 import CakeSize from '@/components/customize/cake-size'
-import styles from '@/components/customize/customize.module.css'
+import { useCustomize } from '@/hooks/use-customize'
 
 export default function CustomizedSize() {
+  const { setSizePrice } = useCustomize()
+
+  const handleSizePriceChange = (size, price) => {
+    setSizePrice(size, price)
+  }
+
+  // 使用 handleSizePriceChange 來設定 size 和 price
+
   return (
     <>
       <div>
@@ -26,13 +34,28 @@ export default function CustomizedSize() {
         />
         <div className="lynn-choose-size">
           <div className="lynn-cake4">
-            <CakeSize imageSize={100} size="4吋" price="420元" />
+            <CakeSize
+              imageSize={100}
+              size="4吋"
+              price="420元"
+              onClick={() => handleSizePriceChange('4吋', '420元')}
+            />
           </div>
           <div className="lynn-cake6">
-            <CakeSize imageSize={140} size="6吋" price="650元" />
+            <CakeSize
+              imageSize={140}
+              size="6吋"
+              price="650元"
+              onClick={() => handleSizePriceChange('6吋', '650元')}
+            />
           </div>
           <div className="lynn-cake9">
-            <CakeSize imageSize={160} size="9吋" price="1,080元" />
+            <CakeSize
+              imageSize={160}
+              size="9吋"
+              price="1,080元"
+              onClick={() => handleSizePriceChange('9吋', '1,080元')}
+            />
           </div>
         </div>
       </div>
