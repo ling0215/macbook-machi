@@ -1,85 +1,72 @@
+import Link from 'next/link';
 import React, { useRef, useState } from 'react';
-import { Virtual, Navigation, Pagination, Autoplay } from 'swiper/modules';
+// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import styles from './featured.module.scss';
-
+import style from './featured.module.scss'
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
+// import required modules
+import { Pagination } from 'swiper/modules';
 
 export default function Featured() {
-  const [swiperRef, setSwiperRef] = useState(null);
-  const appendNumber = useRef(500);
-  const prependNumber = useRef(1);
-  // Create array with 500 slides
-  const [slides, setSlides] = useState(
-    Array.from({ length: 500 }).map((_, index) => `Slide ${index + 1}`)
-  );
-
-  const prepend = () => {
-    setSlides([
-      `Slide ${prependNumber.current - 2}`,
-      `Slide ${prependNumber.current - 1}`,
-      ...slides,
-    ]);
-    prependNumber.current = prependNumber.current - 2;
-    swiperRef.slideTo(swiperRef.activeIndex + 2, 0);
-  };
-
-  const append = () => {
-    setSlides([...slides, 'Slide ' + ++appendNumber.current]);
-  };
-
-  const slideTo = (index) => {
-    swiperRef.slideTo(index - 1, 0);
-  };
-
   return (
     <>
       <Swiper
-        modules={[Virtual, Navigation, Pagination, Autoplay]}
-        onSwiper={setSwiperRef}
-        slidesPerView={3}
-        centeredSlides={true}
-        spaceBetween={30}
-        pagination={{
-          type: 'fraction',
+        slidesPerView={1}
+        spaceBetween={10}
+        // pagination={{
+        //   clickable: true,
+        // }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 50,
+          },
         }}
-        autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-        }}
-        navigation={true}
-        loop={true}
-        virtual
+        modules={[Pagination]}
+        className="mySwiper"
       >
-        {slides.map((slideContent, index) => (
-          <SwiperSlide key={slideContent} virtualIndex={index}>
-            {slideContent}
-          </SwiperSlide>
-        ))}
+        <SwiperSlide >
+        <div className="col-md-3 d-flex justify-content-center mb-4 align-items-stretch">
+          <div className=" no-border f-16 featured-card">
+            <Link href="/class/detail" passHref className="no-underline">
+              <img src="/course.jpg" className="card-img-top img-fluid" alt="" />
+              <div className="card-body no-space-x">
+                <h5 className="card-text fw-bold card-title mt-3">
+                  法式甜點課程
+                </h5>
+                <p className="card-text type-text mb-2">講師：呂昇達</p>
+                <p className="h-currency bold h-now">
+                  NT$2,000 &nbsp;
+                  <span className="text-decoration-line-through type-text">
+                    NT$2,500
+                  </span>
+                </p>
+              </div>
+            </Link>
+          </div>
+        </div>
+        </SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
       </Swiper>
-        
-      <p className="append-buttons text-center p-3">
-        <button onClick={() => prepend()} className="btn btn-outline-brown prepend-2-slides">
-          Prepend 2 Slides
-        </button>
-        <button onClick={() => slideTo(1)} className="btn btn-outline-brown">
-          Slide 1
-        </button>
-        <button onClick={() => slideTo(250)} className="btn btn-outline-brown slide-250">
-          Slide 250
-        </button>
-        <button onClick={() => slideTo(500)} className="btn btn-outline-brown slide-500">
-          Slide 500
-        </button>
-        <button onClick={() => append()} className="btn btn-outline-brown append-slides">
-          Append Slide
-        </button>
-      </p>
     </>
   );
 }
