@@ -7,7 +7,7 @@ import { FaCheck } from 'react-icons/fa6'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
-
+  console.log(items)
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
   // 自訂商品選中狀態

@@ -19,7 +19,7 @@ router.get('/', authenticate, async (req, res) => {
         user_id_fk: userId, // 使用用户 ID 作为过滤条件
       },
     })
-    res.json({ status: 'success', data: cartItems })
+    res.json({ status: 'success', items: cartItems })
   } catch (error) {
     console.error('Error fetching cart items:', error)
     res.status(500).json({ status: 'error', message: 'Internal server error' })
