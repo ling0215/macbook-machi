@@ -40,6 +40,8 @@ input::placeholder {
 
 // 文章列表
 .article-content {
+    height: auto;
+    margin-bottom: 20px;
     display: flex;
 
     h4 {
@@ -65,7 +67,6 @@ input::placeholder {
 
 
 .article-text {
-    padding-bottom: 50px;
     span {
         color: $light-grey;
     }
@@ -88,6 +89,7 @@ input::placeholder {
 .article-list {
     list-style-type: none;
     padding-left: 0px;
+    margin-bottom: 0px;
 }
 
 .more {
@@ -99,8 +101,9 @@ input::placeholder {
 //分頁按鈕
 .pagination {
     display: flex;
+    align-items: flex-start;
     justify-content: center;
-    margin-top: 20px;
+    // margin-top: 20px;
 }
 
 .page-btn {

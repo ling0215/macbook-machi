@@ -2,10 +2,10 @@ import React from 'react'
 import styles from './customize.module.css'
 import Image from 'next/image'
 
-export default function CakeSize({ imageSize, size, price }) {
+export default function CakeSize({ imageSize, size, price, onClick }) {
   return (
     <>
-      <div>
+      <div onClick={onClick}>
         <Image
           src="/images/customize/cake4.png"
           alt="4吋蛋糕"

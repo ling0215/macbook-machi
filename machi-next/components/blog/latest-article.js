@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from '@/components/blog/article-list.module.scss'
+import styles from '@/components/blog/latest-article.module.scss'
 import { fetchArticles } from '@/services/blog'
 import Link from 'next/link'
 
@@ -29,7 +29,7 @@ export default function LatestArticles() {
 
     return (
       <>
-        <ul className="article-list">
+        <ul className={`article-list ${styles['latest-article']}`}>
           {newArticles.map((article) => (
             <li key={article.article_id}>
               <div className={styles[`image-text`]}>
