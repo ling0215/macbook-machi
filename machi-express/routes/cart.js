@@ -28,9 +28,9 @@ router.get('/', authenticate, async (req, res) => {
 
 // 更新購物車 待測試
 
-router.put('/:id', authenticate, async (req, res) => {
+router.put('/', authenticate, async (req, res) => {
   try {
-    const itemId = req.params.id // 從URL參數中取得商品ID
+    const itemId = req.body.id // 從URL參數中取得商品ID
     const newQuantity = req.body.quantity // 從請求體中取得新的商品數量
     const newType = req.body.type // 從請求體中取得類型
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { fetchCart } from '@/services/cart'
-import dataCartItems from '@/data/cart/test.json'
+
 import { CartTypeProvider } from '@/hooks/cart-type-state'
 
 import CartPage1 from '@/components/cart/cart-page1'
