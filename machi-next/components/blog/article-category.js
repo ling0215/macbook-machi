@@ -1,38 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from '@/components/blog/article-category.module.scss'
 
-import { FaChevronDown } from 'react-icons/fa'
-
-export default function ArticleCategory() {
-  // const [isOpen, setIsOpen] = useState(false)
+export default function ArticleCategory({ handleCategoryClick }) {
+  const categories = ['蛋糕', '泡芙', '餅乾', '教學']
 
   return (
     <>
       <div className="article-category py-2">
-        {/* <div onClick={() => setIsOpen(!isOpen)}> */}
-        <div>
-          <input type="checkbox" />
-          <span className="mx-3">蛋糕</span>
-          <FaChevronDown />
-        </div>
-        <div>
-          <input type="checkbox" />
-          <span className="mx-3">蛋糕</span>
-          <FaChevronDown />
-        </div>
-
-        {/* {isOpen && (
-          <div className={styles['submenu']}>
-            <input type="checkbox" />
-            <span>123</span>
-            <br />
-            <input type="checkbox" />
-            <span>123</span>
-            <br />
-            <input type="checkbox" />
-            <span>123</span>
+        {categories.map((category) => (
+          <div key={category}>
+            <input
+              type="checkbox"
+              name={category}
+              onClick={() => handleCategoryClick(category)}
+            />
+            <span className="mx-3">{category}</span>
           </div>
-        )} */}
+        ))}
       </div>
     </>
   )

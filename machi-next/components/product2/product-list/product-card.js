@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
   return (
     <>
       <div className="col-6">
-        <div className={styles.cardBody}>
+        <div className={`${styles.cardBody}`}>
           <Link href="/product/detail" passHref>
             <Image
               src={imageUrl}
@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
             <h5 className={styles.cardText}>{product.product_name}</h5>
             <p className={styles.typeText}>{product.product_category}</p>
             <h5 className={styles.currency}>NT${product.product_price_small}</h5>
-            <button className={styles.cartBtn}>
+            <button className={`${styles.cartBtn}`}>
               <IoCartOutline className={styles.cartIcon} /> 加入購物車
             </button>
           </div>

@@ -1,0 +1,81 @@
+import { DataTypes } from 'sequelize'
+
+export default async function (sequelize) {
+  return sequelize.define(
+    'CartItem',
+    {
+      cart_item_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true, // 新增這一行
+      },
+      user_id_fk: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      product_id_fk: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      product_name: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+      product_subtitle: {
+        type: DataTypes.STRING(50),
+      },
+      product_price: {
+        type: DataTypes.INTEGER,
+      },
+      product_count: {
+        type: DataTypes.INTEGER,
+      },
+      product_total: {
+        type: DataTypes.INTEGER,
+      },
+      class_id_fk: {
+        type: DataTypes.INTEGER,
+      },
+      class_name: {
+        type: DataTypes.STRING(50),
+      },
+      class_price: {
+        type: DataTypes.INTEGER,
+      },
+      class_count: {
+        type: DataTypes.INTEGER,
+      },
+      class_total: {
+        type: DataTypes.INTEGER,
+      },
+      custom_size: {
+        type: DataTypes.INTEGER,
+      },
+      custom_layer: {
+        type: DataTypes.INTEGER,
+      },
+      custom_flavor: {
+        type: DataTypes.INTEGER,
+      },
+      custom_decor: {
+        type: DataTypes.STRING(50),
+      },
+      custom_price: {
+        type: DataTypes.INTEGER,
+      },
+      custom_count: {
+        type: DataTypes.INTEGER,
+      },
+      custom_total: {
+        type: DataTypes.INTEGER,
+      },
+    },
+    {
+      tableName: 'cart_item',
+      timestamps: false,
+      paranoid: false,
+      underscored: true,
+    }
+  )
+}

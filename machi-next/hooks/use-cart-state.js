@@ -58,6 +58,7 @@ export const CartProvider = ({
 
   // 初始化 cartItems, cartState
   const [cartItems, setCartItems] = useState(items)
+  console.log(initialCartItems)
   const [cartState, setCartState] = useState(init(initialCartItems))
 
   // 初始化 setValue(localStoage), setValue用於存入localStorage中

@@ -1,19 +1,31 @@
 // pages/index.js
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import HomeCarousel from '@/components/homepage/home-carousel'
 import Featured from '@/components/homepage/featured'
+import CategoryCard from '@/components/homepage/category-card'
+import CustomizeLayout from '@/components/layout/customize/customize-layout'
 import PlaceholderText from '@/components/common/placeholder-text'
+import { fetchCategory } from '@/services/index'
+ // 請根據實際路徑進行調整
 
-export default function Home() {
+function Home() {
+  const [category, setCategory] = useState([]) //[變數名稱, 狀態變數]
+  useEffect(() => { // 當狀態變動時執行
+    fetchCategory().then((response) => { //services的fetchCategory()方法
+        console.log(response) // 打印後端的回應
+        setCategory(response) // 更新狀態
+      })
+  }, []);
   return (
     <>
       <HomeCarousel />
-      <div className="container col-xxl-10 px-1 py-2">
+      <div className="container col-xxl-10 px-4 py-2">
         <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
           <div className="col-lg-6 about">
-            <h2 className="about-title fw-bold lh-1 mb-3">關於 Machi</h2>
-            <p className="lead">Since 2015</p>
+            <h2 className="fw-bold lh-1 mb-3 about-title">關於 Machi</h2>
+            <p className="about-text">Since 2015</p>
             <p className="about-text">
               「machi」的名字源自日語中的「街」，象徵著一條小街道，充滿了美好的氛圍與風情，就像來到一個溫馨舒適的地方，您可以在這裡放鬆身心，品嚐法式甜點的絕妙滋味。
               <br />
@@ -44,16 +56,88 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* 熱銷商品區塊 */}
       <div className="px-4 py-5 full-background">
-        <div className="container col-xxl-10 px-1 py-5 featured">
+      <div className="background-layer" style={{
+            backgroundImage: 'url("/background.jpg")',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+        }}></div>
+        {/* <div className="container col-xxl-10 px-5 py-5 featured"> */}
+          <div className="container text-center px-5 my-5 article-section">
+            <h2 className="pb-2 mb-5 text-center section-heading"
+                style={{ borderBottom: '1px solid #785e4c' }}>最新消息</h2>
+            <div className="article-block">
+              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
+                <div className="col-md-6 d-flex justify-content-center">
+                  <Link
+                    href="/blog/detail"
+                    passHref
+                    className="no-underline d-flex align-items-center"
+                  >
+                    <img
+                      loading="lazy"
+                      src="/course.jpg"
+                      className="img-fluid"
+                      alt="文章圖片"
+                    />
+                  </Link>
+                </div>
+                <div className="col-md-6 article-right">
+                  <div className="mt-2 mb-2 d-flex article-title">
+                    踏入春日的序曲，編寫生活的篇章
+                  </div>
+                  <br />
+                  <div className="d-flex mb-3 article-date">2024.02.20</div>
+                  <button className="btn btn-grey read-more btn-sm">
+                    閱讀更多
+                  </button>
+                </div>
+              </div>
+
+              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
+                <div className="col-md-6 d-flex justify-content-center">
+                  <Link
+                    href="/blog/detail"
+                    passHref
+                    className="no-underline d-flex align-items-center"
+                  >
+                    <img
+                      loading="lazy"
+                      src="/course.jpg"
+                      className="img-fluid"
+                      alt="文章圖片"
+                    />
+                  </Link>
+                </div>
+                <div className="col-md-6 article-right">
+                  <div className="mt-2 mb-2 d-flex  article-title">
+                    踏入春日的序曲，編寫生活的篇章
+                  </div>
+                  <br />
+                  <div className="d-flex mb-3 article-date">2024.02.20</div>
+                  <button className="btn btn-grey read-more btn-sm">
+                    閱讀更多
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {/* </div> */}
+      </div>
+        <div className="container col-xxl-10 px-5 py-5 mt-5 featured">
           <div className="container text-center">
-            <h2 className="pb-2 border-bottom mb-5 text-center mt-2 section-heading">
-              熱銷商品
-            </h2>
+            <h2 className="pb-2 mb-5 text-center mt-2 section-heading"
+                style={{ borderBottom: '1px solid #785e4c' }}>熱門商品</h2>
             <div className="row row-cols-2 row-cols-md-4 d-flex ">
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className="w-350 no-border f-16 featured-card-product">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className="w-350 no-border f-16 featured-card">
                   <Link
                     href="/product/detail"
                     passHref
@@ -80,8 +164,8 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className="w-350 no-border f-16 featured-card-product">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className="w-350 no-border f-16 featured-card">
                   <Link
                     href="/product/detail"
                     passHref
@@ -108,8 +192,8 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className="w-350 no-border f-16 featured-card-product">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className="w-350 no-border f-16 featured-card">
                   <Link
                     href="/product/detail"
                     passHref
@@ -136,8 +220,8 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className="w-350 no-border f-16 featured-card-product">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className="w-350 no-border f-16 featured-card">
                   <Link
                     href="/product/detail"
                     passHref
@@ -167,13 +251,14 @@ export default function Home() {
             </div>
           </div>
           <div className="container text-center">
-            <h2 className="pb-2 border-bottom mb-5 text-center mt-5 section-heading">
-              熱門課程
+            <h2 className="pb-2 mb-5 text-center mt-5 section-heading"
+                style={{ borderBottom: '1px solid #785e4c' }}>
+              最新課程
             </h2>
             <div className="row row-cols-2 row-cols-md-4 g-4">
               {/* 這層加d-flex justify-content-center */}
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className="w-350 no-border f-16 featured-card-class jusity-content-center">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className="w-350 no-border f-16 jusity-content-center featured-card">
                   <Link href="/class/detail" passHref className="no-underline">
                     <img src="/course.jpg" className="card-img-top" alt="" />
                     <div className="card-body no-space-x">
@@ -191,8 +276,8 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className="w-350 no-border f-16 featured-card-class">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className="w-350 no-border f-16 featured-card">
                   <Link href="/class/detail" passHref className="no-underline">
                     <img src="/course.jpg" className="card-img-top" alt="" />
                     <div className="card-body no-space-x">
@@ -210,8 +295,8 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className="w-350 no-border f-16 featured-card-class">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className="w-350 no-border f-16 featured-card">
                   <Link href="/class/detail" passHref className="no-underline">
                     <img src="/course.jpg" className="card-img-top" alt="" />
                     <div className="card-body no-space-x">
@@ -229,8 +314,8 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-3 d-flex justify-content-center">
-                <div className=" no-border f-16 featured-card-class">
+              <div className="col-md-3 d-flex justify-content-center mb-4">
+                <div className=" no-border f-16 featured-card">
                   <Link href="/class/detail" passHref className="no-underline">
                     <img src="/course.jpg" className="card-img-top" alt="" />
                     <div className="card-body no-space-x">
@@ -251,173 +336,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <Featured />
-      <div className="px-4 py-5 full-background">
-        <div className="container col-xxl-10 px-1 py-5 featured">
-          <div className="container text-center mt-5 mb-5 article-block">
-            <h2 className="pb-2 border-bottom mb-5 text-center section-heading">
-              最新文章
-            </h2>
-            <div className="row row-cols-1 row-cols-md-2 d-flex align-items-center article-section">
-              <div className="col-md-6 d-flex justify-content-center">
-                <Link
-                  href="/blog/detail"
-                  passHref
-                  className="no-underline d-flex align-items-center"
-                >
-                  <img
-                    loading="lazy"
-                    src="/course.jpg"
-                    className="img-fluid"
-                    alt="文章圖片"
-                  />
-                </Link>
-              </div>
-              <div className="col-md-6 article-right">
-                <div className="mb-2 d-flex article-title">
-                  踏入春日的序曲，編寫生活的篇章
-                </div>
-                <br />
-                <div className="text-muted d-flex mb-3">2024.02.20</div>
-                <button className="btn btn-grey read-more">閱讀更多</button>
-              </div>
-            </div>
-            <div className="row row-cols-1 row-cols-md-2 d-flex align-items-center article-section">
-              <div className="col-md-6 d-flex justify-content-center">
-                <Link
-                  href="/blog/detail"
-                  passHref
-                  className="no-underline d-flex align-items-center"
-                >
-                  <img
-                    loading="lazy"
-                    src="/course.jpg"
-                    className="img-fluid"
-                    alt="文章圖片"
-                  />
-                </Link>
-              </div>
-              <div className="col-md-6 article-right">
-                <div className="mb-2 d-flex article-title">
-                  踏入春日的序曲，編寫生活的篇章
-                </div>
-                <br />
-                <div className="text-muted d-flex mb-3">2024.02.20</div>
-                <button className="btn btn-grey read-more">閱讀更多</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* <Featured /> */}
+      <CategoryCard category={category}/>
 
-      <div className="container px-4 py-5" id="custom-cards">
-        <h2 className="pb-2 border-bottom">Custom cards</h2>
-
-        <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-          <div className="col">
-            <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-              style={{
-                backgroundImage: "url('/images/features/unsplash-photo-1.jpg')",
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                <h3 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                  Short title, long jacket
-                </h3>
-                <ul className="d-flex list-unstyled mt-auto">
-                  {/* <li className="me-auto">
-                    <img
-                      src="https://github.com/twbs.png"
-                      alt="Bootstrap"
-                      width="32"
-                      height="32"
-                      className="rounded-circle border border-white"
-                    />
-                  </li> */}
-                  <li className="d-flex align-items-center me-3 ">
-                    <i className="bi bi-geo-fill me-2"></i>
-                    <small>Earth</small>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <i className="bi bi-calendar3 me-2"></i>
-                    <small>3d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="col">
-            <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-              style={{
-                backgroundImage: "url('/images/features/unsplash-photo-2.jpg')",
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                <h3 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                  Much longer title that wraps to multiple lines
-                </h3>
-                <ul className="d-flex list-unstyled mt-auto">
-                  <li className="me-auto">
-                    <img
-                      src="https://github.com/twbs.png"
-                      alt="Bootstrap"
-                      width="32"
-                      height="32"
-                      className="rounded-circle border border-white"
-                    />
-                  </li>
-                  <li className="d-flex align-items-center me-3">
-                    <i className="bi bi-geo-fill me-2"></i>
-                    <small>Pakistan</small>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <i className="bi bi-calendar3 me-2"></i>
-                    <small>4d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="col">
-            <div
-              className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-              style={{
-                backgroundImage: "url('/images/features/unsplash-photo-3.jpg')",
-              }}
-            >
-              <div className="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                <h3 className="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                  Another longer title belongs here
-                </h3>
-                <ul className="d-flex list-unstyled mt-auto">
-                  {/* <li className="me-auto">
-                    <img
-                      src="https://github.com/twbs.png"
-                      alt="Bootstrap"
-                      width="32"
-                      height="32"
-                      className="rounded-circle border border-white"
-                    />
-                  </li> */}
-                  <li className="d-flex align-items-center me-3">
-                    <i className="bi bi-geo-fill me-2"></i>
-                    <small>California</small>
-                  </li>
-                  <li className="d-flex align-items-center">
-                    <i className="bi bi-calendar3 me-2"></i>
-                    <small>5d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <style global jsx>
         {`
           .card-cover {
@@ -440,3 +361,8 @@ export default function Home() {
     </>
   )
 }
+Home.getLayout = function getLayout(page) {
+  return <CustomizeLayout>{page}</CustomizeLayout>
+}
+
+export default Home

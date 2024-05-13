@@ -3,10 +3,39 @@ import StepTitle from '@/components/customize/step-titles'
 import CakePreview from '@/components/customize/cake-preview'
 import CakeSize from '@/components/customize/cake-size'
 import DecoSelector from '@/components/customize/deco-selector'
-import styles from '@/components/customize/customize.module.css'
 import Link from 'next/link'
+import { useCustomize } from '@/hooks/use-customize'
 
 export default function CustomizedDeco() {
+  const { customize, setLayer, setFlavor, setDeco } = useCustomize()
+
+  const handleLayerChange = (layer) => {
+    setLayer(layer)
+  }
+
+  const handleFlavorChange = (flavor) => {
+    setFlavor(flavor)
+  }
+
+  const handleDecoChange = (newDeco) => {
+    setDeco((prevDeco) => {
+      // console.log('newDeco:', newDeco)
+      // console.log('prevDeco:', prevDeco)
+
+      if (prevDeco.includes(newDeco)) {
+        // 如果 newDeco 已經在 prevDeco 中，則移除它
+        return prevDeco.filter((deco) => deco !== newDeco)
+      } else {
+        // 如果 newDeco 不在 prevDeco 中，則添加它
+        return [...prevDeco, newDeco]
+      }
+    })
+    console.log(newDeco)
+  }
+  // const handleDecoChange = (newDeco) => {
+  //   setDeco([newDeco])
+  //   console.log(newDeco)
+  // }
   return (
     <>
       <div>
@@ -30,7 +59,7 @@ export default function CustomizedDeco() {
         </div>
         <div className="lynn-deco-preview">
           <div className="lynn-preview-section">
-            <CakePreview size="6吋" />
+            <CakePreview size={customize.sizePrice.size} />
             <div className="lynn-preview-cake">
               <CakeSize imageSize={170} size="預覽示意圖" price=" " />
             </div>
@@ -40,9 +69,24 @@ export default function CustomizedDeco() {
               decoTitle="請選擇蛋糕體層數"
               decoSubtitle="*3層為基本，每加一層 + NT$50"
               options={[
-                { name: 'layer', value: 'layer3', label: '3層' },
-                { name: 'layer', value: 'layer4', label: '4層' },
-                { name: 'layer', value: 'layer5', label: '5層' },
+                {
+                  name: 'layer',
+                  value: 'layer3',
+                  label: '3層',
+                  onClick: () => handleLayerChange('3層'),
+                },
+                {
+                  name: 'layer',
+                  value: 'layer4',
+                  label: '4層',
+                  onClick: () => handleLayerChange('4層'),
+                },
+                {
+                  name: 'layer',
+                  value: 'layer5',
+                  label: '5層',
+                  onClick: () => handleLayerChange('5層'),
+                },
               ]}
               displayType="radio"
             />
@@ -50,9 +94,24 @@ export default function CustomizedDeco() {
               decoTitle="請選擇蛋糕口味"
               decoSubtitle=""
               options={[
-                { name: 'flavor', value: 'earl-grey', label: '伯爵' },
-                { name: 'flavor', value: 'matcha', label: '抹茶' },
-                { name: 'flavor', value: 'choco', label: '巧克力' },
+                {
+                  name: 'flavor',
+                  value: 'earl-grey',
+                  label: '伯爵',
+                  onClick: () => handleFlavorChange('伯爵'),
+                },
+                {
+                  name: 'flavor',
+                  value: 'matcha',
+                  label: '抹茶',
+                  onClick: () => handleFlavorChange('抹茶'),
+                },
+                {
+                  name: 'flavor',
+                  value: 'choco',
+                  label: '巧克力',
+                  onClick: () => handleFlavorChange('巧克力'),
+                },
               ]}
               displayType="radio"
             />
@@ -61,13 +120,48 @@ export default function CustomizedDeco() {
                 decoTitle="請選擇蛋糕表面裝飾"
                 decoSubtitle="*每加一項裝飾 + NT$20"
                 options={[
-                  { name: 'decos', value: 'strawberry', label: '草莓' },
-                  { name: 'decos', value: 'cherry', label: '櫻桃' },
-                  { name: 'decos', value: 'chocolate', label: '巧克力' },
-                  { name: 'decos', value: 'macaron', label: '馬卡龍' },
-                  { name: 'decos', value: 'orange', label: '蜜漬橙片' },
-                  { name: 'decos', value: 'blueberry', label: '藍莓' },
-                  { name: 'decos', value: 'photo', label: '其他：上傳圖片' },
+                  {
+                    name: 'decos',
+                    value: 'strawberry',
+                    label: '草莓',
+                    onClick: () => handleDecoChange('草莓'),
+                  },
+                  {
+                    name: 'decos',
+                    value: 'cherry',
+                    label: '櫻桃',
+                    onClick: () => handleDecoChange('櫻桃'),
+                  },
+                  {
+                    name: 'decos',
+                    value: 'chocolate',
+                    label: '巧克力',
+                    onClick: () => handleDecoChange('巧克力'),
+                  },
+                  {
+                    name: 'decos',
+                    value: 'macaron',
+                    label: '馬卡龍',
+                    onClick: () => handleDecoChange('馬卡龍'),
+                  },
+                  {
+                    name: 'decos',
+                    value: 'orange',
+                    label: '蜜漬橙片',
+                    onClick: () => handleDecoChange('蜜漬橙片'),
+                  },
+                  {
+                    name: 'decos',
+                    value: 'blueberry',
+                    label: '藍莓',
+                    onClick: () => handleDecoChange('藍莓'),
+                  },
+                  {
+                    name: 'decos',
+                    value: 'photo',
+                    label: '其他：上傳圖片',
+                    onClick: () => handleDecoChange('其他：上傳圖片'),
+                  },
                 ]}
                 displayType="checkbox"
               />
@@ -75,7 +169,7 @@ export default function CustomizedDeco() {
             <hr className="lynn-done-select" />
             <div className="lynn-deco-price">
               <span>小計：</span>
-              <span>NT$1,080</span>
+              <span>{`NT$${customize.sizePrice.price}`}</span>
             </div>
             <div className="lynn-deco-confirm">
               <Link href="/customized-products/deco" passHref>

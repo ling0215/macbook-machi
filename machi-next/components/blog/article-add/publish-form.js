@@ -12,11 +12,13 @@ export default function PublishForm() {
   const [author, setAuthor] = useState('')
   const [data, setData] = useState('')
   const router = useRouter()
+  const [category, setCategory] = useState([]) // 新增的 state
+  const categories = ['蛋糕', '泡芙', '餅乾', '教學']
 
   const saveToDb = async (event) => {
     event.preventDefault()
     try {
-      const response = await publish({ title, author, article: data })
+      const response = await publish({ title, author, article: data, category })
       console.log(response)
       if (response.status === 200) {
         alert('資料寫入成功')
@@ -31,7 +33,16 @@ export default function PublishForm() {
   useEffect(() => {
     setEditorLoaded(true)
   }, [])
-
+  
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value
+    if (category.includes(selectedCategory)) {
+      setCategory(category.filter((cat) => cat !== selectedCategory))
+    } else {
+      setCategory([...category, selectedCategory])
+    }
+    console.log(setCategory);
+  }
   return (
     <>
       <Head>
@@ -68,6 +79,23 @@ export default function PublishForm() {
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
+        </div>
+        <div className="">
+          <div className="">
+            <span className="">類別 ：</span>
+            {categories.map((cat) => (
+              <label key={cat}>
+                <input
+                  type="checkbox"
+                  value={cat}
+                  name="category"
+                  checked={category.includes(cat)}
+                  onChange={handleCategoryChange}
+                />
+                {cat}
+              </label>
+            ))}
+          </div>
         </div>
         <Myeditor
           name="article"
