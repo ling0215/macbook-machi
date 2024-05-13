@@ -60,7 +60,7 @@ export default function BlogIndex() {
           console.error('No data returned from the server.')
         }
       })
-  }, [search, category, page, startDate, endDate, selectedCategories])
+  }, [search, category, page, startDate, endDate, selectedCategories, category])
 
   function AirDatepickerReact(props) {
     let $input = useRef()

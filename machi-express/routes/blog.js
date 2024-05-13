@@ -25,7 +25,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.post('/publish', upload.single('articleImage'), async (req, res) => {
-  const { title, author, article } = req.body
+  let { title, author, article, category } = req.body
+
+  if (Array.isArray(category)) {
+    category = category.join(',')
+  }
 
   try {
     const newArticle = await Article.create({
@@ -36,7 +40,7 @@ router.post('/publish', upload.single('articleImage'), async (req, res) => {
       article_status: 1, // 假設新文章的狀態總是 1
       subcategory_id_fk: 1,
       category_id_fk: 1,
-      article_category: 'AAA',
+      article_category: category,
     })
 
     res.status(200).json(newArticle)

@@ -3,14 +3,11 @@ import Link from 'next/link'
 import styles from '@/components/blog/article-list.module.scss'
 import { FaCaretRight } from 'react-icons/fa'
 
-const ArticlesList = ({ articles, selectedCategories }) => {
+const ArticlesList = ({ articles, selectedCategories, category }) => {
   // console.log(selectedCategories)
+  
   const stripHtmlTagsAndEntities = (htmlContent) => {
-    // 去除 HTML 标签
-    const htmlContentTag = htmlContent.replace(/<[^>]*>/g, '')
-    // 去除特殊字符实体
-    const htmlContentCharacters = htmlContentTag.replace(/&[^;]+;/g, '')
-    return htmlContentCharacters
+    return htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '')
   }
 
   const newArticles = articles
@@ -24,6 +21,8 @@ const ArticlesList = ({ articles, selectedCategories }) => {
   // console.log(articles)
 
   const [isOpen, setIsOpen] = useState(false)
+  // const categories = newArticles.article_category.split(',')
+  console.log(category)
   return (
     <>
       <div className={styles[`list-h`]}>
@@ -52,8 +51,9 @@ const ArticlesList = ({ articles, selectedCategories }) => {
                 </div>
                 <div className="mx-4 article-text">
                   <ul className="article-list acticle-tag">
-                    <li className="p-1 me-2">蛋糕</li>
-                    <li className="p-1 ">蛋糕</li>
+                    <li className="p-1 me-2">{article.article_category}</li>
+                    
+                    
                   </ul>
                   <h4 className="pt-2">{article.article_title}</h4>
                   <span>

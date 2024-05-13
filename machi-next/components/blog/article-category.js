@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from '@/components/blog/article-category.module.scss'
 
-export default function ArticleCategory({
-  articles,
-  setSelectedCategories,
-  handleCategoryClick,
-  setPage,
-}) {
+export default function ArticleCategory({ handleCategoryClick }) {
   const categories = ['蛋糕', '泡芙', '餅乾', '教學']
 
   return (
