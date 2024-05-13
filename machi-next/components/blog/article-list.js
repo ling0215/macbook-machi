@@ -4,7 +4,7 @@ import styles from '@/components/blog/article-list.module.scss'
 import { FaCaretRight } from 'react-icons/fa'
 
 const ArticlesList = ({ articles, selectedCategories, category }) => {
-  // console.log(selectedCategories)
+  // console.log(category)
 
   const stripHtmlTagsAndEntities = (htmlContent) => {
     return htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '')
@@ -41,7 +41,9 @@ const ArticlesList = ({ articles, selectedCategories, category }) => {
                 </div>
                 <div className="mx-4 article-text">
                   <ul className="article-list acticle-tag">
-                    <li className="p-1 me-2">{article.article_category}</li>
+                    {article.article_category?.split(',').map((category, index) => (
+                      <li key={index} className="p-1 me-2">{category}</li>
+                    ))}
                   </ul>
                   <h4 className="pt-2">{article.article_title}</h4>
                   <span>

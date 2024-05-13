@@ -44,7 +44,9 @@ const ArticleDetail = ({ articleId }) => {
       </div>
       <div className={styles['article-title']}>
         <h3>{article.article_title}</h3>
-        <span>{article.article_createtime}</span>
+        {article.article_createtime
+          ? article.article_createtime.split('T')[0]
+          : ''}
       </div>
       <div>
         <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
