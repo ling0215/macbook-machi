@@ -5,24 +5,14 @@ import { FaCaretRight } from 'react-icons/fa'
 
 const ArticlesList = ({ articles, selectedCategories, category }) => {
   // console.log(selectedCategories)
-  
+
   const stripHtmlTagsAndEntities = (htmlContent) => {
     return htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '')
   }
 
-  const newArticles = articles
-  // console.log(articles);
-  const filteredArticles =
-    selectedCategories && selectedCategories.length > 0
-      ? newArticles.filter((article) =>
-          selectedCategories.includes(article.article_category)
-        )
-      : newArticles
-  // console.log(articles)
-
   const [isOpen, setIsOpen] = useState(false)
   // const categories = newArticles.article_category.split(',')
-  console.log(category)
+  // console.log(category)
   return (
     <>
       <div className={styles[`list-h`]}>
@@ -42,7 +32,7 @@ const ArticlesList = ({ articles, selectedCategories, category }) => {
             </div>
           )}
         </div>
-        {filteredArticles.map((article) => (
+        {articles.map((article) => (
           <li key={article.article_id}>
             <div className="list-array">
               <div className="article-content">
@@ -52,8 +42,6 @@ const ArticlesList = ({ articles, selectedCategories, category }) => {
                 <div className="mx-4 article-text">
                   <ul className="article-list acticle-tag">
                     <li className="p-1 me-2">{article.article_category}</li>
-                    
-                    
                   </ul>
                   <h4 className="pt-2">{article.article_title}</h4>
                   <span>

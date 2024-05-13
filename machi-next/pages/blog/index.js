@@ -17,7 +17,6 @@ export default function BlogIndex() {
   ])
 
   const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('')
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
@@ -25,26 +24,17 @@ export default function BlogIndex() {
   const [endDate, setEndDate] = useState('01/01/2050')
   const [selectedCategories, setSelectedCategories] = useState([])
 
-  // useEffect(() => {
-  //   console.log('articles:', articles)
-  //   console.log('search:', search)
-  //   console.log('category:', category)
-  //   console.log('page:', page)
-  //   console.log('totalPages:', totalPages)
-  //   console.log('startDate:', startDate)
-  //   console.log('endDate:', endDate)
-  // }, [articles, search, category, page, totalPages, startDate, endDate])
+  useEffect(() => {
+    console.log('search:', search)
+    console.log('page:', page)
+    console.log('totalPages:', totalPages)
+    console.log('startDate:', startDate)
+    console.log('endDate:', endDate)
+    console.log('selectedCategories:', selectedCategories)
+  }, [search, selectedCategories, page, totalPages, startDate, endDate])
 
   useEffect(() => {
-    fetchBetterArticles(
-      search,
-      category,
-      page,
-      4,
-      startDate,
-      endDate,
-      selectedCategories
-    )
+    fetchBetterArticles(search, page, 4, startDate, endDate, selectedCategories)
       .then((response) => {
         // console.log(response.data) // 打印後端的回應
         return response.data
@@ -60,7 +50,7 @@ export default function BlogIndex() {
           console.error('No data returned from the server.')
         }
       })
-  }, [search, category, page, startDate, endDate, selectedCategories, category])
+  }, [search, page, startDate, endDate, selectedCategories])
 
   function AirDatepickerReact(props) {
     let $input = useRef()
