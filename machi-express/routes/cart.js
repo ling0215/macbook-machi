@@ -33,7 +33,6 @@ router.put('/', async (req, res) => {
     const itemId = parseInt(req.body.id) // 從URL參數中取得商品ID
     const newQuantity = parseInt(req.body.quantity) // 從請求體中取得新的商品數量
     const newType = String(req.body.type) // 從請求體中取得類型
-    console.log(newType)
 
     // 檢查數量有效性
     if (!newQuantity || newQuantity < 1) {
@@ -81,6 +80,39 @@ router.put('/', async (req, res) => {
     }
   } catch (error) {
     console.error('Error updating cart item:', error)
+    res.status(500).json({ status: 'error', message: 'Internal server error' })
+  }
+})
+
+router.delete('/', async (req, res) => {
+  try {
+    const itemId = parseInt(req.body.id) // 从URL参数中获取商品ID
+
+    // 检查 itemId 是否有效
+    if (!itemId) {
+      return res
+        .status(400)
+        .json({ status: 'error', message: 'Invalid item ID provided' })
+    }
+
+    // 删除数据库中的记录
+    const result = await CartItem.destroy({
+      where: {
+        cart_item_id: itemId, // 确保数据库字段和条件匹配
+      },
+    })
+
+    // 检查删除是否成功，destroy 方法返回删除的行数
+    if (result > 0) {
+      res.json({
+        status: 'success',
+        message: 'Cart item deleted successfully',
+      })
+    } else {
+      res.status(404).json({ status: 'error', message: 'Cart item not found' })
+    }
+  } catch (error) {
+    console.error('Error deleting cart item:', error)
     res.status(500).json({ status: 'error', message: 'Internal server error' })
   }
 })

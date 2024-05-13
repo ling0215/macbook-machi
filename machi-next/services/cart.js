@@ -15,7 +15,7 @@ export const fetchCart = async (userId) => {
     })
 }
 
-// 添加商品到购物车的函数
+// 添加商品到购物车的函数 待實裝
 export const addToCart = async (productId, quantity) => {
   return axiosInstance
     .post('/cart', { productId, quantity })
@@ -26,10 +26,10 @@ export const addToCart = async (productId, quantity) => {
     })
 }
 
-// 更新购物车中商品数量的函数
-export const updateCartItem = async (itemId, quantity) => {
+// 更新购物车中商品数量的函数 測試中
+export const updateCartItem = async (itemId, quantity, type) => {
   return axiosInstance
-    .put(`/cart/${itemId}`, { quantity })
+    .put(`/cart/`, { id: itemId, quantity: quantity, type: type }) // 确保传递所有必要的参数
     .then((res) => res.data)
     .catch((error) => {
       console.error('更新购物车项目时出错:', error)
@@ -37,7 +37,7 @@ export const updateCartItem = async (itemId, quantity) => {
     })
 }
 
-// 从购物车中移除商品的函数
+// 从购物车中移除商品的函数 待實裝
 export const removeFromCart = async (itemId) => {
   return axiosInstance
     .delete(`/cart/${itemId}`)
@@ -49,7 +49,7 @@ export const removeFromCart = async (itemId) => {
 }
 
 // 自定义钩子，用于管理和访问购物车数据
-export function useCart() {
+export function useCartUpdate() {
   const { data, error, mutate } = useSWR('/cart', fetchCart)
 
   // 刷新购物车数据的函数
