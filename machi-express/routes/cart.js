@@ -28,11 +28,12 @@ router.get('/', authenticate, async (req, res) => {
 
 // 更新購物車 待測試
 
-router.put('/', authenticate, async (req, res) => {
+router.put('/', async (req, res) => {
   try {
-    const itemId = req.body.id // 從URL參數中取得商品ID
-    const newQuantity = req.body.quantity // 從請求體中取得新的商品數量
-    const newType = req.body.type // 從請求體中取得類型
+    const itemId = parseInt(req.body.id) // 從URL參數中取得商品ID
+    const newQuantity = parseInt(req.body.quantity) // 從請求體中取得新的商品數量
+    const newType = String(req.body.type) // 從請求體中取得類型
+    console.log(newType)
 
     // 檢查數量有效性
     if (!newQuantity || newQuantity < 1) {
@@ -62,7 +63,11 @@ router.put('/', authenticate, async (req, res) => {
     // 更新資料庫
     const updatedItem = await CartItem.update(
       { [fieldName]: newQuantity },
-      { where: { id: itemId } }
+      {
+        where: {
+          cart_item_id: itemId,
+        },
+      }
     )
 
     // 檢查更新是否成功
