@@ -18,18 +18,22 @@ export default function CustomizedDeco() {
   }
 
   const handleDecoChange = (newDeco) => {
-    setDeco((prevDeco) => {
-      // console.log('newDeco:', newDeco)
-      // console.log('prevDeco:', prevDeco)
+    const prevDeco = customize.deco
 
-      if (prevDeco.includes(newDeco)) {
-        // 如果 newDeco 已經在 prevDeco 中，則移除它
-        return prevDeco.filter((deco) => deco !== newDeco)
-      } else {
-        // 如果 newDeco 不在 prevDeco 中，則添加它
-        return [...prevDeco, newDeco]
-      }
-    })
+    // console.log('newDeco:', newDeco)
+    // console.log('prevDeco:', prevDeco)
+    let nextDeco = [...prevDeco]
+
+    if (prevDeco.includes(newDeco)) {
+      // 如果 newDeco 已經在 prevDeco 中，則移除它
+      nextDeco = prevDeco.filter((deco) => deco !== newDeco)
+    } else {
+      // 如果 newDeco 不在 prevDeco 中，則添加它
+      nextDeco = [...prevDeco, newDeco]
+    }
+
+    setDeco(nextDeco)
+
     console.log(newDeco)
   }
   // const handleDecoChange = (newDeco) => {
@@ -81,12 +85,12 @@ export default function CustomizedDeco() {
                   label: '4層',
                   onClick: () => handleLayerChange('4層'),
                 },
-                {
-                  name: 'layer',
-                  value: 'layer5',
-                  label: '5層',
-                  onClick: () => handleLayerChange('5層'),
-                },
+                // {
+                //   name: 'layer',
+                //   value: 'layer5',
+                //   label: '5層',
+                //   onClick: () => handleLayerChange('5層'),
+                // },
               ]}
               displayType="radio"
             />
