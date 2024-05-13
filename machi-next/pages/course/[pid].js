@@ -68,9 +68,14 @@ export default function Detail() {
   };
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  const imageUrl1 = `/images/course/slide/${course.data.course.course_id}_1.jpg`
+  const imageUrl2 = `/images/course/slide/${course.data.course.course_id}_2.jpg`
+  const imageUrl3 = `/images/course/slide/${course.data.course.course_id}_3.jpg`
+ 
 
   return (
     <>
+    
       <div className="row mt-5 mx-2 d-flex justify-content-center ">
         <div className="col-md-5">
           <div className="position-sticky" style={{ top: '2rem' }}>
@@ -90,13 +95,13 @@ export default function Detail() {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src="/images/product/slide/p1.jpg" />
+          <img src={imageUrl1} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p2.jpg" />
+          <img src={imageUrl2} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p3.jpg" />
+          <img src={imageUrl3} />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -109,13 +114,13 @@ export default function Detail() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="/images/product/slide/p1.jpg" />
+          <img src={imageUrl1} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p2.jpg" />
+          <img src={imageUrl2} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p3.jpg" />
+          <img src={imageUrl3} />
         </SwiperSlide>
       </Swiper>
           </div>
@@ -123,9 +128,8 @@ export default function Detail() {
         <div className="col-md-6 ms-3 product-info">
           <h4 className="text-primary-dark mt-2">{course.data.course.course_name}</h4>
           <p className="text-muted">{course.data.course.course_category}</p>
-          <p className="product-desc mb-4">
-          {course.data.course.course_description}
-          </p>
+          <p className="product-desc mb-4" dangerouslySetInnerHTML={{ __html: course.data.course.course_description }}></p>
+
           <div className="mb-4">
        
           </div>
@@ -183,27 +187,31 @@ export default function Detail() {
             <IoHeartOutline className="fs-3 text-primary-dark" /> 加入追蹤清單
           </button>
         </div>
+
+
+
+
       </div>
       <div className="row mt-5"> 
       <div className="label">
             <button
                     onClick={() => handleButtonClick('intro')}
                     className={`${styles.intro} ${activeButton === 'intro' ? styles.buttonActive : ''}`}
-                    title="商品介紹">
+                    title="課程介紹">
                     課程介紹
                 </button>
                 <button
                     onClick={() => handleButtonClick('other')}
                     className={`${styles.other} ${activeButton === 'other' ? styles.buttonActive : ''}`}
                     title="運送與注意事項">
-                    運送與注意事項
+                    講師介紹
                 </button>
             </div>
             <div className="content" style={{ display: activeButton === 'intro' ? 'block' : 'none' }}>
                 <div
                     className="list-group-flush p-2 py-3 mb-4 border">
-                    <h4 id="title">商品介紹內文</h4>
-                    
+                    <h4 id="title">課程介紹內文</h4>
+                    <p className="product-desc mb-4" dangerouslySetInnerHTML={{ __html: course.data.course.course_description_full }}></p>
                 </div>
             </div>
             <div className="content" style={{ display: activeButton === 'other' ? 'block' : 'none' }}>

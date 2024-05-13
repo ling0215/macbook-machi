@@ -9,8 +9,9 @@
     }
 }
 .cardImg {
+    object-fit: cover; 
     width: 100%; /* 圖片寬度佔滿父元素 */
-    height: auto; 
+    height: 20vh; 
     overflow: hidden;
 }
 .cardInfo {
