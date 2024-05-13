@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 
 export default async function (sequelize) {
   return sequelize.define(
-    'ClassTeacher',
+    'CourseTeacher',
     {
       teacher_id: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -40,7 +40,7 @@ export default async function (sequelize) {
       },
     },
     {
-      tableName: 'class_teacher', //直接提供資料表名稱
+      tableName: 'course_teacher', //直接提供資料表名稱
       timestamps: false, // 關閉時間戳，因為你的資料表結構中沒有相應的欄位
       paranoid: false, // 軟性刪除
       underscored: true, // 所有自動建立欄位，使用snake_case命名
