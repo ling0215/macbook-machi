@@ -57,6 +57,18 @@ function Home() {
         </div>
       </div>
       <div className="px-4 py-5 full-background">
+      <div className="background-layer" style={{
+            backgroundImage: 'url("/background.jpg")',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+        }}></div>
         {/* <div className="container col-xxl-10 px-5 py-5 featured"> */}
           <div className="container text-center px-5 my-5 article-section">
             <h2 className="pb-2 mb-5 text-center section-heading"
@@ -122,7 +134,7 @@ function Home() {
         <div className="container col-xxl-10 px-5 py-5 mt-5 featured">
           <div className="container text-center">
             <h2 className="pb-2 mb-5 text-center mt-2 section-heading"
-                style={{ borderBottom: '1px solid #785e4c' }}>熱銷商品</h2>
+                style={{ borderBottom: '1px solid #785e4c' }}>熱門商品</h2>
             <div className="row row-cols-2 row-cols-md-4 d-flex ">
               <div className="col-md-3 d-flex justify-content-center mb-4">
                 <div className="w-350 no-border f-16 featured-card">
@@ -241,7 +253,7 @@ function Home() {
           <div className="container text-center">
             <h2 className="pb-2 mb-5 text-center mt-5 section-heading"
                 style={{ borderBottom: '1px solid #785e4c' }}>
-              熱門課程
+              最新課程
             </h2>
             <div className="row row-cols-2 row-cols-md-4 g-4">
               {/* 這層加d-flex justify-content-center */}
