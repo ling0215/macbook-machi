@@ -91,6 +91,7 @@ router.get('/articles/better', async (req, res) => {
     category = '', // string`
     start = '01/01/1970', // 新增的查詢參數
     end = '01/01/2050', // 新增的查詢參數
+    selectedCategories = [], // 新增的查詢參數
   } = req.query
   console.log(req.query)
   // !!注意: 以下都要檢查各query參數值的正確性，或給定預設值，要不然可能會產生資料庫查詢錯誤

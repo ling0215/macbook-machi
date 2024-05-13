@@ -15,6 +15,7 @@ export default function BlogIndex() {
   const [articless, setArticless] = useState([
     { id: 1, name: 'Default Product 1', price: 100 },
   ])
+
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('')
   const [page, setPage] = useState(1)
@@ -23,9 +24,6 @@ export default function BlogIndex() {
   const [startDate, setStartDate] = useState('01/01/1970')
   const [endDate, setEndDate] = useState('01/01/2050')
   const [selectedCategories, setSelectedCategories] = useState([])
-
-
-
 
   // useEffect(() => {
   //   console.log('articles:', articles)
@@ -38,7 +36,15 @@ export default function BlogIndex() {
   // }, [articles, search, category, page, totalPages, startDate, endDate])
 
   useEffect(() => {
-    fetchBetterArticles(search, category, page, 4, startDate, endDate, selectedCategories)
+    fetchBetterArticles(
+      search,
+      category,
+      page,
+      4,
+      startDate,
+      endDate,
+      selectedCategories
+    )
       .then((response) => {
         // console.log(response.data) // 打印後端的回應
         return response.data
@@ -69,6 +75,19 @@ export default function BlogIndex() {
     }, [props])
   }
 
+  const handleCategoryClick = async (category) => {
+    let newSelectedCategories
+
+    // 如果該分類已經被選定，則取消選定它
+    if (selectedCategories.includes(category)) {
+      newSelectedCategories = selectedCategories.filter((c) => c !== category)
+    } else {
+      // 否則，選定該分類
+      newSelectedCategories = [...selectedCategories, category]
+    }
+
+    setSelectedCategories(newSelectedCategories)
+  }
   return (
     <>
       <div className="container">
@@ -87,9 +106,15 @@ export default function BlogIndex() {
             <br />
             <div className="">
               <h6 className="article-sidebar pt-2">最新文章</h6>
-              <Latest />
+              <Latest articless={articless || []} />
               <h6 className="article-sidebar pt-2">文章分類</h6>
-              <Category articles={articless} />
+              <Category
+                setPage={setPage}
+                articless={articless || []}
+                setSelectedCategories={setSelectedCategories}
+                selectedCategories={selectedCategories}
+                handleCategoryClick={handleCategoryClick}
+              />
               <h6 className="article-sidebar pt-2">日期區間</h6>
               <div>
                 <Date
@@ -103,10 +128,14 @@ export default function BlogIndex() {
           <div className="col-9">
             <div className="container ">
               <ul className="article-list">
-                <List articles={articless || []} />
+                <List
+                  articles={articless || []}
+                  selectedCategories={selectedCategories}
+                />
               </ul>
             </div>
             <Pagination
+              key={page}
               totalPages={totalPages}
               currentPage={page}
               onPageChange={setPage}
