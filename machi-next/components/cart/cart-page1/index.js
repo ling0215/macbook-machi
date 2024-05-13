@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
@@ -7,7 +7,8 @@ import { FaCheck } from 'react-icons/fa6'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
-
+  console.log(items)
+  console.log(cart)
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
   // 自訂商品選中狀態
@@ -105,7 +106,6 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     setCourseChecked(newCheckedCourses)
   }
 
-
   //確認是否有選擇項目 並跳轉至下一頁
   const handleClickConfirm = () => {
     const { totalQuantity, totalPrice } = calculateTotal()
@@ -134,8 +134,6 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     onClickPage(2, { totalQuantity, totalPrice })
   }
 
-
-
   //回傳父元件用
   useEffect(() => {
     const selectedItems = {
@@ -152,9 +150,9 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     onSelectItems(selectedItems)
   }, [itemChecked, customItemChecked, courseChecked])
 
-  console.log('樓下為page1')
+  // console.log('樓下為page1')
 
-  console.log(selectedItems)
+  // console.log(selectedItems)
   //計算勾選金額跟數量用
   const calculateTotal = () => {
     const selectedItems = items.filter(
@@ -269,7 +267,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></button>
                   </div>
                 </div>
@@ -329,7 +327,9 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                       +
                     </button>
                   </div>
-                  <div className={` h4 `}>小計NT${item.subtotal}</div>
+                  <div className={` h4 `}>
+                    小計NT${item.price * item.quantity}
+                  </div>
                 </div>
               </div>
             </div>
@@ -387,7 +387,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></button>
                   </div>
                 </div>
@@ -447,7 +447,9 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                       +
                     </button>
                   </div>
-                  <div className={` h4 `}>小計NT${item.subtotal}</div>
+                  <div className={` h4 `}>
+                    小計NT${item.price * item.quantity}
+                  </div>
                 </div>
               </div>
             </div>
@@ -505,7 +507,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <butt
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></butt>
                   </div>
                 </div>
@@ -525,7 +527,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 </div>
                 <div className={`d-flex g-3 justify-content-between col ps-5`}>
                   <div className={`h4`}>人數:{item.quantity}</div>
-                  <div className={` h4 `}>NT{item.subtotal}</div>
+                  <div className={` h4 `}>NT{item.price * item.quantity}</div>
                 </div>
               </div>
               <hr />
@@ -545,7 +547,10 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
           </div>
         </div>
         <div className={`d-flex justify-content-end pb-5`}>
-          <button className={`${styles['cart-button']}`} onClick={handleClickConfirm}>
+          <button
+            className={`${styles['cart-button']}`}
+            onClick={handleClickConfirm}
+          >
             <div className={`${styles['cart-button-text']}`}>前往結帳</div>
           </button>
         </div>
