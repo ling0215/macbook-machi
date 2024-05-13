@@ -8,6 +8,7 @@ import CategoryCard from '@/components/homepage/category-card'
 import CustomizeLayout from '@/components/layout/customize/customize-layout'
 import PlaceholderText from '@/components/common/placeholder-text'
 import { fetchCategory } from '@/services/index'
+import FeaturedCard from '@/components/homepage/featured-card'
  // 請根據實際路徑進行調整
 
 function Home() {
@@ -131,6 +132,9 @@ function Home() {
           </div>
         {/* </div> */}
       </div>
+      {/* <FeaturedCard /> */}
+      
+
         <div className="container col-xxl-10 px-5 py-5 mt-5 featured">
           <div className="container text-center">
             <h2 className="pb-2 mb-5 text-center mt-2 section-heading"

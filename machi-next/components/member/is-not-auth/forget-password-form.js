@@ -59,9 +59,9 @@ function ForgetPasswordForm() {
 
   return (
     <main className={`form-member w-100 m-auto text-center`}>
-      <div className="card mt-5 border-0 shadow">
+      <div className="card my-5 border-0 shadow">
         <div className="card-body">
-          <h5 className="text-center fw-bold mb-3 mt-5 text-brown">重設密碼</h5>
+          <h5 className="text-center fw-bold mx-5 mt-3 mb-4 text-brown border-bottom">重設密碼</h5>
           <p className={`text-center mb-3 text-primary-dark`}>
             輸入你的會員電子郵件地址，按下&quot;取得驗証碼&ldquo;按鈕後，我們會將密碼重設指示寄送給你。
           </p>
@@ -127,7 +127,7 @@ function ForgetPasswordForm() {
             <button type="submit" className="btn btn-brown text-white w-100">
               確定
             </button>
-            <div className="row mt-2">
+            <div className="row mt-4">
               <p className={`text-primary-dark ${styles['notice']}`}>
                 還不是會員？
                 <Link className="text-primary-dark" href="/member/register">
@@ -139,7 +139,7 @@ function ForgetPasswordForm() {
           </form>
         </div>
       </div>
-    </main >
+    </main>
   )
 }
 
