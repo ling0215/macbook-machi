@@ -4,7 +4,7 @@ import styles from '@/styles/blog/article-detail.module.scss'
 import DOMPurify from 'dompurify'
 
 const ArticleDetail = ({ articleId }) => {
-  console.log(articleId)
+  // console.log(articleId)
   const [article, setArticle] = useState(null)
   useEffect(() => {
     const getArticleData = async () => {
@@ -29,7 +29,8 @@ const ArticleDetail = ({ articleId }) => {
   }
 
   const cleanHTML = DOMPurify.sanitize(article.article_content)
-
+  const categories = article.article_category.split(',')
+  console.log(categories)
   return (
     <div className={`container ${styles['article-text']}`}>
       <div className={styles['article-user']}>
@@ -37,7 +38,9 @@ const ArticleDetail = ({ articleId }) => {
         <span>{article.user_id_fk}</span>
       </div>
       <div className={styles['article-btn']}>
-        <button>{article.article_category}</button>
+        {categories.map((category, index) => (
+          <button key={index}>{category}</button>
+        ))}
       </div>
       <div className={styles['article-title']}>
         <h3>{article.article_title}</h3>

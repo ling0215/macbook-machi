@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 20px;
+    margin: 20px 10px;
 }
 .badge {
     position: relative;
@@ -35,24 +35,24 @@
 .currency {
     font-weight: bold;
     color: var(--primary-dark);
+    margin-bottom: 10px;
 }
 .heartIcon {
     font-size: 30px;
     color: var(--white);
     position: absolute;
-    top: 0.5vh;
-    left: 9.5vw;
+    top: 2%;
+    left: 80%;
 }
 .cartIcon {
     font-size: 20px;
     color: var(--white);
 }
 .cartBtn {
+    width: 70%;
     background-color: var(--light-brown);
     color: var(--white);
-    width: 150px;
-    height: 50px;
-    margin-top: 0.5vh;
+    padding: 5px;
     border: none;
     border-radius: 5px;
 
@@ -61,7 +61,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 7px) {
 
         .cardBody {
             width: 100%;
@@ -73,13 +73,6 @@
             overflow: hidden;
         }
 
-        .cardInfo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 20px;
-        }
-
         .badge {
             position: relative;
             top: 0;
@@ -89,8 +82,8 @@
         .heartIcon {
             font-size: 30px;
             position: absolute;
-            top: 1vh;
-            left: 52vh;
+            top: 10px;
+            left: 190px;
         }
 
         .cartIcon {
@@ -98,8 +91,8 @@
         }
 
         .cartBtn {
-            width: 30vh;
-            height: 8vh;
+            width: 80%;
+            height: 100%;
             margin-top:1vh;
         }
         

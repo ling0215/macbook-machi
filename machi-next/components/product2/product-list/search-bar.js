@@ -18,16 +18,17 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
   return (
     <>
       <div className="d-flex p-2 justify-content-between align-items-center">
-        <div className="row mt-2 mb-3">
-          <h5 className="card-text d-flex justify-content-between align-items-center">
+        <div className="row mt-2 mb-3 ">
+          <h5 className="card-text">
             <div className="input-group">
               <input
                 type="text"
                 placeholder="請輸入關鍵字"
                 className="form-control"
                 style={{
-                  width: '150px',
+                  width: '80%',
                   height: '40px',
+                  padding: '5px',
                   backgroundColor: 'white',
                   borderColor: 'light-brown',
                 }}
@@ -39,8 +40,8 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
             </div>
           </h5>
         </div>
-        <div className="row mt-2 mb-3 d-flex justify-content-end">
-          <div className="col-auto">
+        <div className="row mt-2 mb-3">
+          <div className="row row-cols-2 d-flex justify-content-center p-0">
             <div className="dropdown">
               <button
                 className="btn dropdown-toggle"
@@ -89,8 +90,8 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
                 </li>
               </ul>
             </div>
-            <div className="col-auto">
-              <div className="viewtype">
+            <div className="row row-cols-md-2">
+              <div className="viewtyp d-flex">
                 <button
                   className="btn"
                   id="gridview"

@@ -40,12 +40,16 @@ export const fetchBetterArticles = async (
   page = 1,
   perpage = 4,
   startDate = '01/01/1970',
-  endDate = '01/01/2050'
+  endDate = '01/01/2050',
+  selectedCategories = []
 ) => {
+  // 將選定的分類轉換為逗號分隔的字符串
+  const categoriesString = selectedCategories.join(',');
+
   return await axiosInstance.get(
     `/blog/articles/better?page=${page}&perpage=${perpage}&start=${startDate}&end=${endDate}&search=${encodeURIComponent(
       search
-    )}&category=${encodeURIComponent(category)}`
+    )}&category=${encodeURIComponent(category)}&selectedCategories=${encodeURIComponent(categoriesString)}`
   )
 }
 
