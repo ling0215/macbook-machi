@@ -91,12 +91,9 @@ export const addOne = (items, newItem) => {
 /**
  * `removeOne(items, id)` 移除項目於items中。同id項目只會移除一個。
  */
-export const removeOne = (items, id, type) => {
+export const removeOne = (items, id) => {
   console.log(items)
-  return items.filter(
-    (item) =>
-      !(String(item.id) === String(id) && String(item.type) === String(type))
-  )
+  return items.filter((item) => !(String(item.id) === String(id)))
 }
 
 // 以下為最後計算三者itemTotal(每項目種小計), totalItems(整體項目), cartTotal(整體總計)

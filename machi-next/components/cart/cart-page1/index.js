@@ -267,7 +267,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></button>
                   </div>
                 </div>
@@ -387,7 +387,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></button>
                   </div>
                 </div>
@@ -507,7 +507,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <butt
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></butt>
                   </div>
                 </div>

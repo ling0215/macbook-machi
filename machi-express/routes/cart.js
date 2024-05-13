@@ -28,7 +28,7 @@ router.get('/', authenticate, async (req, res) => {
 
 // 更新購物車 待測試
 
-router.put('/', async (req, res) => {
+router.put('/', authenticate, async (req, res) => {
   try {
     const itemId = parseInt(req.body.id) // 從URL參數中取得商品ID
     const newQuantity = parseInt(req.body.quantity) // 從請求體中取得新的商品數量
@@ -86,28 +86,21 @@ router.put('/', async (req, res) => {
 
 router.delete('/', async (req, res) => {
   try {
-    const itemId = parseInt(req.body.id) // 从URL参数中获取商品ID
-
-    // 检查 itemId 是否有效
-    if (!itemId) {
+    const itemId = parseInt(req.query.id)
+    console.log(itemId)
+    if (isNaN(itemId) || itemId <= 0) {
+      // 合併檢查，並確保 ID 大於 0
       return res
         .status(400)
         .json({ status: 'error', message: 'Invalid item ID provided' })
     }
 
-    // 删除数据库中的记录
     const result = await CartItem.destroy({
-      where: {
-        cart_item_id: itemId, // 确保数据库字段和条件匹配
-      },
+      where: { cart_item_id: itemId },
     })
 
-    // 检查删除是否成功，destroy 方法返回删除的行数
     if (result > 0) {
-      res.json({
-        status: 'success',
-        message: 'Cart item deleted successfully',
-      })
+      res.json({ status: 'success', message: 'Cart item deleted successfully' })
     } else {
       res.status(404).json({ status: 'error', message: 'Cart item not found' })
     }

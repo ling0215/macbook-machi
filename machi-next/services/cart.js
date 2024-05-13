@@ -26,10 +26,10 @@ export const addToCart = async (productId, quantity) => {
     })
 }
 
-// 更新购物车中商品数量的函数 測試中
+// 更新购物车中商品数量的函数
 export const updateCartItem = async (itemId, quantity, type) => {
   return axiosInstance
-    .put(`/cart/`, { id: itemId, quantity: quantity, type: type }) // 确保传递所有必要的参数
+    .put(`/cart`, { id: itemId, quantity: quantity, type: type }) // 确保传递所有必要的参数
     .then((res) => res.data)
     .catch((error) => {
       console.error('更新购物车项目时出错:', error)
@@ -37,10 +37,10 @@ export const updateCartItem = async (itemId, quantity, type) => {
     })
 }
 
-// 从购物车中移除商品的函数 待實裝
+// 从购物车中移除商品的函数 測試中
 export const removeFromCart = async (itemId) => {
   return axiosInstance
-    .delete(`/cart/${itemId}`)
+    .delete(`/cart?id=${itemId}`) // 使用查询字符串传递 itemId
     .then((res) => res.data)
     .catch((error) => {
       console.error('从购物车移除项目时出错:', error)
@@ -48,19 +48,19 @@ export const removeFromCart = async (itemId) => {
     })
 }
 
-// 自定义钩子，用于管理和访问购物车数据
-export function useCartUpdate() {
-  const { data, error, mutate } = useSWR('/cart', fetchCart)
+// // 自定义钩子，用于管理和访问购物车数据
+// export function useCartUpdate() {
+//   const { data, error, mutate } = useSWR('/cart', fetchCart)
 
-  // 刷新购物车数据的函数
-  const refreshCart = () => {
-    mutate()
-  }
+//   // 刷新购物车数据的函数
+//   const refreshCart = () => {
+//     mutate()
+//   }
 
-  return {
-    cartItems: data?.items || [],
-    total: data?.total || 0,
-    error,
-    refreshCart,
-  }
-}
+//   return {
+//     cartItems: data?.items || [],
+//     total: data?.total || 0,
+//     error,
+//     refreshCart,
+//   }
+// }

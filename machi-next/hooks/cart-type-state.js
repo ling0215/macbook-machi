@@ -8,7 +8,7 @@ import {
   incrementOne,
   decrementOne,
 } from './cart-type-state-reducer'
-import { fetchCart, updateCartItem } from '@/services/cart'
+import { fetchCart, updateCartItem, removeFromCart } from '@/services/cart'
 import { useAuth } from '@/hooks/use-auth'
 
 const CartContext = createContext(null)
@@ -95,8 +95,21 @@ export const CartTypeProvider = ({ children }) => {
     setCartItems(addOne(cartItems, item))
   }
 
-  const removeItem = (id, type) => {
-    setCartItems(removeOne(cartItems, id, type))
+  const removeItem = async (id) => {
+    const item = cartItems.find((item) => item.id === id)
+    if (!item) {
+      console.error('Item not found in cart')
+      return // 如果没有找到项目，提前返回
+    }
+
+    // 更新购物车项
+    const response = await removeFromCart(id)
+    if (response.error) {
+      console.error('Failed to increment item quantity:', response.error)
+    } else {
+      // 如果后端更新成功，更新前端状态
+      setCartItems(removeOne(cartItems, id))
+    }
   }
 
   const updateItem = (item) => {
