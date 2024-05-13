@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './customize.module.css'
 import Image from 'next/image'
+import { useCustomize } from '@/hooks/use-customize'
 
 export default function CakePreview({ size }) {
+  const { customize } = useCustomize()
   return (
     <>
       <div className={styles['preview-overview']}>
-        <div className={styles['preview-size']}>{size}</div>
+        <div className={styles['preview-size']}>{customize.sizePrice.size}</div>
         <div className={styles['preview-photo-overview']}>
           <div className={styles['preview-photo']}></div>
           <div className={styles['preview-photo-text']}>(照片預覽圖)</div>

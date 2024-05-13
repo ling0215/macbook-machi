@@ -6,7 +6,16 @@ export default function DecoSelector({
   decoSubtitle,
   options,
   displayType,
+  onClick,
+  onFileChange,
 }) {
+  const handleClick = (event) => {
+    onClick(event.target.value)
+  }
+
+  const handleFileChange = (event) => {
+    onFileChange(event.target.files[0])
+  }
   return (
     <div className={styles['deco-overview']}>
       <div className={styles['deco-titles']}>
@@ -15,36 +24,12 @@ export default function DecoSelector({
       </div>
       <hr className={styles['hr-brown']} />
       <div className={styles['deco-options']}>
-        {/* {options.map((option) => (
-          <div className={styles['deco-select']} key={option.value}>
-            <input
-              type={displayType}
-              id={option.value}
-              name="layer"
-              value={option.label}
-              style={{ display: displayType === 'radio' ? 'flex' : 'none' }}
-            />
-            <input
-              className={styles['deco-checkbox']}
-              type="checkbox"
-              id={option.value}
-              name="decos"
-              value={option.label}
-              style={{
-                display: displayType === 'checkbox' ? 'flex' : 'none',
-              }}
-            />
-            <label htmlFor={option.value}>{option.label}</label>
-            {option.value === 'photo' && (
-              <input type="file" id="deco-photo" name="deco-photo" accept="*" />
-            )}
-          </div>
-        ))} */}
         <div className={styles['deco-options']}>
           {options.map((option) => (
             <div className={styles['deco-select']} key={option.value}>
               <div className={styles['deco-radio']}>
                 <input
+                  onClick={() => option.onClick(option.label)}
                   type={displayType}
                   id={option.value}
                   name={option.name}
@@ -54,9 +39,10 @@ export default function DecoSelector({
               </div>
               <div className={styles['deco-checkbox']}>
                 <input
+                  onClick={() => option.onClick(option.label)}
                   type="checkbox"
                   id={option.value}
-                  name={option.label}
+                  name="decos"
                   value={option.label}
                   style={{
                     display: displayType === 'checkbox' ? 'flex' : 'none',
@@ -64,14 +50,23 @@ export default function DecoSelector({
                 />
               </div>
               <div className={styles['label-and-upload']}>
-                <label htmlFor={option.value}>{option.label}</label>
-                {option.value === 'photo' && (
-                  <input
-                    type="file"
-                    id="deco-photo"
-                    name="deco-photo"
-                    accept="*"
-                  />
+                {option.value === 'photo' ? (
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <label htmlFor={option.value}>{option.label}</label>
+                    <input
+                      className="form-control form-control-sm ms-3"
+                      id="formFileSm"
+                      type="file"
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                ) : (
+                  <label htmlFor={option.value}>{option.label}</label>
                 )}
               </div>
             </div>
