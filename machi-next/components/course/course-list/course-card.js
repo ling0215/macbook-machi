@@ -18,9 +18,9 @@ export default function CourseCard({ course }) {
               className={styles.cardImg}
               alt="productImg"
               placeholder="blur"
-              blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" // 這是一個空白的 GIF，你需要根據你的需求來設定這個值
-              width={174} // 你需要根據你的需求來設定這個值
-              height={230} // 你需要根據你的需求來設定這個值
+              blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+              width={174} 
+              height={230} 
             />
           </Link>
           <div className={styles.cardInfo}>

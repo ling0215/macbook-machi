@@ -14,7 +14,7 @@ export const getCourses = async (
   category = '',
   page = 1,
   perpage = 16,
-  priceRange = 3000
+  priceRange = 4000
 ) => {
   return await axiosInstance.get(
     `/course?page=${page}&perpage=${perpage}&sort=${sort}&order=${order}&min=0&max=${priceRange}&search=${encodeURIComponent(

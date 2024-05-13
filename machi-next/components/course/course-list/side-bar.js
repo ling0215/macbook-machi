@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 
 export default function Sidebar({ setCategory, setPriceRange }) {
+  const [sliderValue, setSliderValue] = useState(4000);
+
+
   function handleRangeChange(event) {
     // 從事件對象中獲取滑塊的值
+    setSliderValue(event.target.value);
+
     const range = event.target.value
 
     // 更新 priceRange 狀態變量
@@ -258,17 +263,19 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                   </div>
 
                   <label htmlFor="range" className="form-label mt-3">
-                    價格區間
+                    價格區間<p>Slider Value: {sliderValue}</p>
                   </label>
                   <input
-                    type="range"
-                    className="form-range"
-                    min={0}
-                    max={10000}
-                    step="1000"
-                    id="range"
-                    onChange={handleRangeChange}
-                  />
+        type="range"
+        className="form-range"
+        min={4000}
+        max={10000}
+        step={1200}
+        id="range"
+        value={sliderValue}
+        onChange={handleRangeChange}
+      />
+
                 </div>
               </div>
             </div>

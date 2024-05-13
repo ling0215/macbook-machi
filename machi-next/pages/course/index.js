@@ -12,7 +12,7 @@ export default function CoursePage() {
   ])
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('')
-  const [priceRange, setPriceRange] = useState(3000)
+  const [priceRange, setPriceRange] = useState(4000)
 
   const [sort, setSort] = useState('')
   const [order, setOrder] = useState('')
