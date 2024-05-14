@@ -28,8 +28,8 @@ export default function CourseCard1({course}) {
             />
           </Link>
                 </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+                <div class="col-md-8" >
+                  <div className={styles.cardbody}>
                     <h5 class="car d-title fw-bolder ">{course.course_name.slice(0, 8)}  <IoHeartOutline className={styles.heartIcon} /></h5>
                     
                     <p class="card-text fw-bolder ">
