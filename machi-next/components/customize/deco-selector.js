@@ -1,5 +1,6 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import styles from './customize.module.css'
+import { useCustomize } from '@/hooks/use-customize'
 
 export default function DecoSelector({
   decoTitle,
@@ -9,13 +10,47 @@ export default function DecoSelector({
   onClick,
   onFileChange,
 }) {
+  // 選擇的檔案
+  const [selectedFile, setSelectedFile] = useState(null)
+  // 是否有檔案被挑選
+  const [isFilePicked, setIsFilePicked] = useState(false)
+  // 預覽圖片
+  // const [preview, setPreview] = useState('')
+  const { customize, setPreview } = useCustomize()
+
   const handleClick = (event) => {
     onClick(event.target.value)
   }
 
   const handleFileChange = (event) => {
-    onFileChange(event.target.files[0])
+    // onFileChange(event.target.files[0])
+    const file = event.target.files[0]
+
+    if (file) {
+      setIsFilePicked(true)
+      setSelectedFile(file)
+      setPreview('')
+    } else {
+      setIsFilePicked(false)
+      setSelectedFile(null)
+      setPreview('')
+    }
   }
+
+  // 當選擇檔案更動時建立預覽圖
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview('')
+      return
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile)
+    console.log(objectUrl)
+    setPreview(objectUrl)
+
+    // 當元件unmounted時清除記憶體
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [selectedFile])
   return (
     <div className={styles['deco-overview']}>
       <div className={styles['deco-titles']}>

@@ -4,7 +4,7 @@ export default function Pagination({ totalPages, currentPage, onPageChange }) {
   const pageNumbers = [...Array(totalPages).keys()].map(i => i + 1);
 
   return (
-    <div className="pagination mb-5">
+    <div className="pagination my-5">
       <button
         className="page-btn"
         onClick={() => onPageChange(currentPage - 1)}

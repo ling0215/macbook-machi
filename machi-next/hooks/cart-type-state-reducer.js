@@ -43,9 +43,9 @@ export const updateOne = (items, updateItem) => {
 /**
  * `incrementOne(items, id)` 依照某id更新項目的數量+1
  */
-export const incrementOne = (items, id,type) => {
+export const incrementOne = (items, id, type) => {
   return items.map((item) => {
-    if (String(item.id) === String(id) && item.type===type)
+    if (String(item.id) === String(id) && item.type === type)
       return { ...item, quantity: item.quantity + 1 }
     else return item
   })
@@ -53,16 +53,17 @@ export const incrementOne = (items, id,type) => {
 /**
  * `decrementOne(items, id)` 依照某id更新項目的數量-1。最小為1。
  */
-export const decrementOne = (items, id,type) => {
-  return items.map((item) => {
-    if (String(item.id) === String(id) && item.type===type) {
-      return {
-        ...item,
-        quantity: item.quantity - 1 > 0 ? item.quantity - 1 : 0,
-        
-      }
-    } else return item
-  }).filter((item) => item.quantity > 0);
+export const decrementOne = (items, id, type) => {
+  return items
+    .map((item) => {
+      if (String(item.id) === String(id) && item.type === type) {
+        return {
+          ...item,
+          quantity: item.quantity - 1 > 0 ? item.quantity - 1 : 0,
+        }
+      } else return item
+    })
+    .filter((item) => item.quantity > 0)
 }
 /**
  * `addOne(items, newItem)` 加入項目於items中。同id項目只會增加數量，不會重複加入。
@@ -90,8 +91,9 @@ export const addOne = (items, newItem) => {
 /**
  * `removeOne(items, id)` 移除項目於items中。同id項目只會移除一個。
  */
-export const removeOne = (items, id,type) => {
-  return items.filter((item) => String(item.id) !== String(id)&&item.type!==type)
+export const removeOne = (items, id) => {
+  console.log(items)
+  return items.filter((item) => !(String(item.id) === String(id)))
 }
 
 // 以下為最後計算三者itemTotal(每項目種小計), totalItems(整體項目), cartTotal(整體總計)

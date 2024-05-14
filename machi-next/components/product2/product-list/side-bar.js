@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 
 export default function Sidebar({ setCategory, setPriceRange }) {
+  // 增加一個 state 來存儲滑塊的當前值
+  const [range, setRange] = useState(0);
+
   function handleRangeChange(event) {
     // 從事件對象中獲取滑塊的值
     const range = event.target.value
+
+    setRange(range);
 
     // 更新 priceRange 狀態變量
     setPriceRange(range)
@@ -254,19 +259,21 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                       </div>
                     </div>
                   </div>
-
-                  <label htmlFor="range" className="form-label mt-3">
-                    價格區間
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    min={0}
-                    max={3000}
-                    step="100"
-                    id="range"
-                    onChange={handleRangeChange}
-                  />
+                  <div>
+                    <label htmlFor="range" className="form-label mt-3">
+                      價格區間
+                    </label>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min={0}
+                      max={3000}
+                      step="100"
+                      id="range"
+                      onChange={handleRangeChange}
+                    />
+                    <span id="rangeValue">NT$0 ～ NT${range}</span>
+                  </div>
                 </div>
               </div>
             </div>
