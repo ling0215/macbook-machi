@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import Latest from '@/components/blog/latest-article'
 import Category from '@/components/blog/article-category'
 import List from '@/components/blog/article-list'
@@ -8,8 +7,6 @@ import { fetchBetterArticles } from '@/services/blog'
 import Pagination from '@/components/product2/product-list/pagination'
 
 import { FaSearch } from 'react-icons/fa'
-import { FaCaretLeft } from 'react-icons/fa'
-import { FaCaretRight } from 'react-icons/fa'
 
 export default function BlogIndex() {
   const [articless, setArticless] = useState([
@@ -25,12 +22,12 @@ export default function BlogIndex() {
   const [selectedCategories, setSelectedCategories] = useState([])
 
   useEffect(() => {
-    console.log('search:', search)
-    console.log('page:', page)
-    console.log('totalPages:', totalPages)
-    console.log('startDate:', startDate)
-    console.log('endDate:', endDate)
-    console.log('selectedCategories:', selectedCategories)
+    // console.log('search:', search)
+    // console.log('page:', page)
+    // console.log('totalPages:', totalPages)
+    // console.log('startDate:', startDate)
+    // console.log('endDate:', endDate)
+    // console.log('selectedCategories:', selectedCategories)
   }, [search, selectedCategories, page, totalPages, startDate, endDate])
 
   useEffect(() => {
@@ -52,18 +49,18 @@ export default function BlogIndex() {
       })
   }, [search, page, startDate, endDate, selectedCategories])
 
-  function AirDatepickerReact(props) {
-    let $input = useRef()
-    let dp = useRef()
+  // function AirDatepickerReact(props) {
+  //   let $input = useRef()
+  //   let dp = useRef()
 
-    useEffect(() => {
-      dp.current = new AirDatepicker($input.current, { ...props })
-    }, [])
+  //   useEffect(() => {
+  //     dp.current = new AirDatepicker($input.current, { ...props })
+  //   }, [props])
 
-    useEffect(() => {
-      dp.current.update({ ...props })
-    }, [props])
-  }
+  //   useEffect(() => {
+  //     dp.current.update({ ...props })
+  //   }, [props])
+  // }
 
   const handleCategoryClick = async (category) => {
     let newSelectedCategories
@@ -96,13 +93,13 @@ export default function BlogIndex() {
             <br />
             <div className="">
               <h6 className="article-sidebar pt-2">最新文章</h6>
-              <Latest articless={articless || []} />
+              <Latest />
               <h6 className="article-sidebar pt-2">文章分類</h6>
               <Category
-                setPage={setPage}
-                articless={articless || []}
-                setSelectedCategories={setSelectedCategories}
-                selectedCategories={selectedCategories}
+                // setPage={setPage}
+                // articless={articless || []}
+                // setSelectedCategories={setSelectedCategories}
+                // selectedCategories={selectedCategories}
                 handleCategoryClick={handleCategoryClick}
               />
               <h6 className="article-sidebar pt-2">日期區間</h6>

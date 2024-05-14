@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '@/components/blog/latest-article.module.scss'
 import { fetchArticles } from '@/services/blog'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function LatestArticles() {
   const [articles, setArticles] = useState([])
@@ -31,7 +32,13 @@ export default function LatestArticles() {
             <li key={article.article_id}>
               <div className={styles[`image-text`]}>
                 <div className={styles[`image`]}>
-                  <img src={article.firstImageUrl} alt="" />
+                  <Image
+                    src={article.firstImageUrl || '/images/blog/article1.jpg'}
+                    alt=""
+                    width={500}
+                    height={300}
+                    priority
+                  />
                 </div>
                 <Link
                   href={`/blog/${article.article_id}`}
