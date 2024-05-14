@@ -1,5 +1,3 @@
-//3
-// hooks/use-customize.js
 import { createContext, useState, useContext } from 'react'
 
 const CustomizeContext = createContext(null)
@@ -9,7 +7,8 @@ export function CustomizeProvider({ children }) {
     sizePrice: { size: '', price: '' },
     layer: '',
     flavor: '',
-    deco: '',
+    deco: [],
+    preview: '', // 預覽示意圖
   })
 
   const setSizePrice = (size, price) => {
@@ -28,6 +27,10 @@ export function CustomizeProvider({ children }) {
     setCustomize((prevState) => ({ ...prevState, deco }))
   }
 
+  const setPreview = (preview) => {
+    setCustomize((prevState) => ({ ...prevState, preview }))
+  }
+
   return (
     <CustomizeContext.Provider
       value={{
@@ -36,6 +39,7 @@ export function CustomizeProvider({ children }) {
         setLayer,
         setFlavor,
         setDeco,
+        setPreview,
       }}
     >
       {children}
@@ -44,43 +48,3 @@ export function CustomizeProvider({ children }) {
 }
 
 export const useCustomize = () => useContext(CustomizeContext)
-
-//1
-// import { createContext, useState } from 'react'
-
-// // const CustomizeProvider = createContext()
-
-// export function CustomizeProvider({ children }) {
-//   const [customizeSize, setCustomizeSize] = useState({ size: '8吋', price: '' })
-
-//   const [customizeLayer, setCustomizeLayer] = useState(0)
-//   const [customizeFlavor, setCustomizeFlavor] = useState('')
-//   const [customizeDeco, setCustomizeDeco] = useState([])
-
-//   return (
-//     <CustomizeContext.Provider
-//       value={{
-//         customizeSize,
-//         setCustomizeSize,
-//         customizeLayer,
-//         setCustomizeLayer,
-//         customizeFlavor,
-//         setCustomizeFlavor,
-//         customizeDeco,
-//         setCustomizeDeco,
-//       }}
-//     >
-//       {children}
-//     </CustomizeContext.Provider>
-//   )
-// }
-// export default CustomizeProvider
-
-// contexts/CustomizeProductContext.js
-
-//2
-// import { createContext } from 'react'
-
-// const CustomizeProductContext = createContext('')
-
-// export default CustomizeProductContext
