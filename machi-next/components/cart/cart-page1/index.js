@@ -431,7 +431,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                      onClick={() => decrement(item.uid, item.id, item.type)} // 减少数量的点击事件
                     >
                       -
                     </button>
@@ -443,7 +443,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4  mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                      onClick={() => increment(item.uid, item.id, item.type)} // 增加数量的点击事件
                     >
                       +
                     </button>
