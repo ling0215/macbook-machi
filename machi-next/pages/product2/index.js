@@ -70,15 +70,17 @@ export default function ProductPage() {
         setOrder={setOrder}
         setView={setView}
       />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex'}}>
         <Sidebar setCategory={setCategory} setPriceRange={setPriceRange} />
-        <ProductList products={products} view={view} />
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          <ProductList products={products} view={view} />
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            onPageChange={setPage}
+          />
+        </div>
       </div>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={page}
-        onPageChange={setPage}
-      />
     </div>
   )
 }

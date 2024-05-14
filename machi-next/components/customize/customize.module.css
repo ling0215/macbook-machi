@@ -209,7 +209,8 @@
 }
 .deco-select {
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -227,11 +228,23 @@
 .deco-photo {
   width: fit-content;
 }
+/* .label-and-upload {
+  display: flex;
+  align-items: first baseline;
+} */
+
 .label-and-upload {
   display: flex;
+  flex-direction: row;
   align-items: center;
 }
-
+.label-and-upload label,
+.label-and-upload input {
+  white-space: nowrap;
+}
+.label-and-upload input {
+  max-width: 230px;
+}
 @media (max-width: 400px) {
   /* steps */
   .custom-circle {
@@ -298,4 +311,7 @@
   .label-and-upload {
     flex-direction: column;
   }
+  /* .label-and-upload input {
+    max-width: 72px; */
+  /* } */
 }
