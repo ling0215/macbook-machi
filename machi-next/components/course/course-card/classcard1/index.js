@@ -1,11 +1,14 @@
 import React from "react";
 import {CiHeart} from "react-icons/ci";
 import styles from './classcard1.module.scss'
+import Image from "next/image";
+import Link from "next/link";
+import {IoCartOutline, IoHeartOutline} from "react-icons/io5";
 
 
 
-
-export default function ClassCard1(props) {
+export default function CourseCard1({course}) {
+  const imageUrl = `/images/course/card/${course.course_id}_1.jpg`//暫時標記
     return (
         <div id="page-content-wrapper" className="col">
         <div className="container-fluid">
@@ -13,17 +16,21 @@ export default function ClassCard1(props) {
             <div class="card mb-3 w-100  no-border ">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img
-                    src="/images/class/list/800x.webp"
-                    className="card-img-top"
-                    alt="..."
-                    style={{
-width: '100%', height: '80%', 
-}}/>
+                <Link href={`/course/${course.course_id}`}>
+            <Image
+              src={imageUrl}
+              className={styles.cardImg}
+              alt="productImg"
+              placeholder="blur"
+              blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+              width={174} 
+              height={230} 
+            />
+          </Link>
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="car d-title fw-bolder ">抹茶蛋糕卷  <CiHeart/></h5>
+                    <h5 class="car d-title fw-bolder ">{course.course_name.slice(0, 8)}  <IoHeartOutline className={styles.heartIcon} /></h5>
                     
                     <p class="card-text fw-bolder ">
                       課堂地點:台北市北投區裕民六路130號1樓
