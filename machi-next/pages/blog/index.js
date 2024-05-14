@@ -60,7 +60,7 @@ export default function BlogIndex() {
           console.error('No data returned from the server.')
         }
       })
-  }, [search, category, page, startDate, endDate, selectedCategories, category])
+  }, [search, category, page, startDate, endDate, selectedCategories])
 
   function AirDatepickerReact(props) {
     let $input = useRef()
@@ -108,13 +108,7 @@ export default function BlogIndex() {
               <h6 className="article-sidebar pt-2">最新文章</h6>
               <Latest articless={articless || []} />
               <h6 className="article-sidebar pt-2">文章分類</h6>
-              <Category
-                setPage={setPage}
-                articless={articless || []}
-                setSelectedCategories={setSelectedCategories}
-                selectedCategories={selectedCategories}
-                handleCategoryClick={handleCategoryClick}
-              />
+              <Category articles={articless} />
               <h6 className="article-sidebar pt-2">日期區間</h6>
               <div>
                 <Date
@@ -128,10 +122,7 @@ export default function BlogIndex() {
           <div className="col-9">
             <div className="container ">
               <ul className="article-list">
-                <List
-                  articles={articless || []}
-                  selectedCategories={selectedCategories}
-                />
+                <List articles={articless || []} />
               </ul>
             </div>
             <Pagination

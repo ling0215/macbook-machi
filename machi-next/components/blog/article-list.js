@@ -3,26 +3,19 @@ import Link from 'next/link'
 import styles from '@/components/blog/article-list.module.scss'
 import { FaCaretRight } from 'react-icons/fa'
 
-const ArticlesList = ({ articles, selectedCategories, category }) => {
-  // console.log(selectedCategories)
-  
+const ArticlesList = ({ articles, selectedCategories }) => {
   const stripHtmlTagsAndEntities = (htmlContent) => {
     return htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '')
   }
 
-  const newArticles = articles
-  // console.log(articles);
-  const filteredArticles =
-    selectedCategories && selectedCategories.length > 0
-      ? newArticles.filter((article) =>
-          selectedCategories.includes(article.article_category)
-        )
-      : newArticles
-  // console.log(articles)
+  const newArticles = articles.articles || []
+  const filteredArticles = selectedCategories
+    ? articles.filter((article) =>
+        selectedCategories.includes(article.category)
+      )
+    : articles
 
   const [isOpen, setIsOpen] = useState(false)
-  // const categories = newArticles.article_category.split(',')
-  console.log(category)
   return (
     <>
       <div className={styles[`list-h`]}>
