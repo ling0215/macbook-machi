@@ -52,8 +52,7 @@ export default function PublishForm() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container">
-        <div className="d-flex align-items-center">
-          <div className={styles.h1}>發表文章 </div>
+        <div className={`d-flex align-items-center ${styles.between}`}>          <div className={styles.h1}>發表文章 </div>
           <div>
             <Link href="/blog" className="btn btn-primary btn-sm ms-2">
               回文章列表

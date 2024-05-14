@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { fetchRawArticle } from '@/services/blog'
-import styles from '@/styles/blog/article-detail.module.scss'
+import styles from '@/components/blog/article-detail/article-detail.module.scss'
 import DOMPurify from 'dompurify'
+import Link from 'next/link'
 
 const ArticleDetail = ({ articleId }) => {
   // console.log(articleId)
@@ -50,6 +51,12 @@ const ArticleDetail = ({ articleId }) => {
       </div>
       <div>
         <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
+      </div>
+      <div>
+        <Link href="/blog" className="btn btn-primary btn-sm ms-2"
+        style={{backgroundColor: '#ab927d', border: 'none'}}>
+              回文章列表
+            </Link>
       </div>
     </div>
   )
