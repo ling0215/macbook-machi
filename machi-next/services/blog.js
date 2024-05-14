@@ -1,5 +1,4 @@
-import axiosInstance, { fetcher } from './axios-instance'
-import useSWR from 'swr'
+import axiosInstance from './axios-instance'
 
 export const publish = async (publishData = {}) => {
   return await axiosInstance.post('/blog/publish', publishData)
@@ -54,9 +53,9 @@ export const fetchBetterArticles = async (
 }
 
 export const fetchRawArticle = async (url = 0) => {
-  console.log('這裡')
-  console.log(url)
-  console.log('這裡')
+  // console.log('這裡')
+  // console.log(url)
+  // console.log('這裡')
   try {
     const response = await axiosInstance.get(`/blog/${url}`)
     if (response.status === 200) {

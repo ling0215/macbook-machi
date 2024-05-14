@@ -21,7 +21,7 @@ export default function PublishForm() {
       const response = await publish({ title, author, article: data, category })
       console.log(response)
       if (response.status === 200) {
-        alert('資料寫入成功')
+        alert('文章新增成功')
         router.push('/blog')
       } else {
         alert(`寫入失敗: ${response.data.message}`)
@@ -33,7 +33,7 @@ export default function PublishForm() {
   useEffect(() => {
     setEditorLoaded(true)
   }, [])
-  
+
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value
     if (category.includes(selectedCategory)) {
@@ -41,7 +41,7 @@ export default function PublishForm() {
     } else {
       setCategory([...category, selectedCategory])
     }
-    console.log(setCategory);
+    console.log(setCategory)
   }
   return (
     <>
@@ -55,7 +55,7 @@ export default function PublishForm() {
         <div className="d-flex align-items-center">
           <div className={styles.h1}>發表文章 </div>
           <div>
-            <Link href="/article" className="btn btn-primary btn-sm ms-2">
+            <Link href="/blog" className="btn btn-primary btn-sm ms-2">
               回文章列表
             </Link>
           </div>
