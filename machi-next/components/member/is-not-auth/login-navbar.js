@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './login.module.scss';
+import styles from '../member.module.scss';
 
 function LoginNavBar() {
   return (
-    <nav>
+    <nav className="d-none d-md-block">
       <ul className="d-flex flex-column flex-md-row justify-content-center list-inline content-nav">
         <li className="active">
           <Link href="/member/login" className={`${styles['content-nav']} p-2 px-4 mx-2 text-decoration-none`}>
