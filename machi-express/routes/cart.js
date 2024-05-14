@@ -26,7 +26,7 @@ router.get('/', authenticate, async (req, res) => {
   }
 })
 
-// 更新購物車 待測試
+// 更新購物車
 
 router.put('/', authenticate, async (req, res) => {
   try {
@@ -90,6 +90,7 @@ router.put('/', authenticate, async (req, res) => {
   }
 })
 
+//刪除購物車一筆資料
 router.delete('/', async (req, res) => {
   try {
     const itemId = parseInt(req.query.id)
@@ -131,6 +132,26 @@ router.delete('/', async (req, res) => {
     }
   } catch (error) {
     console.error('Error deleting cart item:', error)
+    res.status(500).json({ status: 'error', message: 'Internal server error' })
+  }
+})
+
+//加入購物車
+router.post('/', async (req, res) => {
+  try {
+    const userId = parseInt(req.body.data.uid)
+    const itemId = parseInt(req.body.data.id) // 從URL參數中取得商品ID
+    const newQuantity = parseInt(req.body.data.quantity) // 從請求體中取得新的商品數量
+    const newType = String(req.body.data.type) // 從請求體中取得類型
+
+    // 檢查數量有效性
+    if (!newQuantity || newQuantity < 1) {
+      return res
+        .status(400)
+        .json({ status: 'error', message: 'Invalid quantity provided' })
+    }
+  } catch (error) {
+    console.error('Error updating cart item:', error)
     res.status(500).json({ status: 'error', message: 'Internal server error' })
   }
 })

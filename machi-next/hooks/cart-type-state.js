@@ -94,6 +94,8 @@ export const CartTypeProvider = ({ children }) => {
     setCartState(init(cartItems))
   }, [cartItems])
 
+
+  //新增實作中
   const addItem = (item) => {
     setCartItems(addOne(cartItems, item))
   }
@@ -132,9 +134,10 @@ export const CartTypeProvider = ({ children }) => {
     setCartItems([])
   }
 
-  const isInCart = (id) => {
-    return cartItems.some((item) => item.id === id)
-  }
+  //省略isInCart,直接在addItem中判斷
+  // const isInCart = (id) => {
+  //   return cartItems.some((item) => item.id === id)
+  // }
 
   const increment = async (uid, id, type) => {
     // 找到需要增加数量的项
@@ -188,7 +191,6 @@ export const CartTypeProvider = ({ children }) => {
         addItem,
         removeItem,
         clearCart,
-        isInCart,
         increment,
         decrement,
       }}
