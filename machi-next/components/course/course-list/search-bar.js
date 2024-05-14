@@ -13,13 +13,6 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
     setOrder(sortOrder)
   }
   
-  const [courseListContent, setCourseListContent] = useState('<p>初始内容</p>');
-
-  // 处理按钮点击事件
-  const handleViewChange = () => {
-    // 设置新的HTML内容
-    setCourseListContent('<p>新的 HTML 内容</p>');
-  };
   
   // const handleViewChange = (viewType) => {
   //     setView(viewType);
@@ -107,7 +100,7 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
           <button
         className="btn"
         id="listview"
-        onClick={handleViewChange}
+        // onClick={() => handleViewChange('row')}
       >
         <i className="bi bi-list">測試</i>
       </button>
