@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import styles from '@/components/blog/article-list.module.scss'
-import { FaCaretRight } from 'react-icons/fa'
 import Image from 'next/image'
+
+import { FaCaretRight } from 'react-icons/fa'
+import { MdAdd } from "react-icons/md";
+import { FaPenToSquare } from "react-icons/fa6";
 
 const ArticlesList = ({ articles }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,14 +25,7 @@ const ArticlesList = ({ articles }) => {
             className={`btn`}
             id="listview"
             onClick={() => {
-              console.log('Button was clicked')
               setIsOpen((prevIsOpen) => {
-                console.log(
-                  'isOpen was',
-                  prevIsOpen,
-                  'and will be',
-                  !prevIsOpen
-                )
                 return !prevIsOpen
               })
             }}
@@ -39,24 +35,18 @@ const ArticlesList = ({ articles }) => {
           <div className={styles[`dropdown-position`]}>
             {isOpen && (
               <div className={styles[`dropdown-menu`]}>
-                <button onClick={() => console.log('選項1被點擊')}>
-                  {/* <Link
-                  href={`/blog/${article.article_id}`}
-                  type="button"
-                  className={styles[`link-style`]}
-                >
-                  <p>{stripHtmlTagsAndEntities(article.article_content)}</p>
-                </Link>  */}
-                  我的文章{' '}
-                </button>
+                <li onClick={() => console.log('選項1被點擊')}>
+                  我的文章<FaPenToSquare />
+                  {' '}
+                </li>
                 <Link
                   href={`/blog/publish`}
                   type="button"
                   className={styles[`link-style`]}
                 >
-                  <button onClick={() => console.log('選項2被點擊')}>
-                    新增文章
-                  </button>
+                  <li onClick={() => console.log('選項2被點擊')}>
+                    新增文章<MdAdd />
+                  </li>
                 </Link>{' '}
               </div>
             )}
@@ -94,7 +84,7 @@ const ArticlesList = ({ articles }) => {
                       ? stripHtmlTagsAndEntities(article.article_content)
                       : ''}
                   </p>
-                  <div className="more">
+                  <div className={styles[`more`]}>
                     <Link
                       href={`/blog/${article.article_id}`}
                       type="button"

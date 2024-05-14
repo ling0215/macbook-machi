@@ -80,7 +80,7 @@ export default function BlogIndex() {
       <div className="container">
         <div className="row">
           <div className="col-3">
-            <div className="input-container">
+            {/* <div className="input-container">
               <input
                 type="text"
                 className="input-field"
@@ -89,7 +89,25 @@ export default function BlogIndex() {
                 onChange={(event) => setSearch(event.target.value)}
               />
               <FaSearch />
-            </div>
+            </div> */}
+            <div className="input-group">
+            <input
+              type="text"
+              placeholder="請輸入關鍵字"
+              className="form-control"
+              style={{
+                width: '150px',
+                height: '40px',
+                backgroundColor: 'white',
+                borderColor: 'light-brown',
+                flex: '1',
+              }}
+                onChange={(event) => setSearch(event.target.value)}
+            />
+            <span className="input-group-text">
+              <i className="bi bi-search"></i>
+            </span>
+          </div>
             <br />
             <div className="">
               <h6 className="article-sidebar pt-2">最新文章</h6>
