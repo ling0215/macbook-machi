@@ -19,7 +19,7 @@ export const CartTypeProvider = ({ children }) => {
   const [error, setError] = useState(null)
   const { auth } = useAuth()
   const [formattedCartItems, setFormattedCartItems] = useState([])
-
+  console.log(auth)
   useEffect(() => {
     // 当组件加载和 auth.userData 更新时，尝试从数据库获取购物车数据
     const loadCartData = async () => {
@@ -50,7 +50,8 @@ export const CartTypeProvider = ({ children }) => {
         .map((item) => {
           if (item.product_id_fk) {
             return {
-              id: item.cart_item_id,
+              uid: auth.userData.user_id,
+              id: item.product_id_fk,
               quantity: item.product_count,
               price: item.product_price,
               name: item.product_name,
@@ -59,7 +60,8 @@ export const CartTypeProvider = ({ children }) => {
             }
           } else if (item.class_id_fk) {
             return {
-              id: item.cart_item_id,
+              uid: auth.userData.user_id,
+              id: item.class_id_fk,
               quantity: item.class_count,
               price: item.class_price,
               name: item.class_name,
@@ -70,7 +72,8 @@ export const CartTypeProvider = ({ children }) => {
             }
           } else if (item.custom_id_fk) {
             return {
-              id: item.cart_item_id,
+              uid: auth.userData.user_id,
+              id: item.custom_id_fk,
               quantity: item.custom_count,
               price: item.custom_price,
               name: item.custom_name,
@@ -95,33 +98,35 @@ export const CartTypeProvider = ({ children }) => {
     setCartItems(addOne(cartItems, item))
   }
 
-  const removeItem = async (id) => {
-    const item = cartItems.find((item) => item.id === id)
+  //刪除導這隻
+  const removeItem = async (uid, id, type) => {
+    const item = cartItems.find(
+      (item) => item.id === id && item.type === type && item.uid === uid
+    )
     if (!item) {
-      console.error('Item not found in cart')
+      console.error('Item not found in cart:', { uid, id, type })
       return // 如果没有找到项目，提前返回
     }
 
-    // 更新购物车项
-    const response = await removeFromCart(id)
+    const response = await removeFromCart(uid, id, type)
     if (response.error) {
       console.error('Failed to increment item quantity:', response.error)
     } else {
       // 如果后端更新成功，更新前端状态
-      setCartItems(removeOne(cartItems, id))
+      setCartItems(removeOne(cartItems, uid, id, type))
     }
   }
 
-  const updateItem = (item) => {
-    setCartItems(updateOne(cartItems, item))
-  }
+  // const updateItem = (item) => {
+  //   setCartItems(updateOne(cartItems, item))
+  // }
 
-  const updateItemQty = (id, quantity) => {
-    const item = findOneById(cartItems, id)
-    if (!item.id) return
-    const updateItem = { ...item, quantity }
-    setCartItems(updateOne(cartItems, updateItem))
-  }
+  // const updateItemQty = (id, quantity) => {
+  //   const item = findOneById(cartItems, id)
+  //   if (!item.id) return
+  //   const updateItem = { ...item, quantity }
+  //   setCartItems(updateOne(cartItems, updateItem))
+  // }
 
   const clearCart = () => {
     setCartItems([])
@@ -131,9 +136,11 @@ export const CartTypeProvider = ({ children }) => {
     return cartItems.some((item) => item.id === id)
   }
 
-  const increment = async (id, type) => {
+  const increment = async (uid, id, type) => {
     // 找到需要增加数量的项
-    const item = cartItems.find((item) => item.id === id && item.type === type)
+    const item = cartItems.find(
+      (item) => item.id === id && item.type === type && item.uid === uid
+    )
     if (!item) {
       console.error('Item not found in cart')
       return // 如果没有找到项目，提前返回
@@ -142,18 +149,20 @@ export const CartTypeProvider = ({ children }) => {
     const newQuantity = item.quantity + 1 // 假设每次增加1
 
     // 更新购物车项
-    const response = await updateCartItem(id, newQuantity, type)
+    const response = await updateCartItem(uid, id, newQuantity, type)
     if (response.error) {
       console.error('Failed to increment item quantity:', response.error)
     } else {
       // 如果后端更新成功，更新前端状态
-      setCartItems(incrementOne(cartItems, id, type))
+      setCartItems(incrementOne(uid, cartItems, id, type))
     }
   }
 
-  const decrement = async (id, type) => {
+  const decrement = async (uid, id, type) => {
     // 找到需要增加数量的项
-    const item = cartItems.find((item) => item.id === id && item.type === type)
+    const item = cartItems.find(
+      (item) => item.id === id && item.type === type && item.uid === uid
+    )
     if (!item) {
       console.error('Item not found in cart')
       return // 如果没有找到项目，提前返回
@@ -162,12 +171,12 @@ export const CartTypeProvider = ({ children }) => {
     const newQuantity = item.quantity - 1 // 假设每次增加1
 
     // 更新购物车项
-    const response = await updateCartItem(id, newQuantity, type)
+    const response = await updateCartItem(uid, id, newQuantity, type)
     if (response.error) {
       console.error('Failed to increment item quantity:', response.error)
     } else {
       // 如果后端更新成功，更新前端状态
-      setCartItems(decrementOne(cartItems, id, type))
+      setCartItems(decrementOne(uid, cartItems, id, type))
     }
   }
 
@@ -178,8 +187,6 @@ export const CartTypeProvider = ({ children }) => {
         items: cartItems,
         addItem,
         removeItem,
-        updateItem,
-        updateItemQty,
         clearCart,
         isInCart,
         increment,

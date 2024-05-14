@@ -30,6 +30,7 @@ router.get('/', authenticate, async (req, res) => {
 
 router.put('/', authenticate, async (req, res) => {
   try {
+    const userId = parseInt(req.body.uid)
     const itemId = parseInt(req.body.id) // 從URL參數中取得商品ID
     const newQuantity = parseInt(req.body.quantity) // 從請求體中取得新的商品數量
     const newType = String(req.body.type) // 從請求體中取得類型
@@ -42,16 +43,20 @@ router.put('/', authenticate, async (req, res) => {
     }
 
     // 根據 newType 確定要更新的欄位名稱
-    let fieldName
+    let fieldCount
+    let fieldType
     switch (newType) {
       case 'product':
-        fieldName = 'product_count'
+        fieldCount = 'product_count'
+        fieldType = 'product_id_fk'
         break
       case 'class':
-        fieldName = 'class_count'
+        fieldCount = 'class_count'
+        fieldType = 'class_id_fk'
         break
       case 'custom':
-        fieldName = 'custom_count'
+        fieldCount = 'custom_count'
+        fieldType = 'custom_id_fk'
         break
       default:
         return res
@@ -61,10 +66,11 @@ router.put('/', authenticate, async (req, res) => {
 
     // 更新資料庫
     const updatedItem = await CartItem.update(
-      { [fieldName]: newQuantity },
+      { [fieldCount]: newQuantity },
       {
         where: {
-          cart_item_id: itemId,
+          [fieldType]: itemId,
+          user_id_fk: userId,
         },
       }
     )
@@ -73,7 +79,7 @@ router.put('/', authenticate, async (req, res) => {
     if (updatedItem[0] > 0) {
       res.json({
         status: 'success',
-        message: `${fieldName} updated successfully`,
+        message: `${fieldType} updated successfully`,
       })
     } else {
       res.status(404).json({ status: 'error', message: 'Cart item not found' })
@@ -87,6 +93,8 @@ router.put('/', authenticate, async (req, res) => {
 router.delete('/', async (req, res) => {
   try {
     const itemId = parseInt(req.query.id)
+    const newType = String(req.query.type)
+    const userId = parseInt(req.query.uid)
     console.log(itemId)
     if (isNaN(itemId) || itemId <= 0) {
       // 合併檢查，並確保 ID 大於 0
@@ -95,8 +103,25 @@ router.delete('/', async (req, res) => {
         .json({ status: 'error', message: 'Invalid item ID provided' })
     }
 
+    let fieldName
+    switch (newType) {
+      case 'product':
+        fieldName = 'product_id_fk'
+        break
+      case 'class':
+        fieldName = 'class_id_fk'
+        break
+      case 'custom':
+        fieldName = 'custom_id_fk'
+        break
+      default:
+        return res
+          .status(400)
+          .json({ status: 'error', message: 'Invalid type provided' })
+    }
+
     const result = await CartItem.destroy({
-      where: { cart_item_id: itemId },
+      where: { [fieldName]: itemId, user_id_fk: userId },
     })
 
     if (result > 0) {

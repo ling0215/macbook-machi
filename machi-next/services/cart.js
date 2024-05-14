@@ -27,9 +27,9 @@ export const addToCart = async (productId, quantity) => {
 }
 
 // 更新购物车中商品数量的函数
-export const updateCartItem = async (itemId, quantity, type) => {
+export const updateCartItem = async (uid, itemId, quantity, type) => {
   return axiosInstance
-    .put(`/cart`, { id: itemId, quantity: quantity, type: type }) // 确保传递所有必要的参数
+    .put(`/cart`, { id: itemId, quantity: quantity, type: type, uid }) // 确保传递所有必要的参数
     .then((res) => res.data)
     .catch((error) => {
       console.error('更新购物车项目时出错:', error)
@@ -38,9 +38,9 @@ export const updateCartItem = async (itemId, quantity, type) => {
 }
 
 // 从购物车中移除商品的函数 測試中
-export const removeFromCart = async (itemId) => {
+export const removeFromCart = async (userId, itemId, itemType) => {
   return axiosInstance
-    .delete(`/cart?id=${itemId}`) // 使用查询字符串传递 itemId
+    .delete(`/cart?uid=${userId}&id=${itemId}&type=${itemType}`) // 使用查询字符串传递 itemId 和 itemType
     .then((res) => res.data)
     .catch((error) => {
       console.error('从购物车移除项目时出错:', error)

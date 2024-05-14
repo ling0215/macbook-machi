@@ -7,8 +7,9 @@ import { FaCheck } from 'react-icons/fa6'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem } = useCart()
+  console.log(`傳入page1的cart$`)
   console.log(items)
-  console.log(cart)
+  // console.log(cart)
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
   // 自訂商品選中狀態
@@ -267,7 +268,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.uid, item.id, item.type)}
                     ></button>
                   </div>
                 </div>
@@ -310,7 +311,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                      onClick={() => decrement(item.uid, item.id, item.type)} // 减少数量的点击事件
                     >
                       -
                     </button>
@@ -322,7 +323,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4  mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                      onClick={() => increment(item.uid, item.id, item.type)} // 增加数量的点击事件
                     >
                       +
                     </button>
@@ -387,7 +388,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.uid, item.id, item.type)}
                     ></button>
                   </div>
                 </div>
@@ -507,7 +508,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <butt
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.uid, item.id, item.type)}
                     ></butt>
                   </div>
                 </div>
