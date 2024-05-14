@@ -1,9 +1,4 @@
-@import '@/node_modules/bootstrap/scss/functions';
-
-@import '@/node_modules/bootstrap/scss/variables';
-
- /* 頭像 */
- .article-text {
+.article-text {
     text-align: center;
 }
 
@@ -24,8 +19,8 @@
     button {
         margin-block: 30px;
         margin-right: 15px;
-        background-color: #ab927d;
-        color: white;
+        background-color: #f8dc9a;
+        color: #785e4c;
         border: none;
     }
 }
@@ -45,28 +40,5 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
-}
-/* 留言區 */
-.message-area {
-    h4 {
-        margin-block: 20px;
-    }
-}
-.message {
-    margin-bottom: 20px;
-    position: relative;
-    background-color: #f0b47c;
-    width: 100%;
-    height: 200px;
-    p {
-        padding: 10px;
-    }
-    button{
-        background-color: #ec7d4a;
-        color: brown;
-        border: none;
-        position: absolute; 
-        bottom: 0; right: 0px;
     }
 }
