@@ -4,8 +4,8 @@ import styles from '@/components/blog/article-list.module.scss'
 import Image from 'next/image'
 
 import { FaCaretRight } from 'react-icons/fa'
-import { MdAdd } from "react-icons/md";
-import { FaPenToSquare } from "react-icons/fa6";
+import { MdAdd } from 'react-icons/md'
+import { FaPenToSquare } from 'react-icons/fa6'
 
 const ArticlesList = ({ articles }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -36,8 +36,8 @@ const ArticlesList = ({ articles }) => {
             {isOpen && (
               <div className={styles[`dropdown-menu`]}>
                 <li onClick={() => console.log('選項1被點擊')}>
-                  我的文章<FaPenToSquare />
-                  {' '}
+                  我的文章
+                  <FaPenToSquare />{' '}
                 </li>
                 <Link
                   href={`/blog/publish`}
@@ -45,7 +45,8 @@ const ArticlesList = ({ articles }) => {
                   className={styles[`link-style`]}
                 >
                   <li onClick={() => console.log('選項2被點擊')}>
-                    新增文章<MdAdd />
+                    新增文章
+                    <MdAdd />
                   </li>
                 </Link>{' '}
               </div>

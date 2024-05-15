@@ -20,7 +20,6 @@ export default async function (sequelize) {
       },
       product_name: {
         type: DataTypes.STRING(50),
-        allowNull: false,
       },
       product_subtitle: {
         type: DataTypes.STRING(50),
@@ -34,29 +33,29 @@ export default async function (sequelize) {
       product_total: {
         type: DataTypes.INTEGER,
       },
-      class_id_fk: {
+      course_id_fk: {
         type: DataTypes.INTEGER,
       },
-      class_name: {
+      course_name: {
         type: DataTypes.STRING(50),
       },
-      class_price: {
+      course_price: {
         type: DataTypes.INTEGER,
       },
-      class_count: {
+      course_count: {
         type: DataTypes.INTEGER,
       },
-      class_total: {
+      course_total: {
         type: DataTypes.INTEGER,
       },
       custom_size: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       custom_layer: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       custom_flavor: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       custom_decor: {
         type: DataTypes.STRING(50),
