@@ -107,6 +107,11 @@ export const CartTypeProvider = ({ children }) => {
       console.error('User data is not available')
       return // 提前返回，防止执行后续代码
     }
+    if (cartItems.length == 0) {
+      console.error('User data is not available')
+      return // 提前返回，防止执行后续代码
+    }
+
     let userId = auth.userData.user_id
     let newItem = await { uid: userId }
 
