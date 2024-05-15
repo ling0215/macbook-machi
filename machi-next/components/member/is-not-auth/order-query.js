@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from '../member.module.css'
+import styles from '../member.module.scss'
 import Link from 'next/link'
 import { requestOtpToken } from '@/services/user'
 import { OrderQuery } from '@/services/user'
@@ -19,7 +19,7 @@ function OrderQuery() {
                 <input
                   type="email"
                   className={`form-control w-100 ${styles['form-control']} `}
-                  placeholder="電子郵件地址"
+                  placeholder="請輸入訂單編號"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -28,11 +28,11 @@ function OrderQuery() {
             <div className="row mb-3">
               <div className="col-sm-12">
                 <input
-                  type="password"
+                  type="email"
                   className={`form-control w-100 ${styles['form-control']}  `}
-                  placeholder="密碼"
+                  placeholder="請輸入電子郵件"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <button type="submit" className=" text-white btn btn-brown w-100">

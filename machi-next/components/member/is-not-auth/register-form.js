@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../member.module.css'
+import styles from '../member.module.scss'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { register } from '@/services/user'
@@ -42,8 +42,8 @@ export default function RegisterForm() {
 
   return (
     <main className={`form-member w-100 m-auto text-center`}>
-      <div className="card my-3 border-0 shadow">
-        <div className="card-body">
+      <div className="card my-3 border-0 shadow mb-5">
+        <div className="card-body ">
           <h5 className="text-center fw-bold mx-5 mt-3 mb-4 text-brown border-bottom">會員註冊</h5>
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
@@ -110,7 +110,7 @@ export default function RegisterForm() {
               註冊
             </button>
 
-            <div className="row mt-4">
+            <div className="row mt-4 ">
               <p className={`text-primary-dark ${styles['notice']}`}>
                 已經是會員了？
                 <Link className="text-primary-dark" href="/member/login">

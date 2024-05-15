@@ -5,7 +5,7 @@ import '@/styles/product.scss'
 import '@/styles/cart.scss'
 import '@/styles/loader.scss'
 import '@/styles/customize.scss'
-import '@/styles/blog/blog.scss'
+import '@/styles/blog.scss'
 import '@/styles/homepage.scss'
 
 //測試資料

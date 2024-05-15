@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
     <>
       <div className="col-6">
         <div className={`${styles.cardBody}`}>
-          <Link href="/product/detail" passHref>
+          <Link href={`/product2/${product.product_id}`} passHref>
             <Image
               src={imageUrl}
               className={styles.cardImg}
