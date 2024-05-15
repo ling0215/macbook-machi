@@ -8,7 +8,12 @@ import {
   incrementOne,
   decrementOne,
 } from './cart-type-state-reducer'
-import { fetchCart, updateCartItem, removeFromCart } from '@/services/cart'
+import {
+  fetchCart,
+  updateCartItem,
+  removeFromCart,
+  addToCart,
+} from '@/services/cart'
 import { useAuth } from '@/hooks/use-auth'
 
 const CartContext = createContext(null)
@@ -78,7 +83,6 @@ export const CartTypeProvider = ({ children }) => {
               id: item.cart_item_id,
               quantity: item.custom_count,
               price: item.custom_price,
-              name: item.custom_name,
               image: '',
               type: 'custom',
             }
@@ -97,8 +101,70 @@ export const CartTypeProvider = ({ children }) => {
   }, [cartItems])
 
   //新增實作中
-  const addItem = (item) => {
-    setCartItems(addOne(cartItems, item))
+  const addItem = async (item) => {
+    let newItem = {}
+
+    if (item.product_id_fk) {
+      newItem = {
+        uid: auth.userData.user_id,
+        id: item.product_id_fk,
+        quantity: item.product_count,
+        price: item.product_price,
+        name: item.product_name,
+        image: '',
+        type: 'product',
+      }
+    } else if (item.course_id_fk) {
+      newItem = {
+        uid: auth.userData.user_id,
+        id: item.course_id_fk,
+        quantity: item.course_count,
+        price: item.course_price,
+        name: item.course_name,
+        image: '',
+        type: 'course',
+        coursetime: '2024/08/10',
+        address: '復興堡',
+      }
+    } else if (item.cart_item_id) {
+      newItem = {
+        uid: auth.userData.user_id,
+        id: item.cart_item_id,
+        quantity: item.custom_count,
+        price: item.custom_price,
+        name: item.custom_name,
+        image: '',
+        type: 'custom',
+      }
+    }
+
+    // 檢查購物車中是否已經存在相同的物品
+    const index = cartItems.findIndex(
+      (cartItem) =>
+        cartItem.uid === newItem.uid &&
+        cartItem.id === newItem.id &&
+        cartItem.type === newItem.type
+    )
+
+    if (index !== -1) {
+      // 如果找到了，更新其数量
+      const newQuantity = cartItems[index].quantity + newItem.quantity
+      const response = await updateCartItem(
+        newItem.uid,
+        newItem.id,
+        newQuantity,
+        newItem.type
+      )
+      console.log(response) // 可以根据需要处理响应
+      return // 结束函数执行
+    } else {
+      // 如果检查通过，没有找到相同商品，添加新项目到购物车
+      const response = await addToCart(newItem.uid, newItem)
+      console.log(response) // 处理添加到购物车的响应
+    }
+
+    // 如果檢查通過，將新項目添加到購物車中
+    setCartItems(addOne(cartItems, newItem))
   }
 
   //刪除導這隻
