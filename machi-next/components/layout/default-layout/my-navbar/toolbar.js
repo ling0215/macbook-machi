@@ -65,7 +65,8 @@ export default function Toolbar({ handleShow }) {
           </li>
         </ul>
       </li>
-      <li className="nav-item">
+
+      {/* <li className="nav-item">
         <span
           className="nav-link  btn btn-outline-light"
           role="presentation"
@@ -78,7 +79,7 @@ export default function Toolbar({ handleShow }) {
           <i className="bi bi-mortarboard-fill"></i>
           <p className="d-none d-md-inline d-lg-none"> 展示</p>
         </span>
-      </li>
+      </li> */}
     </ul>
   )
 }
