@@ -58,16 +58,16 @@ export const CartTypeProvider = ({ children }) => {
               image: '',
               type: 'product',
             }
-          } else if (item.class_id_fk) {
+          } else if (item.course_id_fk) {
             return {
               uid: auth.userData.user_id,
-              id: item.class_id_fk,
-              quantity: item.class_count,
-              price: item.class_price,
-              name: item.class_name,
+              id: item.course_id_fk,
+              quantity: item.course_count,
+              price: item.course_price,
+              name: item.course_name,
               image: '',
-              type: 'class',
-              classtime: '2024/08/10',
+              type: 'course',
+              coursetime: '2024/08/10',
               address: '復興堡',
             }
           } else if (item.custom_id_fk) {
@@ -93,7 +93,6 @@ export const CartTypeProvider = ({ children }) => {
     // 更新 cartState 以匹配最新的 cartItems
     setCartState(init(cartItems))
   }, [cartItems])
-
 
   //新增實作中
   const addItem = (item) => {

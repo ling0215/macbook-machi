@@ -64,7 +64,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     // 更新全選的狀態
     const allCoursesSelected =
       Object.values(newCheckedCourses).filter(Boolean).length ===
-      items.filter((item) => item.type === 'class').length
+      items.filter((item) => item.type === 'course').length
     setSelectCourseAll(allCoursesSelected)
   }
 
@@ -100,7 +100,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     // 更新所有課程的選中狀態
     const newCheckedCourses = {}
     items
-      .filter((item) => item.type === 'class')
+      .filter((item) => item.type === 'course')
       .forEach((item) => {
         newCheckedCourses[item.id] = newSelectCourseAll
       })
@@ -126,7 +126,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
       (item) => item.type === 'custom' && customItemChecked[item.id]
     )
     const hasCourse = items.some(
-      (item) => item.type === 'class' && courseChecked[item.id]
+      (item) => item.type === 'course' && courseChecked[item.id]
     )
     if (!hasProduct && !hasCustom && !hasCourse) {
       alert('請選擇購買項目')
@@ -145,7 +145,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
         (item) => item.type === 'custom' && customItemChecked[item.id]
       ),
       courses: items.filter(
-        (item) => item.type === 'class' && courseChecked[item.id]
+        (item) => item.type === 'course' && courseChecked[item.id]
       ),
     }
     onSelectItems(selectedItems)
@@ -160,7 +160,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
       (item) =>
         (item.type === 'product' && itemChecked[item.id]) ||
         (item.type === 'custom' && customItemChecked[item.id]) ||
-        (item.type === 'class' && courseChecked[item.id])
+        (item.type === 'course' && courseChecked[item.id])
     )
 
     const totalQuantity = selectedItems.reduce(
@@ -472,12 +472,12 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>課程</div>
           <div className={` h3`}>
-            ({items.filter((item) => item.type === 'class').length})
+            ({items.filter((item) => item.type === 'course').length})
           </div>
         </div>
 
         {items
-          .filter((item) => item.type === 'class')
+          .filter((item) => item.type === 'course')
           .map((item) => (
             <div
               className={`d-flex  g-0  align-items-center py-4 ${styles['text-border-grey']} pe-0`}

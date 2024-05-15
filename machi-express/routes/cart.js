@@ -6,6 +6,7 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 
 import authenticate from '#middlewares/authenticate.js'
 import sequelize from '#configs/db.js'
+import { create } from 'lodash'
 const { CartItem } = sequelize.models
 
 // 獲得某會員id的有加入到購物清單中的商品id們
@@ -50,9 +51,9 @@ router.put('/', authenticate, async (req, res) => {
         fieldCount = 'product_count'
         fieldType = 'product_id_fk'
         break
-      case 'class':
-        fieldCount = 'class_count'
-        fieldType = 'class_id_fk'
+      case 'course':
+        fieldCount = 'course_count'
+        fieldType = 'course_id_fk'
         break
       case 'custom':
         fieldCount = 'custom_count'
@@ -108,9 +109,10 @@ router.delete('/', async (req, res) => {
     switch (newType) {
       case 'product':
         fieldName = 'product_id_fk'
+
         break
-      case 'class':
-        fieldName = 'class_id_fk'
+      case 'course':
+        fieldName = 'course_id_fk'
         break
       case 'custom':
         fieldName = 'custom_id_fk'
@@ -136,20 +138,50 @@ router.delete('/', async (req, res) => {
   }
 })
 
-//加入購物車
+//加入購物車 cartItem共通參數有:**type**   id  name price  quantity 專屬寫在switch裡面
 router.post('/', async (req, res) => {
   try {
-    const userId = parseInt(req.body.data.uid)
-    const itemId = parseInt(req.body.data.id) // 從URL參數中取得商品ID
-    const newQuantity = parseInt(req.body.data.quantity) // 從請求體中取得新的商品數量
-    const newType = String(req.body.data.type) // 從請求體中取得類型
+    const userId = parseInt(req.query.uid)
+    const cartItem = req.body.data
+    const newType = String(cartItem.type)
 
-    // 檢查數量有效性
-    if (!newQuantity || newQuantity < 1) {
-      return res
-        .status(400)
-        .json({ status: 'error', message: 'Invalid quantity provided' })
+    let fieldId
+    let fieldName
+    let fieldPrice
+    let fieldQuantity
+    switch (newType) {
+      case 'product':
+        fieldId = 'product_id_fk'
+        fieldName = 'product_name'
+        fieldPrice = 'product_price'
+        fieldQuantity = 'product_count'
+        break
+      case 'course':
+        fieldId = 'course_id_fk'
+        fieldName = 'course_name'
+        fieldPrice = 'course_price'
+        fieldQuantity = 'course_count'
+        break
+      case 'custom':
+        fieldId = 'custom_id_fk'
+        fieldName = 'custom_name'
+        fieldPrice = 'custom_price'
+        fieldQuantity = 'custom_count'
+
+        break
+      default:
+        return res
+          .status(400)
+          .json({ status: 'error', message: 'type傳輸有誤' })
     }
+
+    const adddItem = await CartItem.create({
+      [fieldId]: cartItem.id,
+      [fieldName]: cartItem.name,
+      [fieldPrice]: cartItem.price,
+      [fieldQuantity]: cartItem.quantity,
+      user_id_fk: userId,
+    })
   } catch (error) {
     console.error('Error updating cart item:', error)
     res.status(500).json({ status: 'error', message: 'Internal server error' })
