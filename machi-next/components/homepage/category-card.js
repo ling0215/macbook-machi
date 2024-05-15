@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import React from "react";
+>>>>>>> 0f985649d1f36081e4cba79edfb5f9d46c64e131
 function CategoryCard(
     { category }
 ) {
@@ -5,7 +9,11 @@ function CategoryCard(
         <div className="py-5 category-card-bgc">
         <div className="container">
           <h2 className="text-center section-heading" style={{ borderBottom: '1px solid #785e4c' }}>商品類別</h2>
+<<<<<<< HEAD
           <div className="row row-cols-1 row-cols-md-4 g-4 pt-5">
+=======
+          <div className="row row-cols-1 row-cols-md-5 pt-5 d-flex justify-content-center">
+>>>>>>> 0f985649d1f36081e4cba79edfb5f9d46c64e131
             {/* 重複的卡片部分簡化，因為四個卡片都相同 */}
             {Array.from({ length: category.length }).map((_, index) => (
               <div className="col d-flex justify-content-center px-0 py-0 category-card" key={category[index].category_id}>

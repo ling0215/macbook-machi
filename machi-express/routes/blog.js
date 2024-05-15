@@ -25,7 +25,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 router.post('/publish', upload.single('articleImage'), async (req, res) => {
-  const { title, author, article } = req.body
+  let { title, author, article, category } = req.body
+
+  if (Array.isArray(category)) {
+    category = category.join(',')
+  }
 
   try {
     const newArticle = await Article.create({
@@ -36,7 +40,7 @@ router.post('/publish', upload.single('articleImage'), async (req, res) => {
       article_status: 1, // 假設新文章的狀態總是 1
       subcategory_id_fk: 1,
       category_id_fk: 1,
-      article_category: 'AAA',
+      article_category: category,
     })
 
     res.status(200).json(newArticle)
@@ -88,9 +92,9 @@ router.get('/articles', async (req, res) => {
 router.get('/articles/better', async (req, res) => {
   const {
     search = '', // string, 對應 name 欄位, `name LIKE '%search%'`
-    category = '', // string`
     start = '01/01/1970', // 新增的查詢參數
     end = '01/01/2050', // 新增的查詢參數
+    selectedCategories = '', // 新增的查詢參數
   } = req.query
   console.log(req.query)
   // !!注意: 以下都要檢查各query參數值的正確性，或給定預設值，要不然可能會產生資料庫查詢錯誤
@@ -104,6 +108,11 @@ router.get('/articles/better', async (req, res) => {
     )
   }
 
+  const selectedCategoriesCondition = genConcatRegexp(
+    selectedCategories,
+    'article_category'
+  )
+
   // 建立各where條件從句用
   const genClause = (key, value) => {
     switch (key) {
@@ -113,12 +122,8 @@ router.get('/articles/better', async (req, res) => {
             [Op.like]: `%${value}%`,
           },
         }
-      case 'category':
-        return {
-          article_category: {
-            [Op.eq]: value,
-          },
-        }
+      case 'selectedCategories': // 新增的條件
+        return genConcatRegexp(value, 'article_category')
       case 'date': // 新增的條件
         return {
           article_createtime: {
@@ -138,8 +143,9 @@ router.get('/articles/better', async (req, res) => {
     conditions.push(genClause('search', search))
   }
 
-  if (category) {
-    conditions.push(genClause('category', category))
+  if (selectedCategories) {
+    // 新增的條件
+    conditions.push(genClause('selectedCategories', selectedCategories))
   }
 
   if (start) {

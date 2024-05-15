@@ -28,10 +28,48 @@
     max-height: 1000px;
     
 }
-
-.menu {
+.more{
     display: flex;
     justify-content: flex-end;
-    
-    
+    :hover {
+        color: #785e4c;
+    }
+}
+
+.menu {
+    // position: absolute;
+    display: flex;
+    justify-content: flex-end; 
+    button{
+        padding: 2px;
+        :hover {
+            background-color:  #ab927d;
+        }
+    }
+}
+
+.dropdown-position{
+    position: absolute;
+}
+
+.dropdown-menu {
+    // width: 85px;
+    // height: 50px;
+    border: 1px solid #ab927d;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    background-color: transparent;
+    z-index: 1;
+    bottom: -68px;
+    left: -120px;
+    :hover {
+        background-color: #785e4c;
+        transition: 0.5s;
+    }
+
+    li {
+        padding: 5px;
+        color: #ab927d;
+    }
 }

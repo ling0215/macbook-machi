@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
@@ -150,9 +150,9 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     onSelectItems(selectedItems)
   }, [itemChecked, customItemChecked, courseChecked])
 
-  console.log('樓下為page1')
+  // console.log('樓下為page1')
 
-  console.log(selectedItems)
+  // console.log(selectedItems)
   //計算勾選金額跟數量用
   const calculateTotal = () => {
     const selectedItems = items.filter(
@@ -267,7 +267,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></button>
                   </div>
                 </div>
@@ -327,7 +327,9 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                       +
                     </button>
                   </div>
-                  <div className={` h4 `}>小計NT${item.subtotal}</div>
+                  <div className={` h4 `}>
+                    小計NT${item.price * item.quantity}
+                  </div>
                 </div>
               </div>
             </div>
@@ -385,7 +387,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></button>
                   </div>
                 </div>
@@ -445,7 +447,9 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                       +
                     </button>
                   </div>
-                  <div className={` h4 `}>小計NT${item.subtotal}</div>
+                  <div className={` h4 `}>
+                    小計NT${item.price * item.quantity}
+                  </div>
                 </div>
               </div>
             </div>
@@ -503,7 +507,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <butt
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id, item.type)}
+                      onClick={() => removeItem(item.id)}
                     ></butt>
                   </div>
                 </div>
@@ -523,7 +527,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 </div>
                 <div className={`d-flex g-3 justify-content-between col ps-5`}>
                   <div className={`h4`}>人數:{item.quantity}</div>
-                  <div className={` h4 `}>NT{item.subtotal}</div>
+                  <div className={` h4 `}>NT{item.price * item.quantity}</div>
                 </div>
               </div>
               <hr />

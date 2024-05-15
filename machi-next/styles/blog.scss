@@ -1,0 +1,119 @@
+@import '@/styles/globals.scss';
+
+.article-sidebar {
+    font-weight: bold;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+
+
+.input-container {
+    display: flex;
+    align-items: center
+}
+
+.input-field {
+    font-weight: bold;
+    padding: 5px;
+    margin-right: 10px;
+    background-color: $primary-1;
+}
+
+input::placeholder {
+    color: $primary-dark ;
+}
+
+.article-btn {
+    background-color: #dfdfdf;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+//文章分類
+.article-category {
+    span {
+        color: $primary-dark;
+    }
+}
+
+// 文章列表
+.article-content {
+    height: auto;
+    margin-bottom: 20px;
+    display: flex;
+
+    h4 {
+        color: $primary-dark;
+    }
+
+    p {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        color: $brown;
+        margin-bottom: 0;
+
+    }
+    img {
+        width: 190px;
+        height: 220px;
+        object-fit: cover;
+    }
+}
+
+
+
+.article-text {
+    span {
+        color: $light-grey;
+    }
+}
+
+.list-array {
+    display: flex;
+    flex-direction: column;
+}
+
+.acticle-tag {
+    display: flex;
+    padding-left: 0px;
+    li {
+        background-color: $secondary;
+        color: $primary-dark;
+    }
+}
+
+.article-list {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
+
+
+
+//分頁按鈕
+.pagination {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    // margin-top: 20px;
+}
+
+.page-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    // background-color: $secondary;
+    color: $primary-dark;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.page-btn:hover {
+    background-color: $secondary;
+}

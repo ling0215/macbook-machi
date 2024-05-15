@@ -1,0 +1,106 @@
+// product-card
+.cardBody {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    &:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+}
+.cardImg {
+    width: 100%; /* 圖片寬度佔滿父元素 */
+    height: auto; 
+    overflow: hidden;
+}
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 10px;
+}
+.badge {
+    position: relative;
+    top: 0;
+    left: 0;   
+}
+.cardText {
+    color: var(--primary-dark);
+    font-weight: bold;
+}
+.typeText {
+    color: var(--dark-grey);
+    font-weight: normal;
+}
+.currency {
+    font-weight: bold;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+.heartIcon {
+    font-size: 30px;
+    color: var(--white);
+    position: absolute;
+    top: 2%;
+    left: 80%;
+}
+.cartIcon {
+    font-size: 20px;
+    color: var(--white);
+}
+.cartBtn {
+    width: 70%;
+    background-color: var(--light-brown);
+    color: var(--white);
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+
+    &:hover{
+    background-color: var(--brown);
+    }
+}
+
+@media screen and (max-width: 7px) {
+
+        .cardBody {
+            width: 100%;
+        }
+
+        .cardImg {
+            width: 100%; /* 圖片寬度佔滿父元素 */
+            height: auto; 
+            overflow: hidden;
+        }
+
+        .badge {
+            position: relative;
+            top: 0;
+            left: 0;   
+        } 
+
+        .heartIcon {
+            font-size: 30px;
+            position: absolute;
+            top: 10px;
+            left: 190px;
+        }
+
+        .cartIcon {
+            font-size: 20px;
+        }
+
+        .cartBtn {
+            width: 80%;
+            height: 100%;
+            margin-top:1vh;
+        }
+        
+    }
+
+
+// filter
+.viewtype {
+    width: 50px;
+    height: 50px;
+}
