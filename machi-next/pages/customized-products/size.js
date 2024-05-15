@@ -38,7 +38,7 @@ export default function CustomizedSize() {
               imageSize={100}
               size="4吋"
               price="420元"
-              onClick={() => handleSizePriceChange('4吋', '420元')}
+              onClick={() => handleSizePriceChange('4吋', parseInt('420元'))}
             />
           </div>
           <div className="lynn-cake6">
@@ -46,7 +46,7 @@ export default function CustomizedSize() {
               imageSize={140}
               size="6吋"
               price="650元"
-              onClick={() => handleSizePriceChange('6吋', '650元')}
+              onClick={() => handleSizePriceChange('6吋', parseInt('650元'))}
             />
           </div>
           <div className="lynn-cake9">
@@ -54,7 +54,12 @@ export default function CustomizedSize() {
               imageSize={160}
               size="9吋"
               price="1,080元"
-              onClick={() => handleSizePriceChange('9吋', '1,080元')}
+              onClick={() =>
+                handleSizePriceChange(
+                  '9吋',
+                  parseInt('1,080元'.replace(/,/g, ''))
+                )
+              }
             />
           </div>
         </div>
