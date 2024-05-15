@@ -8,7 +8,7 @@ import { useCustomize } from '@/hooks/use-customize'
 import { useState } from 'react'
 
 export default function CustomizedDeco() {
-  const { customize, setLayer, setFlavor, setDeco, setSizePrice } =
+  const { customize, setLayer, setFlavor, setDeco, setSizePrice, setPreview } =
     useCustomize()
 
   const [basePrice, setBasePrice] = useState(customize.sizePrice.price)
@@ -40,23 +40,6 @@ export default function CustomizedDeco() {
     setFlavor(flavor)
   }
 
-  // const handleDecoChange = (newDeco) => {
-  //   const prevDeco = customize.deco
-  //   let nextDeco = [...prevDeco]
-
-  //   if (prevDeco.includes(newDeco)) {
-  //     // 如果 newDeco 已經在 prevDeco 中，則移除它
-  //     nextDeco = prevDeco.filter((deco) => deco !== newDeco)
-  //   } else {
-  //     // 如果 newDeco 不在 prevDeco 中，則添加它
-  //     nextDeco = [...prevDeco, newDeco]
-  //   }
-
-  //   setDeco(nextDeco)
-
-  //   console.log(newDeco)
-  // }
-
   const handleDecoChange = (newDeco) => {
     const prevDeco = customize.deco
     let nextDeco = [...prevDeco]
@@ -76,8 +59,6 @@ export default function CustomizedDeco() {
     setDeco(nextDeco)
     setSizePrice(size, price)
     setTotalPrice(price) // 更新 totalPrice 狀態
-
-    // console.log(newDeco);
   }
 
   const handleDefaultDeco = () => {
@@ -85,6 +66,7 @@ export default function CustomizedDeco() {
     setSizePrice(size, basePrice)
     setLayer('')
     setFlavor('')
+    setPreview('')
   }
 
   return (

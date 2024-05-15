@@ -4,8 +4,13 @@ import CakeSize from '@/components/customize/cake-size'
 import CakePreview from '@/components/customize/cake-preview'
 import Link from 'next/link'
 import { IoCartOutline } from 'react-icons/io5'
+import { useCustomize } from '@/hooks/use-customize'
+import { useCart } from '@/hooks/use-cart-state'
 
 export default function CustomizedCart() {
+  const { customize } = useCustomize()
+  const { cart, items, decrement, increment, removeItem } = useCart()
+
   return (
     <>
       <div>
@@ -37,17 +42,56 @@ export default function CustomizedCart() {
             <div className="lynn-cart-price-num">
               <div className="lynn-cart-price">
                 <span>價格：</span>
-                <span>NT$1,080</span>
+                <span>{`NT$${customize.sizePrice.price}`}</span>
               </div>
-              <div className="lynn-cart-price">
+              {/* <div className="lynn-cart-price">
                 <span>數量：</span>
                 <span>NT$1,080</span>
+              </div> */}
+
+              {/* 數量按鈕 */}
+              <div className="lynn-cart-price">
+                <div
+                  className={`d-flex justify-content-between align-items-center mb-1 addbuton`}
+                >
+                  <span>數量：</span>
+                  <div
+                    className={`btn-group d-flex ms-5`}
+                    role={`group`}
+                    aria-label={`Basic mixed styles example `}
+                    style={{
+                      width: '120px',
+                      height: '38px',
+                    }}
+                  >
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
+                      style={{ width: '24px' }}
+                      // onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                    >
+                      -
+                    </button>
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
+                    >
+                      {/* {item.quantity} */}
+                    </button>
+                    <button
+                      className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
+                      style={{ width: '24px' }}
+                      // onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                    >
+                      +
+                    </button>
+                  </div>
+                  {/* <div className={` h4 `}>小計NT${item.subtotal}</div> */}
+                </div>
               </div>
             </div>
             <hr className="lynn-done-select" />
             <div className="lynn-cart-price">
               <span>總額：</span>
-              <span>NT$1,080</span>
+              <span>{`NT$${customize.sizePrice.price}`}</span>
             </div>
             <div className="lynn-deco-confirm">
               <Link href="/customized-products/size" passHref>
