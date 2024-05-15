@@ -60,6 +60,21 @@ function Home() {
         </div>
       </div>
       <div className="px-4 py-5 full-background">
+        <div
+          className="background-layer"
+          style={{
+            backgroundImage: 'url("/background.jpg")',
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        ></div>
         {/* <div className="container col-xxl-10 px-5 py-5 featured"> */}
         <div className="container text-center px-5 my-5 article-section">
           <h2

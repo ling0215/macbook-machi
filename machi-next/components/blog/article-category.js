@@ -1,17 +1,7 @@
 import React from 'react'
 
-export default function ArticleCategory({ setSelectedCategories }) {
+export default function ArticleCategory({ handleCategoryClick }) {
   const categories = ['蛋糕', '泡芙', '餅乾', '教學']
-
-  const handleCheckboxChange = (event) => {
-    const category = event.target.name
-    const isChecked = event.target.checked
-    setSelectedCategories((prevSelectedCategories) =>
-      isChecked
-    ? [...prevSelectedCategories, category]
-    : prevSelectedCategories.filter((c) => c !== category)
-  )
-  }
 
 
   //   return (
@@ -49,7 +39,7 @@ export default function ArticleCategory({ setSelectedCategories }) {
             <input
               type="checkbox"
               name={category}
-              onChange={handleCheckboxChange}
+              onClick={() => handleCategoryClick(category)}
             />
             <span className="mx-3">{category}</span>
           </div>

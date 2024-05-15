@@ -28,7 +28,7 @@ export default function LatestArticles() {
     return (
       <>
         <ul className={`article-list ${styles['latest-article']}`}>
-          {newArticles.map((article) => (
+          {articles.map((article) => (
             <li key={article.article_id}>
               <div className={styles[`image-text`]}>
                 <div className={styles[`image`]}>

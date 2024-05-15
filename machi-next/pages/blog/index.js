@@ -133,7 +133,10 @@ export default function BlogIndex() {
           <div className="col-9">
             <div className="container ">
               <ul className="article-list">
-                <List articles={articless || []} />
+                <List
+                  articles={articless || []}
+                  selectedCategories={selectedCategories}
+                />
               </ul>
             </div>
             <Pagination

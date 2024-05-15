@@ -31,13 +31,25 @@
 
 .full-background {
     position: relative;
-    background-image: url('/background.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    // background-position: center center;
-    background-repeat: no-repeat;
-    background-color: rgba(255, 246, 246, 0.3); /* 白色背景，30% 透明度 */
-  }
+    width: 100vw;
+    // background-image: url('/background.jpg');
+    // background-attachment: fixed;
+    // background-size: cover;
+    // background-repeat: no-repeat;
+}
+
+// .full-background::before {  // 使用 ::before 确保它在内容下层
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background-color: rgba(255, 255, 255, 0.5);  // 调整颜色和透明度
+//     pointer-events: none;  // 确保不阻止底层元素的交互
+//     z-index: -1;  // 保持在内容之下
+// }
+
 
 
 .featured {
@@ -78,6 +90,9 @@
     align-items: center;
     margin-bottom: 10px;
     padding: 0 30px;
+    position: relative;
+    z-index: 1;  // 确保内容在背景之上
+    // 其他内容样式
 }
 
 .article-block {
