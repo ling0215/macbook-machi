@@ -80,6 +80,7 @@ export const AuthProvider = ({ children }) => {
   const protectedRoutes = [
     '/member/login/status',
     '/member/login/profile',
+    '/member/account',
     '/test/user/profile-password',
     '/cart',
     '/blog/publish',

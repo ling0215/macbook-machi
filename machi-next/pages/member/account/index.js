@@ -18,7 +18,6 @@ function MemberSidebar() {
       // router.push('/member/account')
     }
   }, [auth.isAuth, router])
-
   return (
     <>
       <div className="container">

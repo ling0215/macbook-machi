@@ -58,7 +58,7 @@ router.get('/:id', authenticate, async function (req, res) {
   })
 
   // 不回傳密碼
-  delete user.user_password
+  // delete user.user_password
   return res.json({ status: 'success', data: { user } })
 })
 
@@ -248,7 +248,7 @@ router.put('/:id/profile', authenticate, async function (req, res) {
   })
 
   // password資料不需要回應給瀏覽器
-  delete updatedUser.password
+  // delete updatedUser.password
   // 回傳
   return res.json({ status: 'success', data: { user: updatedUser } })
 })
