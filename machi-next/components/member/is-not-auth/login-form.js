@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../member.module.css'
+import styles from '../member.module.scss'
 import Link from 'next/link'
 import LineLogo from '@/components/icons/line-logo'
 import GoogleLogo from '@/components/icons/google-logo'
@@ -68,9 +68,9 @@ export default function LoginForm() {
 
   return (
     <main className={`form-member w-100 m-auto text-center`}>
-      <div className="card mt-5 border-0 shadow">
+      <div className="card my-3 border-0 shadow">
         <div className="card-body">
-          <h5 className="text-center fw-bold mb-3 mt-5 text-brown">會員登入</h5>
+          <h5 className="text-center fw-bold mx-5 mt-3 mb-4 text-brown border-bottom">會員登入</h5>
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
               <div className="col-sm-12">
@@ -131,7 +131,7 @@ export default function LoginForm() {
               登入
             </button>
 
-            <div className="row mt-2">
+            <div className="row mt-4">
               <p className={`text-primary-dark ${styles['notice']}`}>
                 還不是會員？
                 <Link className="text-primary-dark" href="/member/register">
@@ -146,7 +146,7 @@ export default function LoginForm() {
       <div className={` mt-5 text-primary-dark ${styles['hr-sect']}`}>
         快速登入
       </div>
-      <div className="row mb-2">
+      <div className="row mb-5">
         <div className="col-sm-12 text-start">
           <div className="d-flex justify-content-center">
             <LineLogo className="mx-3" />

@@ -19,10 +19,12 @@ function MemberSidebar() {
 
   return (
     <>
+    <div className="container">
       <div className="d-flex my-5">
         <MemberNavBar />
         <EditProfileForm />
       </div>
+    </div>
     </>
   )
 }

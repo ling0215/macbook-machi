@@ -30,6 +30,39 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                   className="accordion accordion-flush"
                   id="accordionFlushExample"
                 >
+                <div className="accordion-item">
+                    <h2 className="accordion-header">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        aria-expanded="false"
+                        data-bs-target="#panelsStayOpen-collapseFour"
+                        aria-controls="panelsStayOpen-collapseFour"
+                      >
+                        所有商品
+                      </button>
+                    </h2>
+                    <div
+                      id="panelsStayOpen-collapseFour"
+                      className="accordion-collapse collapse"
+                    >
+                      <div className="accordion-body px-1">
+                        <div
+                          role="button"
+                          tabIndex={0}
+                          className="text-decoration-none text-primary d-block hover-button"
+                          onClick={() => handleCategoryChange('巧克力')}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter')
+                              handleCategoryChange('巧克力')
+                          }}
+                        >
+                          巧克力
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button

@@ -14,9 +14,8 @@ import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 // 範例出處
 // https://swiperjs.com/demos#thumbs-gallery
 // https://codesandbox.io/s/k3cyyc
-export default function Carousel() {
+export default function Carousel(pid) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-
   return (
     <>
       <Swiper
@@ -35,13 +34,13 @@ export default function Carousel() {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src="/images/product/slide/p1.jpg" />
+          <img src={`/images/product/card/${pid.pid}1.jpg`} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p2.jpg" />
+          <img src={`/images/product/card/${pid.pid}2.jpg`} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p3.jpg" />
+          <img src={`/images/product/card/${pid.pid}3.jpg`} />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -54,13 +53,13 @@ export default function Carousel() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="/images/product/slide/p1.jpg" />
+          <img src={`/images/product/card/${pid.pid}1.jpg`} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p2.jpg" />
+          <img src={`/images/product/card/${pid.pid}2.jpg`} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/images/product/slide/p3.jpg" />
+          <img src={`/images/product/card/${pid.pid}3.jpg`} />
         </SwiperSlide>
       </Swiper>
     </>

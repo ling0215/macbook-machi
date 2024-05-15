@@ -36,4 +36,15 @@
   color: #f7f5eb;
 }
 
+/* 在footer.module.scss中添加 */
+.btn-to-top {
+  position: fixed;  // 固定位置
+  right: 20px;  // 距离右边20px
+  bottom: 20px;  // 距离底部20px
+  z-index: 1000;  // 确保按钮不被其他内容覆盖
+}
 
+/* 可选: 仅在滚动后显示按钮 */
+.btn-to-top.hidden {
+  display: none;
+}

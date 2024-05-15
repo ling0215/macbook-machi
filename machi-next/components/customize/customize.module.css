@@ -222,7 +222,9 @@
   align-items: center;
   gap: 0.5rem;
 }
-
+.label-text {
+  margin-left: 10px;
+}
 .deco-radio {
   flex: 1;
   display: flex;

@@ -5,41 +5,88 @@ import CakeSize from '@/components/customize/cake-size'
 import DecoSelector from '@/components/customize/deco-selector'
 import Link from 'next/link'
 import { useCustomize } from '@/hooks/use-customize'
+import { useState } from 'react'
 
 export default function CustomizedDeco() {
-  const { customize, setLayer, setFlavor, setDeco } = useCustomize()
+  const { customize, setLayer, setFlavor, setDeco, setSizePrice } =
+    useCustomize()
+
+  const [basePrice, setBasePrice] = useState(customize.sizePrice.price)
+  const [totalPrice, setTotalPrice] = useState(customize.sizePrice.price)
+  let size = customize.sizePrice.size
+  let price = basePrice
 
   const handleLayerChange = (layer) => {
     setLayer(layer)
+    let size = customize.sizePrice.size
+    let price = basePrice
+
+    if (layer === '3層') {
+      // 如果層數是 "3層"，則價格為基礎價格
+      price = basePrice
+    } else if (layer === '4層') {
+      // 如果層數是 "4層"，則價格為基礎價格加 50
+      price = basePrice + 50
+    }
+
+    //加上已選擇的裝飾的價格
+    price += customize.deco.length * 20
+
+    setSizePrice(size, price)
+    setTotalPrice(price)
   }
 
   const handleFlavorChange = (flavor) => {
     setFlavor(flavor)
   }
 
+  // const handleDecoChange = (newDeco) => {
+  //   const prevDeco = customize.deco
+  //   let nextDeco = [...prevDeco]
+
+  //   if (prevDeco.includes(newDeco)) {
+  //     // 如果 newDeco 已經在 prevDeco 中，則移除它
+  //     nextDeco = prevDeco.filter((deco) => deco !== newDeco)
+  //   } else {
+  //     // 如果 newDeco 不在 prevDeco 中，則添加它
+  //     nextDeco = [...prevDeco, newDeco]
+  //   }
+
+  //   setDeco(nextDeco)
+
+  //   console.log(newDeco)
+  // }
+
   const handleDecoChange = (newDeco) => {
     const prevDeco = customize.deco
-
-    // console.log('newDeco:', newDeco)
-    // console.log('prevDeco:', prevDeco)
     let nextDeco = [...prevDeco]
+    let size = customize.sizePrice.size
+    let price = totalPrice // 使用 totalPrice 而不是 basePrice
 
     if (prevDeco.includes(newDeco)) {
       // 如果 newDeco 已經在 prevDeco 中，則移除它
       nextDeco = prevDeco.filter((deco) => deco !== newDeco)
+      price -= 20
     } else {
       // 如果 newDeco 不在 prevDeco 中，則添加它
       nextDeco = [...prevDeco, newDeco]
+      price += 20
     }
 
     setDeco(nextDeco)
+    setSizePrice(size, price)
+    setTotalPrice(price) // 更新 totalPrice 狀態
 
-    console.log(newDeco)
+    // console.log(newDeco);
   }
-  // const handleDecoChange = (newDeco) => {
-  //   setDeco([newDeco])
-  //   console.log(newDeco)
-  // }
+
+  const handleDefaultDeco = () => {
+    setDeco([])
+    setSizePrice(size, basePrice)
+    setLayer('')
+    setFlavor('')
+  }
+
   return (
     <>
       <div>
@@ -177,7 +224,9 @@ export default function CustomizedDeco() {
             </div>
             <div className="lynn-deco-confirm">
               <Link href="/customized-products/deco" passHref>
-                <button className="lynn-btn-grey">清除重填</button>
+                <button className="lynn-btn-grey" onClick={handleDefaultDeco}>
+                  清除重填
+                </button>
               </Link>
               <Link href="/customized-products/cart" passHref>
                 <button className="lynn-btn-brown">確定</button>
