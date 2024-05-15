@@ -6,7 +6,7 @@ import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaCheck } from 'react-icons/fa6'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
-  const { cart, items, decrement, increment, removeItem } = useCart()
+  const { cart, items, decrement, increment, removeItem, addItem } = useCart()
   console.log(`傳入page1的cart$`)
   console.log(items)
   // console.log(cart)
@@ -220,6 +220,44 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
         </div>
       </div>
       <div className={`col-sm cart-area product-area`}>
+        <div>
+          <button
+            onClick={() =>
+              addItem({
+                product_id_fk: '1001',
+                product_count: 1,
+                product_price: 100,
+                product_name: '測試商品',
+              })
+            }
+          >
+            測試商品
+          </button>
+          <button
+            onClick={() =>
+              addItem({
+                course_id_fk: '1002',
+                course_count: 1,
+                course_price: 2000,
+                course_name: '測試課程',
+              })
+            }
+          >
+            測試課程
+          </button>
+          <button
+            onClick={() =>
+              addItem({
+                cart_item_id: '1003',
+                custom_count: 3,
+                custom_price: 300,
+                custom_name: '測試自訂',
+              })
+            }
+          >
+            測試自訂
+          </button>
+        </div>
         <div
           className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
         >
