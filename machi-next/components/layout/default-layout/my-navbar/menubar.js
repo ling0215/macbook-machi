@@ -25,7 +25,7 @@ const menuItems = [
   {
     id: 4,
     label: '甜點課程',
-    href: '/class',
+    href: '/course',
   },
   {
     id: 5,

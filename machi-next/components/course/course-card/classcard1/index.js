@@ -30,7 +30,7 @@ export default function CourseCard1({course}) {
                 </div>
                 <div class="col-md-8" >
                   <div className={styles.cardbody}>
-                    <h5 class="car d-title fw-bolder ">{course.course_name.slice(0, 8)}  <IoHeartOutline className={styles.heartIcon} /></h5>
+                    <h5 class="car d-title fw-bolder ">{course.course_name.slice(0, 20)}  <IoHeartOutline className={styles.heartIcon} /></h5>
                     
                     <p class="card-text fw-bolder ">
                       課堂地點:台北市北投區裕民六路130號1樓
@@ -46,10 +46,11 @@ export default function CourseCard1({course}) {
                     <p class="text-end"  style={{
 marginTop: '50px',
 }}>
-                      $2000<button 
+                      $2000
+                      <Link href={`/course/${course.course_id}`}><button 
                       className={`${styles['btn-info']}`}
                      
->課程詳情</button>
+>課程詳情</button></Link>
                     </p>
                   </div>
                 </div>

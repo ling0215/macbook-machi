@@ -165,7 +165,7 @@ export default function CoursePage() {
             <i className="bi bi-grid"></i>
           </button>
           <button className="btn" id="listview" onClick={handleCourseCard1View}>
-        <i className="bi bi-list">測試</i>
+        <i className="bi bi-list"></i>
       </button>
         </div>
       </div>
