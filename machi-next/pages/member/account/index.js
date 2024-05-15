@@ -13,18 +13,20 @@ function MemberSidebar() {
   // 使用 useEffect 來監聽 auth.isAuth 的變化
   useEffect(() => {
     if (!auth.isAuth) {
-      router.push('/member/login') // 如果 auth.isAuth 為 true，則導向會員中心
+      router.push('/member/login')
+    } else {
+      // router.push('/member/account')
     }
   }, [auth.isAuth, router])
 
   return (
     <>
-    <div className="container">
-      <div className="d-flex my-5">
-        <MemberNavBar />
-        <EditProfileForm />
+      <div className="container">
+        <div className="d-flex my-5">
+          <MemberNavBar />
+          <EditProfileForm />
+        </div>
       </div>
-    </div>
     </>
   )
 }

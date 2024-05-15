@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './toolbar.module.scss'
+import React from 'react'
+import { useLogout } from '@/hooks/use-logout'
 
 export default function Toolbar({ handleShow }) {
+  const handleLogout = useLogout()
   return (
     <ul className="navbar-nav pe-2 ms-auto">
       <li className="nav-item">
@@ -59,9 +62,12 @@ export default function Toolbar({ handleShow }) {
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <Link className="dropdown-item text-center " href="/about">
-              客服中心
-            </Link>
+            <button
+              className="dropdown-item text-center"
+              onClick={handleLogout}
+            >
+              登出
+            </button>
           </li>
         </ul>
       </li>

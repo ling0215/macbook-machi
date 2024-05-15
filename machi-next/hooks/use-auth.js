@@ -81,6 +81,8 @@ export const AuthProvider = ({ children }) => {
     '/member/login/status',
     '/member/login/profile',
     '/test/user/profile-password',
+    '/cart',
+    '/blog/publish',
   ]
 
   // 檢查會員認証用

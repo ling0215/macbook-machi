@@ -4,7 +4,7 @@ import Category from '@/components/blog/article-category'
 import List from '@/components/blog/article-list'
 import Date from '@/components/blog/article-date'
 import { fetchBetterArticles } from '@/services/blog'
-import Pagination from '@/components/product2/product-list/pagination'
+import Pagination from '@/components/product/product-list/pagination'
 
 import { FaSearch } from 'react-icons/fa'
 
