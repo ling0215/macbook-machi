@@ -53,10 +53,13 @@ const ArticleDetail = ({ articleId }) => {
         <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
       </div>
       <div>
-        <Link href="/blog" className="btn btn-primary btn-sm ms-2"
-        style={{backgroundColor: '#ab927d', border: 'none'}}>
-              回文章列表
-            </Link>
+        <Link
+          href="/blog"
+          className="btn btn-primary btn-sm ms-2"
+          style={{ backgroundColor: '#ab927d', border: 'none' }}
+        >
+          回文章列表
+        </Link>
       </div>
     </div>
   )
