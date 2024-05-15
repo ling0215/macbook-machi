@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
-import styles from '../member.module.scss';
+import React from 'react'
+import Link from 'next/link'
+import styles from '../member.module.scss'
 
 function MemberSidebar() {
   return (
@@ -23,7 +23,7 @@ function MemberSidebar() {
         </li>
       </ul>
     </div>
-  );
+  )
 }
 
-export default MemberSidebar;
+export default MemberSidebar

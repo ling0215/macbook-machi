@@ -4,15 +4,19 @@ import Link from 'next/link'
 import LineLogo from '@/components/icons/line-logo'
 import GoogleLogo from '@/components/icons/google-logo'
 import FacebookLogo from '@/components/icons/facebook-logo'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { login } from '@/services/user'
 import { useAuth } from '@/hooks/use-auth'
 import { checkAuth, getFavs } from '@/services/user'
+import Swal from 'sweetalert2'
 
 export default function LoginForm() {
-  const { setAuth } = useAuth()
+  const { auth, setAuth } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const router = useRouter()
 
   const initUserData = {
     user_id: 0,
@@ -47,8 +51,21 @@ export default function LoginForm() {
       // 設到全域狀態中
       setAuth({ isAuth: true, userData })
       console.log(userData)
+
+      // 登入成功，顯示成功訊息
+      Swal.fire({
+        icon: 'success',
+        title: '登入成功',
+      })
+
+      router.push('/')
     } else {
       console.warn(res.data)
+      Swal.fire({
+        icon: 'error',
+        title: '登入失敗',
+        text: '請檢查你的帳號或密碼是否正確。',
+      })
     }
   }
 
@@ -70,7 +87,9 @@ export default function LoginForm() {
     <main className={`form-member w-100 m-auto text-center`}>
       <div className="card my-3 border-0 shadow">
         <div className="card-body">
-          <h5 className="text-center fw-bold mx-5 mt-3 mb-4 text-brown border-bottom">會員登入</h5>
+          <h5 className="text-center fw-bold mx-5 mt-3 mb-4 text-brown border-bottom">
+            會員登入
+          </h5>
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
               <div className="col-sm-12">

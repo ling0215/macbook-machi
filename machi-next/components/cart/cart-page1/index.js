@@ -6,9 +6,10 @@ import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaCheck } from 'react-icons/fa6'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
-  const { cart, items, decrement, increment, removeItem } = useCart()
+  const { cart, items, decrement, increment, removeItem, addItem } = useCart()
+  console.log(`傳入page1的cart$`)
   console.log(items)
-  console.log(cart)
+  // console.log(cart)
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
   // 自訂商品選中狀態
@@ -63,7 +64,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     // 更新全選的狀態
     const allCoursesSelected =
       Object.values(newCheckedCourses).filter(Boolean).length ===
-      items.filter((item) => item.type === 'class').length
+      items.filter((item) => item.type === 'course').length
     setSelectCourseAll(allCoursesSelected)
   }
 
@@ -99,7 +100,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
     // 更新所有課程的選中狀態
     const newCheckedCourses = {}
     items
-      .filter((item) => item.type === 'class')
+      .filter((item) => item.type === 'course')
       .forEach((item) => {
         newCheckedCourses[item.id] = newSelectCourseAll
       })
@@ -125,7 +126,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
       (item) => item.type === 'custom' && customItemChecked[item.id]
     )
     const hasCourse = items.some(
-      (item) => item.type === 'class' && courseChecked[item.id]
+      (item) => item.type === 'course' && courseChecked[item.id]
     )
     if (!hasProduct && !hasCustom && !hasCourse) {
       alert('請選擇購買項目')
@@ -144,7 +145,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
         (item) => item.type === 'custom' && customItemChecked[item.id]
       ),
       courses: items.filter(
-        (item) => item.type === 'class' && courseChecked[item.id]
+        (item) => item.type === 'course' && courseChecked[item.id]
       ),
     }
     onSelectItems(selectedItems)
@@ -159,7 +160,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
       (item) =>
         (item.type === 'product' && itemChecked[item.id]) ||
         (item.type === 'custom' && customItemChecked[item.id]) ||
-        (item.type === 'class' && courseChecked[item.id])
+        (item.type === 'course' && courseChecked[item.id])
     )
 
     const totalQuantity = selectedItems.reduce(
@@ -219,6 +220,44 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
         </div>
       </div>
       <div className={`col-sm cart-area product-area`}>
+        <div>
+          <button
+            onClick={() =>
+              addItem({
+                product_id_fk: '1001',
+                product_count: 1,
+                product_price: 100,
+                product_name: '測試商品',
+              })
+            }
+          >
+            測試商品
+          </button>
+          <button
+            onClick={() =>
+              addItem({
+                course_id_fk: '1002',
+                course_count: 1,
+                course_price: 2000,
+                course_name: '測試課程',
+              })
+            }
+          >
+            測試課程
+          </button>
+          <button
+            onClick={() =>
+              addItem({
+                cart_item_id: '1003',
+                custom_count: 3,
+                custom_price: 300,
+                custom_name: '測試自訂',
+              })
+            }
+          >
+            測試自訂
+          </button>
+        </div>
         <div
           className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
         >
@@ -267,7 +306,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.uid, item.id, item.type)}
                     ></button>
                   </div>
                 </div>
@@ -310,7 +349,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                      onClick={() => decrement(item.uid, item.id, item.type)} // 减少数量的点击事件
                     >
                       -
                     </button>
@@ -322,7 +361,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4  mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                      onClick={() => increment(item.uid, item.id, item.type)} // 增加数量的点击事件
                     >
                       +
                     </button>
@@ -387,7 +426,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.uid, item.id, item.type)}
                     ></button>
                   </div>
                 </div>
@@ -430,7 +469,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                      onClick={() => decrement(item.uid, item.id, item.type)} // 减少数量的点击事件
                     >
                       -
                     </button>
@@ -442,7 +481,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4  mb-0`}
                       style={{ width: '28px' }}
-                      onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                      onClick={() => increment(item.uid, item.id, item.type)} // 增加数量的点击事件
                     >
                       +
                     </button>
@@ -471,12 +510,12 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
           <div className={` h3`}>MACHI</div>
           <div className={` h3`}>課程</div>
           <div className={` h3`}>
-            ({items.filter((item) => item.type === 'class').length})
+            ({items.filter((item) => item.type === 'course').length})
           </div>
         </div>
 
         {items
-          .filter((item) => item.type === 'class')
+          .filter((item) => item.type === 'course')
           .map((item) => (
             <div
               className={`d-flex  g-0  align-items-center py-4 ${styles['text-border-grey']} pe-0`}
@@ -507,7 +546,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   <div>
                     <butt
                       className={`bi bi-trash3 text-black btn btn-light`}
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.uid, item.id, item.type)}
                     ></butt>
                   </div>
                 </div>

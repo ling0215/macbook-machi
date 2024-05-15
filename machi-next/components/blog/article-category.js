@@ -3,6 +3,34 @@ import React from 'react'
 export default function ArticleCategory({ handleCategoryClick }) {
   const categories = ['蛋糕', '泡芙', '餅乾', '教學']
 
+
+  //   return (
+  //     <>
+  //       <div className="article-category py-2">
+  //         <div>
+  //           <input type="checkbox" />
+  //           <span className="mx-3">蛋糕</span>
+  //         </div>
+
+  //         <div>
+  //           <input type="checkbox" />
+  //           <span className="mx-3">泡芙</span>
+  //         </div>
+
+  //         <div>
+  //           <input type="checkbox" />
+  //           <span className="mx-3">餅乾</span>
+  //         </div>
+
+  //         <div>
+  //           <input type="checkbox" />
+  //           <span className="mx-3">教學</span>
+  //         </div>
+  //       </div>
+
+  //     </>
+  //   )
+  // }
   return (
     <>
       <div className="article-category py-2">
@@ -20,3 +48,4 @@ export default function ArticleCategory({ handleCategoryClick }) {
     </>
   )
 }
+
