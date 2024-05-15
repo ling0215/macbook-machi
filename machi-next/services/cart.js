@@ -46,6 +46,18 @@ export const removeFromCart = async (userId, itemId, itemType) => {
     })
 }
 
+//樓下是所需add body範例
+// {
+//   "data": {
+//     "type": "product",
+//     "id": 1,
+//     "name": "Sample Product",
+//     "price": 100,
+//     "quantity": 2,
+//     "product_subtitle": "Sample Subtitle"
+//   }
+// }
+
 // // 自定义钩子，用于管理和访问购物车数据
 // export function useCartUpdate() {
 //   const { data, error, mutate } = useSWR('/cart', fetchCart)

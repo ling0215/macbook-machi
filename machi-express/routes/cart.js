@@ -57,7 +57,7 @@ router.put('/', authenticate, async (req, res) => {
         break
       case 'custom':
         fieldCount = 'custom_count'
-        fieldType = 'custom_id_fk'
+        fieldType = 'cart_item_id'
         break
       default:
         return res
@@ -115,7 +115,7 @@ router.delete('/', async (req, res) => {
         fieldName = 'course_id_fk'
         break
       case 'custom':
-        fieldName = 'custom_id_fk'
+        fieldName = 'cart_item_id'
         break
       default:
         return res
@@ -142,6 +142,7 @@ router.delete('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const userId = parseInt(req.query.uid)
+
     const cartItem = req.body.data
     const newType = String(cartItem.type)
 
@@ -160,7 +161,6 @@ router.post('/', async (req, res) => {
         fieldName = 'product_name'
         fieldPrice = 'product_price'
         fieldQuantity = 'product_count'
-
         break
       case 'course':
         fieldId = 'course_id_fk'
@@ -195,7 +195,7 @@ router.post('/', async (req, res) => {
       addItemData.product_subtitle = cartItem.product_subtitle
     }
 
-    if (newType === 'custom ') {
+    if (newType === 'custom') {
       addItemData.custom_size = cartItem.custom_size
       addItemData.custom_layer = cartItem.custom_layer
       addItemData.custom_decor = cartItem.custom_decor
@@ -204,8 +204,11 @@ router.post('/', async (req, res) => {
 
     const adddItem = await CartItem.create(addItemData)
 
-    if (adddItem > 0) {
-      res.json({ status: 'success', message: 'Cart item add successfully' })
+    if (adddItem) {
+      res.json({
+        status: 'success',
+        message: 'UserId:' + userId + ',Cart item add successfully',
+      })
     } else {
       res.status(404).json({ status: 'error', message: 'Cart item not found' })
     }

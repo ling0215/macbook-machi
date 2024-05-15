@@ -72,10 +72,10 @@ export const CartTypeProvider = ({ children }) => {
               coursetime: '2024/08/10',
               address: '復興堡',
             }
-          } else if (item.custom_id_fk) {
+          } else if (item.cart_item_id) {
             return {
               uid: auth.userData.user_id,
-              id: item.custom_id_fk,
+              id: item.cart_item_id,
               quantity: item.custom_count,
               price: item.custom_price,
               name: item.custom_name,

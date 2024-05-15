@@ -20,7 +20,6 @@ export default async function (sequelize) {
       },
       product_name: {
         type: DataTypes.STRING(50),
-        allowNull: false,
       },
       product_subtitle: {
         type: DataTypes.STRING(50),
@@ -50,13 +49,13 @@ export default async function (sequelize) {
         type: DataTypes.INTEGER,
       },
       custom_size: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       custom_layer: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       custom_flavor: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       custom_decor: {
         type: DataTypes.STRING(50),
