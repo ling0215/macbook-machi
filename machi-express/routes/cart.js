@@ -6,7 +6,7 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 
 import authenticate from '#middlewares/authenticate.js'
 import sequelize from '#configs/db.js'
-import { create } from 'lodash'
+
 const { CartItem } = sequelize.models
 
 // 獲得某會員id的有加入到購物清單中的商品id們
@@ -138,33 +138,38 @@ router.delete('/', async (req, res) => {
   }
 })
 
-//加入購物車 cartItem共通參數有:**type**   id  name price  quantity 專屬寫在switch裡面
+//加入購物車
 router.post('/', async (req, res) => {
   try {
     const userId = parseInt(req.query.uid)
     const cartItem = req.body.data
     const newType = String(cartItem.type)
 
+    //  共通參數
     let fieldId
     let fieldName
     let fieldPrice
     let fieldQuantity
+
+    //product參數 1.product_subtitle
+    let productSubtitle
+
     switch (newType) {
       case 'product':
         fieldId = 'product_id_fk'
         fieldName = 'product_name'
         fieldPrice = 'product_price'
         fieldQuantity = 'product_count'
+
         break
       case 'course':
         fieldId = 'course_id_fk'
         fieldName = 'course_name'
         fieldPrice = 'course_price'
         fieldQuantity = 'course_count'
+
         break
       case 'custom':
-        fieldId = 'custom_id_fk'
-        fieldName = 'custom_name'
         fieldPrice = 'custom_price'
         fieldQuantity = 'custom_count'
 
@@ -175,13 +180,35 @@ router.post('/', async (req, res) => {
           .json({ status: 'error', message: 'type傳輸有誤' })
     }
 
-    const adddItem = await CartItem.create({
-      [fieldId]: cartItem.id,
-      [fieldName]: cartItem.name,
+    const addItemData = {
       [fieldPrice]: cartItem.price,
       [fieldQuantity]: cartItem.quantity,
       user_id_fk: userId,
-    })
+    }
+
+    if (newType !== 'custom') {
+      addItemData[fieldId] = cartItem.id
+      addItemData[fieldName] = cartItem.name
+    }
+
+    if (newType === 'product') {
+      addItemData.product_subtitle = cartItem.product_subtitle
+    }
+
+    if (newType === 'custom ') {
+      addItemData.custom_size = cartItem.custom_size
+      addItemData.custom_layer = cartItem.custom_layer
+      addItemData.custom_decor = cartItem.custom_decor
+      addItemData.custom_flavor = cartItem.custom_flavor
+    }
+
+    const adddItem = await CartItem.create(addItemData)
+
+    if (adddItem > 0) {
+      res.json({ status: 'success', message: 'Cart item add successfully' })
+    } else {
+      res.status(404).json({ status: 'error', message: 'Cart item not found' })
+    }
   } catch (error) {
     console.error('Error updating cart item:', error)
     res.status(500).json({ status: 'error', message: 'Internal server error' })

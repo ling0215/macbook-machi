@@ -20,6 +20,7 @@ export const CartTypeProvider = ({ children }) => {
   const { auth } = useAuth()
   const [formattedCartItems, setFormattedCartItems] = useState([])
   console.log(auth)
+
   useEffect(() => {
     // 当组件加载和 auth.userData 更新时，尝试从数据库获取购物车数据
     const loadCartData = async () => {
@@ -41,6 +42,7 @@ export const CartTypeProvider = ({ children }) => {
 
     loadCartData()
   }, [auth.userData])
+
   console.log(formattedCartItems)
   console.log(cartState)
   useEffect(() => {

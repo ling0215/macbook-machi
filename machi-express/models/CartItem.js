@@ -34,19 +34,19 @@ export default async function (sequelize) {
       product_total: {
         type: DataTypes.INTEGER,
       },
-      class_id_fk: {
+      course_id_fk: {
         type: DataTypes.INTEGER,
       },
-      class_name: {
+      course_name: {
         type: DataTypes.STRING(50),
       },
-      class_price: {
+      course_price: {
         type: DataTypes.INTEGER,
       },
-      class_count: {
+      course_count: {
         type: DataTypes.INTEGER,
       },
-      class_total: {
+      course_total: {
         type: DataTypes.INTEGER,
       },
       custom_size: {
