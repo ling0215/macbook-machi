@@ -11,11 +11,11 @@ function Login() {
   const router = useRouter() // 使用 useRouter hook 來獲取 router 物件
 
   // 使用 useEffect 來監聽 auth.isAuth 的變化
-  useEffect(() => {
-    if (auth.isAuth) {
-      router.push('/member/account') // 如果 auth.isAuth 為 true，則導向會員中心
-    }
-  }, [auth.isAuth, router])
+  // useEffect(() => {
+  //   if (auth.isAuth) {
+  //     router.push('/member/account') // 如果 auth.isAuth 為 true，則導向會員中心
+  //   }
+  // }, [auth.isAuth, router])
 
   return (
     <>
