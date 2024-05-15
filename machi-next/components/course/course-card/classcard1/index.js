@@ -30,17 +30,18 @@ export default function CourseCard1({course}) {
                 </div>
                 <div class="col-md-8" >
                   <div className={styles.cardbody}>
-                    <h5 class="car d-title fw-bolder ">{course.course_name.slice(0, 20)}  <IoHeartOutline className={styles.heartIcon} /></h5>
+                    <h5 class="car d-title fw-bolder "
+                    className={styles.cardtext1}>{course.course_name.slice(0, 20)}  <IoHeartOutline className={styles.heartIcon} /></h5>
                     
-                    <p class="card-text fw-bolder ">
+                    <p class="card-text fw-bolder"
+                    className={styles.cardtext1}>
                       課堂地點:台北市北投區裕民六路130號1樓
                     </p>
-                    <p class="card-text fw-bolder">課堂日期:2024/04/03</p>
-                    <p class="card-text fw-bolder">講師:呂昇達</p>
-                    <p class="card-text">
-                      <small class="text-muted">
-                        呂昇達老師在這次課程之中使用了自大正時代創立至今，具有百年歷史的《葵製茶》！以有機抹茶《蒼竹》讓同學們在課程中體驗抹茶的魅力
-                      </small>
+                    <p class="card-text fw-bolder"
+                    className={styles.cardtext1}>課堂日期:2024/04/03</p>
+                    <p class="card-text fw-bolder" className={styles.cardtext1}>講師:呂昇達</p>
+                    <p class="card-text" className={styles.cardtext1} dangerouslySetInnerHTML={{ __html: course.course_description }}>
+                    
                     </p>
 
                     <p class="text-end"  style={{

@@ -12,6 +12,7 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 
+
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
@@ -35,6 +36,11 @@ export default function Detail() {
 
    }}
   })
+
+  //時間用
+ 
+
+  //時間用
 
   const router = useRouter()
 
@@ -71,7 +77,7 @@ export default function Detail() {
   const imageUrl1 = `/images/course/slide/${course.data.course.course_id}_1.jpg`
   const imageUrl2 = `/images/course/slide/${course.data.course.course_id}_2.jpg`
   const imageUrl3 = `/images/course/slide/${course.data.course.course_id}_3.jpg`
- 
+  
 
   return (
     <>
@@ -131,7 +137,17 @@ export default function Detail() {
           <p className="product-desc mb-4" dangerouslySetInnerHTML={{ __html: course.data.course.course_description }}></p>
 
           <div className="mb-4">
-       
+          
+          <p className="product-desc mb-4" >
+            課程時間:
+            
+          </p>
+          <p className="product-desc mb-4" >
+            報名開始:
+          </p>
+          <p className="product-desc mb-4" >
+            報名截止:
+          </p>
           </div>
           {/* 數量按鈕 */}
           <div className={`d-flex g-3 justify-content-between align-items-center mb-4 addbuton`}>
