@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import styles from '@/components/blog/article-list.module.scss'
-import { FaCaretRight } from 'react-icons/fa'
+import Image from 'next/image'
 
-const ArticlesList = ({ articles, selectedCategories, category }) => {
-  // console.log(selectedCategories)
+import { FaCaretRight } from 'react-icons/fa'
+import { MdAdd } from "react-icons/md";
+import { FaPenToSquare } from "react-icons/fa6";
+
+const ArticlesList = ({ articles }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  // console.log(category)
 
   const stripHtmlTagsAndEntities = (htmlContent) => {
     return htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '')
   }
 
-  const [isOpen, setIsOpen] = useState(false)
   // const categories = newArticles.article_category.split(',')
   // console.log(category)
   return (
@@ -20,28 +24,54 @@ const ArticlesList = ({ articles, selectedCategories, category }) => {
           <button
             className={`btn`}
             id="listview"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              setIsOpen((prevIsOpen) => {
+                return !prevIsOpen
+              })
+            }}
           >
             <i className="bi bi-list"></i>
           </button>
-          {isOpen && (
-            <div className="dropdown-menu">
-              <button onClick={() => console.log('選項1被點擊')}>選項1</button>
-              <button onClick={() => console.log('選項2被點擊')}>選項2</button>
-              <button onClick={() => console.log('選項3被點擊')}>選項3</button>
-            </div>
-          )}
+          <div className={styles[`dropdown-position`]}>
+            {isOpen && (
+              <div className={styles[`dropdown-menu`]}>
+                <li onClick={() => console.log('選項1被點擊')}>
+                  我的文章<FaPenToSquare />
+                  {' '}
+                </li>
+                <Link
+                  href={`/blog/publish`}
+                  type="button"
+                  className={styles[`link-style`]}
+                >
+                  <li onClick={() => console.log('選項2被點擊')}>
+                    新增文章<MdAdd />
+                  </li>
+                </Link>{' '}
+              </div>
+            )}
+          </div>
         </div>
         {articles.map((article) => (
           <li key={article.article_id}>
             <div className="list-array">
               <div className="article-content">
                 <div>
-                  <img src={article.firstImageUrl} alt="" />
+                  <Image
+                    src={article.firstImageUrl || '/images/blog/article2.jpg'}
+                    alt=""
+                    width={500}
+                    height={300}
+                    priority
+                  />
                 </div>
                 <div className="mx-4 article-text">
                   <ul className="article-list acticle-tag">
-                    <li className="p-1 me-2">{article.article_category}</li>
+                    {article.article_category?.split(',').map((category) => (
+                      <li key={category} className="p-1 me-2">
+                        {category}
+                      </li>
+                    ))}
                   </ul>
                   <h4 className="pt-2">{article.article_title}</h4>
                   <span>
@@ -54,7 +84,7 @@ const ArticlesList = ({ articles, selectedCategories, category }) => {
                       ? stripHtmlTagsAndEntities(article.article_content)
                       : ''}
                   </p>
-                  <div className="more">
+                  <div className={styles[`more`]}>
                     <Link
                       href={`/blog/${article.article_id}`}
                       type="button"

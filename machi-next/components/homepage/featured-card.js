@@ -1,27 +1,38 @@
-import React from 'react';
-import styles from './featured.module.scss';
+// import React from 'react';
+// import Link from 'next/link';
 
+// // 產品卡片組件
+// function FeaturedCard({ product }) {
+//   return (
+//     <div className="col-md-3 d-flex justify-content-center mb-4">
+//       <div className="w-350 no-border f-16 featured-card">
+//         <Link href={`/product/detail/${product.id}`} passHref>
+//           <a className="no-underline">
+//             <img
+//               src={product.product_image}
+//               className="card-img-top"
+//               alt={product.product_name}
+//             />
+//             <div className="card-body no-space-x">
+//               <p className="card-text note-text mt-1">{product.product_status}</p>
+//               <h5 className="card-text fw-bold card-title">
+//                 {product.product_name}
+//               </h5>
+//               <p className="card-text type-text mb-2">{product.product_category}</p>
+//               <p className="h-currency bold h-now">
+//                 NT${product.product_price} &nbsp;
+//                 {product.product_originalPrice && (
+//                   <span className="text-decoration-line-through type-text">
+//                     NT${product.product_originalPrice}
+//                   </span>
+//                 )}
+//               </p>
+//             </div>
+//           </a>
+//         </Link>
+//       </div>
+//     </div>
+//   );
+// }
 
-function FeaturedCard({ FeaturedCard }) {
-  return (
-    <>
-    <div className="w-350 no-border f-16 featured-card">
-      <Link href="/product/detail" passHref className="no-underline">
-        <img
-          src="/images/product/list/strawberry-tart-01.jpg"
-          className="card-img-top"
-          alt=""
-        />
-        <div className="card-body no-space-x">
-          <p className="card-text note-text">新品上市</p>
-          <h5 className="card-text fw-bold card-title">草莓優格塔</h5>
-          <p className="card-text type-text  mb-2">塔派甜點</p>
-          <p className="text-decoration-line-through type-text">NT$1,250 &nbsp;<span className="h-currency bold h-now">NT$1,050</span></p>
-        </div>
-      </Link>
-    </div>
-    </>
-  );
-}
-
-export default ProductCard;
+// export default FeaturedCard;

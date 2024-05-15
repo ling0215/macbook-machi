@@ -4,13 +4,13 @@ import styles from './product.module.scss'
 import Image from 'next/image'
 import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 
-export default function ProductCard({ product }) {
+export default function ListProductCard({ product }) {
   const imageUrl = `/images/product/card/${product.product_id}1.jpg`
   return (
     <>
-      <div className="col-6">
-        <div className={`${styles.cardBody}`}>
-          <Link href={`/product2/${product.product_id}`} passHref>
+      <div className={`col-6`}>
+        <div className={`row`}>
+          <Link href="/product/detail" passHref>
             <Image
               src={imageUrl}
               className={styles.cardImg}
@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
               height={230} // 你需要根據你的需求來設定這個值
             />
           </Link>
-          <div className={styles.cardInfo}>
+          <div className={`row ${styles.cardInfo}`}>
             <IoHeartOutline className={styles.heartIcon} />
             <h5 className={styles.cardText}>{product.product_name}</h5>
             <p className={styles.typeText}>{product.product_category}</p>
