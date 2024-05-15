@@ -13,16 +13,16 @@ export const fetchCart = async (userId) => {
     })
 }
 
-// 添加商品到购物车的函数 待實裝
-// export const addToCart = async (productId, quantity) => {
-//   return axiosInstance
-//     .post('/cart', { productId, quantity })
-//     .then((res) => res.data)
-//     .catch((error) => {
-//       console.error('添加到购物车时出错:', error)
-//       return { error }
-//     })
-// }
+// 添加商品到购物车的函数 整理中
+export const addToCart = async (uid, data) => {
+  return axiosInstance
+    .post(`/cart?uid_id=${uid}`, { data })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('添加到购物车时出错:', error)
+      return { error }
+    })
+}
 
 // 更新购物车中商品数量的函数
 export const updateCartItem = async (uid, itemId, quantity, type) => {
@@ -46,7 +46,7 @@ export const removeFromCart = async (userId, itemId, itemType) => {
     })
 }
 
-//樓下是所需add body範例
+//樓下是所需add body範例(商品跟課程)
 // {
 //   "data": {
 //     "type": "product",
@@ -55,6 +55,18 @@ export const removeFromCart = async (userId, itemId, itemType) => {
 //     "price": 100,
 //     "quantity": 2,
 //     "product_subtitle": "Sample Subtitle"
+//   }
+// }
+//樓下是所需add body範例(客製化)
+// {
+//   "data": {
+//     "type": "custom",
+//     "price": 300,
+//     "quantity": 3,
+//     "custom_size": "Large",
+//     "custom_layer": "Double",
+//     "custom_decor": "Sprinkles",
+//     "custom_flavor": "Chocolate"
 //   }
 // }
 
