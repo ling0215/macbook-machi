@@ -151,7 +151,7 @@ export const CartTypeProvider = ({ children }) => {
         coursetime: '2024/08/10',
         address: '復興堡',
       }
-    } else if (item.cart_item_id) {
+    } else if (item.custom_price) {
       newItem = {
         uid: userId,
         //以下為客製提供 提供者ex:custom_size=你設定的size,size.layer.flavor.decor皆為字串
@@ -215,15 +215,14 @@ export const CartTypeProvider = ({ children }) => {
     )
     if (!item) {
       console.error('Item not found in cart:', { uid, id, type })
-      return // 如果没有找到项目，提前返回
+      return
     }
 
     const response = await removeFromCart(uid, id, type)
     if (response.error) {
-      console.error('Failed to increment item quantity:', response.error)
+      console.error('Failed to remove item from cart:', response.error)
     } else {
-      // 如果后端更新成功，更新前端状态
-      setCartItems(removeOne(cartItems, uid, id, type))
+      setCartItems((prevItems) => removeOne(prevItems, uid, id, type))
     }
   }
 

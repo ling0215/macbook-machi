@@ -139,7 +139,7 @@ router.delete('/', authenticate, async (req, res) => {
 })
 
 //加入購物車
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
   try {
     const userId = parseInt(req.query.uid)
 

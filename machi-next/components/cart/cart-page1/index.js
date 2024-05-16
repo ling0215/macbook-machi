@@ -249,10 +249,12 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
           <button
             onClick={() =>
               addItem({
-                cart_item_id: '1003',
                 custom_count: 3,
                 custom_price: 300,
-                custom_name: '測試自訂',
+                custom_size: '有夠大',
+                custom_layer: '3層',
+                custom_flavor: '巧克力',
+                custom_decor: '草莓 巧克力 保麗龍',
               })
             }
           >
