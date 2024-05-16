@@ -101,16 +101,27 @@ export const CartTypeProvider = ({ children }) => {
   }, [cartItems])
 
   //,尚未測試
+  let isAddingItem = false
+
   const addItem = async (item) => {
-    // 确保用户数据已加载
+    // 確保用戶數據已加載
     if (!auth.userData || !auth.userData.user_id) {
       console.error('User data is not available')
-      return // 提前返回，防止执行后续代码
+      return // 提前返回，防止執行後續代碼
     }
     if (cartItems.length == 0) {
       console.error('User data is not available')
-      return // 提前返回，防止执行后续代码
+      return // 提前返回，防止執行後續代碼
     }
+
+    // 檢查是否正在添加商品，防止反彈
+    if (isAddingItem) {
+      console.warn('Add item operation is already in progress')
+      return
+    }
+
+    // 設置旗標，表示正在添加商品
+    isAddingItem = true
 
     let userId = auth.userData.user_id
     let newItem = await { uid: userId }
@@ -149,7 +160,7 @@ export const CartTypeProvider = ({ children }) => {
       }
     }
 
-    // 执行添加或更新购物车项目
+    // 執行添加或更新購物車項目
     const index = cartItems.findIndex(
       (cartItem) =>
         cartItem.uid === newItem.uid &&
@@ -168,6 +179,7 @@ export const CartTypeProvider = ({ children }) => {
       )
       console.log(response)
       setCartItems(addOne(cartItems, newItem))
+      isAddingItem = false // 重置旗標
       return
     } else {
       const response = await addToCart(newItem.uid, newItem)
@@ -176,6 +188,7 @@ export const CartTypeProvider = ({ children }) => {
     }
 
     setCartItems(addOne(cartItems, newItem))
+    isAddingItem = false // 重置旗標
   }
 
   //刪除導這隻
