@@ -11,13 +11,11 @@ import '@/styles/homepage.scss'
 //測試資料
 import dataCartItems from '@/data/cart/test.json'
 // 載入購物車context
-import { CartProvider } from '@/hooks/use-cart-state'
+import { CartTypeProvider } from '@/hooks/cart-type-state'
 // 載入認証用context
 import { AuthProvider } from '@/hooks/use-auth'
 // 載入動畫context
 import { LoaderProvider } from '@/hooks/use-loader'
-
-import { CustomizeProvider } from '@/hooks/use-customize'
 
 import DefaultLayout from '@/components/layout/default-layout'
 // 自訂用載入動畫元件
@@ -38,13 +36,11 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <AuthProvider>
-      <CustomizeProvider>
-        <CartProvider>
-          <LoaderProvider close={2} CustomLoader={CatLoader}>
-            {getLayout(<Component {...pageProps} />)}
-          </LoaderProvider>
-        </CartProvider>
-      </CustomizeProvider>
+      <CartTypeProvider>
+        <LoaderProvider close={2} CustomLoader={CatLoader}>
+          {getLayout(<Component {...pageProps} />)}
+        </LoaderProvider>
+      </CartTypeProvider>
     </AuthProvider>
   )
 }
