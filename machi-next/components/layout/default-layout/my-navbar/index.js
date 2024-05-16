@@ -28,7 +28,7 @@ export default function MyNavbar() {
             styles[`bg-primary`]
           } navbar navbar-expand-lg fixed-top navbar-light bg-light`}
         >
-          <div className="container-fluid">
+          <div className="container">
             <Link className="navbar-brand" href="/">
               <Image
                 src="/logo-machi-brown.svg"
