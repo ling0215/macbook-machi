@@ -53,13 +53,12 @@ export const fetchBetterArticles = async (
 }
 
 export const fetchRawArticle = async (url = 0) => {
-  // console.log('這裡')
-  // console.log(url)
-  // console.log('這裡')
   try {
     const response = await axiosInstance.get(`/blog/${url}`)
     if (response.status === 200) {
-      return response.data
+      const article = response.data
+      // console.log('User name:', article.user_id) // 打印 User 的名稱
+      return article
     } else {
       console.error('Failed to fetch article:', response.statusText)
       return []
