@@ -233,9 +233,9 @@ export default function Detail() {
             <div className="content" style={{ display: activeButton === 'other' ? 'block' : 'none' }}>
                 <div
                     className="list-group-flush p-2 py-3 mb-4 border">
-                    <h4 id="title">｜產品尺寸｜</h4>
-                    <p className="list-group-item">&nbsp;6吋 - 13cm(Φ)x7cm(h)
-                    <br/> &nbsp;9吋 (產品以手工製作，尺寸僅供參考，略有誤差屬正常現象)</p>
+                    <h4 id="title">｜講師｜</h4>
+                    <h5 className="list-group-item">&nbsp;&nbsp;呂昇達
+                     &nbsp;</h5>
                     <h4 id="title">｜保存與享用｜</h4>
                     <p className="list-group-item">
                         為確保品質，將以低溫宅配運送，收到產品後，可選擇冷藏或冷凍擇一方式保存</p>
