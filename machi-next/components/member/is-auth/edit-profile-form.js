@@ -140,6 +140,7 @@ function EditProfileForm() {
                 maxWidth: '250px',
                 maxHeight: '250px',
                 borderRadius: '50%',
+                objectFit: 'cover',
               }} // 這裡設定圖片的最大寬度和最大高度，並設定 border-radius 為 50% 使其變為圓形
             />
           </div>
