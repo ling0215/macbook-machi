@@ -228,6 +228,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 product_count: 1,
                 product_price: 100,
                 product_name: '測試商品',
+                product_subtitle: '此為內容',
               })
             }
           >

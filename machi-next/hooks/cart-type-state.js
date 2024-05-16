@@ -19,6 +19,7 @@ import { useAuth } from '@/hooks/use-auth'
 const CartContext = createContext(null)
 
 export const CartTypeProvider = ({ children }) => {
+  const [addingItem, setAddingItem] = useState(false)
   const [cartItems, setCartItems] = useState([])
   const [cartState, setCartState] = useState(init([]))
   const [error, setError] = useState(null)
@@ -100,9 +101,6 @@ export const CartTypeProvider = ({ children }) => {
     setCartState(init(cartItems))
   }, [cartItems])
 
-  //,尚未測試
-  let isAddingItem = false
-
   const addItem = async (item) => {
     // 確保用戶數據已加載
     if (!auth.userData || !auth.userData.user_id) {
@@ -114,35 +112,40 @@ export const CartTypeProvider = ({ children }) => {
       return // 提前返回，防止執行後續代碼
     }
 
-    // 檢查是否正在添加商品，防止反彈
-    if (isAddingItem) {
+    // 检查是否正在添加商品，防止反弹
+    if (addingItem) {
       console.warn('Add item operation is already in progress')
       return
     }
 
-    // 設置旗標，表示正在添加商品
-    isAddingItem = true
+    // 设置状态，表示正在添加商品
+    setAddingItem(true)
 
     let userId = auth.userData.user_id
-    let newItem = await { uid: userId }
+    let newItem = {}
 
     if (item.product_id_fk) {
       newItem = {
         uid: userId,
+        //以下為商品頁提供 提供者ex:product_id_fk=product_id
         id: item.product_id_fk,
         quantity: item.product_count,
         price: item.product_price,
         name: item.product_name,
+        subtitle: item.product_subtitle,
+        //以上為商品頁提供
         image: '等待設定',
         type: 'product',
       }
     } else if (item.course_id_fk) {
       newItem = {
         uid: userId,
+        //以下為課程頁提供 提供者ex:course_id_fk=course_id
         id: item.course_id_fk,
         quantity: item.course_count,
         price: item.course_price,
         name: item.course_name,
+        //以上為課程頁提供
         image: '',
         type: 'course',
         coursetime: '2024/08/10',
@@ -151,44 +154,58 @@ export const CartTypeProvider = ({ children }) => {
     } else if (item.cart_item_id) {
       newItem = {
         uid: userId,
-        id: item.cart_item_id,
+        //以下為客製提供 提供者ex:custom_size=你設定的size,size.layer.flavor.decor皆為字串
         quantity: item.custom_count,
         price: item.custom_price,
-        name: item.custom_name,
+        size: item.custom_size,
+        layer: item.custom_layer,
+        flavor: item.custom_flavor,
+        decor: item.custom_decor,
+        //以上為客製提供
         image: '',
         type: 'custom',
       }
     }
 
-    // 執行添加或更新購物車項目
+    // 執行添加或更新購物車項目 客製化沒有custom_id跟custom_name
     const index = cartItems.findIndex(
       (cartItem) =>
         cartItem.uid === newItem.uid &&
-        cartItem.id === newItem.id &&
+        (newItem.type !== 'custom'
+          ? parseInt(cartItem.id) === parseInt(newItem.id)
+          : true) &&
         cartItem.type === newItem.type &&
-        cartItem.price === newItem.price
+        cartItem.price === newItem.price &&
+        (newItem.type == 'custom' ? cartItem.size === newItem.size : true) &&
+        (newItem.type == 'custom' ? cartItem.layer === newItem.layer : true) &&
+        (newItem.type == 'custom'
+          ? cartItem.flavor === newItem.flavor
+          : true) &&
+        (newItem.type == 'custom' ? cartItem.decor === newItem.decor : true)
     )
-
+    console.log(index)
     if (index !== -1) {
       const newQuantity = cartItems[index].quantity + newItem.quantity
+      const itemId = newItem.type !== 'custom' ? newItem.id : 0
       const response = await updateCartItem(
         newItem.uid,
-        newItem.id,
+        itemId,
         newQuantity,
         newItem.type
       )
       console.log(response)
       setCartItems(addOne(cartItems, newItem))
-      isAddingItem = false // 重置旗標
+
+      setAddingItem(false) // 重置旗標
       return
     } else {
       const response = await addToCart(newItem.uid, newItem)
-      console.log(index)
+      console.log(newItem)
       console.log(response)
     }
 
     setCartItems(addOne(cartItems, newItem))
-    isAddingItem = false // 重置旗標
+    setAddingItem(false) // 重置旗標
   }
 
   //刪除導這隻
