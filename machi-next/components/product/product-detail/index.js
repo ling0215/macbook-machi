@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Carousel from '@/components/product/product-detail/carousel'
 import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 import ProductIntro from '@/components/product/product-detail/product-intro'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 import { checkAuth } from '@/services/user'
 import { addToCart } from '@/services/cart'
 
@@ -21,7 +21,7 @@ export default function ProductDetail(product) {
       ? newProduct.product_price_middle
       : newProduct.product_price_small
 
-  const { cart, items, decrement, increment, removeItem } = useCart()
+  const { addItem } = useCart()
 
   return (
     <>

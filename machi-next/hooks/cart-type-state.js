@@ -85,6 +85,7 @@ export const CartTypeProvider = ({ children }) => {
               id: item.cart_item_id,
               quantity: item.custom_count,
               price: item.custom_price,
+              name: '自訂商品',
               image: '',
               type: 'custom',
               specification: `${item.custom_size},${item.custom_layer},${item.custom_flavor},${item.custom_decor}`,
