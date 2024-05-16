@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 
 export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
   const handleSearchChange = (event) => {
@@ -11,7 +12,8 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
   const handleOrderChange = (sortOrder) => {
     setOrder(sortOrder)
   }
-
+  
+  
   // const handleViewChange = (viewType) => {
   //     setView(viewType);
   // };
@@ -96,12 +98,12 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
             <i className="bi bi-grid"></i>
           </button>
           <button
-            className="btn"
-            id="listview"
-            // onClick={() => handleViewChange('list')}
-          >
-            <i className="bi bi-list"></i>
-          </button>
+        className="btn"
+        id="listview"
+        // onClick={() => handleViewChange('row')}
+      >
+        <i className="bi bi-list">測試</i>
+      </button>
         </div>
       </div>
     </>

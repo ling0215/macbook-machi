@@ -42,7 +42,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                         data-bs-target="#panelsStayOpen-collapseOne"
                         aria-controls="panelsStayOpen-collapseOne"
                       >
-                        塔派甜點
+                        課程類別
                       </button>
                     </h2>
                     <div
@@ -54,24 +54,48 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           role="button"
                           tabIndex={0}
                           className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('塔')}
+                          onClick={() => handleCategoryChange('蛋糕')}
                           onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleCategoryChange('塔')
+                            if (e.key === 'Enter') handleCategoryChange('蛋糕')
                           }}
                         >
-                          塔
+                          蛋糕
                         </div>
                         <div
                           role="button"
                           tabIndex={0}
                           className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('派')}
+                          onClick={() => handleCategoryChange('餅乾')}
                           onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleCategoryChange('派')
+                            if (e.key === 'Enter') handleCategoryChange('餅乾')
                           }}
                         >
-                          派
+                          餅乾
                         </div>
+                        
+                        <div
+                          role="button"
+                          tabIndex={0}
+                          className="text-decoration-none text-primary d-block hover-button"
+                          onClick={() => handleCategoryChange('麵包')}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleCategoryChange('麵包')
+                          }}
+                        >
+                          麵包
+                        </div>
+                        <div
+                          role="button"
+                          tabIndex={0}
+                          className="text-decoration-none text-primary d-block hover-button"
+                          onClick={() => handleCategoryChange('精緻點心')}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleCategoryChange('精緻點心')
+                          }}
+                        >
+                          精緻點心
+                        </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -86,7 +110,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                         data-bs-target="#panelsStayOpen-collapseTwo"
                         aria-controls="panelsStayOpen-collapseTwo"
                       >
-                        蛋糕
+                        報名狀態
                       </button>
                     </h2>
                     <div
@@ -180,7 +204,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                         data-bs-target="#panelsStayOpen-collapseThree"
                         aria-controls="panelsStayOpen-collapseThree"
                       >
-                        餅乾
+                        講師選擇
                       </button>
                     </h2>
                     <div
@@ -198,7 +222,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                               handleCategoryChange('達克瓦茲')
                           }}
                         >
-                          達克瓦茲
+                          呂昇達
                         </div>
                         <div
                           role="button"
@@ -210,7 +234,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                               handleCategoryChange('曲奇餅乾')
                           }}
                         >
-                          曲奇餅乾
+                          威力
                         </div>
                         <div
                           role="button"
@@ -222,55 +246,23 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                               handleCategoryChange('馬卡龍')
                           }}
                         >
-                          馬卡龍
+                          韓國人金老師
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="accordion-item">
-                    <h2 className="accordion-header">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        aria-expanded="false"
-                        data-bs-target="#panelsStayOpen-collapseFour"
-                        aria-controls="panelsStayOpen-collapseFour"
-                      >
-                        點心
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseFour"
-                      className="accordion-collapse collapse"
-                    >
-                      <div className="accordion-body px-1">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('巧克力')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('巧克力')
-                          }}
-                        >
-                          巧克力
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                 
 
                   <label htmlFor="range" className="form-label mt-3">
-                    價格區間<p>Slider Value: {sliderValue}</p>
+                    價格區間<p> {sliderValue}元以下</p>
                   </label>
                   <input
         type="range"
         className="form-range"
         min={4000}
         max={10000}
-        step={1200}
+        step={1000}
         id="range"
         value={sliderValue}
         onChange={handleRangeChange}

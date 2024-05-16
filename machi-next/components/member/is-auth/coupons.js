@@ -50,6 +50,11 @@ function Coupons() {
         overflow: hidden;
         width: 80%;
       }
+      .btn-outline-brown:hover {
+        background-color: var(--brown);
+        color: white; 
+        border-color: var(--grey);
+      }
       `}</style>
     </>
   );

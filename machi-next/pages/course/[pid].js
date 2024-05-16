@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { data } from 'jquery'
 import React from 'react'
-import Carousel from '@/components/product/carousel'
+// import Carousel from '@/components/product/carousel'
 import {IoCartOutline, IoHeartOutline} from 'react-icons/io5'
 import { useCart } from '@/hooks/use-cart-state'
 import styles from './course-detail.module.scss'
@@ -11,6 +11,7 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
+
 
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
@@ -35,6 +36,15 @@ export default function Detail() {
 
    }}
   })
+
+  //cart
+  const { addItem } = useCart()
+  //cart
+
+  //時間用
+ 
+
+  //時間用
 
   const router = useRouter()
 
@@ -71,7 +81,7 @@ export default function Detail() {
   const imageUrl1 = `/images/course/slide/${course.data.course.course_id}_1.jpg`
   const imageUrl2 = `/images/course/slide/${course.data.course.course_id}_2.jpg`
   const imageUrl3 = `/images/course/slide/${course.data.course.course_id}_3.jpg`
- 
+  
 
   return (
     <>
@@ -131,7 +141,17 @@ export default function Detail() {
           <p className="product-desc mb-4" dangerouslySetInnerHTML={{ __html: course.data.course.course_description }}></p>
 
           <div className="mb-4">
-       
+          
+          <p className="product-desc mb-4" >
+            課程時間:
+            
+          </p>
+          <p className="product-desc mb-4" >
+            報名開始:
+          </p>
+          <p className="product-desc mb-4" >
+            報名截止:
+          </p>
           </div>
           {/* 數量按鈕 */}
           <div className={`d-flex g-3 justify-content-between align-items-center mb-4 addbuton`}>
@@ -217,9 +237,20 @@ export default function Detail() {
             <div className="content" style={{ display: activeButton === 'other' ? 'block' : 'none' }}>
                 <div
                     className="list-group-flush p-2 py-3 mb-4 border">
-                    <h4 id="title">｜產品尺寸｜</h4>
-                    <p className="list-group-item">&nbsp;6吋 - 13cm(Φ)x7cm(h)
-                    <br/> &nbsp;9吋 (產品以手工製作，尺寸僅供參考，略有誤差屬正常現象)</p>
+                     <button
+            onClick={() =>
+              addItem({
+                course_id_fk: course.data.course.course_id,
+                course_count: course.data.course.course_count,
+                course_price: course.data.course.course_price,
+                course_name: course.data.course.course_name,
+              })
+            }
+          >
+            測試自訂
+          </button>
+                    <h5 className="list-group-item">&nbsp;&nbsp;呂昇達
+                     &nbsp;</h5>
                     <h4 id="title">｜保存與享用｜</h4>
                     <p className="list-group-item">
                         為確保品質，將以低溫宅配運送，收到產品後，可選擇冷藏或冷凍擇一方式保存</p>
