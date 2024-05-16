@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, callback) {
     // 經授權後，req.user帶有會員的id
-    const newFilename = req.user.id
+    const newFilename = req.user.user_id
     // 新檔名由表單傳來的req.body.newFilename決定
     callback(null, newFilename + path.extname(file.originalname))
   },
@@ -103,25 +103,20 @@ router.post(
   authenticate,
   upload.single('avatar'), // 上傳來的檔案(這是單個檔案，表單欄位名稱為avatar)
   async function (req, res) {
-    // req.file 即上傳來的檔案(avatar這個檔案)
-    // req.body 其它的文字欄位資料…
-    // console.log(req.file, req.body)
-
     if (req.file) {
-      const id = req.user.id
-      const data = { avatar: req.file.filename }
+      const id = req.user.user_id
+      const data = { user_image: req.file.filename } // 修改這裡的屬性名稱
 
-      // 對資料庫執行update
       const [affectedRows] = await User.update(data, {
         where: {
-          id,
+          user_id: id,
         },
       })
 
-      // 沒有更新到任何資料 -> 失敗或沒有資料被更新
       if (!affectedRows) {
         return res.json({
           status: 'error',
+          data: { avatar: req.file.filename },
           message: '更新失敗或沒有資料被更新',
         })
       }

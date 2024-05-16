@@ -153,7 +153,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
 
   // console.log('樓下為page1')
 
-  // console.log(selectedItems)
+  console.log(selectedItems)
   //計算勾選金額跟數量用
   const calculateTotal = () => {
     const selectedItems = items.filter(
@@ -228,6 +228,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 product_count: 1,
                 product_price: 100,
                 product_name: '測試商品',
+                product_subtitle: '此為內容',
               })
             }
           >
@@ -248,10 +249,12 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
           <button
             onClick={() =>
               addItem({
-                cart_item_id: '1003',
                 custom_count: 3,
                 custom_price: 300,
-                custom_name: '測試自訂',
+                custom_size: '有夠大',
+                custom_layer: '3層',
+                custom_flavor: '巧克力',
+                custom_decor: '草莓 巧克力 保麗龍',
               })
             }
           >
@@ -292,7 +295,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
               <div className={``}>
                 <img
                   src={item.image}
-                  alt={item.name}
+                  alt=""
                   style={{ width: 140, height: 140 }}
                 />
               </div>
@@ -315,8 +318,8 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   style={{ gap: '0.5rem' }}
                 >
                   <div className="d-fex">
-                    <div className={`h5 mr-1`}>規格:</div>
-                    <div className={`h5`}>{item.specification}</div>
+                    <div className={`h5 mr-1`}>規格: {item.specification}</div>
+                    <div className={`h5`}></div>
                   </div>
                   <div className="d-fex row justify-content-end">
                     <div
@@ -412,7 +415,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
               <div className={``}>
                 <img
                   src={item.image}
-                  alt={item.name}
+                  alt="自訂商品"
                   style={{ width: 140, height: 140 }}
                 />
               </div>
@@ -422,7 +425,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 <div
                   className={`card-title card-text d-flex justify-content-between text-brown col h4`}
                 >
-                  {item.name}
+                  自訂商品
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}

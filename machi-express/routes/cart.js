@@ -192,14 +192,14 @@ router.post('/', authenticate, async (req, res) => {
     }
 
     if (newType === 'product') {
-      addItemData.product_subtitle = cartItem.product_subtitle
+      addItemData.product_subtitle = cartItem.subtitle
     }
 
     if (newType === 'custom') {
-      addItemData.custom_size = cartItem.custom_size
-      addItemData.custom_layer = cartItem.custom_layer
-      addItemData.custom_decor = cartItem.custom_decor
-      addItemData.custom_flavor = cartItem.custom_flavor
+      addItemData.custom_size = cartItem.size
+      addItemData.custom_layer = cartItem.layer
+      addItemData.custom_decor = cartItem.decor
+      addItemData.custom_flavor = cartItem.flavor
     }
 
     const adddItem = await CartItem.create(addItemData)
