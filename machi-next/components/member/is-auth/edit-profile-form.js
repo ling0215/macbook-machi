@@ -3,6 +3,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { updateProfile } from '@/services/user'
 import { getUserById } from '@/services/user'
 import { updateProfileAvatar } from '@/services/user'
+import Image from 'next/image'
 // import { FaDisplay } from 'react-icons/fa6'
 
 function EditProfileForm() {
@@ -107,7 +108,6 @@ function EditProfileForm() {
     // 在更新資料後取得新的使用者資料
     fetchUserData()
   }
-  console.log(form.user_birthday) // 檢查 form.user_birthday 的值
   const handleReset = (e) => {
     e.preventDefault() // 阻止表单提交
     setForm({
@@ -125,7 +125,7 @@ function EditProfileForm() {
       <div className="col p-2">
         <form onSubmit={handleSubmitAvatar}>
           <div className="d-flex justify-content-center my-3">
-            <img
+            <Image
               src={
                 avatarSelected
                   ? form.user_image
@@ -136,6 +136,8 @@ function EditProfileForm() {
               alt="User Avatar"
               className="user-avatar"
               key={form.user_image} // 新增的 key 屬性
+              width={250} // 新增的 width 屬性
+              height={250} // 新增的 height 屬性
               style={{
                 maxWidth: '250px',
                 maxHeight: '250px',
@@ -152,7 +154,7 @@ function EditProfileForm() {
               style={{ display: 'none' }} // 隱藏原生的檔案選擇按鈕
             />
             <label htmlFor="fileInput" className="btn btn-primary-dark mx-2">
-              選擇頭像
+              選擇圖片
             </label>
             {avatarSelected && (
               <button type="submit" className="btn btn-primary-dark ml-3 mx-2">
@@ -213,13 +215,13 @@ function EditProfileForm() {
             <button
               type="button"
               className={`btn ${
-                form.user_gender === '不願透露'
+                form.user_gender === '不願透漏'
                   ? 'btn-primary-dark'
                   : 'btn-outline-primary-dark'
               }`}
-              onClick={() => setGender('不願透露')}
+              onClick={() => setGender('不願透漏')}
             >
-              不願透露
+              不願透漏
             </button>
           </div>
           <div className="form-group my-3 text-primary-dark fw-bold">
