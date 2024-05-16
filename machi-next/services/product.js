@@ -23,6 +23,8 @@ export const getProducts = async (
   )
 }
 
+
+
 export const fetchRawProduct = async (pid = 0) => {
   try {
     const response = await axiosInstance.get(`/products/${pid}`)
