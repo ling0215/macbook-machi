@@ -7,7 +7,7 @@ import useSWR from 'swr'
 export const checkAuth = async () => {
   return await axiosInstance.get('/auth/check')
 }
-//做檢查 
+
 /**
  * Google Login(Firebase)登入用，providerData為登入後得到的資料
  */

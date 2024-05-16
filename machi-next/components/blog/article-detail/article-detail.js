@@ -30,7 +30,9 @@ const ArticleDetail = ({ articleId }) => {
   }
 
   const cleanHTML = DOMPurify.sanitize(article.article_content)
-  const categories = article.article_category.split(',')
+  const categories = article.article_category
+    ? article.article_category.split(',')
+    : []
   console.log(categories)
   return (
     <div className={`container ${styles['article-text']}`}>
