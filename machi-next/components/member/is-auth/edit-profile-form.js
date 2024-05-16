@@ -121,7 +121,8 @@ function EditProfileForm() {
   }
 
   return (
-    <div className="row ms-5 w-75 border d-flex justify-content-center align-items-center">
+    <>
+    <div className="row ms-5 w-75 border rounded d-flex justify-content-center align-items-center">
       <div className="col p-2">
         <form onSubmit={handleSubmitAvatar}>
           <div className="d-flex justify-content-center my-3">
@@ -142,22 +143,25 @@ function EditProfileForm() {
                 maxWidth: '250px',
                 maxHeight: '250px',
                 borderRadius: '50%',
+                objectPosition: '1px -5px',
                 objectFit: 'cover',
+                border: '1px solid #ccc',
+                boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
               }} // 這裡設定圖片的最大寬度和最大高度，並設定 border-radius 為 50% 使其變為圓形
             />
           </div>
-          <div className="d-flex justify-content-center my-3">
+          <div className="d-flex justify-content-center my-4">
             <input
               type="file"
               id="fileInput" // 給輸入元素一個 id
               onChange={handleAvatarChange}
               style={{ display: 'none' }} // 隱藏原生的檔案選擇按鈕
             />
-            <label htmlFor="fileInput" className="btn btn-primary-dark mx-2">
+            <label htmlFor="fileInput" className="btn btn-brown text-white mx-2">
               選擇圖片
             </label>
             {avatarSelected && (
-              <button type="submit" className="btn btn-primary-dark ml-3 mx-2">
+              <button type="submit" className="btn btn-brown text-white ml-3 mx-2">
                 確定上傳
               </button>
             )}
@@ -183,7 +187,7 @@ function EditProfileForm() {
           <div className="form-group my-2 mb-5 text-primary-dark fw-bold">
             <button
               type="button"
-              className="btn btn-primary-dark"
+              className="btn btn-brown text-white"
               onClick={() => {}}
             >
               修改密碼
@@ -194,8 +198,8 @@ function EditProfileForm() {
               type="button"
               className={`btn ${
                 form.user_gender === '男性'
-                  ? 'btn-primary-dark'
-                  : 'btn-outline-primary-dark'
+                  ? 'btn-brown text-white'
+                  : 'btn-outline-brown'
               } `}
               onClick={() => setGender('男性')}
             >
@@ -205,8 +209,8 @@ function EditProfileForm() {
               type="button"
               className={`btn ${
                 form.user_gender === '女性'
-                  ? 'btn-primary-dark'
-                  : 'btn-outline-primary-dark'
+                  ? 'btn-brown text-white'
+                  : 'btn-outline-brown'
               }`}
               onClick={() => setGender('女性')}
             >
@@ -216,8 +220,8 @@ function EditProfileForm() {
               type="button"
               className={`btn ${
                 form.user_gender === '不願透漏'
-                  ? 'btn-primary-dark'
-                  : 'btn-outline-primary-dark'
+                  ? 'btn-brown text-white'
+                  : 'btn-outline-brown'
               }`}
               onClick={() => setGender('不願透漏')}
             >
@@ -278,6 +282,14 @@ function EditProfileForm() {
         </form>
       </div>
     </div>
+    <style jsx>{`
+    .btn-outline-brown:hover {
+      background-color: var(--brown);
+      color: white; 
+      border-color: var(--grey);
+    }
+    `}</style>
+    </>
   )
 }
 

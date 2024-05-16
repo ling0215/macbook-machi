@@ -108,6 +108,13 @@ export default function ProductDetail(product) {
       <div className="row mt-5">
         <ProductIntro pid={newProduct.product_description_full} />
       </div>
+
+      <style jsx>{`
+        .btn-outline-brown:hover {
+          background-color: var(--brown);
+          color: white; 
+        }
+      `}</style>
     </>
   )
 }
