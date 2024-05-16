@@ -153,7 +153,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
 
   // console.log('樓下為page1')
 
-  // console.log(selectedItems)
+  console.log(selectedItems)
   //計算勾選金額跟數量用
   const calculateTotal = () => {
     const selectedItems = items.filter(
@@ -295,7 +295,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
               <div className={``}>
                 <img
                   src={item.image}
-                  alt={item.name}
+                  alt=""
                   style={{ width: 140, height: 140 }}
                 />
               </div>
@@ -318,8 +318,8 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   style={{ gap: '0.5rem' }}
                 >
                   <div className="d-fex">
-                    <div className={`h5 mr-1`}>規格:</div>
-                    <div className={`h5`}>{item.specification}</div>
+                    <div className={`h5 mr-1`}>規格: {item.specification}</div>
+                    <div className={`h5`}></div>
                   </div>
                   <div className="d-fex row justify-content-end">
                     <div
@@ -415,7 +415,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
               <div className={``}>
                 <img
                   src={item.image}
-                  alt={item.name}
+                  alt="自訂商品"
                   style={{ width: 140, height: 140 }}
                 />
               </div>
@@ -425,7 +425,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 <div
                   className={`card-title card-text d-flex justify-content-between text-brown col h4`}
                 >
-                  {item.name}
+                  自訂商品
                   <div>
                     <button
                       className={`bi bi-trash3 text-black btn btn-light`}
