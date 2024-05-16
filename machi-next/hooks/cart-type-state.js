@@ -100,23 +100,45 @@ export const CartTypeProvider = ({ children }) => {
     setCartState(init(cartItems))
   }, [cartItems])
 
-  //新增實作中
+  //,尚未測試
+  let isAddingItem = false
+
   const addItem = async (item) => {
-    let newItem = {}
+    // 確保用戶數據已加載
+    if (!auth.userData || !auth.userData.user_id) {
+      console.error('User data is not available')
+      return // 提前返回，防止執行後續代碼
+    }
+    if (cartItems.length == 0) {
+      console.error('User data is not available')
+      return // 提前返回，防止執行後續代碼
+    }
+
+    // 檢查是否正在添加商品，防止反彈
+    if (isAddingItem) {
+      console.warn('Add item operation is already in progress')
+      return
+    }
+
+    // 設置旗標，表示正在添加商品
+    isAddingItem = true
+
+    let userId = auth.userData.user_id
+    let newItem = await { uid: userId }
 
     if (item.product_id_fk) {
       newItem = {
-        uid: auth.userData.user_id,
+        uid: userId,
         id: item.product_id_fk,
         quantity: item.product_count,
         price: item.product_price,
         name: item.product_name,
-        image: '',
+        image: '等待設定',
         type: 'product',
       }
     } else if (item.course_id_fk) {
       newItem = {
-        uid: auth.userData.user_id,
+        uid: userId,
         id: item.course_id_fk,
         quantity: item.course_count,
         price: item.course_price,
@@ -128,7 +150,7 @@ export const CartTypeProvider = ({ children }) => {
       }
     } else if (item.cart_item_id) {
       newItem = {
-        uid: auth.userData.user_id,
+        uid: userId,
         id: item.cart_item_id,
         quantity: item.custom_count,
         price: item.custom_price,
@@ -138,16 +160,16 @@ export const CartTypeProvider = ({ children }) => {
       }
     }
 
-    // 檢查購物車中是否已經存在相同的物品
+    // 執行添加或更新購物車項目
     const index = cartItems.findIndex(
       (cartItem) =>
         cartItem.uid === newItem.uid &&
         cartItem.id === newItem.id &&
-        cartItem.type === newItem.type
+        cartItem.type === newItem.type &&
+        cartItem.price === newItem.price
     )
 
     if (index !== -1) {
-      // 如果找到了，更新其数量
       const newQuantity = cartItems[index].quantity + newItem.quantity
       const response = await updateCartItem(
         newItem.uid,
@@ -155,16 +177,18 @@ export const CartTypeProvider = ({ children }) => {
         newQuantity,
         newItem.type
       )
-      console.log(response) // 可以根据需要处理响应
-      return // 结束函数执行
+      console.log(response)
+      setCartItems(addOne(cartItems, newItem))
+      isAddingItem = false // 重置旗標
+      return
     } else {
-      // 如果检查通过，没有找到相同商品，添加新项目到购物车
       const response = await addToCart(newItem.uid, newItem)
-      console.log(response) // 处理添加到购物车的响应
+      console.log(index)
+      console.log(response)
     }
 
-    // 如果檢查通過，將新項目添加到購物車中
     setCartItems(addOne(cartItems, newItem))
+    isAddingItem = false // 重置旗標
   }
 
   //刪除導這隻

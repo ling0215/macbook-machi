@@ -16,7 +16,7 @@ export const fetchCart = async (userId) => {
 // 添加商品到购物车的函数 整理中
 export const addToCart = async (uid, data) => {
   return axiosInstance
-    .post(`/cart?uid_id=${uid}`, { data })
+    .post(`/cart?uid=${uid}`, { data })
     .then((res) => res.data)
     .catch((error) => {
       console.error('添加到购物车时出错:', error)
@@ -30,7 +30,7 @@ export const updateCartItem = async (uid, itemId, quantity, type) => {
     .put(`/cart`, { id: itemId, quantity: quantity, type: type, uid }) // 确保传递所有必要的参数
     .then((res) => res.data)
     .catch((error) => {
-      console.error('更新购物车项目时出错:', error)
+      console.error('更新购物车项目时出错:' + itemId, error)
       return { error }
     })
 }
