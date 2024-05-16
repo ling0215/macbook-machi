@@ -3,13 +3,13 @@ import Link from 'next/link'
 
 export default function Sidebar({ setCategory, setPriceRange }) {
   // 增加一個 state 來存儲滑塊的當前值
-  const [range, setRange] = useState(0);
+  const [range, setRange] = useState(0)
 
   function handleRangeChange(event) {
     // 從事件對象中獲取滑塊的值
     const range = event.target.value
 
-    setRange(range);
+    setRange(range)
 
     // 更新 priceRange 狀態變量
     setPriceRange(range)
@@ -30,15 +30,17 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                   className="accordion accordion-flush"
                   id="accordionFlushExample"
                 >
-                <div className="accordion-item">
+                  <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button
                         className="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         aria-expanded="false"
-                        data-bs-target="#panelsStayOpen-collapseFour"
-                        aria-controls="panelsStayOpen-collapseFour"
+                        onClick={() => handleCategoryChange('')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleCategoryChange('')
+                        }}
                       >
                         所有商品
                       </button>
@@ -46,22 +48,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                     <div
                       id="panelsStayOpen-collapseFour"
                       className="accordion-collapse collapse"
-                    >
-                      <div className="accordion-body px-1">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('巧克力')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('巧克力')
-                          }}
-                        >
-                          巧克力
-                        </div>
-                      </div>
-                    </div>
+                    ></div>
                   </div>
                   <div className="accordion-item">
                     <h2 className="accordion-header">

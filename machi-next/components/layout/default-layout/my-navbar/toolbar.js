@@ -1,11 +1,29 @@
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './toolbar.module.scss'
-import React from 'react'
 import { useLogout } from '@/hooks/use-logout'
+import { checkAuth } from '@/services/user'
 
 export default function Toolbar({ handleShow }) {
+  const [user, setUser] = useState(null)
   const handleLogout = useLogout()
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await checkAuth() // 調用 checkAuth 函數來檢查會員的狀態
+      if (
+        response &&
+        response.data &&
+        response.data.data &&
+        response.data.data.user
+      ) {
+        setUser(response.data.data.user) // 如果會員已登錄，則將會員的狀態設定為 response.data.data.user
+      }
+    }
+    fetchUser()
+  }, [])
+
   return (
     <ul className="navbar-nav pe-2 ms-auto">
       <li className="nav-item">
@@ -31,7 +49,20 @@ export default function Toolbar({ handleShow }) {
           aria-expanded="false"
           title="會員中心"
         >
-          <i className="bi bi-person-circle"></i>
+          {user && user.user_image ? (
+            <Image
+              src={`http://localhost:3005/avatar/${user.user_image}`}
+              alt="User Avatar"
+              width={22}
+              height={22}
+              style={{
+                borderRadius: '50%', // 使圖片變為圓形
+                objectFit: 'cover', // 控制圖片的填充方式
+              }}
+            />
+          ) : (
+            <i className="bi bi-person-circle"></i>
+          )}
           <p className="d-none d-md-inline d-lg-none">會員中心</p>
         </Link>
         <ul
@@ -40,7 +71,11 @@ export default function Toolbar({ handleShow }) {
           <li>
             <p className="text-center">
               <Image
-                src="/avatar.svg"
+                src={
+                  user && user.user_image
+                    ? `http://localhost:3005/avatar/${user.user_image}`
+                    : '/avatar.svg'
+                } // 如果 user.user_image 不為 null，則使用 `http://localhost:3005/avatar/${user.user_image}` 作為圖片的 URL
                 className="rounded-circle d-block mx-auto"
                 alt="..."
                 width={80}
@@ -48,26 +83,48 @@ export default function Toolbar({ handleShow }) {
               />
             </p>
             <p className="text-center">
-              會員姓名: 艾迪
+              {user ? '您好' : '尚未登入'}
               <br />
-              帳號: eddy123
+              {user ? user.user_account : ''}
             </p>
           </li>
           <li>
-            <Link className="dropdown-item text-center" href="/admin">
-              會員管理區
-            </Link>
+            {user ? (
+              <Link
+                className="dropdown-item text-center"
+                href="/member/account"
+              >
+                會員專區
+              </Link>
+            ) : (
+              <Link
+                className="dropdown-item text-center"
+                href="/member/register"
+              >
+                {' '}
+                註冊
+              </Link>
+            )}
           </li>
           <li>
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <button
-              className="dropdown-item text-center"
-              onClick={handleLogout}
-            >
-              登出
-            </button>
+            {user ? (
+              <button
+                className="dropdown-item text-center"
+                onClick={handleLogout}
+              >
+                登出
+              </button>
+            ) : (
+              <Link
+                className="dropdown-item text-center"
+                href="/member/login" // 將 "/login" 替換為你的登入頁面的 URL
+              >
+                登入
+              </Link>
+            )}
           </li>
         </ul>
       </li>

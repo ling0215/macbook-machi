@@ -13,8 +13,17 @@ export default function CustomizedDeco() {
 
   const [basePrice, setBasePrice] = useState(customize.sizePrice.price)
   const [totalPrice, setTotalPrice] = useState(customize.sizePrice.price)
+
   let size = customize.sizePrice.size
   let price = basePrice
+
+  const handleDefaultSize = () => {
+    setSizePrice('', '')
+    setLayer('')
+    setFlavor('')
+    setDeco([])
+    setPreview('')
+  }
 
   const handleLayerChange = (layer) => {
     setLayer(layer)
@@ -67,6 +76,22 @@ export default function CustomizedDeco() {
     setLayer('')
     setFlavor('')
     setPreview('')
+
+    let ele = document.getElementsByName('layer')
+    for (let i = 0; i < ele.length; i++) {
+      ele[i].checked = false
+    }
+
+    let ele2 = document.getElementsByName('flavor')
+    for (let i = 0; i < ele2.length; i++) {
+      ele2[i].checked = false
+    }
+    let ele3 = document.getElementsByName('decos')
+    for (let i = 0; i < ele3.length; i++) {
+      ele3[i].checked = false
+    }
+
+    document.getElementById('formFileSm').value = ''
   }
 
   return (
@@ -88,6 +113,7 @@ export default function CustomizedDeco() {
             title="Step 2 : 選擇蛋糕口味及樣式"
             prvLink="/customized-products/size"
             nextLink="/customized-products/cart"
+            onTitleClick={handleDefaultSize}
           />
         </div>
         <div className="lynn-deco-preview">
@@ -205,11 +231,11 @@ export default function CustomizedDeco() {
               <span>{`NT$${customize.sizePrice.price}`}</span>
             </div>
             <div className="lynn-deco-confirm">
-              <Link href="/customized-products/deco" passHref>
-                <button className="lynn-btn-grey" onClick={handleDefaultDeco}>
-                  清除重填
-                </button>
-              </Link>
+              {/* <Link href="/customized-products/deco" passHref> */}
+              <button className="lynn-btn-grey" onClick={handleDefaultDeco}>
+                清除重填
+              </button>
+              {/* </Link> */}
               <Link href="/customized-products/cart" passHref>
                 <button className="lynn-btn-brown">確定</button>
               </Link>

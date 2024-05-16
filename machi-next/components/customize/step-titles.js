@@ -8,7 +8,13 @@ export default function StepTitle({
   shouldHide1,
   nextLink,
   shouldHide2,
+  onTitleClick,
 }) {
+  const handleTitleClick = () => {
+    if (prvLink === '/customized-products/size') {
+      onTitleClick()
+    }
+  }
   return (
     <>
       <div>
@@ -18,6 +24,7 @@ export default function StepTitle({
             <button
               className={styles['prv-step-button']}
               style={{ display: shouldHide1 ? 'none' : 'flex' }}
+              onClick={handleTitleClick}
             >
               上一步
             </button>

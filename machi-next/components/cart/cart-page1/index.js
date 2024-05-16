@@ -4,9 +4,11 @@ import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaCheck } from 'react-icons/fa6'
+import { useCustomize } from '@/hooks/use-customize'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem, addItem } = useCart()
+  const { customize } = useCustomize()
   console.log(`傳入page1的cart$`)
   console.log(items)
   // console.log(cart)
