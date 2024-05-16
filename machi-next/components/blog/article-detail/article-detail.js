@@ -37,8 +37,8 @@ const ArticleDetail = ({ articleId }) => {
   return (
     <div className={`container ${styles['article-text']}`}>
       <div className={styles['article-user']}>
-        <img src="" alt="" />
-        <span>{article.user_id_fk}</span>
+      <img src={`http://localhost:3005/avatar/${article.user.user_id}.jpg`} alt="" />        
+      <span>{article.user.user_name}</span>
       </div>
       <div className={styles['article-btn']}>
         {categories.map((category, index) => (
