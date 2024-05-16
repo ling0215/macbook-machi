@@ -49,4 +49,5 @@ export default async function (sequelize) {
       underscored: true, // 所有自動建立欄位，使用snake_case命名
     }
   )
+  
 }

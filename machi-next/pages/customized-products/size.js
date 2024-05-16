@@ -2,9 +2,12 @@ import Steps from '@/components/customize/steps'
 import StepTitle from '@/components/customize/step-titles'
 import CakeSize from '@/components/customize/cake-size'
 import { useCustomize } from '@/hooks/use-customize'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function CustomizedSize() {
-  const { setSizePrice } = useCustomize()
+  const { customize, setSizePrice } = useCustomize()
+  const notify = (size, price) =>
+    toast.success(`您已選擇 ${size} 蛋糕尺寸，價格為 ${price} `)
 
   const handleSizePriceChange = (size, price) => {
     setSizePrice(size, price)
@@ -38,7 +41,10 @@ export default function CustomizedSize() {
               imageSize={100}
               size="4吋"
               price="420元"
-              onClick={() => handleSizePriceChange('4吋', parseInt('420元'))}
+              onClick={() => {
+                handleSizePriceChange('4吋', parseInt('420元'))
+                notify('4吋', '420元')
+              }}
             />
           </div>
           <div className="lynn-cake6">
@@ -46,7 +52,10 @@ export default function CustomizedSize() {
               imageSize={140}
               size="6吋"
               price="650元"
-              onClick={() => handleSizePriceChange('6吋', parseInt('650元'))}
+              onClick={() => {
+                handleSizePriceChange('6吋', parseInt('650元'))
+                notify('6吋', '650元')
+              }}
             />
           </div>
           <div className="lynn-cake9">
@@ -54,15 +63,25 @@ export default function CustomizedSize() {
               imageSize={160}
               size="9吋"
               price="1,080元"
-              onClick={() =>
+              onClick={() => {
                 handleSizePriceChange(
                   '9吋',
                   parseInt('1,080元'.replace(/,/g, ''))
                 )
-              }
+                notify('9吋', '1,080元')
+              }}
             />
           </div>
         </div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: '#f8dc9a',
+              color: '#363636',
+            },
+          }}
+        />
       </div>
     </>
   )

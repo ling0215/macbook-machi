@@ -30,13 +30,15 @@ const ArticleDetail = ({ articleId }) => {
   }
 
   const cleanHTML = DOMPurify.sanitize(article.article_content)
-  const categories = article.article_category.split(',')
+  const categories = article.article_category
+    ? article.article_category.split(',')
+    : []
   console.log(categories)
   return (
     <div className={`container ${styles['article-text']}`}>
       <div className={styles['article-user']}>
-        <img src="" alt="" />
-        <span>{article.user_id_fk}</span>
+      <img src={`http://localhost:3005/avatar/${article.user.user_id}.jpg`} alt="" />        
+      <span>{article.user.user_name}</span>
       </div>
       <div className={styles['article-btn']}>
         {categories.map((category, index) => (

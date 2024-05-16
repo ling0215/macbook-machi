@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default function OrderQueryForm() {
   return (
@@ -11,9 +11,17 @@ export default function OrderQueryForm() {
         <div className="mt-4 d-flex gap-3">
           <div className="d-flex align-items-center gap-3 flex-grow-1">
             <div className="w-100">查詢訂單時間</div>
-            <input type="date" className="form-control" defaultValue="2024-01-01" />
+            <input
+              type="date"
+              className="form-control"
+              defaultValue="2024-01-01"
+            />
             <div className="border-top border-2 w-25"></div>
-            <input type="date" className="form-control" defaultValue="2024-01-02" />
+            <input
+              type="date"
+              className="form-control"
+              defaultValue="2024-01-02"
+            />
           </div>
           <div className="d-flex align-items-center gap-3">
             <button className="btn btn-brown text-white">確定送出</button>
@@ -41,7 +49,13 @@ export default function OrderQueryForm() {
         .btn-brown {
           height: 40px;
         }
+        
+        .btn-outline-brown:hover {
+          background-color: var(--brown);
+          color: white;
+          border-color: var(--grey);
+        }
       `}</style>
     </>
-  );
+  )
 }

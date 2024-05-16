@@ -94,12 +94,14 @@ function ForgetPasswordForm() {
           text: '密碼修改失敗，請重試。',
           icon: 'error',
           confirmButtonText: '關閉',
+          confirmButtonColor: '#ab927d',
         })
       }
     }
   }
 
   return (
+    <>
     <main className={`form-member w-100 m-auto text-center`}>
       <div className="card my-3 border-0 shadow mb-5">
         <div className="card-body">
@@ -208,6 +210,14 @@ function ForgetPasswordForm() {
         </div>
       </div>
     </main>
+    <style jsx>{`
+    .btn-outline-brown:hover {
+      background-color: var(--brown);
+      color: white; 
+      border-color: var(--grey);
+    }
+    `}</style>
+    </>
   )
 }
 

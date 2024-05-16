@@ -35,7 +35,8 @@ export default function RegisterForm() {
         title: '註冊失敗!',
         text: '無法創建帳號：' + error.message,
         icon: 'error',
-        confirmButtonText: '關閉'
+        confirmButtonText: '關閉',
+        confirmButtonColor: '#ab927d',
       });
     }
   };
