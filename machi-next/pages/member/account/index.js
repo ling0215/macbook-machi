@@ -1,23 +1,21 @@
-import React from 'react'
-import { useAuth } from '@/hooks/use-auth'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import MemberNavBar from '@/components/member/is-auth/member-sidebar'
 import EditProfileForm from '@/components/member/is-auth/edit-profile-form'
-// import MemberLayout from '@/components/layout/member/member-layout'
+import { checkAuth } from '@/services/user' // 引入 checkAuth 函數
 
 function MemberSidebar() {
-  const { auth } = useAuth() // 使用 useAuth hook 來獲取 auth 狀態
   const router = useRouter() // 使用 useRouter hook 來獲取 router 物件
 
   // 使用 useEffect 來監聽 auth.isAuth 的變化
   useEffect(() => {
-    if (!auth.isAuth) {
-      router.push('/member/login')
-    } else {
-      // router.push('/member/account')
-    }
-  }, [auth.isAuth, router])
+    checkAuth().then((response) => {
+      if (response.data.status !== 'success') {
+        router.push('/member/login')
+      }
+    })
+  }, [router])
+
   return (
     <>
       <div className="container">
