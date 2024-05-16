@@ -65,6 +65,7 @@ export const CartTypeProvider = ({ children }) => {
               name: item.product_name,
               image: '',
               type: 'product',
+              specification: item.product_subtitle,
             }
           } else if (item.course_id_fk) {
             return {
@@ -86,6 +87,7 @@ export const CartTypeProvider = ({ children }) => {
               price: item.custom_price,
               image: '',
               type: 'custom',
+              specification: `${item.custom_size}, ${item.custom_layer}, ${item.custom_flavor}, ${item.custom_decor}`,
             }
           }
           return null
