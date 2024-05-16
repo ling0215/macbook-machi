@@ -15,9 +15,10 @@ function EditProfileForm() {
     user_birthday: '',
     user_phone: '',
     user_address: '',
-    user_avatar: '', // 新增的頭像欄位
+    user_image: '0.jpg', // 新增的頭像欄位
   })
   const [avatarSelected, setAvatarSelected] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null)
   const setGender = (gender) => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -42,6 +43,7 @@ function EditProfileForm() {
           user_birthday: response.data.data.user.user_birthday,
           user_phone: response.data.data.user.user_phone,
           user_address: response.data.data.user.user_address,
+          user_image: response.data.data.user.user_image || '0.jpg',
         })
       } else {
         console.log('Error: response.data.data.user is undefined')
@@ -62,25 +64,33 @@ function EditProfileForm() {
     })
   }
 
-  const handleAvatarChange = async (event) => {
+  const handleAvatarChange = (event) => {
     const file = event.target.files[0]
     if (file) {
-      // 創建一個代表選擇的檔案的 URL
       const previewUrl = URL.createObjectURL(file)
-      setForm((prevForm) => ({ ...prevForm, user_avatar: previewUrl }))
+      setForm((prevForm) => ({ ...prevForm, user_image: previewUrl }))
       setAvatarSelected(true)
-
-      const formData = new FormData()
-      formData.append('avatar', file)
-      const response = await updateProfileAvatar(formData)
-      const newAvatarUrl = response.data.avatarUrl // 請根據你的 API 回應來調整這裡的屬性名稱
-      setForm((prevForm) => ({ ...prevForm, user_avatar: newAvatarUrl }))
+      setSelectedFile(file) // 儲存選擇的檔案
     }
   }
 
-
-
-  
+  const handleSubmitAvatar = async (event) => {
+    event.preventDefault()
+    if (selectedFile) {
+      const formData = new FormData()
+      formData.append('avatar', selectedFile)
+      try {
+        const response = await updateProfileAvatar(formData)
+        // console.log(response.data.data.avatar)
+        // console.log(11)
+        const newAvatarUrl = response.data.data.avatar // 修改這裡的屬性名稱
+        setForm((prevForm) => ({ ...prevForm, user_image: newAvatarUrl }))
+        setAvatarSelected(false)
+      } catch (error) {
+        console.error('Error updating avatar:', error)
+      }
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -113,13 +123,19 @@ function EditProfileForm() {
   return (
     <div className="row ms-5 w-75 border d-flex justify-content-center align-items-center">
       <div className="col p-2">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitAvatar}>
           <div className="d-flex justify-content-center my-3">
             <img
-              src={form.user_avatar}
+              src={
+                avatarSelected
+                  ? form.user_image
+                  : `http://localhost:3005/avatar/${
+                      form.user_image
+                    }?${Date.now()}`
+              }
               alt="User Avatar"
               className="user-avatar"
-              key={form.user_avatar} // 新增的 key 屬性
+              key={form.user_image} // 新增的 key 屬性
               style={{
                 maxWidth: '250px',
                 maxHeight: '250px',
