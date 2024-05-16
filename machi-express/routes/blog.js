@@ -3,10 +3,10 @@ import multer from 'multer'
 import { v4 as uuidv4 } from 'uuid'
 import path from 'path'
 import { JSDOM } from 'jsdom'
-import { QueryTypes, Op } from 'sequelize'
+import { Op } from 'sequelize'
 
 import sequelize from '#configs/db.js'
-import { ar } from '@faker-js/faker'
+
 const { Article } = sequelize.models
 
 const router = express.Router()
@@ -108,10 +108,10 @@ router.get('/articles/better', async (req, res) => {
     )
   }
 
-  const selectedCategoriesCondition = genConcatRegexp(
-    selectedCategories,
-    'article_category'
-  )
+  // const selectedCategoriesCondition = genConcatRegexp(
+  //   selectedCategories,
+  //   'article_category'
+  // )
 
   // 建立各where條件從句用
   const genClause = (key, value) => {
@@ -245,4 +245,12 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+//留言
+router.post('/commit', (req, res) => {
+  const message = req.body.message
+
+  // 在這裡處理你的留言，例如保存到數據庫
+
+  res.json({ status: 'success', message: '留言已接收' })
+})
 export default router

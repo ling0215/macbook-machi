@@ -69,3 +69,9 @@ export const fetchRawArticle = async (url = 0) => {
     return []
   }
 }
+
+//留言
+
+export function postMessage(message) {
+  return axiosInstance.post('/blog/commit', { message })
+}
