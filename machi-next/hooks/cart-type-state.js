@@ -87,7 +87,7 @@ export const CartTypeProvider = ({ children }) => {
               price: item.custom_price,
               image: '',
               type: 'custom',
-              specification: `${item.custom_size}, ${item.custom_layer}, ${item.custom_flavor}, ${item.custom_decor}`,
+              specification: `${item.custom_size},${item.custom_layer},${item.custom_flavor},${item.custom_decor}`,
             }
           }
           return null

@@ -174,7 +174,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
 
     return { totalQuantity, totalPrice }
   }
-
+  const textProductItem = ['草莓', '芒果', '香蕉']
   return (
     <>
       <div
@@ -254,7 +254,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 custom_size: '有夠大',
                 custom_layer: '3層',
                 custom_flavor: '巧克力',
-                custom_decor: '草莓 巧克力 保麗龍',
+                custom_decor: textProductItem.join(','),
               })
             }
           >

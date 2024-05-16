@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Carousel from '@/components/product/product-detail/carousel'
 import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 import ProductIntro from '@/components/product/product-detail/product-intro'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 
 export default function ProductDetail(product) {
   const newProduct = product.product
