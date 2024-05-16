@@ -11,7 +11,7 @@ export default function CakePreview({ size }) {
         <div className={styles['preview-size']}>{customize.sizePrice.size}</div>
         <div className={styles['preview-photo-overview']}>
           <div className={styles['preview-photo']}>
-            <img src={customize.preview} />
+            {customize.preview ? <img src={customize.preview} /> : ''}
           </div>
           <div className={styles['preview-photo-text']}>(照片預覽圖)</div>
         </div>

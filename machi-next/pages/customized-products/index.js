@@ -67,14 +67,23 @@ function Customize() {
             快速找到自己喜歡的樣式來調整希望的客製化細節！
           </p>
           <div className="sample-img">
+            <img src="/images/customize/samp1.png" alt="" />
+            <img src="/images/customize/samp2.png" alt="" />
+            <img src="/images/customize/samp3.png" alt="" />
+            <img src="/images/customize/samp4.png" alt="" />
+            <img src="/images/customize/samp5.png" alt="" />
+            <img src="/images/customize/samp6.png" alt="" />
+            <img src="/images/customize/samp7.png" alt="" />
+            <img src="/images/customize/samp8.png" alt="" />
+
+            {/* <img src="/images/customize/photo-gradient.png" alt="" />
             <img src="/images/customize/photo-gradient.png" alt="" />
             <img src="/images/customize/photo-gradient.png" alt="" />
             <img src="/images/customize/photo-gradient.png" alt="" />
             <img src="/images/customize/photo-gradient.png" alt="" />
             <img src="/images/customize/photo-gradient.png" alt="" />
             <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
+            <img src="/images/customize/photo-gradient.png" alt="" /> */}
           </div>
         </section>
         <section className="lynn-start-customize">

@@ -4,9 +4,11 @@ import styles from './page1.module.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaCheck } from 'react-icons/fa6'
+import { useCustomize } from '@/hooks/use-customize'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem, addItem } = useCart()
+  const { customize } = useCustomize()
   console.log(`傳入page1的cart$`)
   console.log(items)
   // console.log(cart)
@@ -250,11 +252,11 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
             onClick={() =>
               addItem({
                 custom_count: 3,
-                custom_price: 300,
-                custom_size: '有夠大',
-                custom_layer: '3層',
-                custom_flavor: '巧克力',
-                custom_decor: '草莓 巧克力 保麗龍',
+                custom_price: customize.sizePrice.price,
+                custom_size: customize.sizePrice.size,
+                custom_layer: customize.layer,
+                custom_flavor: customize.flavor,
+                custom_decor: customize.deco,
               })
             }
           >
