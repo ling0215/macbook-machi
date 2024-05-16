@@ -92,7 +92,7 @@ router.put('/', authenticate, async (req, res) => {
 })
 
 //刪除購物車一筆資料
-router.delete('/', async (req, res) => {
+router.delete('/', authenticate, async (req, res) => {
   try {
     const itemId = parseInt(req.query.id)
     const newType = String(req.query.type)
@@ -139,7 +139,7 @@ router.delete('/', async (req, res) => {
 })
 
 //加入購物車
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
   try {
     const userId = parseInt(req.query.uid)
 
