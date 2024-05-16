@@ -207,6 +207,7 @@ export const CartTypeProvider = ({ children }) => {
     }
 
     setCartItems(addOne(cartItems, newItem))
+
     setAddingItem(false) // 重置旗標
   }
 
