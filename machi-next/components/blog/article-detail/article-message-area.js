@@ -17,15 +17,18 @@ export default function ArticleMessageArea() {
       </div> */}
 
       <div className={`container`}>
-          <h4>留言區</h4>
+        <h4>留言區</h4>
         <div className={styles['message-area']}>
           <div className={styles[`user-message`]}>
-            <div>
-              <img src="" alt="" />
-              <span>使用者名稱</span>
+            <div className={styles[`user-name`]}>
+              <div>
+                <img src="" alt="" />
+                111
+                <span>使用者名稱</span>
+              </div>
+              <div>create-time</div>
             </div>
-            <div>create-time</div>
-            <div>
+            <div className={styles['message-content']}>
               <p>留言內容</p>
             </div>
           </div>
