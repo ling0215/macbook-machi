@@ -72,13 +72,11 @@ export default function MyNavbar() {
               </div>
               <div className="offcanvas-body">
                 <Menubar currentRoute={currentRoute} />
-                <SearchForm />
                 <Toolbar currentRoute={currentRoute} handleShow={handleShow} />
               </div>
             </div>
           </div>
         </nav>
-        <ToturialPanel show={show} handleClose={handleClose} />
       </header>
       {/* hover動畫(下底線)，需要覆蓋原本global.scss樣式 */}
       <style global jsx>{`
