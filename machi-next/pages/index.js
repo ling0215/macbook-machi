@@ -8,16 +8,19 @@ import CategoryCard from '@/components/homepage/category-card'
 import CustomizeLayout from '@/components/layout/customize/customize-layout'
 import PlaceholderText from '@/components/common/placeholder-text'
 import { fetchCategory } from '@/services/index'
- // 請根據實際路徑進行調整
+import FeaturedCard from '@/components/homepage/featured-card'
+// 請根據實際路徑進行調整
 
 function Home() {
   const [category, setCategory] = useState([]) //[變數名稱, 狀態變數]
-  useEffect(() => { // 當狀態變動時執行
-    fetchCategory().then((response) => { //services的fetchCategory()方法
-        console.log(response) // 打印後端的回應
-        setCategory(response) // 更新狀態
-      })
-  }, []);
+  useEffect(() => {
+    // 當狀態變動時執行
+    fetchCategory().then((response) => {
+      //services的fetchCategory()方法
+      console.log(response) // 打印後端的回應
+      setCategory(response) // 更新狀態
+    })
+  }, [])
   return (
     <>
       <HomeCarousel />
@@ -57,7 +60,9 @@ function Home() {
         </div>
       </div>
       <div className="px-4 py-5 full-background">
-      <div className="background-layer" style={{
+        <div
+          className="background-layer"
+          style={{
             backgroundImage: 'url("/background.jpg")',
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover',
@@ -67,74 +72,74 @@ function Home() {
             top: 0,
             left: 0,
             right: 0,
-            bottom: 0
-        }}></div>
+            bottom: 0,
+          }}
+        ></div>
         {/* <div className="container col-xxl-10 px-5 py-5 featured"> */}
-          <div className="container text-center px-5 my-5 article-section">
-            <h2 className="pb-2 mb-5 text-center section-heading"
-                style={{ borderBottom: '1px solid #785e4c' }}>最新消息</h2>
-            <div className="article-block">
-              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
-                <div className="col-md-6 d-flex justify-content-center">
-                  <Link
-                    href="/blog/detail"
-                    passHref
-                    className="no-underline d-flex align-items-center"
-                  >
-                    <img
-                      loading="lazy"
-                      src="/course.jpg"
-                      className="img-fluid"
-                      alt="文章圖片"
-                    />
-                  </Link>
-                </div>
-                <div className="col-md-6 article-right">
-                  <div className="mt-2 mb-2 d-flex article-title">
-                    踏入春日的序曲，編寫生活的篇章
-                  </div>
-                  <br />
-                  <div className="d-flex mb-3 article-date">2024.02.20</div>
-                  <button className="btn btn-grey read-more btn-sm">
-                    閱讀更多
-                  </button>
-                </div>
+        <div className="container text-center px-5 my-5 article-section">
+          <h2
+            className="pb-2 mb-5 text-center section-heading"
+            style={{ borderBottom: '1px solid #785e4c' }}
+          >
+            最新消息
+          </h2>
+          <div className="article-block">
+            <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
+              <div className="col-md-6 d-flex justify-content-center">
+                <Link
+                  href="/blog/detail"
+                  passHref
+                  className="no-underline d-flex align-items-center"
+                >
+                  <img
+                    loading="lazy"
+                    src="/course.jpg"
+                    className="img-fluid"
+                    alt="文章圖片"
+                  />
+                </Link>
               </div>
+              <div className="col-md-6 article-right">
+                <div className="mt-2 mb-2 d-flex article-title">
+                  踏入春日的序曲，編寫生活的篇章
+                </div>
+                <br />
+                <div className="d-flex mb-3 article-date">2024.02.20</div>
+                <button className="btn btn-grey read-more btn-sm">
+                  閱讀更多
+                </button>
+              </div>
+            </div>
 
-              <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
-                <div className="col-md-6 d-flex justify-content-center">
-                  <Link
-                    href="/blog/detail"
-                    passHref
-                    className="no-underline d-flex align-items-center"
-                  >
-                    <img
-                      loading="lazy"
-                      src="/course.jpg"
-                      className="img-fluid"
-                      alt="文章圖片"
-                    />
-                  </Link>
-                </div>
-                <div className="col-md-6 article-right">
-                  <div className="mt-2 mb-2 d-flex  article-title">
-                    踏入春日的序曲，編寫生活的篇章
-                  </div>
-                  <br />
-                  <div className="d-flex mb-3 article-date">2024.02.20</div>
-                  <button className="btn btn-grey read-more btn-sm">
-                    閱讀更多
-                  </button>
-                </div>
+            <div className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
+              <div className="col-md-6 d-flex justify-content-center">
+                <Link
+                  href="/blog/detail"
+                  passHref
+                  className="no-underline d-flex align-items-center"
+                >
+                  <img
+                    loading="lazy"
+                    src="/course.jpg"
+                    className="img-fluid"
+                    alt="文章圖片"
+                  />
+                </Link>
               </div>
             </div>
           </div>
-        {/* </div> */}
-      </div>
+          {/* </div> */}
+        </div>
+        {/* <FeaturedCard /> */}
+
         <div className="container col-xxl-10 px-5 py-5 mt-5 featured">
           <div className="container text-center">
-            <h2 className="pb-2 mb-5 text-center mt-2 section-heading"
-                style={{ borderBottom: '1px solid #785e4c' }}>熱門商品</h2>
+            <h2
+              className="pb-2 mb-5 text-center mt-2 section-heading"
+              style={{ borderBottom: '1px solid #785e4c' }}
+            >
+              熱門商品
+            </h2>
             <div className="row row-cols-2 row-cols-md-4 d-flex ">
               <div className="col-md-3 d-flex justify-content-center mb-4">
                 <div className="w-350 no-border f-16 featured-card">
@@ -251,8 +256,10 @@ function Home() {
             </div>
           </div>
           <div className="container text-center">
-            <h2 className="pb-2 mb-5 text-center mt-5 section-heading"
-                style={{ borderBottom: '1px solid #785e4c' }}>
+            <h2
+              className="pb-2 mb-5 text-center mt-5 section-heading"
+              style={{ borderBottom: '1px solid #785e4c' }}
+            >
               最新課程
             </h2>
             <div className="row row-cols-2 row-cols-md-4 g-4">
@@ -332,12 +339,206 @@ function Home() {
                     </div>
                   </Link>
                 </div>
+                <br />
+                <div className="d-flex mb-3 article-date">2024.02.20</div>
+                <button className="btn btn-grey read-more btn-sm">
+                  閱讀更多
+                </button>
               </div>
             </div>
           </div>
         </div>
+        {/* </div> */}
+      </div>
+      <div className="container col-xxl-10 px-5 py-5 mt-5 featured">
+        <div className="container text-center">
+          <h2
+            className="pb-2 mb-5 text-center mt-2 section-heading"
+            style={{ borderBottom: '1px solid #785e4c' }}
+          >
+            熱銷商品
+          </h2>
+          <div className="row row-cols-2 row-cols-md-4 d-flex ">
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className="w-350 no-border f-16 featured-card">
+                <Link href="/product/detail" passHref className="no-underline">
+                  <img
+                    src="/images/product/list/strawberry-tart-01.jpg"
+                    className="card-img-top"
+                    alt=""
+                  />
+                  <div className="card-body no-space-x">
+                    <p className="card-text note-text  mt-1">新品上市</p>
+                    <h5 className="card-text fw-bold card-title">草莓優格塔</h5>
+                    <p className="card-text type-text  mb-2">塔派甜點</p>
+                    <p className="h-currency bold h-now">
+                      NT$1,050 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$1,250
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className="w-350 no-border f-16 featured-card">
+                <Link href="/product/detail" passHref className="no-underline">
+                  <img
+                    src="/images/product/list/strawberry-tart-01.jpg"
+                    className="card-img-top"
+                    alt=""
+                  />
+                  <div className="card-body no-space-x">
+                    <p className="card-text note-text  mt-1">新品上市</p>
+                    <h5 className="card-text fw-bold card-title">草莓優格塔</h5>
+                    <p className="card-text type-text  mb-2">塔派甜點</p>
+                    <p className="h-currency bold h-now">
+                      NT$1,050 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$1,250
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className="w-350 no-border f-16 featured-card">
+                <Link href="/product/detail" passHref className="no-underline">
+                  <img
+                    src="/images/product/list/strawberry-tart-01.jpg"
+                    className="card-img-top"
+                    alt=""
+                  />
+                  <div className="card-body no-space-x">
+                    <p className="card-text note-text  mt-1">新品上市</p>
+                    <h5 className="card-text fw-bold card-title">草莓優格塔</h5>
+                    <p className="card-text type-text  mb-2">塔派甜點</p>
+                    <p className="h-currency bold h-now">
+                      NT$1,050 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$1,250
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className="w-350 no-border f-16 featured-card">
+                <Link href="/product/detail" passHref className="no-underline">
+                  <img
+                    src="/images/product/list/strawberry-tart-01.jpg"
+                    className="card-img-top"
+                    alt=""
+                  />
+                  <div className="card-body no-space-x">
+                    <p className="card-text note-text mt-1">新品上市</p>
+                    <h5 className="card-text fw-bold card-title">草莓優格塔</h5>
+                    <p className="card-text type-text  mb-2">塔派甜點</p>
+                    <p className="h-currency bold h-now">
+                      NT$1,050 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$1,250
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container text-center">
+          <h2
+            className="pb-2 mb-5 text-center mt-5 section-heading"
+            style={{ borderBottom: '1px solid #785e4c' }}
+          >
+            熱門課程
+          </h2>
+          <div className="row row-cols-2 row-cols-md-4 g-4">
+            {/* 這層加d-flex justify-content-center */}
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className="w-350 no-border f-16 jusity-content-center featured-card">
+                <Link href="/class/detail" passHref className="no-underline">
+                  <img src="/course.jpg" className="card-img-top" alt="" />
+                  <div className="card-body no-space-x">
+                    <h5 className="card-text fw-bold card-title mt-3">
+                      法式甜點課程
+                    </h5>
+                    <p className="card-text type-text mb-2">講師：呂昇達</p>
+                    <p className="h-currency bold h-now">
+                      NT$2,000 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$2,500
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className="w-350 no-border f-16 featured-card">
+                <Link href="/class/detail" passHref className="no-underline">
+                  <img src="/course.jpg" className="card-img-top" alt="" />
+                  <div className="card-body no-space-x">
+                    <h5 className="card-text fw-bold card-title mt-3">
+                      法式甜點課程
+                    </h5>
+                    <p className="card-text type-text mb-2">講師：呂昇達</p>
+                    <p className="h-currency bold h-now">
+                      NT$2,000 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$2,500
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className="w-350 no-border f-16 featured-card">
+                <Link href="/class/detail" passHref className="no-underline">
+                  <img src="/course.jpg" className="card-img-top" alt="" />
+                  <div className="card-body no-space-x">
+                    <h5 className="card-text fw-bold card-title mt-3">
+                      法式甜點課程
+                    </h5>
+                    <p className="card-text type-text mb-2">講師：呂昇達</p>
+                    <p className="h-currency bold h-now">
+                      NT$2,000 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$2,500
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-3 d-flex justify-content-center mb-4">
+              <div className=" no-border f-16 featured-card">
+                <Link href="/class/detail" passHref className="no-underline">
+                  <img src="/course.jpg" className="card-img-top" alt="" />
+                  <div className="card-body no-space-x">
+                    <h5 className="card-text fw-bold card-title mt-3">
+                      法式甜點課程
+                    </h5>
+                    <p className="card-text type-text mb-2">講師：呂昇達</p>
+                    <p className="h-currency bold h-now">
+                      NT$2,000 &nbsp;
+                      <span className="text-decoration-line-through type-text">
+                        NT$2,500
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* <Featured /> */}
-      <CategoryCard category={category}/>
+      <CategoryCard category={category} />
 
       <style global jsx>
         {`

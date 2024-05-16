@@ -2,19 +2,26 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '@/hooks/use-auth'
 import { updateProfile } from '@/services/user'
 import { getUserById } from '@/services/user'
+// import { FaDisplay } from 'react-icons/fa6'
+
 
 function EditProfileForm() {
   const { auth } = useAuth()
   const { setAuth } = useAuth()
   const [form, setForm] = useState({
     user_account: '',
-    user_password: '',
     user_email: '',
     user_gender: '',
     user_birthday: '',
     user_phone: '',
     user_address: '',
   })
+  const setGender = (gender) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      user_gender: gender,
+    }))
+  }
 
   const fetchUserData = async () => {
     // 確保 auth 和 auth.userData.user_id 存在
@@ -28,7 +35,6 @@ function EditProfileForm() {
       ) {
         setForm({
           user_account: response.data.data.user.user_account,
-          user_password: '',
           user_email: response.data.data.user.user_email,
           user_gender: response.data.data.user.user_gender,
           user_birthday: response.data.data.user.user_birthday,
@@ -69,88 +75,134 @@ function EditProfileForm() {
     // 在更新資料後取得新的使用者資料
     fetchUserData()
   }
+  console.log(form.user_birthday); // 檢查 form.user_birthday 的值
+  const handleReset = (e) => {
+    e.preventDefault() // 阻止表单提交
+    setForm({
+      user_account: '',
+      user_email: '',
+      user_gender: '',
+      user_birthday: '',
+      user_phone: '',
+      user_address: '',
+    })
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-5">
-      <div>
-        <label>
-          帳號:
-          <input
-            type="text"
-            name="user_account"
-            value={form.user_account}
-            onChange={handleChange}
-          />
-        </label>
+    <div className="row ms-5 w-75 border d-flex justify-content-center align-items-center">
+      <div className="col p-2">
+        <form onSubmit={handleSubmit} className="d-flex flex-column mx-5 my-3">
+          <div className="form-group my-2 text-primary-dark fw-bold">
+            <label>
+              電子郵件
+              <p>{form.user_email}</p>
+            </label>
+          </div>
+          <div className="form-group my-1 text-primary-dark fw-bold">
+            <label>
+              帳號
+              <p>{form.user_account}</p>
+            </label>
+          </div>
+
+          <div className="form-group my-2 mb-5 text-primary-dark fw-bold">
+            <button
+              type="button"
+              className="btn btn-primary-dark"
+              onClick={() => {}}
+            >
+              修改密碼
+            </button>
+          </div>
+          <div className="btn-group" role="group" aria-label="Gender selection">
+            <button
+              type="button"
+              className={`btn ${
+                form.user_gender === '男性'
+                  ? 'btn-primary-dark'
+                  : 'btn-outline-primary-dark'
+              } `}
+              onClick={() => setGender('男性')}
+            >
+              男性
+            </button>
+            <button
+              type="button"
+              className={`btn ${
+                form.user_gender === '女性'
+                  ? 'btn-primary-dark'
+                  : 'btn-outline-primary-dark'
+              }`}
+              onClick={() => setGender('女性')}
+            >
+              女性
+            </button>
+            <button
+              type="button"
+              className={`btn ${
+                form.user_gender === '不願透露'
+                  ? 'btn-primary-dark'
+                  : 'btn-outline-primary-dark'
+              }`}
+              onClick={() => setGender('不願透露')}
+            >
+              不願透露
+            </button>
+          </div>
+          <div className="form-group my-3 text-primary-dark fw-bold">
+            <label>
+              生日
+              <input
+                className="form-control"
+                type="date"
+                name="user_birthday"
+                value={form.user_birthday}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-group my-3 text-primary-dark fw-bold">
+            <label>
+              手機號碼
+              <input
+                className="form-control"
+                type="tel"
+                name="user_phone"
+                value={form.user_phone}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-group my-3 text-primary-dark fw-bold">
+            <label>
+              地址
+              <input
+                className="form-control"
+                type="text"
+                name="user_address"
+                value={form.user_address}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-group my-3 text-primary-dark fw-bold d-flex justify-content-center">
+            <button
+              className="btn btn-brown w-50 text-white mt-3 me-4"
+              type="submit"
+              onClick={handleReset}
+            >
+              重新填寫
+            </button>
+            <button
+              className="btn btn-brown w-50 text-white mt-3"
+              type="submit"
+            >
+              確定修改
+            </button>
+          </div>
+        </form>
       </div>
-      <div>
-        <label>
-          密碼:
-          <input
-            type="password"
-            name="user_password"
-            value={form.user_password}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          電子郵件:
-          <input
-            type="email"
-            name="user_email"
-            value={form.user_email}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          性別:
-          <input
-            type="text"
-            name="user_gender"
-            value={form.user_gender}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          生日:
-          <input
-            type="date"
-            name="user_birthday"
-            value={form.user_birthday}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          手機號碼:
-          <input
-            type="tel"
-            name="user_phone"
-            value={form.user_phone}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          地址:
-          <input
-            type="text"
-            name="user_address"
-            value={form.user_address}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
-      <button type="submit">更新資料</button>
-    </form>
+    </div>
   )
 }
 

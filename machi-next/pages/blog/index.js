@@ -1,15 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import Latest from '@/components/blog/latest-article'
 import Category from '@/components/blog/article-category'
 import List from '@/components/blog/article-list'
 import Date from '@/components/blog/article-date'
 import { fetchBetterArticles } from '@/services/blog'
-import Pagination from '@/components/product2/product-list/pagination'
+import Pagination from '@/components/product/product-list/pagination'
 
 import { FaSearch } from 'react-icons/fa'
-import { FaCaretLeft } from 'react-icons/fa'
-import { FaCaretRight } from 'react-icons/fa'
 
 export default function BlogIndex() {
   const [articless, setArticless] = useState([
@@ -17,7 +14,6 @@ export default function BlogIndex() {
   ])
 
   const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('')
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
 
@@ -25,26 +21,17 @@ export default function BlogIndex() {
   const [endDate, setEndDate] = useState('01/01/2050')
   const [selectedCategories, setSelectedCategories] = useState([])
 
-  // useEffect(() => {
-  //   console.log('articles:', articles)
-  //   console.log('search:', search)
-  //   console.log('category:', category)
-  //   console.log('page:', page)
-  //   console.log('totalPages:', totalPages)
-  //   console.log('startDate:', startDate)
-  //   console.log('endDate:', endDate)
-  // }, [articles, search, category, page, totalPages, startDate, endDate])
+  useEffect(() => {
+    // console.log('search:', search)
+    // console.log('page:', page)
+    // console.log('totalPages:', totalPages)
+    // console.log('startDate:', startDate)
+    // console.log('endDate:', endDate)
+    // console.log('selectedCategories:', selectedCategories)
+  }, [search, selectedCategories, page, totalPages, startDate, endDate])
 
   useEffect(() => {
-    fetchBetterArticles(
-      search,
-      category,
-      page,
-      4,
-      startDate,
-      endDate,
-      selectedCategories
-    )
+    fetchBetterArticles(search, page, 4, startDate, endDate, selectedCategories)
       .then((response) => {
         // console.log(response.data) // 打印後端的回應
         return response.data
@@ -60,20 +47,20 @@ export default function BlogIndex() {
           console.error('No data returned from the server.')
         }
       })
-  }, [search, category, page, startDate, endDate, selectedCategories, category])
+  }, [search, page, startDate, endDate, selectedCategories])
 
-  function AirDatepickerReact(props) {
-    let $input = useRef()
-    let dp = useRef()
+  // function AirDatepickerReact(props) {
+  //   let $input = useRef()
+  //   let dp = useRef()
 
-    useEffect(() => {
-      dp.current = new AirDatepicker($input.current, { ...props })
-    }, [])
+  //   useEffect(() => {
+  //     dp.current = new AirDatepicker($input.current, { ...props })
+  //   }, [props])
 
-    useEffect(() => {
-      dp.current.update({ ...props })
-    }, [props])
-  }
+  //   useEffect(() => {
+  //     dp.current.update({ ...props })
+  //   }, [props])
+  // }
 
   const handleCategoryClick = async (category) => {
     let newSelectedCategories
@@ -93,7 +80,7 @@ export default function BlogIndex() {
       <div className="container">
         <div className="row">
           <div className="col-3">
-            <div className="input-container">
+            {/* <div className="input-container">
               <input
                 type="text"
                 className="input-field"
@@ -102,17 +89,35 @@ export default function BlogIndex() {
                 onChange={(event) => setSearch(event.target.value)}
               />
               <FaSearch />
-            </div>
+            </div> */}
+            <div className="input-group">
+            <input
+              type="text"
+              placeholder="請輸入關鍵字"
+              className="form-control"
+              style={{
+                width: '150px',
+                height: '40px',
+                backgroundColor: 'white',
+                borderColor: 'light-brown',
+                flex: '1',
+              }}
+                onChange={(event) => setSearch(event.target.value)}
+            />
+            <span className="input-group-text">
+              <i className="bi bi-search"></i>
+            </span>
+          </div>
             <br />
             <div className="">
               <h6 className="article-sidebar pt-2">最新文章</h6>
-              <Latest articless={articless || []} />
+              <Latest />
               <h6 className="article-sidebar pt-2">文章分類</h6>
               <Category
-                setPage={setPage}
-                articless={articless || []}
-                setSelectedCategories={setSelectedCategories}
-                selectedCategories={selectedCategories}
+                // setPage={setPage}
+                // articless={articless || []}
+                // setSelectedCategories={setSelectedCategories}
+                // selectedCategories={selectedCategories}
                 handleCategoryClick={handleCategoryClick}
               />
               <h6 className="article-sidebar pt-2">日期區間</h6>

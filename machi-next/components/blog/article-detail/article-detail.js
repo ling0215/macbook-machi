@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { fetchRawArticle } from '@/services/blog'
-import styles from '@/styles/blog/article-detail.module.scss'
+import styles from '@/components/blog/article-detail/article-detail.module.scss'
 import DOMPurify from 'dompurify'
+import Link from 'next/link'
 
 const ArticleDetail = ({ articleId }) => {
   // console.log(articleId)
@@ -44,10 +45,21 @@ const ArticleDetail = ({ articleId }) => {
       </div>
       <div className={styles['article-title']}>
         <h3>{article.article_title}</h3>
-        <span>{article.article_createtime}</span>
+        {article.article_createtime
+          ? article.article_createtime.split('T')[0]
+          : ''}
       </div>
       <div>
         <div dangerouslySetInnerHTML={{ __html: cleanHTML }} />
+      </div>
+      <div>
+        <Link
+          href="/blog"
+          className="btn btn-primary btn-sm ms-2"
+          style={{ backgroundColor: '#ab927d', border: 'none' }}
+        >
+          回文章列表
+        </Link>
       </div>
     </div>
   )

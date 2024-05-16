@@ -145,6 +145,22 @@ router.get('/', async (req, res) => {
   }
 })
 
+router.get('/:id', async (req, res) => {
+  const pid = req.params.id // 從路由參數中獲取文章的 ID
+  try {
+    const product = await Product.findByPk(pid) // 使用文章 ID 查詢單筆文章資料
+    if (!product) {
+      // 如果找不到文章，返回 404 錯誤
+      return res.status(404).json({ message: '文章不存在' })
+    }
+    // 如果找到文章，以 JSON 格式返回
+    res.status(200).json(product)
+  } catch (error) {
+    console.error('處理過程中發生錯誤:', error)
+    res.status(500).json({ message: '伺服器錯誤' })
+  }
+})
+
 // 獲得所有資料，加入分頁與搜尋字串功能，單一資料表處理
 // products/qs?page=1&keyword=Ele&brand_ids=1&cat_ids=4,5,6,7,8&sizes=1,2&tags=3,4&colors=1,2&orderby=id,asc&perpage=10&price_range=1500,10000
 // router.get('/qs', async (req, res, next) => {
