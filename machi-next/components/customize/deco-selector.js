@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from './customize.module.css'
 import { useCustomize } from '@/hooks/use-customize'
-import { set } from 'lodash'
 
 // export default function DecoSelector({
 //   decoTitle,
