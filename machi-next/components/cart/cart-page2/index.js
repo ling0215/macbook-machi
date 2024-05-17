@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import styles from './page2.module.scss'
 
-import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaTruckFast } from 'react-icons/fa6'
+import { useAuth } from '@/hooks/use-auth'
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleLine } from 'react-icons/ri'
-import { MdCheckBoxOutlineBlank } from 'react-icons/md'
+import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from 'react-icons/md'
 
 const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
   console.log('樓下為page2')
@@ -35,19 +34,26 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
           0
         )
       : 0)
+  const { auth } = useAuth()
+  console.log(auth)
+  const [payState, setPayState] = useState('')
+  const [userDetail, SetUserDetail] = useState(false)
+  const [transName, setTransName] = useState('')
+  const [transPhone, setTransPhone] = useState('')
+  const [transAddress, setTransAddress] = useState('')
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null)
-  const [isYellow, setIsYellow] = useState(false) // 新增狀態以控制黃色背景
-
-  const handlePaymentMethodClick = (method) => {
-    setSelectedPaymentMethod(method)
-  }
-
-  // 當點擊按鈕時切換狀態以改變黃色背景
-  const toggleYellow = () => {
-    setIsYellow(!isYellow)
-  }
-
+  useEffect(() => {
+    if (userDetail === true && auth.userData) {
+      setTransName(auth.userData.user_name || '') // 假设 auth.userData.name 是用户的真实姓名
+      setTransPhone(auth.userData.user_phone || '') // 假设 auth.userData.phone 是用户的电话号码
+      setTransAddress(auth.userData.user_address || '') // 假设 auth.userData.address 是用户的地址
+    } else {
+      // 清除输入框的状态
+      setTransName('')
+      setTransPhone('')
+      setTransAddress('')
+    }
+  }, [userDetail, auth.userData])
   return (
     <>
       <div
@@ -334,15 +340,14 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               </button>
               <button
                 className={`${styles['pay-button']} ${styles['h6']} ${
-                  isYellow ? styles['selected'] : ''
+                  payState === 'creditCard' ? styles['selected'] : ''
                 }`}
                 type="button"
                 onClick={() => {
-                  handlePaymentMethodClick('credit-card')
-                  toggleYellow() // 點擊按鈕時切換狀態
+                  setPayState('creditCard')
                 }}
               >
-                {selectedPaymentMethod === 'credit-card' ? (
+                {payState === 'creditCard' ? (
                   <RiCheckboxCircleLine />
                 ) : (
                   <RiCheckboxBlankCircleLine />
@@ -352,15 +357,14 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
 
               <button
                 className={`${styles['pay-button']} ${styles['h6']} ${
-                  selectedPaymentMethod === 'line-pay' && styles['selected']
+                  payState === 'linePay' ? styles['selected'] : ''
                 }`}
                 type="button"
                 onClick={() => {
-                  handlePaymentMethodClick('line-pay')
-                  toggleYellow() // 點擊按鈕時切換狀態
+                  setPayState('linePay')
                 }}
               >
-                {selectedPaymentMethod === 'line-pay' ? (
+                {payState === 'linePay' ? (
                   <RiCheckboxCircleLine />
                 ) : (
                   <RiCheckboxBlankCircleLine />
@@ -369,16 +373,29 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               </button>
             </div>
             <div className="h5 pt-2">收件人資訊</div>
-            <div className={`${styles['h6']} text-grey pb-2`}>
-              <MdCheckBoxOutlineBlank size={28}></MdCheckBoxOutlineBlank>
-              同會員資料
-            </div>
+            <button
+              className={`${styles['h6']} text-grey pb-2`}
+              type="button"
+              style={{ backgroundColor: 'transparent', border: 'none' }}
+              onClick={() => {
+                SetUserDetail((prevState) => !prevState)
+              }}
+            >
+              {' '}
+              {userDetail === true ? (
+                <MdOutlineCheckBox size={28} />
+              ) : (
+                <MdCheckBoxOutlineBlank size={28} />
+              )}
+              <span style={{ fontSize: 20 }}>同會員資料</span>
+            </button>
             <div className="row d-flex justify-content-between">
               <div className={`col-4  `}>
                 <input
                   type="text"
                   className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
-                  key={'transName'}
+                  value={transName}
+                  onChange={(e) => setTransName(e.target.value)}
                   placeholder="真實姓名"
                 />
               </div>
@@ -386,7 +403,8 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
                 <input
                   type="text"
                   className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
-                  key={'transPhone'}
+                  value={transPhone}
+                  onChange={(e) => setTransPhone(e.target.value)}
                   placeholder="09XXXXXXXX"
                 />
               </div>
@@ -398,7 +416,8 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
                 <input
                   type="text"
                   className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}  ${styles['form-control']} ${styles['custom-input']}`}
-                  key={''}
+                  value={transAddress}
+                  onChange={(e) => setTransAddress(e.target.value)}
                   placeholder="請填寫完整地址"
                 />
               </div>
@@ -410,8 +429,8 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               </button>
             </div>
             <div className={`d-flex justify-content-between py-2`}>
-              <div className={`${styles['h6']} `}>商品總計</div>
-              <div className={`${styles['h6']} `}>{checkTotal}</div>
+              <div className={`${styles['h6']} `}>商品總計 </div>
+              <div className={`${styles['h6']} `}>NT$ {checkTotal}</div>
             </div>
             <div
               className={`${styles['text-border-brown']} d-flex justify-content-between py-2 pb-4`}
@@ -421,7 +440,7 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
             </div>
             <div className={`d-flex justify-content-between py-2 pb-4`}>
               <div className={`${styles['h6']} `}>商品總金額</div>
-              <div className={`${styles['h6']} `}>NT$ 5432</div>
+              <div className={`${styles['h6']} `}>NT$ {checkTotal}</div>
             </div>
             <div className={`d-flex justify-content-center`}>
               <Link href="/cart/cart-order" passHref>

@@ -5,11 +5,45 @@ import CakePreview from '@/components/customize/cake-preview'
 import Link from 'next/link'
 import { IoCartOutline } from 'react-icons/io5'
 import { useCustomize } from '@/hooks/use-customize'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
+import { useState } from 'react'
+import Swal from 'sweetalert2'
 
 export default function CustomizedCart() {
-  const { customize } = useCustomize()
-  const { cart, items, decrement, increment, removeItem } = useCart()
+  const { customize, setDefaultCustomize } = useCustomize()
+  const [customTotNum, setCustomTotNum] = useState(1)
+  const { addItem } = useCart()
+  let totPrice = customize.sizePrice.price * customTotNum
+
+  function customIncrement() {
+    setCustomTotNum(customTotNum + 1)
+  }
+
+  function customDecrement() {
+    if (customTotNum > 1) {
+      setCustomTotNum(customTotNum - 1)
+    }
+  }
+  const customCart = {
+    custom_count: customTotNum,
+    custom_price: customize.sizePrice.price,
+    custom_size: customize.sizePrice.size,
+    custom_layer: customize.layer,
+    custom_flavor: customize.flavor,
+    custom_decor: customize.deco.join(','),
+  }
+
+  const addCart = () => {
+    addItem(customCart).then(() => {
+      console.log(`customCart: ${customCart}`)
+      Swal.fire({
+        title: '已加入購物車',
+        text: '您的商品已成功加入購物車！',
+        icon: 'success',
+        confirmButtonColor: '#ab927d',
+      })
+    })
+  }
 
   return (
     <>
@@ -27,6 +61,7 @@ export default function CustomizedCart() {
         </div>
         <StepTitle
           title="Step 3 : 加入購物車"
+          shouldHide1
           prvLink="/customized-products/deco"
           shouldHide2
           nextLink="/customized-products/deco"
@@ -52,7 +87,7 @@ export default function CustomizedCart() {
               {/* 數量按鈕 */}
               <div className="lynn-cart-price">
                 <div
-                  className={`d-flex justify-content-between align-items-center mb-1 addbuton`}
+                  className={`d-flex justify-content-between align-items-center mb-1 addbuton lynn-addbutton`}
                 >
                   <span>數量：</span>
                   <div
@@ -60,7 +95,7 @@ export default function CustomizedCart() {
                     role={`group`}
                     aria-label={`Basic mixed styles example `}
                     style={{
-                      width: '120px',
+                      width: '130px',
                       height: '38px',
                     }}
                   >
@@ -68,18 +103,21 @@ export default function CustomizedCart() {
                       className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                       style={{ width: '24px' }}
                       // onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                      onClick={customDecrement}
                     >
                       -
                     </button>
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                     >
+                      {customTotNum}
                       {/* {item.quantity} */}
                     </button>
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                       style={{ width: '24px' }}
                       // onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                      onClick={customIncrement}
                     >
                       +
                     </button>
@@ -91,14 +129,24 @@ export default function CustomizedCart() {
             <hr className="lynn-done-select" />
             <div className="lynn-cart-price">
               <span>總額：</span>
-              <span>{`NT$${customize.sizePrice.price}`}</span>
+              <span>{`NT$${totPrice}`}</span>
             </div>
             <div className="lynn-deco-confirm">
               <Link href="/customized-products/size" passHref>
-                <button className="lynn-btn-grey">繼續客製蛋糕</button>
+                <button
+                  className="lynn-btn-grey"
+                  onClick={() => setDefaultCustomize()}
+                >
+                  繼續客製蛋糕
+                </button>
               </Link>
               <Link href="/customized-products/cart" passHref>
-                <button className="lynn-btn-brown">
+                <button
+                  className="lynn-btn-brown"
+                  onClick={() => {
+                    addCart()
+                  }}
+                >
                   <IoCartOutline className="lynn-cart" />
                   加入購物車
                 </button>

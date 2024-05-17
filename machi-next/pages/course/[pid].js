@@ -2,20 +2,24 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { data } from 'jquery'
 import React from 'react'
-import Carousel from '@/components/product/carousel'
+// import Carousel from '@/components/product/carousel'
 import {IoCartOutline, IoHeartOutline} from 'react-icons/io5'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 import styles from './course-detail.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
+import { checkAuth } from '@/services/user'
+
+
 
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
 export default function Detail() {
+
   const [course, setCourse] = useState({
    status:'',
    data:{course:{
@@ -35,6 +39,16 @@ export default function Detail() {
 
    }}
   })
+  
+  const [quantity, setQuantity] = useState(1)
+  //cart
+  const { addItem } = useCart()
+  //cart
+
+  //時間用
+ 
+
+  //時間用
 
   const router = useRouter()
 
@@ -71,7 +85,7 @@ export default function Detail() {
   const imageUrl1 = `/images/course/slide/${course.data.course.course_id}_1.jpg`
   const imageUrl2 = `/images/course/slide/${course.data.course.course_id}_2.jpg`
   const imageUrl3 = `/images/course/slide/${course.data.course.course_id}_3.jpg`
- 
+  
 
   return (
     <>
@@ -81,8 +95,8 @@ export default function Detail() {
           <div className="position-sticky" style={{ top: '2rem' }}>
           <Swiper
         style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
+         width: '50vh',
+         height:'50vh',
         }}
         autoplay={{
           delay: 2500,
@@ -95,7 +109,7 @@ export default function Detail() {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={imageUrl1} />
+          <img src={imageUrl1}  />
         </SwiperSlide>
         <SwiperSlide>
           <img src={imageUrl2} />
@@ -114,13 +128,22 @@ export default function Detail() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={imageUrl1} />
+          <img src={imageUrl1}  style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={imageUrl2} />
+          <img src={imageUrl2}   style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={imageUrl3} />
+          <img src={imageUrl3}  style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
       </Swiper>
           </div>
@@ -131,7 +154,17 @@ export default function Detail() {
           <p className="product-desc mb-4" dangerouslySetInnerHTML={{ __html: course.data.course.course_description }}></p>
 
           <div className="mb-4">
-       
+          
+          <p className="product-desc mb-4" >
+            課程時間:
+            
+          </p>
+          <p className="product-desc mb-4" >
+            報名開始:
+          </p>
+          <p className="product-desc mb-4" >
+            報名截止:
+          </p>
           </div>
           {/* 數量按鈕 */}
           <div className={`d-flex g-3 justify-content-between align-items-center mb-4 addbuton`}>
@@ -147,19 +180,23 @@ export default function Detail() {
               <button
                 className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                 style={{ width: '28px' }}
-                // onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                onClick={() => {
+                  if (quantity > 1) {
+                    setQuantity(quantity - 1) // 只有當 quantity 大於 1 時才減少數量
+                  }
+                }}
               >
                 -
               </button>
               <button
                 className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
               >
-                {/* {item.quantity} */}
+                {quantity}
               </button>
               <button
                 className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                 style={{ width: '28px' }}
-                // onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                onClick={() => setQuantity(quantity + 1)} // 增加數量的點擊事件
               >
                 +
               </button>
@@ -175,12 +212,65 @@ export default function Detail() {
 
           <div className="mb-4 d-flex justify-content-center align-items-center ">
             <div className="col-6 pe-2">
-              <button className="btn btn-outline-brown btn-lg w-100 cartBtn">
-                  <IoCartOutline className="fs-3 text-brown" /> 加入購物車
+            <button
+                className="btn btn-outline-brown btn-lg w-100 cartBtn"
+                onClick={async () => {
+                  const response = await checkAuth()
+                  if (response.data.status === 'success') {
+
+                    const data = {
+
+                      course_id_fk:course.data.course.course_id,
+                      course_name: course.data.course.course_name, // 產品名稱
+                      course_price: course.data.course.course_price, // 產品價格
+                      course_count: quantity, // 數量
+                      
+                    }
+                    addItem(data)
+                      .then((response) => {
+                        console.log('添加成功:', response)
+                      })
+                      .catch((error) => {
+                        console.error('添加失敗:', error)
+                      })
+                  } else {
+                    console.log('用戶未登入')
+                    // 這裡可以添加提示用戶登入的程式碼
+                  }
+                }}
+              >
+                <IoCartOutline className="fs-3 text-brown" /> 加入購物車
               </button>
             </div>
             <div className="col-6 ps-2">
-                <button className="btn btn-brown text-white btn-lg w-100 buynowBtn">立即購買</button>
+            <button
+                className="btn btn-brown text-white btn-lg w-100 buynowBtn"
+                onClick={async () => {
+                  const response = await checkAuth()
+                  if (response.data.status === 'success') {
+
+                    const data = {
+                      course_id_fk:course.data.course.course_id,
+                      course_name: course.data.course.course_name, // 產品名稱
+                      course_price: course.data.course.course_price, // 產品價格
+                      course_count: quantity, // 數量
+                      
+                    }
+                    addItem( data)
+                      .then((response) => {
+                        console.log('添加成功:', response)
+                      })
+                      .catch((error) => {
+                        console.error('添加失敗:', error)
+                      })
+                  } else {
+                    console.log('用戶未登入')
+                    // 這裡可以添加提示用戶登入的程式碼
+                  }
+                }}
+              >
+                 立即購買
+              </button>
             </div>
           </div>
           <button className="btn btn-outline-gary col-md-6 text-start text-primary-dark">
@@ -217,9 +307,9 @@ export default function Detail() {
             <div className="content" style={{ display: activeButton === 'other' ? 'block' : 'none' }}>
                 <div
                     className="list-group-flush p-2 py-3 mb-4 border">
-                    <h4 id="title">｜產品尺寸｜</h4>
-                    <p className="list-group-item">&nbsp;6吋 - 13cm(Φ)x7cm(h)
-                    <br/> &nbsp;9吋 (產品以手工製作，尺寸僅供參考，略有誤差屬正常現象)</p>
+                    
+                    <h5 className="list-group-item">&nbsp;&nbsp;呂昇達
+                     &nbsp;</h5>
                     <h4 id="title">｜保存與享用｜</h4>
                     <p className="list-group-item">
                         為確保品質，將以低溫宅配運送，收到產品後，可選擇冷藏或冷凍擇一方式保存</p>

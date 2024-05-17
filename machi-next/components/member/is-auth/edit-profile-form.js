@@ -3,6 +3,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { updateProfile } from '@/services/user'
 import { getUserById } from '@/services/user'
 import { updateProfileAvatar } from '@/services/user'
+import Image from 'next/image'
 // import { FaDisplay } from 'react-icons/fa6'
 
 function EditProfileForm() {
@@ -107,7 +108,6 @@ function EditProfileForm() {
     // 在更新資料後取得新的使用者資料
     fetchUserData()
   }
-  console.log(form.user_birthday) // 檢查 form.user_birthday 的值
   const handleReset = (e) => {
     e.preventDefault() // 阻止表单提交
     setForm({
@@ -121,11 +121,12 @@ function EditProfileForm() {
   }
 
   return (
-    <div className="row ms-5 w-75 border d-flex justify-content-center align-items-center">
+    <>
+    <div className="row ms-5 w-75 border rounded d-flex justify-content-center align-items-center">
       <div className="col p-2">
         <form onSubmit={handleSubmitAvatar}>
           <div className="d-flex justify-content-center my-3">
-            <img
+            <Image
               src={
                 avatarSelected
                   ? form.user_image
@@ -136,26 +137,31 @@ function EditProfileForm() {
               alt="User Avatar"
               className="user-avatar"
               key={form.user_image} // 新增的 key 屬性
+              width={250} // 新增的 width 屬性
+              height={250} // 新增的 height 屬性
               style={{
                 maxWidth: '250px',
                 maxHeight: '250px',
                 borderRadius: '50%',
+                objectPosition: '1px -5px',
                 objectFit: 'cover',
+                border: '1px solid #ccc',
+                boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
               }} // 這裡設定圖片的最大寬度和最大高度，並設定 border-radius 為 50% 使其變為圓形
             />
           </div>
-          <div className="d-flex justify-content-center my-3">
+          <div className="d-flex justify-content-center my-4">
             <input
               type="file"
               id="fileInput" // 給輸入元素一個 id
               onChange={handleAvatarChange}
               style={{ display: 'none' }} // 隱藏原生的檔案選擇按鈕
             />
-            <label htmlFor="fileInput" className="btn btn-primary-dark mx-2">
-              選擇頭像
+            <label htmlFor="fileInput" className="btn btn-brown text-white mx-2">
+              選擇圖片
             </label>
             {avatarSelected && (
-              <button type="submit" className="btn btn-primary-dark ml-3 mx-2">
+              <button type="submit" className="btn btn-brown text-white ml-3 mx-2">
                 確定上傳
               </button>
             )}
@@ -181,7 +187,7 @@ function EditProfileForm() {
           <div className="form-group my-2 mb-5 text-primary-dark fw-bold">
             <button
               type="button"
-              className="btn btn-primary-dark"
+              className="btn btn-brown text-white"
               onClick={() => {}}
             >
               修改密碼
@@ -192,8 +198,8 @@ function EditProfileForm() {
               type="button"
               className={`btn ${
                 form.user_gender === '男性'
-                  ? 'btn-primary-dark'
-                  : 'btn-outline-primary-dark'
+                  ? 'btn-brown text-white'
+                  : 'btn-outline-brown'
               } `}
               onClick={() => setGender('男性')}
             >
@@ -203,8 +209,8 @@ function EditProfileForm() {
               type="button"
               className={`btn ${
                 form.user_gender === '女性'
-                  ? 'btn-primary-dark'
-                  : 'btn-outline-primary-dark'
+                  ? 'btn-brown text-white'
+                  : 'btn-outline-brown'
               }`}
               onClick={() => setGender('女性')}
             >
@@ -213,13 +219,13 @@ function EditProfileForm() {
             <button
               type="button"
               className={`btn ${
-                form.user_gender === '不願透露'
-                  ? 'btn-primary-dark'
-                  : 'btn-outline-primary-dark'
+                form.user_gender === '不願透漏'
+                  ? 'btn-brown text-white'
+                  : 'btn-outline-brown'
               }`}
-              onClick={() => setGender('不願透露')}
+              onClick={() => setGender('不願透漏')}
             >
-              不願透露
+              不願透漏
             </button>
           </div>
           <div className="form-group my-3 text-primary-dark fw-bold">
@@ -276,6 +282,14 @@ function EditProfileForm() {
         </form>
       </div>
     </div>
+    <style jsx>{`
+    .btn-outline-brown:hover {
+      background-color: var(--brown);
+      color: white; 
+      border-color: var(--grey);
+    }
+    `}</style>
+    </>
   )
 }
 

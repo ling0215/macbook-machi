@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './page3.module.scss'
 
-import '@/node_modules/bootstrap/scss/bootstrap.scss';
 
 const CartPage3 = () => {
   return (

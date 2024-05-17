@@ -11,6 +11,16 @@ export function CustomizeProvider({ children }) {
     preview: '', // 預覽示意圖
   })
 
+  const setDefaultCustomize = () => {
+    setCustomize({
+      sizePrice: { size: '', price: '' },
+      layer: '',
+      flavor: '',
+      deco: [],
+      preview: '', // 預覽示意圖
+    })
+  }
+
   const setSizePrice = (size, price) => {
     setCustomize((prevState) => ({ ...prevState, sizePrice: { size, price } }))
   }
@@ -35,6 +45,7 @@ export function CustomizeProvider({ children }) {
     <CustomizeContext.Provider
       value={{
         customize,
+        setDefaultCustomize,
         setSizePrice,
         setLayer,
         setFlavor,

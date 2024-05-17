@@ -25,7 +25,7 @@ export const CartTypeProvider = ({ children }) => {
   const [error, setError] = useState(null)
   const { auth } = useAuth()
   const [formattedCartItems, setFormattedCartItems] = useState([])
-  console.log(auth)
+  // console.log(auth)
 
   useEffect(() => {
     // 当组件加载和 auth.userData 更新时，尝试从数据库获取购物车数据
@@ -49,8 +49,8 @@ export const CartTypeProvider = ({ children }) => {
     loadCartData()
   }, [auth.userData])
 
-  console.log(formattedCartItems)
-  console.log(cartState)
+  // console.log(formattedCartItems)
+  // console.log(cartState)
   useEffect(() => {
     // 确保 formattedCartItems.items 存在并且是一个数组
     if (formattedCartItems.items && Array.isArray(formattedCartItems.items)) {
@@ -85,9 +85,10 @@ export const CartTypeProvider = ({ children }) => {
               id: item.cart_item_id,
               quantity: item.custom_count,
               price: item.custom_price,
+              name: '自訂商品',
               image: '',
               type: 'custom',
-              specification: `${item.custom_size}, ${item.custom_layer}, ${item.custom_flavor}, ${item.custom_decor}`,
+              specification: `${item.custom_size},${item.custom_layer},${item.custom_flavor},${item.custom_decor}`,
             }
           }
           return null
@@ -96,7 +97,7 @@ export const CartTypeProvider = ({ children }) => {
       setCartItems(newFormattedCartItems)
     }
   }, [formattedCartItems]) // 正确设置依赖项
-  console.log(cartItems)
+  // console.log(cartItems)
 
   useEffect(() => {
     // 更新 cartState 以匹配最新的 cartItems
@@ -185,7 +186,7 @@ export const CartTypeProvider = ({ children }) => {
           : true) &&
         (newItem.type == 'custom' ? cartItem.decor === newItem.decor : true)
     )
-    console.log(index)
+    // console.log(index)
     if (index !== -1) {
       const newQuantity = cartItems[index].quantity + newItem.quantity
       const itemId = newItem.type !== 'custom' ? newItem.id : 0
@@ -195,15 +196,15 @@ export const CartTypeProvider = ({ children }) => {
         newQuantity,
         newItem.type
       )
-      console.log(response)
+      // console.log(response)
       setCartItems(addOne(cartItems, newItem))
 
       setAddingItem(false) // 重置旗標
       return
     } else {
       const response = await addToCart(newItem.uid, newItem)
-      console.log(newItem)
-      console.log(response)
+      // console.log(newItem)
+      // console.log(response)
     }
 
     setCartItems(addOne(cartItems, newItem))
