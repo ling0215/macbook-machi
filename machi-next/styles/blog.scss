@@ -1,4 +1,4 @@
-@import '@/styles/globals.scss';
+// @import '@/styles/globals.scss';
 
 .article-sidebar {
     font-weight: bold;
@@ -18,11 +18,11 @@
     font-weight: bold;
     padding: 5px;
     margin-right: 10px;
-    background-color: $primary-1;
+    background-color: #f7f5eb;
 }
 
 input::placeholder {
-    color: $primary-dark ;
+    color: #785e4c;
 }
 
 .article-btn {
@@ -31,10 +31,11 @@ input::placeholder {
     height: 40px;
     border: none;
 }
+
 //文章分類
 .article-category {
     span {
-        color: $primary-dark;
+        color: #785e4c;
     }
 }
 
@@ -45,7 +46,7 @@ input::placeholder {
     display: flex;
 
     h4 {
-        color: $primary-dark;
+        color: #785e4c;
     }
 
     p {
@@ -53,10 +54,11 @@ input::placeholder {
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
-        color: $brown;
+        color: #ab927d;
         margin-bottom: 0;
 
     }
+
     img {
         width: 190px;
         height: 220px;
@@ -68,7 +70,7 @@ input::placeholder {
 
 .article-text {
     span {
-        color: $light-grey;
+        color: #e8e8e8;
     }
 }
 
@@ -80,9 +82,10 @@ input::placeholder {
 .acticle-tag {
     display: flex;
     padding-left: 0px;
+
     li {
-        background-color: $secondary;
-        color: $primary-dark;
+        background-color: #f8dc9a;
+        color: #785e4c;
     }
 }
 
@@ -107,7 +110,7 @@ input::placeholder {
     height: 30px;
     border-radius: 50%;
     // background-color: $secondary;
-    color: $primary-dark;
+    color: #785e4c;
     border: none;
     margin: 0 5px;
     cursor: pointer;
@@ -115,5 +118,5 @@ input::placeholder {
 }
 
 .page-btn:hover {
-    background-color: $secondary;
+    background-color: #f8dc9a;
 }
