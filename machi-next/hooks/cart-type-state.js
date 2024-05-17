@@ -58,7 +58,7 @@ export const CartTypeProvider = ({ children }) => {
               quantity: item.product_count,
               price: item.product_price,
               name: item.product_name,
-              image: '',
+              image: `/images/product/card/${item.product_id_fk}1.jpg`,
               type: 'product',
               specification: item.product_subtitle,
             }
@@ -69,7 +69,7 @@ export const CartTypeProvider = ({ children }) => {
               quantity: item.course_count,
               price: item.course_price,
               name: item.course_name,
-              image: '',
+              image: `/images/course/slide/${item.course_id_fk}_1.jpg`,
               type: 'course',
               coursetime: '2024/08/10',
               address: '復興堡',
@@ -121,7 +121,6 @@ export const CartTypeProvider = ({ children }) => {
         price: item.product_price,
         name: item.product_name,
         subtitle: item.product_subtitle,
-        image: '等待設定',
         type: 'product',
       }
     } else if (item.course_id_fk) {
@@ -145,7 +144,6 @@ export const CartTypeProvider = ({ children }) => {
         layer: item.custom_layer,
         flavor: item.custom_flavor,
         decor: item.custom_decor,
-        image: '',
         type: 'custom',
       }
     }
