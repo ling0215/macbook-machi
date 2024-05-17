@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 // 樣式
 import '@/styles/globals.scss'
 import '@/styles/product.scss'
-import '@/styles/cart.scss'
 import '@/styles/loader.scss'
 import '@/styles/customize.scss'
 import '@/styles/blog.scss'

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useCart } from '@/hooks/cart-type-state'
 import styles from './page1.module.scss'
-import '@/node_modules/bootstrap/scss/bootstrap.scss'
-import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaCheck } from 'react-icons/fa6'
 
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
