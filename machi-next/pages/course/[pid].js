@@ -12,7 +12,7 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import { checkAuth } from '@/services/user'
-
+import Swal from 'sweetalert2'
 
 
 // import required modules
@@ -43,6 +43,7 @@ export default function Detail() {
   const [quantity, setQuantity] = useState(1)
   //cart
   const { addItem } = useCart()
+  
   //cart
 
   //時間用
@@ -156,14 +157,14 @@ export default function Detail() {
           <div className="mb-4">
           
           <p className="product-desc mb-4" >
-            課程時間:
+            課程時間:{course.data.course.course_start_time}
             
           </p>
           <p className="product-desc mb-4" >
-            報名開始:
+            報名開始:{course.data.course.course_start_time}
           </p>
           <p className="product-desc mb-4" >
-            報名截止:
+            報名截止:{course.data.course.course_end_time}
           </p>
           </div>
           {/* 數量按鈕 */}
@@ -228,7 +229,12 @@ export default function Detail() {
                     }
                     addItem(data)
                       .then((response) => {
-                        console.log('添加成功:', response)
+                        Swal.fire({
+        title: '已加入購物車',
+        text: '您的課程已成功加入購物車！',
+        icon: 'success',
+        confirmButtonColor: '#ab927d',
+      })
                       })
                       .catch((error) => {
                         console.error('添加失敗:', error)

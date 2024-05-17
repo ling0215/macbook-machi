@@ -317,7 +317,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   style={{ gap: '0.5rem' }}
                 >
                   <div className="d-fex">
-                    <div className={`h5 mr-1`}>規格: {item.specification}</div>
+                    <div className={`h5 mr-1`}> {item.specification}</div>
                     <div className={`h5`}></div>
                   </div>
                   <div className="d-fex row justify-content-end">
@@ -437,8 +437,8 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   style={{ gap: '0.5rem' }}
                 >
                   <div className="d-fex">
-                    <div className={`h5 mr-1`}>規格:</div>
-                    <div className={`h5`}>{item.specification}</div>
+                    <div className={`h5 mr-1`}>規格:{item.specification}</div>
+                    <div className={`h5`}></div>
                   </div>
                   <div className="d-fex row justify-content-end">
                     <div

@@ -108,7 +108,7 @@ export const updatePassword = async (id = 0, password = {}) => {
  */
 export const getFavs = async () => {
   try {
-    return await axiosInstance.get('/product_favorite')
+    return await axiosInstance.get('/product-favorite')
   } catch (error) {
     console.error(error)
     // 你可以在這裡添加更多的錯誤處理邏輯
@@ -118,13 +118,13 @@ export const getFavs = async () => {
  * 新增商品id在該會員的我的最愛清單中的
  */
 export const addFav = async (pid) => {
-  return await axiosInstance.put(`/product_favorite/${pid}`)
+  return await axiosInstance.put(`/product-favorite/${pid}`)
 }
 /**
  * 移除商品id在該會員的我的最愛清單中的
  */
 export const removeFav = async (pid) => {
-  return await axiosInstance.delete(`/product_favorite/${pid}`)
+  return await axiosInstance.delete(`/product-favorite/${pid}`)
 }
 
 export const useUser = (id) => {
