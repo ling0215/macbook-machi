@@ -38,7 +38,7 @@ export const getProductsHomepage = async (
 }
 
 //抓4個課程
-export const getCourses = async (
+export const getCoursesHomepage = async (
   sort = 'date',
   order = 'desc',
   search = '',

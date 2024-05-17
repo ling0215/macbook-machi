@@ -69,7 +69,7 @@ export default function ProductCard({ product }) {
             <h5 className={styles.cardText}>{product.product_name}</h5>
             <p className={styles.typeText}>{product.product_category}</p>
             <h5 className={styles.currency}>
-              NT${product.product_price_small}
+              NT${product.product_price_small.toLocaleString()}
             </h5>
             <button
               className={`${styles.cartBtn}`}

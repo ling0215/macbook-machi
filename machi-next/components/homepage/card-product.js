@@ -37,7 +37,7 @@ const CardProdcut = () => {
                   {product.product_category}
                 </p>
                 <p className="h-currency bold h-now">
-                  NT${product.product_price_small} &nbsp;
+                  NT${product.product_price_small.toLocaleString()} &nbsp;
                 </p>
               </div>
             </Link>

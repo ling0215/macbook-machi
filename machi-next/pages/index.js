@@ -12,6 +12,7 @@ import FeaturedCard from '@/components/homepage/featured-card'
 
 import CardBlog from '@/components/homepage/card-blog'
 import CardProduct from '@/components/homepage/card-product'
+import CardCourse from '@/components/homepage/card-course'
 // 請根據實際路徑進行調整
 
 function Home() {
@@ -104,36 +105,7 @@ function Home() {
             精選課程
           </h2>
           <div className="row row-cols-2 row-cols-md-4 g-4">
-            {Array(4)
-              .fill()
-              .map((_, index) => (
-                <div
-                  key={index}
-                  className="col-md-3 d-flex justify-content-center mb-4"
-                >
-                  <div className="w-350 no-border f-16 featured-card">
-                    <Link
-                      href="/class/detail"
-                      passHref
-                      className="no-underline"
-                    >
-                      <img src="/course.jpg" className="card-img-top" alt="" />
-                      <div className="card-body no-space-x">
-                        <h5 className="card-text fw-bold card-title mt-3">
-                          法式甜點課程
-                        </h5>
-                        <p className="card-text type-text mb-2">講師：呂昇達</p>
-                        <p className="h-currency bold h-now">
-                          NT$2,000 &nbsp;
-                          <span className="text-decoration-line-through type-text">
-                            NT$2,500
-                          </span>
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              ))}
+            <CardCourse />
           </div>
         </div>
       </div>
