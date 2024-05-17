@@ -9,6 +9,10 @@ import PlaceholderText from '@/components/common/placeholder-text'
 import { fetchCategory } from '@/services/index'
 import Featured from '@/components/homepage/featured'
 import FeaturedCard from '@/components/homepage/featured-card'
+
+import CardBlog from '@/components/homepage/card-blog'
+import CardProduct from '@/components/homepage/card-product'
+import CardCourse from '@/components/homepage/card-course'
 // 請根據實際路徑進行調整
 
 function Home() {
@@ -66,29 +70,14 @@ function Home() {
       <div className="px-4 py-5 full-background">
         <div className="container px-5 py-5 latestnew-bgc">
           <div className="text-center article-section">
-            <h2 className="pb-2 mb-5 text-center section-heading" style={{ borderBottom: '1px solid #785e4c' }}>
+            <h2
+              className="pb-2 mb-5 text-center section-heading"
+              style={{ borderBottom: '1px solid #785e4c' }}
+            >
               最新消息
             </h2>
             <div className="article-block">
-              {Array(2).fill().map((_, index) => (
-                <div key={index} className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
-                  <div className="col-md-6 d-flex justify-content-center">
-                    <Link href="/blog/detail" passHref className="no-underline d-flex align-items-center">
-                      <img loading="lazy" src="/course.jpg" className="img-fluid" alt="文章圖片" />
-                    </Link>
-                  </div>
-                  <div className="col-md-6 article-right">
-                    <div className="mt-2 mb-2 d-flex article-title">
-                      踏入春日的序曲，編寫生活的篇章
-                    </div>
-                    <br />
-                    <div className="d-flex mb-3 article-date">2024.02.20</div>
-                    <button className="btn btn-grey read-more btn-sm">
-                      閱讀更多
-                    </button>
-                  </div>
-                </div>
-              ))}
+              <CardBlog />
             </div>
           </div>
         </div>
@@ -97,53 +86,26 @@ function Home() {
       {/* 精選區塊 */}
       <div className="container col-xxl-10 px-5 py-5 my-5 featured-bgc">
         <div className="container text-center">
-          <h2 className="pb-2 mb-5 text-center mt-2 section-heading" style={{ borderBottom: '1px solid #785e4c' }}>
+          <h2
+            className="pb-2 mb-5 text-center mt-2 section-heading"
+            style={{ borderBottom: '1px solid #785e4c' }}
+          >
             精選商品
           </h2>
           <div className="row row-cols-2 row-cols-md-4 d-flex">
-            {Array(4).fill().map((_, index) => (
-              <div key={index} className="col-md-3 d-flex justify-content-center mb-4">
-                <div className="w-350 no-border f-16 featured-card">
-                  <Link href="/product/detail" passHref className="no-underline">
-                    <img src="/images/product/list/strawberry-tart-01.jpg" className="card-img-top" alt="" />
-                    <div className="card-body no-space-x">
-                      <p className="card-text note-text mt-1">新品上市</p>
-                      <h5 className="card-text fw-bold card-title">草莓優格塔</h5>
-                      <p className="card-text type-text mb-2">塔派甜點</p>
-                      <p className="h-currency bold h-now">
-                        NT$1,050 &nbsp;
-                        <span className="text-decoration-line-through type-text">NT$1,250</span>
-                      </p>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            ))}
+            <CardProduct />
+          </div>
         </div>
-      </div>
 
         <div className="container text-center">
-          <h2 className="pb-2 mb-5 text-center mt-5 section-heading" style={{ borderBottom: '1px solid #785e4c' }}>
+          <h2
+            className="pb-2 mb-5 text-center mt-5 section-heading"
+            style={{ borderBottom: '1px solid #785e4c' }}
+          >
             精選課程
           </h2>
           <div className="row row-cols-2 row-cols-md-4 g-4">
-            {Array(4).fill().map((_, index) => (
-              <div key={index} className="col-md-3 d-flex justify-content-center mb-4">
-                <div className="w-350 no-border f-16 featured-card">
-                  <Link href="/class/detail" passHref className="no-underline">
-                    <img src="/course.jpg" className="card-img-top" alt="" />
-                    <div className="card-body no-space-x">
-                      <h5 className="card-text fw-bold card-title mt-3">法式甜點課程</h5>
-                      <p className="card-text type-text mb-2">講師：呂昇達</p>
-                      <p className="h-currency bold h-now">
-                        NT$2,000 &nbsp;
-                        <span className="text-decoration-line-through type-text">NT$2,500</span>
-                      </p>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            ))}
+            <CardCourse />
           </div>
         </div>
       </div>

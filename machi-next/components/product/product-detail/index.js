@@ -129,7 +129,7 @@ export default function ProductDetail(product) {
             {/* <div className={` h4 `}>小計NT${item.subtotal}</div> */}
             <div className="col-md-5 d-flex justify-content-center align-items-center text-primary-dark">
               <p className="pe-2">售價</p>
-              <h4 className="text-primary-dark">{price}</h4>
+              <h4 className="text-primary-dark">{price.toLocaleString()}</h4>
             </div>
           </div>
 
