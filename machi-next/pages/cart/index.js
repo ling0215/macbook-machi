@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import { CartTypeProvider } from '@/hooks/cart-type-state'
-
 import CartPage1 from '@/components/cart/cart-page1'
 import CartPage2 from '@/components/cart/cart-page2'
 
@@ -18,21 +16,17 @@ export default function CartMain() {
     setSelectedItems(items)
   }
 
-  return (
-    <CartTypeProvider>
-      {showPage ? (
-        <CartPage1
-          onClickPage={handleClick}
-          selectedItems={selectedItems}
-          onSelectItems={handleSelectedItems}
-        />
-      ) : (
-        <CartPage2
-          onClickPage={handleClick}
-          selectedItems={selectedItems}
-          onSelectItems={handleSelectedItems}
-        />
-      )}
-    </CartTypeProvider>
+  return showPage ? (
+    <CartPage1
+      onClickPage={handleClick}
+      selectedItems={selectedItems}
+      onSelectItems={handleSelectedItems}
+    />
+  ) : (
+    <CartPage2
+      onClickPage={handleClick}
+      selectedItems={selectedItems}
+      onSelectItems={handleSelectedItems}
+    />
   )
 }

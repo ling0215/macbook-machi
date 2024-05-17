@@ -33,11 +33,13 @@ export default function CourseCard({ course }) {
 )}
             <p className={styles.typeText}>{course.course_category}</p>
             <h5 className={styles.currency}>NT${course.course_price}</h5>
+            <Link href={`/course/${course.course_id}`}>
+            <button className={styles.cartBtn} >
             
-            <button className={styles.cartBtn}>
-              <IoCartOutline className={styles.cartIcon} /> 加入購物車
+              <IoCartOutline className={styles.cartIcon} /> 課程詳細
+             
             </button>
-            
+            </Link>
           </div>
         </div>
       </div>

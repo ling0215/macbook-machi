@@ -5,7 +5,7 @@ import CakePreview from '@/components/customize/cake-preview'
 import Link from 'next/link'
 import { IoCartOutline } from 'react-icons/io5'
 import { useCustomize } from '@/hooks/use-customize'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 
@@ -23,6 +23,26 @@ export default function CustomizedCart() {
     if (customTotNum > 1) {
       setCustomTotNum(customTotNum - 1)
     }
+  }
+  const customCart = {
+    custom_count: customTotNum,
+    custom_price: customize.sizePrice.price,
+    custom_size: customize.sizePrice.size,
+    custom_layer: customize.layer,
+    custom_flavor: customize.flavor,
+    custom_decor: customize.deco.join(','),
+  }
+
+  const addCart = () => {
+    addItem(customCart).then(() => {
+      console.log(`customCart: ${customCart}`)
+      Swal.fire({
+        title: '已加入購物車',
+        text: '您的商品已成功加入購物車！',
+        icon: 'success',
+        confirmButtonColor: '#ab927d',
+      })
+    })
   }
 
   return (
@@ -124,12 +144,7 @@ export default function CustomizedCart() {
                 <button
                   className="lynn-btn-brown"
                   onClick={() => {
-                    Swal.fire({
-                      title: '已加入購物車',
-                      text: '您的商品已成功加入購物車！',
-                      icon: 'success',
-                      confirmButtonColor: '#ab927d',
-                    })
+                    addCart()
                   }}
                 >
                   <IoCartOutline className="lynn-cart" />

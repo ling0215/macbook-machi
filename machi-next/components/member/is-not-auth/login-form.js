@@ -56,6 +56,7 @@ export default function LoginForm() {
       Swal.fire({
         icon: 'success',
         title: '登入成功',
+        confirmButtonColor: '#ab927d',
       })
 
       router.push('/')
@@ -65,6 +66,7 @@ export default function LoginForm() {
         icon: 'error',
         title: '登入失敗',
         text: '請檢查你的帳號或密碼是否正確。',
+        confirmButtonColor: '#ab927d',
       })
     }
   }
