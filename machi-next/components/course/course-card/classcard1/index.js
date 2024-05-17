@@ -8,7 +8,7 @@ import {IoCartOutline, IoHeartOutline} from "react-icons/io5";
 
 
 export default function CourseCard1({course}) {
-  const imageUrl = `/images/course/card/${course.course_id}_1.jpg`//暫時標記
+  const imageUrl = `/images/course/slide/${course.course_id}_1.jpg`//暫時標記
     return (
         <div id="page-content-wrapper" className="col">
         <div className="container-fluid">

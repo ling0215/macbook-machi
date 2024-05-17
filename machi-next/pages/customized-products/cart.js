@@ -35,7 +35,6 @@ export default function CustomizedCart() {
 
   const addCart = () => {
     addItem(customCart).then(() => {
-      console.log(`customCart: ${customCart}`)
       Swal.fire({
         title: '已加入購物車',
         text: '您的商品已成功加入購物車！',

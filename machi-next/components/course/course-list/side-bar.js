@@ -240,13 +240,13 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           role="button"
                           tabIndex={0}
                           className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('馬卡龍')}
+                          onClick={() => handleCategoryChange('蘋果')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
-                              handleCategoryChange('馬卡龍')
+                              handleCategoryChange('蘋果')
                           }}
                         >
-                          韓國人金老師
+                          蘋果
                         </div>
                       </div>
                     </div>
