@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import styles from './product.module.scss'
 import Image from 'next/image'
-import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
+import { IoCartOutline } from 'react-icons/io5'
+import FavFcon from './fav-icon'
 
 export default function ProductCard({ product }) {
   const imageUrl = `/images/product/card/${product.product_id}1.jpg`
@@ -22,7 +23,8 @@ export default function ProductCard({ product }) {
             />
           </Link>
           <div className={styles.cardInfo}>
-            <IoHeartOutline className={styles.heartIcon} />
+            
+            <FavFcon id={product.product_id} style={styles.heartIcon} />
             <h5 className={styles.cardText}>{product.product_name}</h5>
             <p className={styles.typeText}>{product.product_category}</p>
             <h5 className={styles.currency}>NT${product.product_price_small}</h5>
