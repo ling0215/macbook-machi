@@ -5,6 +5,7 @@ import ProductIntro from '@/components/product/product-detail/product-intro'
 import { useCart } from '@/hooks/cart-type-state'
 import { checkAuth } from '@/services/user'
 import { addToCart } from '@/services/cart'
+import Swal from 'sweetalert2'
 
 export default function ProductDetail(product) {
   const newProduct = product.product
@@ -22,6 +23,18 @@ export default function ProductDetail(product) {
       : newProduct.product_price_small
 
   const { addItem } = useCart()
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+  })
 
   return (
     <>
@@ -121,6 +134,10 @@ export default function ProductDetail(product) {
                     addToCart(uid, data)
                       .then((response) => {
                         console.log('添加成功:', response)
+                        Toast.fire({
+                          icon: 'success',
+                          title: '成功加入購物車',
+                        })
                       })
                       .catch((error) => {
                         console.error('添加失敗:', error)
@@ -152,7 +169,7 @@ export default function ProductDetail(product) {
       <style jsx>{`
         .btn-outline-brown:hover {
           background-color: var(--brown);
-          color: white; 
+          color: white;
         }
       `}</style>
     </>
