@@ -20,11 +20,11 @@ export default function ArticleMessageArea({ articleId }) {
 
   useEffect(() => {
     const getComments = async () => {
-      const response = await fetchComments(articleId) // 假設你有一個 getComments 函數來從資料庫中獲取留言
-      setComments(response.data)
+      const data = await fetchComments(articleId)
+      setComments(data)
+      // console.log(articleId)
     }
-
-    fetchComments()
+    getComments()
   }, [articleId])
 
   const handleSubmit = async (event) => {
@@ -98,7 +98,7 @@ export default function ArticleMessageArea({ articleId }) {
             <div className={styles[`user-name`]}>
               <div className={styles[`img-s`]}>
                 <img src="/images/blog/article1.jpg" alt="" />
-                <span>使用者名稱</span>
+                <span>1213</span>
               </div>
               <div className={styles[`create-time`]}>create-time</div>
             </div>
