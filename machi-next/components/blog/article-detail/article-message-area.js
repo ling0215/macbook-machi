@@ -3,12 +3,12 @@ import styles from '@/components/blog/article-detail/article-message-area.module
 import { postMessage } from '@/services/blog'
 import { checkAuth } from '@/services/user'
 import Swal from 'sweetalert2'
-import { useRouter } from 'next/router'
+import { fetchComments } from '@/services/blog'
 
 import { TiMessages } from 'react-icons/ti'
 import { IoIosSend } from 'react-icons/io'
 
-export default function ArticleMessageArea() {
+export default function ArticleMessageArea({ articleId }) {
   const [message, setMessage] = useState('')
   const [articleCommentId, setArticleCommentId] = useState('')
   const [articleIdFk, setArticleIdFk] = useState('')
@@ -16,33 +16,40 @@ export default function ArticleMessageArea() {
   const [articleCommentContent, setArticleCommentContent] = useState('')
   const [articleCommentCreateTime, setArticleCommentCreateTime] = useState('')
 
-  const router = useRouter()
-  const [articleId, setArticleId] = useState('')
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
-    // 假設 articleId 是 URL 的路由參數
-    if (router.query.articleId) {
-      setArticleId(router.query.articleId)
+    const getComments = async () => {
+      const response = await fetchComments(articleId) // 假設你有一個 getComments 函數來從資料庫中獲取留言
+      setComments(response.data)
     }
-  }, [router.query.articleId])
+
+    fetchComments()
+  }, [articleId])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
       const response = await checkAuth()
       if (response.data.data.user) {
-        setUserIdFk(response.data.data.user.user_id) // 假設用戶的 ID 存儲在 response.data.data.user.user_id
-        setArticleCommentCreateTime(new Date().toISOString()) // 使用當前時間作為留言的創建時間
+        // console.log(response.data.data.user.user_id);
+        const userId = response.data.data.user.user_id
+        setUserIdFk(userId)
+        console.log('user_id_fk:', userId)
+
+        const currentTime = new Date().toISOString() // 假設用戶的 ID 存儲在 response.data.data.user.user_id
+        setArticleCommentCreateTime(currentTime) // 使用當前時間作為留言的創建時間
         setArticleIdFk(articleId) // 假設文章的 ID 存儲在 articleId 變量中
-        console.log(articleId);
+        console.log(articleId)
         setArticleCommentContent(message)
         // 用戶已經登入，繼續提交留言
+        // console.log(response.data.data.user);
         await postMessage({
           article_comment_id: articleCommentId,
-          article_id_fk: articleIdFk,
-          user_id_fk: userIdFk,
+          article_id_fk: articleId,
+          user_id_fk: userId,
           article_comment_content: message,
-          article_comment_createtime: articleCommentCreateTime,
+          article_comment_createtime: currentTime,
         })
         // 清空留言輸入框
         setMessage('')
