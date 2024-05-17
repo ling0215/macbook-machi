@@ -6,6 +6,7 @@ import DecoSelector from '@/components/customize/deco-selector'
 import Link from 'next/link'
 import { useCustomize } from '@/hooks/use-customize'
 import { useState } from 'react'
+import { set } from 'lodash'
 
 export default function CustomizedDeco() {
   const { customize, setLayer, setFlavor, setDeco, setSizePrice, setPreview } =
@@ -21,7 +22,8 @@ export default function CustomizedDeco() {
     setSizePrice('', '')
     setLayer('')
     setFlavor('')
-    setDeco([])
+    // setDeco([])
+    setDeco('')
     setPreview('')
   }
 
@@ -39,7 +41,8 @@ export default function CustomizedDeco() {
     }
 
     //加上已選擇的裝飾的價格
-    price += customize.deco.length * 20
+    // price += customize.deco.length * 20
+    price += 20
 
     setSizePrice(size, price)
     setTotalPrice(price)
@@ -49,29 +52,36 @@ export default function CustomizedDeco() {
     setFlavor(flavor)
   }
 
-  const handleDecoChange = (newDeco) => {
-    const prevDeco = customize.deco
-    let nextDeco = [...prevDeco]
-    let size = customize.sizePrice.size
-    let price = totalPrice // 使用 totalPrice 而不是 basePrice
+  // const handleDecoChange = (newDeco) => {
+  //   const prevDeco = customize.deco
+  //   let nextDeco = [...prevDeco]
+  //   let size = customize.sizePrice.size
+  //   let price = totalPrice // 使用 totalPrice 而不是 basePrice
 
-    if (prevDeco.includes(newDeco)) {
-      // 如果 newDeco 已經在 prevDeco 中，則移除它
-      nextDeco = prevDeco.filter((deco) => deco !== newDeco)
-      price -= 20
-    } else {
-      // 如果 newDeco 不在 prevDeco 中，則添加它
-      nextDeco = [...prevDeco, newDeco]
-      price += 20
-    }
+  //   if (prevDeco.includes(newDeco)) {
+  //     // 如果 newDeco 已經在 prevDeco 中，則移除它
+  //     nextDeco = prevDeco.filter((deco) => deco !== newDeco)
+  //     price -= 20
+  //   } else {
+  //     // 如果 newDeco 不在 prevDeco 中，則添加它
+  //     nextDeco = [...prevDeco, newDeco]
+  //     price += 20
+  //   }
 
-    setDeco(nextDeco)
+  const handleDecoChange = (deco) => {
+    setDeco(deco)
     setSizePrice(size, price)
     setTotalPrice(price) // 更新 totalPrice 狀態
   }
 
+  // setDeco(nextDeco)
+  // setSizePrice(size, price)
+  // setTotalPrice(price) // 更新 totalPrice 狀態
+  // }
+
   const handleDefaultDeco = () => {
-    setDeco([])
+    // setDeco([])
+    setDeco('')
     setSizePrice(size, basePrice)
     setLayer('')
     setFlavor('')
@@ -89,6 +99,10 @@ export default function CustomizedDeco() {
     let ele3 = document.getElementsByName('decos')
     for (let i = 0; i < ele3.length; i++) {
       ele3[i].checked = false
+    }
+    let ele4 = document.getElementsByName('photo')
+    for (let i = 0; i < ele4.length; i++) {
+      ele4[i].checked = false
     }
 
     document.getElementById('formFileSm').value = ''
@@ -140,12 +154,6 @@ export default function CustomizedDeco() {
                   label: '4層',
                   onClick: () => handleLayerChange('4層'),
                 },
-                // {
-                //   name: 'layer',
-                //   value: 'layer5',
-                //   label: '5層',
-                //   onClick: () => handleLayerChange('5層'),
-                // },
               ]}
               displayType="radio"
             />
@@ -174,47 +182,47 @@ export default function CustomizedDeco() {
               ]}
               displayType="radio"
             />
-            <div className="lynn-deco-checkbox">
+            {/* <div className="lynn-deco-checkbox">
               <DecoSelector
                 decoTitle="請選擇蛋糕表面裝飾"
                 decoSubtitle="*每加一項裝飾 + NT$20"
                 options={[
                   {
                     name: 'decos',
-                    value: 'strawberry',
-                    label: '草莓',
-                    onClick: () => handleDecoChange('草莓'),
+                    value: 'berries',
+                    label: '綜合莓果',
+                    onClick: () => handleDecoChange('綜合莓果'),
                   },
                   {
                     name: 'decos',
-                    value: 'cherry',
-                    label: '櫻桃',
-                    onClick: () => handleDecoChange('櫻桃'),
+                    value: 'orangeCoffee',
+                    label: '橙片咖啡',
+                    onClick: () => handleDecoChange('橙片咖啡'),
                   },
-                  {
-                    name: 'decos',
-                    value: 'chocolate',
-                    label: '巧克力',
-                    onClick: () => handleDecoChange('巧克力'),
-                  },
-                  {
-                    name: 'decos',
-                    value: 'macaron',
-                    label: '馬卡龍',
-                    onClick: () => handleDecoChange('馬卡龍'),
-                  },
-                  {
-                    name: 'decos',
-                    value: 'orange',
-                    label: '蜜漬橙片',
-                    onClick: () => handleDecoChange('蜜漬橙片'),
-                  },
-                  {
-                    name: 'decos',
-                    value: 'blueberry',
-                    label: '藍莓',
-                    onClick: () => handleDecoChange('藍莓'),
-                  },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'chocolate',
+                  //   label: '巧克力',
+                  //   onClick: () => handleDecoChange('巧克力'),
+                  // },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'macaron',
+                  //   label: '馬卡龍',
+                  //   onClick: () => handleDecoChange('馬卡龍'),
+                  // },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'orange',
+                  //   label: '蜜漬橙片',
+                  //   onClick: () => handleDecoChange('蜜漬橙片'),
+                  // },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'blueberry',
+                  //   label: '藍莓',
+                  //   onClick: () => handleDecoChange('藍莓'),
+                  // },
                   {
                     name: 'decos',
                     value: 'photo',
@@ -223,6 +231,66 @@ export default function CustomizedDeco() {
                   },
                 ]}
                 displayType="checkbox"
+              />
+            </div> */}
+            <div className="lynn-deco-checkbox">
+              <DecoSelector
+                decoTitle="請選擇蛋糕表面裝飾"
+                decoSubtitle="*加裝飾 + NT$20"
+                options={[
+                  {
+                    name: 'decos',
+                    value: 'berries',
+                    label: '綜合莓果',
+                    onClick: () => handleDecoChange('綜合莓果'),
+                  },
+                  {
+                    name: 'decos',
+                    value: 'orangeCoffee',
+                    label: '橙片咖啡',
+                    onClick: () => handleDecoChange('橙片咖啡'),
+                  },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'chocolate',
+                  //   label: '巧克力',
+                  //   onClick: () => handleDecoChange('巧克力'),
+                  // },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'macaron',
+                  //   label: '馬卡龍',
+                  //   onClick: () => handleDecoChange('馬卡龍'),
+                  // },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'orange',
+                  //   label: '蜜漬橙片',
+                  //   onClick: () => handleDecoChange('蜜漬橙片'),
+                  // },
+                  // {
+                  //   name: 'decos',
+                  //   value: 'blueberry',
+                  //   label: '藍莓',
+                  //   onClick: () => handleDecoChange('藍莓'),
+                  // },
+                ]}
+                displayType="radio"
+              />
+            </div>
+            <div className="lynn-deco-checkbox">
+              <DecoSelector
+                decoTitle="請上傳客製化圖片"
+                decoSubtitle="*建議將圖片裁切成正方形，並上傳高解析度圖片"
+                options={[
+                  {
+                    name: 'photo',
+                    value: 'photo',
+                    label: '其他：上傳圖片',
+                    onClick: () => {},
+                  },
+                ]}
+                displayType="radio"
               />
             </div>
             <hr className="lynn-done-select" />

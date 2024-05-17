@@ -24,6 +24,7 @@ export default function CustomizedCart() {
       setCustomTotNum(customTotNum - 1)
     }
   }
+
   const customCart = {
     custom_count: customTotNum,
     custom_price: customize.sizePrice.price,
