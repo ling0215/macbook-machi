@@ -93,8 +93,8 @@ export default function Detail() {
           <div className="position-sticky" style={{ top: '2rem' }}>
           <Swiper
         style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
+         width: '50vh',
+         height:'50vh',
         }}
         autoplay={{
           delay: 2500,
@@ -107,7 +107,7 @@ export default function Detail() {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={imageUrl1} />
+          <img src={imageUrl1}  />
         </SwiperSlide>
         <SwiperSlide>
           <img src={imageUrl2} />
@@ -126,13 +126,22 @@ export default function Detail() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={imageUrl1} />
+          <img src={imageUrl1}  style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={imageUrl2} />
+          <img src={imageUrl2}   style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={imageUrl3} />
+          <img src={imageUrl3}  style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
       </Swiper>
           </div>
