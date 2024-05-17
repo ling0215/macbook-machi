@@ -7,7 +7,7 @@ import { Op } from 'sequelize'
 
 import sequelize from '#configs/db.js'
 
-const { User, Article } = sequelize.models
+const { User, Article, ArticleComment } = sequelize.models
 
 User.hasMany(Article, {
   foreignKey: 'user_id_fk',
@@ -266,7 +266,7 @@ router.get('/avatar/:userId', (req, res) => {
   res.sendFile(avatarPath)
 })
 //留言
-router.post('/commit', (req, res) => {
+router.post('/commit', async (req, res) => {
   const {
     article_comment_id,
     article_id_fk,
@@ -275,8 +275,43 @@ router.post('/commit', (req, res) => {
     article_comment_createtime,
   } = req.body.message
 
-  // 在這裡處理你的留言，例如保存到數據庫
+  try {
+    // 儲存到資料庫
+    await ArticleComment.create({
+      article_comment_id,
+      article_id_fk,
+      user_id_fk,
+      article_comment_content,
+      article_comment_createtime,
+    })
 
-  res.json({ status: 'success', message: '留言已接收' })
+    res.json({ status: 'success', message: '留言已接收' })
+  } catch (error) {
+    console.error('Error saving comment:', error)
+    res.json({ status: 'error', message: '留言儲存失敗' })
+  }
 })
+
+//從資料庫中獲取留言
+router.get('/api/comments', async (req, res) => {
+  const articleId = req.query.articleId
+
+  try {
+    const comments = await ArticleComment.findAll({
+      where: {
+        article_id_fk: articleId,
+      },
+    })
+
+    if (!comments) {
+      return res.status(404).json({ message: '留言不存在' })
+    }
+
+    res.status(200).json(comments)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: '無法獲取留言' })
+  }
+})
+
 export default router
