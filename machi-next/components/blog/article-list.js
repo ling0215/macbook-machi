@@ -17,8 +17,6 @@ const ArticlesList = ({ articles }) => {
     return htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '')
   }
 
-  // const categories = newArticles.article_category.split(',')
-  // console.log(category)
   return (
     <>
       <div className={styles[`list-h`]}>

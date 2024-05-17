@@ -69,8 +69,18 @@ export const fetchRawArticle = async (url = 0) => {
   }
 }
 
-//留言
-
 export function postMessage(message) {
   return axiosInstance.post('/blog/commit', { message })
+}
+
+// 獲取文章的留言
+export const fetchComments = async (articleId) => {
+  try {
+    const response = await axiosInstance.get(
+      `/api/comments?articleId=${articleId}`
+    )
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
 }
