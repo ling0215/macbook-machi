@@ -155,9 +155,7 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
                         <div
                           className={`h5 d-inline`}
                           style={{ whiteSpace: 'nowrap' }}
-                        >
-                          規格:
-                        </div>
+                        ></div>
                         <div className={`h5`}>{item.specification}</div>
                       </div>
                       <div className={`d-flex g-3 justify-content-between col`}>
