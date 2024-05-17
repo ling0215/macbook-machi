@@ -7,12 +7,11 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 import authenticate from '#middlewares/authenticate.js'
 import sequelize from '#configs/db.js'
 
-const { CartItem } = sequelize.models
+const { CartItem, Course } = sequelize.models
 
 // 獲得某會員id的有加入到購物清單中的商品id們
 // 此路由只有登入會員能使用
 router.get('/', authenticate, async (req, res) => {
-  console.log('Received user ID:', req.query.user_id)
   try {
     const userId = req.query.user_id // 从查询参数中获取用户 ID
     const cartItems = await CartItem.findAll({
@@ -23,6 +22,16 @@ router.get('/', authenticate, async (req, res) => {
     res.json({ status: 'success', items: cartItems })
   } catch (error) {
     console.error('Error fetching cart items:', error)
+    res.status(500).json({ status: 'error', message: 'Internal server error' })
+  }
+})
+router.get('/course', async (req, res) => {
+  try {
+    const userId = req.query.user_id
+    const courses = await Course.findAll()
+    res.json({ status: 'success', items: courses })
+  } catch (error) {
+    console.error('Error fetching courses:', error)
     res.status(500).json({ status: 'error', message: 'Internal server error' })
   }
 })
