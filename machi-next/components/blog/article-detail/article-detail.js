@@ -5,7 +5,6 @@ import DOMPurify from 'dompurify'
 import Link from 'next/link'
 
 const ArticleDetail = ({ articleId }) => {
-  console.log(articleId)
   const [article, setArticle] = useState(null)
   useEffect(() => {
     const getArticleData = async () => {
@@ -21,6 +20,7 @@ const ArticleDetail = ({ articleId }) => {
         console.error('Error fetching article:', error)
       }
     }
+    // console.log(articleId)
 
     getArticleData()
   }, [articleId])
@@ -33,7 +33,7 @@ const ArticleDetail = ({ articleId }) => {
   const categories = article.article_category
     ? article.article_category.split(',')
     : []
-  console.log(categories)
+  // console.log(categories)
   return (
     <div className={`container ${styles['article-text']}`}>
       <div className={styles['article-user']}>
@@ -75,3 +75,14 @@ const ArticleDetail = ({ articleId }) => {
 }
 
 export default ArticleDetail
+
+export async function getServerSideProps(context) {
+  const { params } = context
+  const articleId = params.id // 假設你的路由是 /articles/[id]
+
+  return {
+    props: {
+      articleId,
+    },
+  }
+}
