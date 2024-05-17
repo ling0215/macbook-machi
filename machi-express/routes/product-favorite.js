@@ -19,10 +19,9 @@ router.get('/', authenticate, async (req, res) => {
     raw: true, //只需要資料
   })
 
-  
   // 將結果中的pid取出變為一個純資料的陣列
   const favorites = pids.map((v) => v.product_id_fk)
-  
+
   res.json({ status: 'success', data: { favorites } })
 })
 
@@ -31,18 +30,19 @@ router.put('/:id', authenticate, async (req, res, next) => {
   const uid = req.user.user_id
   console.log(pid, uid)
 
-  const existFav = await ProductFavorite.findOne({ where: { 
-    product_id_fk: pid, 
-    user_id_fk: uid,
-    } 
+  const existFav = await ProductFavorite.findOne({
+    where: {
+      product_id_fk: pid,
+      user_id_fk: uid,
+    },
   })
   //console.log(existFav)
-  if (existFav) {  
+  if (existFav) {
     return res.json({ status: 'error', message: '資料已經存在，新增失敗' })
   }
 
-  const newFav = await ProductFavorite.create({ 
-    product_id_fk: pid, 
+  const newFav = await ProductFavorite.create({
+    product_id_fk: pid,
     user_id_fk: uid,
   })
 
@@ -66,7 +66,7 @@ router.delete('/:id', authenticate, async (req, res, next) => {
   console.log(pid, uid)
   const affectedRows = await ProductFavorite.destroy({
     where: {
-      product_id_fk: pid, 
+      product_id_fk: pid,
       user_id_fk: uid,
     },
   })
