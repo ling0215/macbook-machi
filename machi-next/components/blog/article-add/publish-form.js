@@ -41,7 +41,7 @@ export default function PublishForm() {
     } else {
       setCategory([...category, selectedCategory])
     }
-    console.log(setCategory)
+    // console.log(setCategory)
   }
   return (
     <>

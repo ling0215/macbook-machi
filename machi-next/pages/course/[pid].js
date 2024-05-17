@@ -4,13 +4,15 @@ import { data } from 'jquery'
 import React from 'react'
 // import Carousel from '@/components/product/carousel'
 import {IoCartOutline, IoHeartOutline} from 'react-icons/io5'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 import styles from './course-detail.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
+import { checkAuth } from '@/services/user'
+import { addToCart } from '@/services/cart'
 
 
 // import required modules
@@ -36,7 +38,7 @@ export default function Detail() {
 
    }}
   })
-
+  const [quantity, setQuantity] = useState(1)
   //cart
   const { addItem } = useCart()
   //cart
@@ -91,8 +93,8 @@ export default function Detail() {
           <div className="position-sticky" style={{ top: '2rem' }}>
           <Swiper
         style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
+         width: '50vh',
+         height:'50vh',
         }}
         autoplay={{
           delay: 2500,
@@ -105,7 +107,7 @@ export default function Detail() {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={imageUrl1} />
+          <img src={imageUrl1}  />
         </SwiperSlide>
         <SwiperSlide>
           <img src={imageUrl2} />
@@ -124,13 +126,22 @@ export default function Detail() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={imageUrl1} />
+          <img src={imageUrl1}  style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={imageUrl2} />
+          <img src={imageUrl2}   style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={imageUrl3} />
+          <img src={imageUrl3}  style={{
+         width: '10vh',
+         height: '10vh',
+        }}/>
         </SwiperSlide>
       </Swiper>
           </div>
@@ -167,19 +178,23 @@ export default function Detail() {
               <button
                 className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                 style={{ width: '28px' }}
-                // onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
+                onClick={() => {
+                  if (quantity > 1) {
+                    setQuantity(quantity - 1) // 只有當 quantity 大於 1 時才減少數量
+                  }
+                }}
               >
                 -
               </button>
               <button
                 className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
               >
-                {/* {item.quantity} */}
+                {quantity}
               </button>
               <button
                 className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                 style={{ width: '28px' }}
-                // onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
+                onClick={() => setQuantity(quantity + 1)} // 增加數量的點擊事件
               >
                 +
               </button>
@@ -195,12 +210,66 @@ export default function Detail() {
 
           <div className="mb-4 d-flex justify-content-center align-items-center ">
             <div className="col-6 pe-2">
-              <button className="btn btn-outline-brown btn-lg w-100 cartBtn">
-                  <IoCartOutline className="fs-3 text-brown" /> 加入購物車
+            <button
+                className="btn btn-outline-brown btn-lg w-100 cartBtn"
+                onClick={async () => {
+                  const response = await checkAuth()
+                  if (response.data.status === 'success') {
+                    const uid = response.data.data.user.user_id
+                    const data = {
+                      type: 'course',
+                      course_id_fk:course.data.course.course_id,
+                      course_name: course.data.course.course_name, // 產品名稱
+                      course_price: course.data.course.course_price, // 產品價格
+                      course_count: quantity, // 數量
+                      
+                    }
+                    addToCart(uid, data)
+                      .then((response) => {
+                        console.log('添加成功:', response)
+                      })
+                      .catch((error) => {
+                        console.error('添加失敗:', error)
+                      })
+                  } else {
+                    console.log('用戶未登入')
+                    // 這裡可以添加提示用戶登入的程式碼
+                  }
+                }}
+              >
+                <IoCartOutline className="fs-3 text-brown" /> 加入購物車
               </button>
             </div>
             <div className="col-6 ps-2">
-                <button className="btn btn-brown text-white btn-lg w-100 buynowBtn">立即購買</button>
+            <button
+                className="btn btn-brown text-white btn-lg w-100 buynowBtn"
+                onClick={async () => {
+                  const response = await checkAuth()
+                  if (response.data.status === 'success') {
+                    const uid = response.data.data.user.user_id
+                    const data = {
+                      type: 'course',
+                      course_id_fk:course.data.course.course_id,
+                      course_name: course.data.course.course_name, // 產品名稱
+                      course_price: course.data.course.course_price, // 產品價格
+                      course_count: quantity, // 數量
+                      
+                    }
+                    addToCart(uid, data)
+                      .then((response) => {
+                        console.log('添加成功:', response)
+                      })
+                      .catch((error) => {
+                        console.error('添加失敗:', error)
+                      })
+                  } else {
+                    console.log('用戶未登入')
+                    // 這裡可以添加提示用戶登入的程式碼
+                  }
+                }}
+              >
+                 立即購買
+              </button>
             </div>
           </div>
           <button className="btn btn-outline-gary col-md-6 text-start text-primary-dark">
@@ -237,18 +306,7 @@ export default function Detail() {
             <div className="content" style={{ display: activeButton === 'other' ? 'block' : 'none' }}>
                 <div
                     className="list-group-flush p-2 py-3 mb-4 border">
-                     <button
-            onClick={() =>
-              addItem({
-                course_id_fk: course.data.course.course_id,
-                course_count: course.data.course.course_count,
-                course_price: course.data.course.course_price,
-                course_name: course.data.course.course_name,
-              })
-            }
-          >
-            測試自訂
-          </button>
+                    
                     <h5 className="list-group-item">&nbsp;&nbsp;呂昇達
                      &nbsp;</h5>
                     <h4 id="title">｜保存與享用｜</h4>
