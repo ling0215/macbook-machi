@@ -2,7 +2,6 @@ import React, { useState, useContext, createContext, useEffect } from 'react'
 import {
   init,
   addOne,
-  findOneById,
   updateOne,
   removeOne,
   incrementOne,
@@ -25,10 +24,9 @@ export const CartTypeProvider = ({ children }) => {
   const [error, setError] = useState(null)
   const { auth } = useAuth()
   const [formattedCartItems, setFormattedCartItems] = useState([])
-  // console.log(auth)
+  const [cartUpdated, setCartUpdated] = useState(false)
 
   useEffect(() => {
-    // 当组件加载和 auth.userData 更新时，尝试从数据库获取购物车数据
     const loadCartData = async () => {
       if (auth.userData && auth.userData.user_id) {
         try {
@@ -47,12 +45,9 @@ export const CartTypeProvider = ({ children }) => {
     }
 
     loadCartData()
-  }, [auth.userData])
+  }, [auth.userData, cartUpdated])
 
-  // console.log(formattedCartItems)
-  // console.log(cartState)
   useEffect(() => {
-    // 确保 formattedCartItems.items 存在并且是一个数组
     if (formattedCartItems.items && Array.isArray(formattedCartItems.items)) {
       const newFormattedCartItems = formattedCartItems.items
         .map((item) => {
@@ -63,7 +58,7 @@ export const CartTypeProvider = ({ children }) => {
               quantity: item.product_count,
               price: item.product_price,
               name: item.product_name,
-              image: '',
+              image: `/images/product/card/${item.product_id_fk}1.jpg`,
               type: 'product',
               specification: item.product_subtitle,
             }
@@ -74,7 +69,7 @@ export const CartTypeProvider = ({ children }) => {
               quantity: item.course_count,
               price: item.course_price,
               name: item.course_name,
-              image: '',
+              image: `/images/course/slide/${item.course_id_fk}_1.jpg`,
               type: 'course',
               coursetime: '2024/08/10',
               address: '復興堡',
@@ -96,32 +91,23 @@ export const CartTypeProvider = ({ children }) => {
         .filter((item) => item !== null)
       setCartItems(newFormattedCartItems)
     }
-  }, [formattedCartItems]) // 正确设置依赖项
-  // console.log(cartItems)
+  }, [formattedCartItems])
 
   useEffect(() => {
-    // 更新 cartState 以匹配最新的 cartItems
     setCartState(init(cartItems))
   }, [cartItems])
 
   const addItem = async (item) => {
-    // 確保用戶數據已加載
     if (!auth.userData || !auth.userData.user_id) {
       console.error('User data is not available')
-      return // 提前返回，防止執行後續代碼
-    }
-    if (cartItems.length == 0) {
-      console.error('User data is not available')
-      return // 提前返回，防止執行後續代碼
+      return
     }
 
-    // 检查是否正在添加商品，防止反弹
     if (addingItem) {
       console.warn('Add item operation is already in progress')
       return
     }
 
-    // 设置状态，表示正在添加商品
     setAddingItem(true)
 
     let userId = auth.userData.user_id
@@ -130,25 +116,20 @@ export const CartTypeProvider = ({ children }) => {
     if (item.product_id_fk) {
       newItem = {
         uid: userId,
-        //以下為商品頁提供 提供者ex:product_id_fk=product_id
         id: item.product_id_fk,
         quantity: item.product_count,
         price: item.product_price,
         name: item.product_name,
         subtitle: item.product_subtitle,
-        //以上為商品頁提供
-        image: '等待設定',
         type: 'product',
       }
     } else if (item.course_id_fk) {
       newItem = {
         uid: userId,
-        //以下為課程頁提供 提供者ex:course_id_fk=course_id
         id: item.course_id_fk,
         quantity: item.course_count,
         price: item.course_price,
         name: item.course_name,
-        //以上為課程頁提供
         image: '',
         type: 'course',
         coursetime: '2024/08/10',
@@ -157,21 +138,17 @@ export const CartTypeProvider = ({ children }) => {
     } else if (item.custom_price) {
       newItem = {
         uid: userId,
-        //以下為客製提供 提供者ex:custom_size=你設定的size,size.layer.flavor.decor皆為字串
         quantity: item.custom_count,
         price: item.custom_price,
         size: item.custom_size,
         layer: item.custom_layer,
         flavor: item.custom_flavor,
         decor: item.custom_decor,
-        //以上為客製提供
-        image: '',
         type: 'custom',
       }
     }
 
-    // 執行添加或更新購物車項目 客製化沒有custom_id跟custom_name
-    const index = cartItems.findIndex(
+    const cartItem = cartItems.find(
       (cartItem) =>
         cartItem.uid === newItem.uid &&
         (newItem.type !== 'custom'
@@ -186,33 +163,32 @@ export const CartTypeProvider = ({ children }) => {
           : true) &&
         (newItem.type == 'custom' ? cartItem.decor === newItem.decor : true)
     )
-    // console.log(index)
-    if (index !== -1) {
-      const newQuantity = cartItems[index].quantity + newItem.quantity
-      const itemId = newItem.type !== 'custom' ? newItem.id : 0
+
+    if (cartItem) {
+      const newQuantity = cartItem.quantity + newItem.quantity
+      const itemId = cartItem.id
+
       const response = await updateCartItem(
         newItem.uid,
         itemId,
         newQuantity,
         newItem.type
       )
-      // console.log(response)
-      setCartItems(addOne(cartItems, newItem))
-
-      setAddingItem(false) // 重置旗標
+      console.log(response)
+      setCartItems(updateOne(cartItems, { ...cartItem, quantity: newQuantity }))
+      setCartUpdated((prev) => !prev)
+      setAddingItem(false)
       return
     } else {
       const response = await addToCart(newItem.uid, newItem)
-      // console.log(newItem)
-      // console.log(response)
+      console.log(response)
     }
 
     setCartItems(addOne(cartItems, newItem))
-
-    setAddingItem(false) // 重置旗標
+    setCartUpdated((prev) => !prev)
+    setAddingItem(false)
   }
 
-  //刪除導這隻
   const removeItem = async (uid, id, type) => {
     const item = cartItems.find(
       (item) => item.id === id && item.type === type && item.uid === uid
@@ -227,70 +203,51 @@ export const CartTypeProvider = ({ children }) => {
       console.error('Failed to remove item from cart:', response.error)
     } else {
       setCartItems((prevItems) => removeOne(prevItems, uid, id, type))
+      setCartUpdated((prev) => !prev)
     }
   }
-
-  // const updateItem = (item) => {
-  //   setCartItems(updateOne(cartItems, item))
-  // }
-
-  // const updateItemQty = (id, quantity) => {
-  //   const item = findOneById(cartItems, id)
-  //   if (!item.id) return
-  //   const updateItem = { ...item, quantity }
-  //   setCartItems(updateOne(cartItems, updateItem))
-  // }
 
   const clearCart = () => {
     setCartItems([])
   }
 
-  //省略isInCart,直接在addItem中判斷
-  // const isInCart = (id) => {
-  //   return cartItems.some((item) => item.id === id)
-  // }
-
   const increment = async (uid, id, type) => {
-    // 找到需要增加数量的项
     const item = cartItems.find(
       (item) => item.id === id && item.type === type && item.uid === uid
     )
     if (!item) {
       console.error('Item not found in cart')
-      return // 如果没有找到项目，提前返回
+      return
     }
 
-    const newQuantity = item.quantity + 1 // 假设每次增加1
+    const newQuantity = item.quantity + 1
 
-    // 更新购物车项
     const response = await updateCartItem(uid, id, newQuantity, type)
     if (response.error) {
       console.error('Failed to increment item quantity:', response.error)
     } else {
-      // 如果后端更新成功，更新前端状态
       setCartItems(incrementOne(uid, cartItems, id, type))
+      setCartUpdated((prev) => !prev)
     }
   }
 
   const decrement = async (uid, id, type) => {
-    // 找到需要增加数量的项
     const item = cartItems.find(
       (item) => item.id === id && item.type === type && item.uid === uid
     )
     if (!item) {
       console.error('Item not found in cart')
-      return // 如果没有找到项目，提前返回
+      return
     }
 
-    const newQuantity = item.quantity - 1 // 假设每次增加1
+    const newQuantity = item.quantity - 1
 
-    // 更新购物车项
     const response = await updateCartItem(uid, id, newQuantity, type)
     if (response.error) {
-      console.error('Failed to increment item quantity:', response.error)
+      console.error('Failed to decrement item quantity:', response.error)
     } else {
-      // 如果后端更新成功，更新前端状态
       setCartItems(decrementOne(uid, cartItems, id, type))
+      setCartUpdated((prev) => !prev)
     }
   }
 
