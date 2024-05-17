@@ -2,10 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 import styles from './product.module.scss'
 import Image from 'next/image'
-import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
+import { IoCartOutline, IoHeartOutline, IoHeart } from 'react-icons/io5'
 import { checkAuth } from '@/services/user'
 import { addToCart } from '@/services/cart'
 import Swal from 'sweetalert2'
+import { AuthProvider, useAuth } from '@/hooks/use-auth'
+import { addFav, removeFav, getFavs } from '@/services/user'
 
 export default function ProductCard({ product }) {
   const imageUrl = `/images/product/card/${product.product_id}1.jpg`
@@ -21,6 +23,21 @@ export default function ProductCard({ product }) {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     },
   })
+
+  //我的最愛
+  const { favorites, setFavorites } = useAuth()
+  const isFavorite = favorites.includes(product.product_id)
+
+  const handleFavoriteClick = async () => {
+    if (isFavorite) {
+      await removeFav(product.product_id)
+    } else {
+      await addFav(product.product_id)
+    }
+    const newFavorites = await getFavs()
+    // console.log(newFavorites.data.data.favorites)
+    setFavorites(newFavorites.data.data.favorites)
+  }
 
   return (
     <>
@@ -38,7 +55,17 @@ export default function ProductCard({ product }) {
             />
           </Link>
           <div className={styles.cardInfo}>
-            <IoHeartOutline className={styles.heartIcon} />
+            {isFavorite ? (
+              <IoHeart
+                className={styles.heartIcon}
+                onClick={handleFavoriteClick}
+              />
+            ) : (
+              <IoHeartOutline
+                className={styles.heartIcon}
+                onClick={handleFavoriteClick}
+              />
+            )}
             <h5 className={styles.cardText}>{product.product_name}</h5>
             <p className={styles.typeText}>{product.product_category}</p>
             <h5 className={styles.currency}>

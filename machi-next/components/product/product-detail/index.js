@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import Carousel from '@/components/product/product-detail/carousel'
-import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
+import { IoCartOutline, IoHeartOutline, IoHeart } from 'react-icons/io5'
 import ProductIntro from '@/components/product/product-detail/product-intro'
 import { useCart } from '@/hooks/cart-type-state'
 import { checkAuth } from '@/services/user'
 import { addToCart } from '@/services/cart'
 import Swal from 'sweetalert2'
+import { AuthProvider, useAuth } from '@/hooks/use-auth'
+import { addFav, removeFav, getFavs } from '@/services/user'
 
 export default function ProductDetail(product) {
   const newProduct = product.product
@@ -35,6 +37,21 @@ export default function ProductDetail(product) {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     },
   })
+
+  //我的最愛
+  const { favorites, setFavorites } = useAuth()
+  const isFavorite = favorites.includes(newProduct.product_id)
+
+  const handleFavoriteClick = async () => {
+    if (isFavorite) {
+      await removeFav(newProduct.product_id)
+    } else {
+      await addFav(newProduct.product_id)
+    }
+    const newFavorites = await getFavs()
+    // console.log(newFavorites.data.data.favorites)
+    setFavorites(newFavorites.data.data.favorites)
+  }
 
   return (
     <>
@@ -157,8 +174,16 @@ export default function ProductDetail(product) {
               </button>
             </div>
           </div>
-          <button className="btn btn-outline-gary col-md-6 text-start text-primary-dark">
-            <IoHeartOutline className="fs-3 text-primary-dark" /> 加入追蹤清單
+          <button
+            className="btn btn-outline-gary col-md-6 text-start text-primary-dark"
+            onClick={handleFavoriteClick}
+          >
+            {isFavorite ? (
+              <IoHeart className="fs-3 text-primary-dark" />
+            ) : (
+              <IoHeartOutline className="fs-3 text-primary-dark" />
+            )}
+            加入追蹤清單
           </button>
         </div>
       </div>
