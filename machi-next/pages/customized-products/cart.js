@@ -31,6 +31,7 @@ export default function CustomizedCart() {
     custom_layer: customize.layer,
     custom_flavor: customize.flavor,
     custom_decor: customize.deco.join(','),
+    custom_preview: customize.preview,
   }
 
   const addCart = () => {
@@ -42,6 +43,8 @@ export default function CustomizedCart() {
         confirmButtonColor: '#ab927d',
       })
     })
+    console.log('customCart')
+    console.log(customCart)
   }
 
   return (
