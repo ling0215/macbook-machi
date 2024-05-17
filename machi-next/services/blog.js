@@ -77,7 +77,7 @@ export function postMessage(message) {
 export const fetchComments = async (articleId) => {
   try {
     const response = await axiosInstance.get(
-      `/api/comments?articleId=${articleId}`
+      `/blog/comments?articleId=${articleId}`
     )
     return response.data
   } catch (error) {
