@@ -4,7 +4,7 @@ import { data } from 'jquery'
 import React from 'react'
 // import Carousel from '@/components/product/carousel'
 import {IoCartOutline, IoHeartOutline} from 'react-icons/io5'
-import { useCart } from '@/hooks/use-cart-state'
+import { useCart } from '@/hooks/cart-type-state'
 import styles from './course-detail.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -12,13 +12,14 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import { checkAuth } from '@/services/user'
-import { addToCart } from '@/services/cart'
+
 
 
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
 export default function Detail() {
+
   const [course, setCourse] = useState({
    status:'',
    data:{course:{
@@ -38,6 +39,7 @@ export default function Detail() {
 
    }}
   })
+  
   const [quantity, setQuantity] = useState(1)
   //cart
   const { addItem } = useCart()
@@ -215,16 +217,16 @@ export default function Detail() {
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
-                    const uid = response.data.data.user.user_id
+
                     const data = {
-                      type: 'course',
+
                       course_id_fk:course.data.course.course_id,
                       course_name: course.data.course.course_name, // 產品名稱
                       course_price: course.data.course.course_price, // 產品價格
                       course_count: quantity, // 數量
                       
                     }
-                    addToCart(uid, data)
+                    addItem(data)
                       .then((response) => {
                         console.log('添加成功:', response)
                       })
@@ -246,16 +248,15 @@ export default function Detail() {
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
-                    const uid = response.data.data.user.user_id
+
                     const data = {
-                      type: 'course',
                       course_id_fk:course.data.course.course_id,
                       course_name: course.data.course.course_name, // 產品名稱
                       course_price: course.data.course.course_price, // 產品價格
                       course_count: quantity, // 數量
                       
                     }
-                    addToCart(uid, data)
+                    addItem( data)
                       .then((response) => {
                         console.log('添加成功:', response)
                       })
@@ -306,18 +307,7 @@ export default function Detail() {
             <div className="content" style={{ display: activeButton === 'other' ? 'block' : 'none' }}>
                 <div
                     className="list-group-flush p-2 py-3 mb-4 border">
-                     <button
-            onClick={() =>
-              addItem({
-                course_id_fk: course.data.course.course_id,
-                course_count: course.data.course.course_count,
-                course_price: course.data.course.course_price,
-                course_name: course.data.course.course_name,
-              })
-            }
-          >
-            測試自訂
-          </button>
+                    
                     <h5 className="list-group-item">&nbsp;&nbsp;呂昇達
                      &nbsp;</h5>
                     <h4 id="title">｜保存與享用｜</h4>
