@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 export default function ArticleDetail() {
   const router = useRouter()
   const articlId = router.query.bid // 从路由参数中获取文章 ID
-  console.log(articlId);
+  // console.log(articlId);
 
   return (
     <>

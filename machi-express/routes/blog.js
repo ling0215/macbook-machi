@@ -293,8 +293,9 @@ router.post('/commit', async (req, res) => {
 })
 
 //從資料庫中獲取留言
-router.get('/api/comments', async (req, res) => {
+router.get('/blog/comments', async (req, res) => {
   const articleId = req.query.articleId
+  console.log('articleId:', articleId)  // 輸出 articleId 的值
 
   try {
     const comments = await ArticleComment.findAll({
@@ -303,8 +304,9 @@ router.get('/api/comments', async (req, res) => {
       },
     })
 
+    // 如果沒有找到留言，返回一個空陣列
     if (!comments) {
-      return res.status(404).json({ message: '留言不存在' })
+      return res.status(200).json([])
     }
 
     res.status(200).json(comments)
