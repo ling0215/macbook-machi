@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import styles from '@/components/blog/article-list.module.scss'
 import Image from 'next/image'
@@ -10,7 +10,9 @@ import { FaPenToSquare } from 'react-icons/fa6'
 const ArticlesList = ({ articles }) => {
   const [isOpen, setIsOpen] = useState(false)
   // console.log(category)
-
+  useEffect(() => {
+    setIsOpen(false)
+  }, [])
   const stripHtmlTagsAndEntities = (htmlContent) => {
     return htmlContent.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, '')
   }

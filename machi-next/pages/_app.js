@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 // 樣式
 import '@/styles/globals.scss'
 import '@/styles/product.scss'
-import '@/styles/cart.scss'
 import '@/styles/loader.scss'
 import '@/styles/customize.scss'
 import '@/styles/blog.scss'
@@ -11,7 +10,7 @@ import '@/styles/homepage.scss'
 //測試資料
 import dataCartItems from '@/data/cart/test.json'
 // 載入購物車context
-import { CartProvider } from '@/hooks/use-cart-state'
+import { CartTypeProvider } from '@/hooks/cart-type-state'
 // 載入認証用context
 import { AuthProvider } from '@/hooks/use-auth'
 // 載入動畫context
@@ -39,11 +38,11 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
       <CustomizeProvider>
-        <CartProvider>
+        <CartTypeProvider>
           <LoaderProvider close={2} CustomLoader={CatLoader}>
             {getLayout(<Component {...pageProps} />)}
           </LoaderProvider>
-        </CartProvider>
+        </CartTypeProvider>
       </CustomizeProvider>
     </AuthProvider>
   )

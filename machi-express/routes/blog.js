@@ -11,12 +11,12 @@ const { User, Article } = sequelize.models
 
 User.hasMany(Article, {
   foreignKey: 'user_id_fk',
-  as: 'articles'
+  as: 'articles',
 })
 
 Article.belongsTo(User, {
   foreignKey: 'user_id_fk',
-  as: 'user'
+  as: 'user',
 })
 const router = express.Router()
 
@@ -241,8 +241,8 @@ router.get('/:id', async (req, res) => {
   const articleId = req.params.id // 從路由參數中獲取文章的 ID
   try {
     const article = await Article.findByPk(articleId, {
-      include: [{ model: User, as: 'user' }] // 在查詢文章時一併查詢關聯的 User
-    }) 
+      include: [{ model: User, as: 'user' }], // 在查詢文章時一併查詢關聯的 User
+    })
     console.log(User)
     if (!article) {
       // 如果找不到文章，返回 404 錯誤
@@ -251,7 +251,7 @@ router.get('/:id', async (req, res) => {
     // 如果找到文章，以 JSON 格式返回
     res.status(200).json({
       ...article.toJSON(), // 將文章資訊轉為 JSON 格式
-      userName: article.user.name // 添加關聯的 User 的名稱
+      userName: article.user.name, // 添加關聯的 User 的名稱
     })
     console.log(article)
   } catch (error) {
@@ -261,10 +261,10 @@ router.get('/:id', async (req, res) => {
 })
 //提取public/avatar使用者照片
 router.get('/avatar/:userId', (req, res) => {
-  const userId = req.params.userId;
-  const avatarPath = path.join(__dirname, '../public/avatar/', `${userId}.jpg`);
-  res.sendFile(avatarPath);
-});
+  const userId = req.params.userId
+  const avatarPath = path.join(__dirname, '../public/avatar/', `${userId}.jpg`)
+  res.sendFile(avatarPath)
+})
 //留言
 router.post('/commit', (req, res) => {
   const {
@@ -272,7 +272,7 @@ router.post('/commit', (req, res) => {
     article_id_fk,
     user_id_fk,
     article_comment_content,
-    article_comment_createtime
+    article_comment_createtime,
   } = req.body.message
 
   // 在這裡處理你的留言，例如保存到數據庫
