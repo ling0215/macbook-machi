@@ -5,13 +5,12 @@ import DOMPurify from 'dompurify'
 import Link from 'next/link'
 
 const ArticleDetail = ({ articleId }) => {
-  // console.log(articleId)
   const [article, setArticle] = useState(null)
   useEffect(() => {
     const getArticleData = async () => {
       try {
         const articleData = await fetchRawArticle(`${articleId}`)
-        console.log('Article Data:', articleData)
+        // console.log('Article Data:', articleData)
         if (articleData) {
           setArticle(articleData)
         } else {
@@ -21,6 +20,7 @@ const ArticleDetail = ({ articleId }) => {
         console.error('Error fetching article:', error)
       }
     }
+    // console.log(articleId)
 
     getArticleData()
   }, [articleId])
@@ -33,12 +33,19 @@ const ArticleDetail = ({ articleId }) => {
   const categories = article.article_category
     ? article.article_category.split(',')
     : []
-  console.log(categories)
+  // console.log(categories)
   return (
     <div className={`container ${styles['article-text']}`}>
       <div className={styles['article-user']}>
-      <img src={`http://localhost:3005/avatar/${article.user.user_id}.jpg`} alt="" />        
-      <span>{article.user.user_name}</span>
+        <img
+          src={`http://localhost:3005/avatar/${article?.user?.user_id}.jpg`}
+          onError={(e) => {
+            e.target.onerror = null
+            e.target.src = 'http://localhost:3005/avatar/0.jpg'
+          }}
+          alt=""
+        />
+        {article?.user?.user_name}{' '}
       </div>
       <div className={styles['article-btn']}>
         {categories.map((category, index) => (
@@ -68,3 +75,14 @@ const ArticleDetail = ({ articleId }) => {
 }
 
 export default ArticleDetail
+
+export async function getServerSideProps(context) {
+  const { params } = context
+  const articleId = params.id // 假設你的路由是 /articles/[id]
+
+  return {
+    props: {
+      articleId,
+    },
+  }
+}

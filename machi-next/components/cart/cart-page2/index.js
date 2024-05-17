@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import styles from './page2.module.scss'
 
-import '@/node_modules/bootstrap/scss/bootstrap.scss'
 import { FaTruckFast } from 'react-icons/fa6'
 import { useAuth } from '@/hooks/use-auth'
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleLine } from 'react-icons/ri'
