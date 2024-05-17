@@ -66,8 +66,8 @@ export default async function (sequelize) {
       custom_count: {
         type: DataTypes.INTEGER,
       },
-      custom_total: {
-        type: DataTypes.INTEGER,
+      custom_img: {
+        type: DataTypes.STRING(50),
       },
     },
     {

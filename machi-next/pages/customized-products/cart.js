@@ -31,7 +31,7 @@ export default function CustomizedCart() {
     custom_size: customize.sizePrice.size,
     custom_layer: customize.layer,
     custom_flavor: customize.flavor,
-    custom_decor: customize.deco.join(','),
+    custom_decor: customize.deco,
     custom_preview: customize.preview,
   }
 

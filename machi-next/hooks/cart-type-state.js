@@ -81,7 +81,7 @@ export const CartTypeProvider = ({ children }) => {
               quantity: item.custom_count,
               price: item.custom_price,
               name: '自訂商品',
-              image: '',
+              image: item.custom_img,
               type: 'custom',
               specification: `${item.custom_size},${item.custom_layer},${item.custom_flavor},${item.custom_decor}`,
             }
@@ -144,6 +144,7 @@ export const CartTypeProvider = ({ children }) => {
         layer: item.custom_layer,
         flavor: item.custom_flavor,
         decor: item.custom_decor,
+        custom_img: item.custom_img,
         type: 'custom',
       }
     }
@@ -183,7 +184,7 @@ export const CartTypeProvider = ({ children }) => {
       const response = await addToCart(newItem.uid, newItem)
       console.log(response)
     }
-
+    console.log(newItem)
     setCartItems(addOne(cartItems, newItem))
     setCartUpdated((prev) => !prev)
     setAddingItem(false)

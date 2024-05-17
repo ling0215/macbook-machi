@@ -200,6 +200,7 @@ router.post('/', authenticate, async (req, res) => {
       addItemData.custom_layer = cartItem.layer
       addItemData.custom_decor = cartItem.decor
       addItemData.custom_flavor = cartItem.flavor
+      addItemData.custom_img = cartItem.custom_img
     }
 
     const adddItem = await CartItem.create(addItemData)
