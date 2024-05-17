@@ -13,7 +13,8 @@ import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import { checkAuth } from '@/services/user'
 import Swal from 'sweetalert2'
-
+import { AuthProvider, useAuth } from '@/hooks/use-auth'
+import { addFav, removeFav, getFavs } from '@/services/user'
 
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
@@ -39,6 +40,21 @@ export default function Detail() {
 
    }}
   })
+//我的最愛
+const { favorites, setFavorites } = useAuth()
+const isFavorite = favorites.includes(course.data.course.course_id)
+
+const handleFavoriteClick = async () => {
+  if (isFavorite) {
+    await removeFav(course.data.course.course_id)
+  } else {
+    await addFav(course.data.course.course_id)
+  }
+  const newFavorites = await getFavs()
+  // console.log(newFavorites.data.data.favorites)
+  setFavorites(newFavorites.data.data.favorites)
+}
+//我的最愛
   
   const [quantity, setQuantity] = useState(1)
   //cart
@@ -279,8 +295,16 @@ export default function Detail() {
               </button>
             </div>
           </div>
-          <button className="btn btn-outline-gary col-md-6 text-start text-primary-dark">
-            <IoHeartOutline className="fs-3 text-primary-dark" /> 加入追蹤清單
+          <button
+            className="btn btn-outline-gary col-md-6 text-start text-primary-dark"
+            onClick={handleFavoriteClick}
+          >
+            {isFavorite ? (
+              <IoHeart className="fs-3 text-primary-dark" />
+            ) : (
+              <IoHeartOutline className="fs-3 text-primary-dark" />
+            )}
+            加入追蹤清單
           </button>
         </div>
 
