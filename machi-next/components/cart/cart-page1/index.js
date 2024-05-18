@@ -6,8 +6,8 @@ import { FaCheck } from 'react-icons/fa6'
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem, addItem } = useCart()
 
-  console.log(`傳入page1的cart$`)
-  console.log(items)
+  // console.log(`傳入page1的cart$`)
+  // console.log(items)
   // console.log(cart)
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
@@ -219,47 +219,6 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
         </div>
       </div>
       <div className={`col-sm cart-area product-area`}>
-        <div>
-          <button
-            onClick={() =>
-              addItem({
-                product_id_fk: '1001',
-                product_count: 1,
-                product_price: 100,
-                product_name: '測試商品',
-                product_subtitle: '此為內容',
-              })
-            }
-          >
-            測試商品
-          </button>
-          <button
-            onClick={() =>
-              addItem({
-                course_id_fk: '1002',
-                course_count: 1,
-                course_price: 2000,
-                course_name: '測試課程',
-              })
-            }
-          >
-            測試課程
-          </button>
-          <button
-            onClick={() =>
-              addItem({
-                custom_count: 3,
-                custom_price: 300,
-                custom_size: '有夠大',
-                custom_layer: '3層',
-                custom_flavor: '巧克力',
-                custom_decor: textProductItem.join(','),
-              })
-            }
-          >
-            測試自訂
-          </button>
-        </div>
         <div
           className={`mb-3 d-flex gap-2  product-tittle ${styles['border-borwn']} py-4`}
         >
@@ -553,22 +512,24 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   </div>
                 </div>
                 <div
-                  className={`d-flex justify-content-start card-text col ps-5`}
+                  className={`d-flex justify-content-start card-text col ps-5 py-1`}
                   style={{ gap: '0.5rem' }}
                 >
                   <div className={`h5 mr-1`}>上課時間:</div>
-                  <div className={`h5`}>{item.classtime}</div>
+                  <div className={`h5`}>{item.course_date}</div>
                 </div>
                 <div
-                  className={`d-flex justify-content-start card-text col ps-5`}
+                  className={`d-flex justify-content-start card-text col ps-5 `}
                   style={{ gap: '0.5rem' }}
                 >
                   <div className={`h5 mr-1`}>地點:</div>
-                  <div className={`h5`}>{item.address}</div>
+                  <div className={`h5 `}>{item.course_address}</div>
                 </div>
-                <div className={`d-flex g-3 justify-content-between col ps-5`}>
+                <div
+                  className={`d-flex g-3 justify-content-between col ps-5 py-1`}
+                >
                   <div className={`h4`}>人數:{item.quantity}</div>
-                  <div className={` h4 `}>NT{item.price * item.quantity}</div>
+                  <div className={` h4 `}>NT${item.price * item.quantity}</div>
                 </div>
               </div>
               <hr />

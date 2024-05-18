@@ -71,8 +71,8 @@ export const CartTypeProvider = ({ children }) => {
               name: item.course_name,
               image: `/images/course/slide/${item.course_id_fk}_1.jpg`,
               type: 'course',
-              coursetime: '2024/08/10',
-              address: '復興堡',
+              course_date: item.course_date,
+              course_address: item.course_address,
             }
           } else if (item.cart_item_id) {
             return {
@@ -81,7 +81,7 @@ export const CartTypeProvider = ({ children }) => {
               quantity: item.custom_count,
               price: item.custom_price,
               name: '自訂商品',
-              image: '',
+              image: item.custom_img,
               type: 'custom',
               specification: `${item.custom_size},${item.custom_layer},${item.custom_flavor},${item.custom_decor}`,
             }
@@ -112,7 +112,7 @@ export const CartTypeProvider = ({ children }) => {
 
     let userId = auth.userData.user_id
     let newItem = {}
-
+    console.log(item)
     if (item.product_id_fk) {
       newItem = {
         uid: userId,
@@ -132,8 +132,8 @@ export const CartTypeProvider = ({ children }) => {
         name: item.course_name,
         image: '',
         type: 'course',
-        coursetime: '2024/08/10',
-        address: '復興堡',
+        course_date: item.course_date,
+        course_address: item.course_address,
       }
     } else if (item.custom_price) {
       newItem = {
@@ -144,6 +144,7 @@ export const CartTypeProvider = ({ children }) => {
         layer: item.custom_layer,
         flavor: item.custom_flavor,
         decor: item.custom_decor,
+        custom_img: item.custom_img,
         type: 'custom',
       }
     }
@@ -183,7 +184,7 @@ export const CartTypeProvider = ({ children }) => {
       const response = await addToCart(newItem.uid, newItem)
       console.log(response)
     }
-
+    console.log(newItem)
     setCartItems(addOne(cartItems, newItem))
     setCartUpdated((prev) => !prev)
     setAddingItem(false)

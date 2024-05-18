@@ -3,9 +3,28 @@ import Link from 'next/link'
 import styles from './course.module.scss'
 import Image from 'next/image'
 import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
+import { addFav, removeFav, getFavs } from '@/services/user'
+import { useCart } from '@/hooks/cart-type-state'
+import { AuthProvider, useAuth } from '@/hooks/use-auth'
+
 
 export default function CourseCard({ course }) {
   const imageUrl = `/images/course/slide/${course.course_id}_1.jpg`//暫時標記
+  //我的最愛
+ const { favorites, setFavorites } = useAuth()
+ const isFavorite = favorites.includes(course.course_id)
+
+ const handleFavoriteClick = async () => {
+   if (isFavorite) {
+     await removeFav(course.course_id)
+   } else {
+     await addFav(course.course_id)
+   }
+   const newFavorites = await getFavs()
+   // console.log(newFavorites.data.data.favorites)
+   setFavorites(newFavorites.data.data.favorites)
+ }
+ //我的最愛
   return (
     <>
     
@@ -26,7 +45,17 @@ export default function CourseCard({ course }) {
           <div className={styles.cardInfo}>
             
           
-            <IoHeartOutline className={styles.heartIcon} />
+          {isFavorite ? (
+                      <IoHeart
+                        className={styles.heartIcon}
+                        onClick={handleFavoriteClick}
+                      />
+                    ) : (
+                      <IoHeartOutline
+                        className={styles.heartIcon}
+                        onClick={handleFavoriteClick}
+                      />
+                    )}
             
             {course.course_name && (
   <h5 className={styles.cardText}>{course.course_name.slice(0, 8)}</h5>
