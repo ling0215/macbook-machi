@@ -8,34 +8,39 @@ export default async function (sequelize) {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true, // 新增這一行
+        autoIncrement: true,
       },
       user_id_fk: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
       order_payment: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(300),
+        allowNull: false,
       },
       order_username: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(300),
+        allowNull: false,
       },
       order_address: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(600),
+        allowNull: false,
       },
       order_phone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(50),
+        allowNull: false,
       },
       order_amount: {
         type: DataTypes.INTEGER,
+        allowNull: false,
       },
       order_total: {
         type: DataTypes.INTEGER,
+        allowNull: false,
       },
       order_status: {
-        type: DataTypes.TINYINT,
-        allowNull: false,
-        defaultValue: 1,
+        type: DataTypes.STRING(50),
+        defaultValue: '已付款',
       },
       order_createtime: {
         type: DataTypes.DATE,

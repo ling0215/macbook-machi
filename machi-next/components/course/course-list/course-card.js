@@ -6,6 +6,7 @@ import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
 import { addFav, removeFav, getFavs } from '@/services/user'
 import { useCart } from '@/hooks/cart-type-state'
 import { AuthProvider, useAuth } from '@/hooks/use-auth'
+import { IoHeart } from 'react-icons/io5'
 
 
 export default function CourseCard({ course }) {

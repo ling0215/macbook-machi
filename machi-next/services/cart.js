@@ -46,6 +46,16 @@ export const removeFromCart = async (userId, itemId, itemType) => {
     })
 }
 
+export const addToOrder = async (id, data) => {
+  return axiosInstance
+    .post(`/order?user_id=${id}`, { data })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('添加到訂單时出错:', error)
+      return { error }
+    })
+}
+
 //樓下是所需add body範例(商品跟課程)
 // {
 //   "data": {

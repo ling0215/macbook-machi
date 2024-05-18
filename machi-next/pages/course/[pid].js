@@ -15,6 +15,7 @@ import { checkAuth } from '@/services/user'
 import Swal from 'sweetalert2'
 import { AuthProvider, useAuth } from '@/hooks/use-auth'
 import { addFav, removeFav, getFavs } from '@/services/user'
+import { IoHeart } from 'react-icons/io5'
 
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
