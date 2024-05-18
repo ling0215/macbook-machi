@@ -66,7 +66,7 @@ export default function CourseCard({ course }) {
             <Link href={`/course/${course.course_id}`}>
             <button className={styles.cartBtn} >
             
-              <IoCartOutline className={styles.cartIcon} /> 課程詳細
+              課程詳細
              
             </button>
             </Link>

@@ -7,7 +7,7 @@ import {IoCartOutline, IoHeartOutline} from "react-icons/io5";
 import { addFav, removeFav, getFavs } from '@/services/user'
 import { useCart } from '@/hooks/cart-type-state'
 import { AuthProvider, useAuth } from '@/hooks/use-auth'
-
+import { IoHeart } from 'react-icons/io5'
 
 
 export default function CourseCard1({course}) {
@@ -27,6 +27,26 @@ export default function CourseCard1({course}) {
    setFavorites(newFavorites.data.data.favorites)
  }
  //我的最愛
+
+ //日期
+ const dateString = course.course_start_time;
+
+ // 將日期字串轉換成日期物件
+ const date = new Date(dateString);
+ 
+ // 取得日期中的年、月、日、時、分
+ const year = date.getFullYear();
+ const month = ("0" + (date.getMonth() + 1)).slice(-2);
+ const day = ("0" + date.getDate()).slice(-2);
+
+ 
+ // 格式化後的日期時間字串
+ const formattedDate = year + "-" + month + "-" + day ;
+ //日期
+ 
+
+ 
+
 
     return (
         <div id="page-content-wrapper" className="col">
@@ -49,7 +69,7 @@ export default function CourseCard1({course}) {
                 </div>
                 <div class="col-md-8" >
                   <div className={styles.cardbody}>
-                    <h5 class="car d-title fw-bolder "
+                    <h5 class="car d-title fw-bolder" 
                     className={styles.cardtext1}>{course.course_name.slice(0, 20)}  {isFavorite ? (
                       <IoHeart
                         className={styles.heartIcon}
@@ -61,22 +81,27 @@ export default function CourseCard1({course}) {
                         onClick={handleFavoriteClick}
                       />
                     )} </h5>
-                    
+                     <p class="card-text fw-bolder"
+                    className={styles.cardtext1}>
+                      類別:{course.course_category}
+                    </p>
                     <p class="card-text fw-bolder"
                     className={styles.cardtext1}>
                       課堂地點:台北市北投區裕民六路130號1樓
                     </p>
                     <p class="card-text fw-bolder"
-                    className={styles.cardtext1}>課堂日期:2024/04/03</p>
+                    className={styles.cardtext1}>課堂日期:{formattedDate}</p>
                     <p class="card-text fw-bolder" className={styles.cardtext1}>講師:呂昇達</p>
+                    
+
                     <p class="card-text" className={styles.cardtext1} dangerouslySetInnerHTML={{ __html: course.course_description }}>
                     
                     </p>
-
+                    
                     <p class="text-end"  style={{
-marginTop: '50px',
+marginTop: '50px',color: 'var(--primary-dark)',fontWeight: 'bold'
 }}>
-                      $2000
+                      NT$:{course.course_price}
                       <Link href={`/course/${course.course_id}`}><button 
                       className={`${styles['btn-info']}`}
                      

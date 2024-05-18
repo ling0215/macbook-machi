@@ -17,7 +17,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
   const handleCategoryChange = (value) => {
     setCategory(value)
   }
-
+  
   
 
   return (
@@ -32,6 +32,20 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                   className="accordion accordion-flush"
                   id="accordionFlushExample"
                 >
+                  <h2 className="accordion-header">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        aria-expanded="false"
+                        onClick={() => handleCategoryChange('')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleCategoryChange('')
+                        }}
+                      >
+                        所有商品
+                      </button>
+                    </h2>
                   <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button

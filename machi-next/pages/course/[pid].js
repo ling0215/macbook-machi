@@ -16,11 +16,12 @@ import Swal from 'sweetalert2'
 import { AuthProvider, useAuth } from '@/hooks/use-auth'
 import { addFav, removeFav, getFavs } from '@/services/user'
 import { IoHeart } from 'react-icons/io5'
-
+import FormattedDate from '@/components/course/date/date'
+import FormattedDate1 from '@/components/course/date/date1'
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 import { clearConfig } from 'dompurify'
-
+import Link from 'next/link'
 export default function Detail() {
   const [course, setCourse] = useState({
     status: '',
@@ -66,6 +67,11 @@ const handleFavoriteClick = async () => {
 
   //時間用
 
+
+  const dateString = "2024-05-17T13:41:19.000Z";
+
+
+  
   //時間用
 
   const router = useRouter()
@@ -187,13 +193,13 @@ const handleFavoriteClick = async () => {
 
           <div className="mb-4">
             <p className="product-desc mb-4">
-              課程時間:{course.data.course.course_start_time}
+              課程時間:<FormattedDate dateString={course.data.course.course_start_time} />~<FormattedDate dateString={course.data.course.course_end_time} />
             </p>
             <p className="product-desc mb-4">
-              報名開始:{course.data.course.course_start_time}
+              報名開始:<FormattedDate1 dateString={course.data.course.course_enroll_start} />
             </p>
             <p className="product-desc mb-4">
-              報名截止:{course.data.course.course_end_time}
+              報名截止:<FormattedDate1 dateString={course.data.course.course_enroll_end} />
             </p>
           </div>
           {/* 數量按鈕 */}
@@ -279,6 +285,7 @@ const handleFavoriteClick = async () => {
               </button>
             </div>
             <div className="col-6 ps-2">
+              <Link href={'/cart'}>
               <button
                 className="btn btn-brown text-white btn-lg w-100 buynowBtn"
                 onClick={async () => {
@@ -308,6 +315,7 @@ const handleFavoriteClick = async () => {
               >
                 立即購買
               </button>
+              </Link>
             </div>
           </div>
           <button
