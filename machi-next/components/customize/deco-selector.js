@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from './customize.module.css'
 import { useCustomize } from '@/hooks/use-customize'
-import { set } from 'lodash'
+import { updateCustomizePicture } from '@/services/customize'
 
 // export default function DecoSelector({
 //   decoTitle,
@@ -134,6 +134,9 @@ export default function DecoSelector({
 
   const handleFileChange = (event) => {
     const file = event.target.files[0]
+    const formData = new FormData()
+    formData.append('customize', file)
+    updateCustomizePicture(formData)
 
     if (file) {
       setIsFilePicked(true)

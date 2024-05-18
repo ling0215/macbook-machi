@@ -7,6 +7,8 @@ import Pagination from '@/components/course/course-list/pagination'
 import { getCourses } from '@/services/course' // 請根據實際路徑進行調整
 import CourseCard from '@/components/course/course-list/course-card'
 import CourseCard1 from '@/components/course/course-card/classcard1'
+import { addFav, removeFav, getFavs } from '@/services/user'
+import { AuthProvider, useAuth } from '@/hooks/use-auth'
 
 export default function CoursePage() {
   const [courses, setCourses] = useState([
@@ -22,6 +24,10 @@ export default function CoursePage() {
 
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
+
+  //我的最愛
+  
+  
 
   // 狀態觀察
   useEffect(() => {

@@ -12,6 +12,9 @@ export const avatarBaseUrl = 'http://localhost:3005/avatar'
 /* eslint-disable */
 // prettier-ignore
 export const pathsLocaleMap = {
+  'customized-products': '客製化蛋糕',
+  'size': '選擇尺寸',
+  'deco': '選擇口味及裝飾',
   'cart':'購物車',
   'forget-password':'重設密碼',
   'register':'註冊',

@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+
 import Carousel from '@/components/product/product-detail/carousel'
-import { IoCartOutline } from 'react-icons/io5'
-import FavFcon from '@/components/product/product-list/fav-icon'
+import { IoCartOutline, IoHeartOutline, IoHeart } from 'react-icons/io5'
 import ProductIntro from '@/components/product/product-detail/product-intro'
 import { useCart } from '@/hooks/cart-type-state'
 import { checkAuth } from '@/services/user'
 import { addToCart } from '@/services/cart'
-import styles from './product-detail.module.scss'
+import Swal from 'sweetalert2'
+import { AuthProvider, useAuth } from '@/hooks/use-auth'
+import { addFav, removeFav, getFavs } from '@/services/user'
 
 export default function ProductDetail(product) {
   const newProduct = product.product
@@ -24,6 +26,33 @@ export default function ProductDetail(product) {
       : newProduct.product_price_small
 
   const { addItem } = useCart()
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+  })
+
+  //我的最愛
+  const { favorites, setFavorites } = useAuth()
+  const isFavorite = favorites.includes(newProduct.product_id)
+
+  const handleFavoriteClick = async () => {
+    if (isFavorite) {
+      await removeFav(newProduct.product_id)
+    } else {
+      await addFav(newProduct.product_id)
+    }
+    const newFavorites = await getFavs()
+    // console.log(newFavorites.data.data.favorites)
+    setFavorites(newFavorites.data.data.favorites)
+  }
 
   return (
     <>
@@ -100,7 +129,7 @@ export default function ProductDetail(product) {
             {/* <div className={` h4 `}>小計NT${item.subtotal}</div> */}
             <div className="col-md-5 d-flex justify-content-center align-items-center text-primary-dark">
               <p className="pe-2">售價</p>
-              <h4 className="text-primary-dark">NT${price}</h4>
+              <h4 className="text-primary-dark">{price.toLocaleString()}</h4>
             </div>
           </div>
 
@@ -111,18 +140,20 @@ export default function ProductDetail(product) {
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
-                    const uid = response.data.data.user.user_id
                     const data = {
-                      type: 'product',
-                      id: newProduct.product_id,
-                      name: newProduct.product_name, // 產品名稱
-                      price: price, // 產品價格
-                      quantity: quantity, // 數量
-                      subtitle: size, // 產品副標題
+                      product_id_fk: newProduct.product_id,
+                      product_name: newProduct.product_name, // 產品名稱
+                      product_price: price, // 產品價格
+                      product_count: quantity, // 數量
+                      product_subtitle: size, //產品副標題
                     }
-                    addToCart(uid, data)
+                    addItem(data)
                       .then((response) => {
                         console.log('添加成功:', response)
+                        Toast.fire({
+                          icon: 'success',
+                          title: '成功加入購物車',
+                        })
                       })
                       .catch((error) => {
                         console.error('添加失敗:', error)
@@ -137,7 +168,40 @@ export default function ProductDetail(product) {
               </button>
             </div>
             <div className="col-6 ps-2">
-              <button className="btn btn-brown text-white w-100 buynowBtn">
+              <button
+                className="btn btn-brown text-white btn-lg w-100 buynowBtn"
+                onClick={async () => {
+                  const response = await checkAuth()
+                  if (response.data.status === 'success') {
+                    const data = {
+                      product_id_fk: newProduct.product_id,
+                      product_name: newProduct.product_name, // 產品名稱
+                      product_price: price, // 產品價格
+                      product_count: quantity, // 數量
+                      product_subtitle: size, //產品副標題
+                    }
+                    addItem(data)
+                      .then((response) => {
+                        console.log('添加成功:', response)
+                        Swal.fire({
+                          title: '已加入購物車',
+                          text: '您的商品已成功加入購物車！',
+                          icon: 'success',
+                          confirmButtonColor: '#ab927d',
+                          confirmButtonText: '前往購物車',
+                        }).then(() => {
+                          window.location.href = '/cart'
+                        })
+                      })
+                      .catch((error) => {
+                        console.error('添加失敗:', error)
+                      })
+                  } else {
+                    console.log('用戶未登入')
+                    // 這裡可以添加提示用戶登入的程式碼
+                  }
+                }}
+              >
                 立即購買
               </button>
             </div>
@@ -154,7 +218,7 @@ export default function ProductDetail(product) {
       <style jsx>{`
         .btn-outline-brown:hover {
           background-color: var(--brown);
-          color: white; 
+          color: white;
         }
         .cart-icon:hover {
           color: white;
