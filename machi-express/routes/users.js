@@ -136,7 +136,7 @@ router.put('/:id/password', authenticate, async function (req, res) {
   const id = getIdParam(req)
 
   // 檢查是否為授權會員，只有授權會員可以存取自己的資料
-  if (req.user.id !== id) {
+  if (req.user.user_id !== id) {
     return res.json({ status: 'error', message: '存取會員資料失敗' })
   }
 
@@ -173,7 +173,7 @@ router.put('/:id/password', authenticate, async function (req, res) {
 
   // 對資料庫執行update
   const [affectedRows] = await User.update(
-    { password: userPassword.new },
+    { user_password: userPassword.new },
     {
       where: {
         user_id: id,
@@ -182,6 +182,7 @@ router.put('/:id/password', authenticate, async function (req, res) {
     }
   )
 
+  // console.log(userPassword.new)
   // 沒有更新到任何資料 -> 失敗
   if (!affectedRows) {
     return res.json({ status: 'error', message: '更新失敗' })
