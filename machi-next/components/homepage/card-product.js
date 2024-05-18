@@ -22,7 +22,7 @@ const CardProdcut = () => {
           className="col-md-3 d-flex justify-content-center mb-4"
         >
           <div className="w-350 no-border f-16 featured-card">
-            <Link href="/product/detail" passHref className="no-underline">
+            <Link href={`/product/${product.product_id}`} passHref className="no-underline">
               <img
                 src={`/images/product/card/${product.product_id}1.jpg`}
                 className="card-img-top"
