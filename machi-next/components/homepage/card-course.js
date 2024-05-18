@@ -23,7 +23,7 @@ const CardCourse = () => {
           className="col-md-3 d-flex justify-content-center mb-4"
         >
           <div className="w-350 no-border f-16 featured-card">
-            <Link href="/class/detail" passHref className="no-underline">
+            <Link href={`/course/${course.course_id}`} passHref className="no-underline">
               <Image
                 src={`/images/course/slide/${course.course_id}_1.jpg`}
                 alt={course.name}
