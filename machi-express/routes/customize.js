@@ -17,10 +17,11 @@ import { compareHash } from '#db-helpers/password-hash.js'
 // 上傳檔案用使用multer
 import path from 'path'
 import multer from 'multer'
+// const date = new Date()
+// const formattedDate = date.toISOString().split('.')[0].replace('T', ' ')
 const date = new Date()
-const formattedDate = date.toISOString().split('.')[0].replace('T', ' ')
-
-// console.log(formattedDate) // 輸出格式為 "YYYY-MM-DD"
+const formattedDate = date.toISOString().split('T')[0]
+// 輸出格式為 "YYYY-MM-DD"
 
 // multer的設定值 - START
 const storage = multer.diskStorage({
