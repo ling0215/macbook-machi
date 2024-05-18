@@ -69,16 +69,6 @@ export default function PublishForm() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="input-group mb-2">
-          <span className="input-group-text">作者</span>
-          <input
-            className="form-control"
-            type="number"
-            name="author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-        </div>
         <div className="">
           <div className="">
             <span className="">類別 ：</span>
