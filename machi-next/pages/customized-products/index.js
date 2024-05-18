@@ -2,8 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Comment from '@/components/customize/comment'
 import CustomizeLayout from '@/components/layout/customize/customize-layout'
+import { useCustomize } from '@/hooks/use-customize'
 
 function Customize() {
+  const { setDefaultCustomize } = useCustomize()
   return (
     <>
       <div>
@@ -75,15 +77,6 @@ function Customize() {
             <img src="/images/customize/samp6.png" alt="" />
             <img src="/images/customize/samp7.png" alt="" />
             <img src="/images/customize/samp8.png" alt="" />
-
-            {/* <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" />
-            <img src="/images/customize/photo-gradient.png" alt="" /> */}
           </div>
         </section>
         <section className="lynn-start-customize">
@@ -102,7 +95,7 @@ function Customize() {
           </div>
 
           <Link href="/customized-products/size" passHref>
-            <button>開始訂製</button>
+            <button onClick={setDefaultCustomize}>開始訂製</button>
           </Link>
         </section>
       </div>
