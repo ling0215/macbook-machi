@@ -12,6 +12,7 @@ function EditProfileForm() {
   const { setAuth } = useAuth()
   const [form, setForm] = useState({
     user_account: '',
+    user_name: '',
     user_email: '',
     user_gender: '',
     user_birthday: '2000-01-01',
@@ -242,6 +243,18 @@ function EditProfileForm() {
                   type="text"
                   name="user_account"
                   value={form.user_account}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="form-group my-3 text-primary-dark fw-bold">
+              <label>
+                真實姓名
+                <input
+                  className="form-control"
+                  type="text"
+                  name="user_name"
+                  value={form.user_name}
                   onChange={handleChange}
                 />
               </label>
