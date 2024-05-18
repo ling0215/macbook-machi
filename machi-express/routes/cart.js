@@ -202,7 +202,7 @@ router.post('/', authenticate, async (req, res) => {
       addItemData.course_date = cartItem.course_date
     }
 
-    if (newType === '') {
+    if (newType === 'product') {
       addItemData.product_subtitle = cartItem.subtitle
     }
 
