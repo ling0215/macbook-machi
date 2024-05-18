@@ -1,7 +1,7 @@
 import styles from './product-detail.module.scss'
 import React, { useState } from 'react'
 
-function ProductIntro(pid) {
+function ProductIntro({ pid, description }) {
   const [activeButton, setActiveButton] = useState('intro')
 
   const handleButtonClick = (eventKey) => {
@@ -34,11 +34,12 @@ function ProductIntro(pid) {
         style={{ display: activeButton === 'intro' ? 'block' : 'none' }}
       >
         <div className="list-group-flush p-2 py-3 mb-4 border">
-          <h5 id="title">{pid.pid}</h5>
+          <h4 id="title">｜商品特色｜</h4>
+          <p>{description}</p>
           <img 
-            src={`/images/product/card/${pid.pid}1.jpg`}
-            className="img-fluid"
-            style={{width:'100%',height:'500px',objectFit:'cover'}} 
+            src={`/images/product/card/${pid}1.jpg`}
+            className="img-fluid img-thumbnail w-75 rounded mx-auto d-block mb-5"
+            style={{width:'100%',objectFit:'cover'}} 
           />
         </div>
       </div>

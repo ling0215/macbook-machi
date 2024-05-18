@@ -6,8 +6,8 @@ import { FaCheck } from 'react-icons/fa6'
 const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
   const { cart, items, decrement, increment, removeItem, addItem } = useCart()
 
-  console.log(`傳入page1的cart$`)
-  console.log(items)
+  // console.log(`傳入page1的cart$`)
+  // console.log(items)
   // console.log(cart)
   // 商品選中狀態
   const [itemChecked, setItemChecked] = useState({})
@@ -512,20 +512,22 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   </div>
                 </div>
                 <div
-                  className={`d-flex justify-content-start card-text col ps-5`}
+                  className={`d-flex justify-content-start card-text col ps-5 py-1`}
                   style={{ gap: '0.5rem' }}
                 >
                   <div className={`h5 mr-1`}>上課時間:</div>
                   <div className={`h5`}>{item.course_date}</div>
                 </div>
                 <div
-                  className={`d-flex justify-content-start card-text col ps-5 py-2`}
+                  className={`d-flex justify-content-start card-text col ps-5 `}
                   style={{ gap: '0.5rem' }}
                 >
                   <div className={`h5 mr-1`}>地點:</div>
                   <div className={`h5 `}>{item.course_address}</div>
                 </div>
-                <div className={`d-flex g-3 justify-content-between col ps-5`}>
+                <div
+                  className={`d-flex g-3 justify-content-between col ps-5 py-1`}
+                >
                   <div className={`h4`}>人數:{item.quantity}</div>
                   <div className={` h4 `}>NT${item.price * item.quantity}</div>
                 </div>

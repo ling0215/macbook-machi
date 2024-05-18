@@ -18,6 +18,17 @@ Article.belongsTo(User, {
   foreignKey: 'user_id_fk',
   as: 'user',
 })
+
+User.hasMany(ArticleComment, {
+  foreignKey: 'user_id_fk',
+  as: 'comments',
+})
+
+ArticleComment.belongsTo(User, {
+  foreignKey: 'user_id_fk',
+  as: 'user',
+})
+
 const router = express.Router()
 
 const storage = multer.diskStorage({
@@ -292,9 +303,9 @@ router.post('/commit', async (req, res) => {
   }
 })
 
-//從資料庫中獲取留言
-router.get('/blog/comments', async (req, res) => {
-  const articleId = req.query.articleId
+//獲取留言
+router.get('/comments/:id', async (req, res) => {
+  const articleId = req.params.id // 從路由參數中獲取文章的 ID
   console.log('articleId:', articleId)  // 輸出 articleId 的值
 
   try {
@@ -302,13 +313,12 @@ router.get('/blog/comments', async (req, res) => {
       where: {
         article_id_fk: articleId,
       },
+      include: [{
+        model: User,
+        as: 'user',
+      }],
     })
-
-    // 如果沒有找到留言，返回一個空陣列
-    if (!comments) {
-      return res.status(200).json([])
-    }
-
+    console.log('Found comments:', comments)
     res.status(200).json(comments)
   } catch (err) {
     console.error(err)

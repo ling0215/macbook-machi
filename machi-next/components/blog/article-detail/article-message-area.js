@@ -17,13 +17,16 @@ export default function ArticleMessageArea({ articleId }) {
   const [articleCommentCreateTime, setArticleCommentCreateTime] = useState('')
 
   const [comments, setComments] = useState([])
+  const [replyingTo, setReplyingTo] = useState(null)
+  const [replyContent, setReplyContent] = useState('')
 
+  const getComments = async () => {
+    const data = await fetchComments(`${articleId}`)
+    console.log('fetchComments returned:', data) // 添加這行調試代碼
+    setComments(data)
+    // console.log(articleId)
+  }
   useEffect(() => {
-    const getComments = async () => {
-      const data = await fetchComments(articleId)
-      setComments(data)
-      // console.log(articleId)
-    }
     getComments()
   }, [articleId])
 
@@ -37,8 +40,7 @@ export default function ArticleMessageArea({ articleId }) {
         setUserIdFk(userId)
         console.log('user_id_fk:', userId)
 
-        const currentTime = new Date().toISOString() // 假設用戶的 ID 存儲在 response.data.data.user.user_id
-        setArticleCommentCreateTime(currentTime) // 使用當前時間作為留言的創建時間
+        const currentTime = new Date().toLocaleString('zh-TW', { hour12: false }) // 使用當地時間作為留言的創建時間
         setArticleIdFk(articleId) // 假設文章的 ID 存儲在 articleId 變量中
         console.log(articleId)
         setArticleCommentContent(message)
@@ -58,6 +60,7 @@ export default function ArticleMessageArea({ articleId }) {
         setUserIdFk('')
         setArticleCommentContent('')
         setArticleCommentCreateTime('')
+        getComments()
       } else {
         // 用戶未登入，顯示提示訊息
         Swal.fire({
@@ -77,6 +80,7 @@ export default function ArticleMessageArea({ articleId }) {
     }
   }
 
+
   return (
     <>
       {/* 未登入狀態
@@ -93,34 +97,32 @@ export default function ArticleMessageArea({ articleId }) {
 
       <div className={`container`}>
         <h4>留言區</h4>
-        <div className={styles['message-area']}>
-          <div className={styles[`user-message`]}>
-            <div className={styles[`user-name`]}>
-              <div className={styles[`img-s`]}>
-                <img src="/images/blog/article1.jpg" alt="" />
-                <span>1213</span>
-              </div>
-              <div className={styles[`create-time`]}>create-time</div>
-            </div>
-            <div className={styles['message-content']}>
-              <p>留言內容</p>
-            </div>
-            <div className={styles[`message-btn`]}>
-              <div>
-                <button className="" onClick={handleSubmit}>
-                  回覆留言
-                  <TiMessages
-                    style={{
-                      fontSize: '1rem',
-                      marginLeft: '5px',
-                      marginBottom: '4px',
+        {comments.map((comment, index) => (
+          <div key={index} className={styles['message-area']}>
+            <div className={styles[`user-message`]}>
+              <div className={styles[`user-name`]}>
+                <div className={styles[`img-s`]}>
+                  <img src={`http://localhost:3005/avatar/${comment?.user?.user_id}.jpg`}
+                    onError={(e) => {
+                      e.target.onerror = null
+                      e.target.src = 'http://localhost:3005/avatar/0.jpg'
                     }}
-                  />
-                </button>
+                    alt="" />
+                  <span>{comment.user.user_account}</span>
+                </div>
+                <div
+                  className={styles[`create-time`]}>{comment.article_comment_createtime.split('T')[0]}
+                </div>
+              </div>
+              <div className={styles['message-content']}>
+                <p>{comment.article_comment_content}</p>
+              </div>
+              <div className={styles[`message-btn`]}>
+                
               </div>
             </div>
           </div>
-        </div>
+        ))}
         <p>我要留言</p>
         <div className={styles[`message-input`]}>
           <div className={styles['message']}>

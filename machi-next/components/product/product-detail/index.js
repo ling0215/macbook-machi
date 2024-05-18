@@ -1,31 +1,32 @@
-import React, { useState } from 'react'
-
-import Carousel from '@/components/product/product-detail/carousel'
-import { IoCartOutline, IoHeartOutline, IoHeart } from 'react-icons/io5'
-import ProductIntro from '@/components/product/product-detail/product-intro'
-import { useCart } from '@/hooks/cart-type-state'
-import { checkAuth } from '@/services/user'
-import { addToCart } from '@/services/cart'
-import Swal from 'sweetalert2'
-import { AuthProvider, useAuth } from '@/hooks/use-auth'
-import { addFav, removeFav, getFavs } from '@/services/user'
+// index.js
+import React, { useState } from 'react';
+import Carousel from '@/components/product/product-detail/carousel';
+import { IoCartOutline } from 'react-icons/io5';
+import FavFcon from '@/components/product/product-list/fav-icon';
+import ProductIntro from '@/components/product/product-detail/product-intro';
+import { useCart } from '@/hooks/cart-type-state';
+import { checkAuth } from '@/services/user';
+import Swal from 'sweetalert2';
+import { AuthProvider, useAuth } from '@/hooks/use-auth';
+import { addToCart } from '@/services/cart';
+import { addFav, removeFav, getFavs } from '@/services/user';
 
 export default function ProductDetail(product) {
-  const newProduct = product.product
+  const newProduct = product.product;
   const [size, setSize] = useState(
     newProduct.product_subtitle_middle === '9吋' ? '6吋' : ''
-  )
+  );
   const changeSize = (newSize) => {
-    setSize(newSize)
-  }
-  const [quantity, setQuantity] = useState(1)
+    setSize(newSize);
+  };
+  const [quantity, setQuantity] = useState(1);
 
   const price =
     size === '9吋'
       ? newProduct.product_price_middle
-      : newProduct.product_price_small
+      : newProduct.product_price_small;
 
-  const { addItem } = useCart()
+  const { addItem } = useCart();
 
   const Toast = Swal.mixin({
     toast: true,
@@ -34,25 +35,24 @@ export default function ProductDetail(product) {
     timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+      toast.addEventListener('mouseenter', Swal.stopTimer);
+      toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
-  })
+  });
 
-  //我的最愛
-  const { favorites, setFavorites } = useAuth()
-  const isFavorite = favorites.includes(newProduct.product_id)
+  // 我的最愛
+  const { favorites, setFavorites } = useAuth();
+  const isFavorite = favorites.includes(newProduct.product_id);
 
   const handleFavoriteClick = async () => {
     if (isFavorite) {
-      await removeFav(newProduct.product_id)
+      await removeFav(newProduct.product_id);
     } else {
-      await addFav(newProduct.product_id)
+      await addFav(newProduct.product_id);
     }
-    const newFavorites = await getFavs()
-    // console.log(newFavorites.data.data.favorites)
-    setFavorites(newFavorites.data.data.favorites)
-  }
+    const newFavorites = await getFavs();
+    setFavorites(newFavorites.data.data.favorites);
+  };
 
   return (
     <>
@@ -107,7 +107,7 @@ export default function ProductDetail(product) {
                 style={{ width: '28px' }}
                 onClick={() => {
                   if (quantity > 1) {
-                    setQuantity(quantity - 1) // 只有當 quantity 大於 1 時才減少數量
+                    setQuantity(quantity - 1);
                   }
                 }}
               >
@@ -121,12 +121,11 @@ export default function ProductDetail(product) {
               <button
                 className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                 style={{ width: '28px' }}
-                onClick={() => setQuantity(quantity + 1)} // 增加數量的點擊事件
+                onClick={() => setQuantity(quantity + 1)}
               >
                 +
               </button>
             </div>
-            {/* <div className={` h4 `}>小計NT${item.subtotal}</div> */}
             <div className="col-md-5 d-flex justify-content-center align-items-center text-primary-dark">
               <p className="pe-2">售價</p>
               <h4 className="text-primary-dark">{price.toLocaleString()}</h4>
@@ -138,29 +137,27 @@ export default function ProductDetail(product) {
               <button
                 className="btn btn-outline-brown w-100 cartBtn"
                 onClick={async () => {
-                  const response = await checkAuth()
+                  const response = await checkAuth();
                   if (response.data.status === 'success') {
                     const data = {
                       product_id_fk: newProduct.product_id,
-                      product_name: newProduct.product_name, // 產品名稱
-                      product_price: price, // 產品價格
-                      product_count: quantity, // 數量
-                      product_subtitle: size, //產品副標題
-                    }
+                      product_name: newProduct.product_name,
+                      product_price: price,
+                      product_count: quantity,
+                      product_subtitle: size,
+                    };
                     addItem(data)
                       .then((response) => {
-                        console.log('添加成功:', response)
                         Toast.fire({
                           icon: 'success',
                           title: '成功加入購物車',
-                        })
+                        });
                       })
                       .catch((error) => {
-                        console.error('添加失敗:', error)
-                      })
+                        console.error('添加失敗:', error);
+                      });
                   } else {
-                    console.log('用戶未登入')
-                    // 這裡可以添加提示用戶登入的程式碼
+                    console.log('用戶未登入');
                   }
                 }}
               >
@@ -171,18 +168,17 @@ export default function ProductDetail(product) {
               <button
                 className="btn btn-brown text-white btn-lg w-100 buynowBtn"
                 onClick={async () => {
-                  const response = await checkAuth()
+                  const response = await checkAuth();
                   if (response.data.status === 'success') {
                     const data = {
                       product_id_fk: newProduct.product_id,
-                      product_name: newProduct.product_name, // 產品名稱
-                      product_price: price, // 產品價格
-                      product_count: quantity, // 數量
-                      product_subtitle: size, //產品副標題
-                    }
+                      product_name: newProduct.product_name,
+                      product_price: price,
+                      product_count: quantity,
+                      product_subtitle: size,
+                    };
                     addItem(data)
                       .then((response) => {
-                        console.log('添加成功:', response)
                         Swal.fire({
                           title: '已加入購物車',
                           text: '您的商品已成功加入購物車！',
@@ -190,15 +186,14 @@ export default function ProductDetail(product) {
                           confirmButtonColor: '#ab927d',
                           confirmButtonText: '前往購物車',
                         }).then(() => {
-                          window.location.href = '/cart'
-                        })
+                          window.location.href = '/cart';
+                        });
                       })
                       .catch((error) => {
-                        console.error('添加失敗:', error)
-                      })
+                        console.error('添加失敗:', error);
+                      });
                   } else {
-                    console.log('用戶未登入')
-                    // 這裡可以添加提示用戶登入的程式碼
+                    console.log('用戶未登入');
                   }
                 }}
               >
@@ -207,12 +202,12 @@ export default function ProductDetail(product) {
             </div>
           </div>
           <div className="col-md-6 text-start text-primary-dark">
-            <FavFcon id={newProduct.product_id} style="fs-3 text-primary-dark" /> 加入追蹤清單
+            <FavFcon id={newProduct.product_id} style="fs-3 text-heart" /> 加入追蹤清單
           </div>
         </div>
       </div>
       <div className="row mt-5">
-        <ProductIntro pid={newProduct.product_description_full} />
+        <ProductIntro pid={newProduct.product_id} description={newProduct.product_description} />
       </div>
 
       <style jsx>{`
@@ -225,5 +220,5 @@ export default function ProductDetail(product) {
         }
       `}</style>
     </>
-  )
+  );
 }
