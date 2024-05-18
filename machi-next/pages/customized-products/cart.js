@@ -33,7 +33,7 @@ export default function CustomizedCart() {
     custom_flavor: customize.flavor,
     custom_decor: customize.deco,
     custom_img: customize.preview,
-    custom_preview: customize.preview,
+    // custom_preview: customize.preview,
   }
 
   const addCart = () => {

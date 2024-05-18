@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from './page2.module.scss'
-
+import Swal from 'sweetalert2'
 import { FaTruckFast } from 'react-icons/fa6'
 import { useAuth } from '@/hooks/use-auth'
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleLine } from 'react-icons/ri'
@@ -56,10 +56,35 @@ const CartPage2 = ({
   const { auth } = useAuth()
   console.log(auth)
   const [payState, setPayState] = useState('')
-  const [userDetail, SetUserDetail] = useState(false)
+  const [userDetail, SetUserDetail] = useState()
   const [transName, setTransName] = useState('')
   const [transPhone, setTransPhone] = useState('')
   const [transAddress, setTransAddress] = useState('')
+
+  useEffect(() => {
+    let noDetail = ''
+    const missingDetails = []
+
+    if (!auth.userData.user_name) {
+      missingDetails.push(' 姓名')
+    }
+    if (!auth.userData.user_address) {
+      missingDetails.push(' 地址')
+    }
+    if (!auth.userData.user_address) {
+      missingDetails.push(' 電話')
+    }
+
+    if (missingDetails.length > 0) {
+      noDetail = `您的${missingDetails.join('、')} 尚未輸入`
+    }
+
+    if (userDetail === true) {
+      toast.success(`載入個人資料, ${noDetail}`)
+    } else if (userDetail === false) {
+      toast.error('取消載入個人資料')
+    }
+  }, [userDetail])
 
   useEffect(() => {
     if (userDetail === true && auth.userData) {
@@ -75,6 +100,14 @@ const CartPage2 = ({
   }, [userDetail, auth.userData])
 
   const saveOrderData = async () => {
+    if (transName === '' || transAddress === '') {
+      toast.error('請輸入姓名和地址')
+      return
+    }
+    if (transPhone.length !== 10) {
+      toast.error('請輸入正確的電話號碼')
+      return
+    }
     const data = {
       data: {
         user_id_fk: auth.userData.user_id,
@@ -113,7 +146,12 @@ const CartPage2 = ({
     try {
       const response = await addToOrder(auth.userData.id, data)
       if (!response.error) {
-        toast.success('訂單已成功保存')
+        Swal.fire({
+          title: '結帳成功',
+          text: '感謝您的購買！',
+          icon: 'success',
+          confirmButtonColor: '#ab927d',
+        })
         onClickPageTo3() // 如果保存成功，跳转到下一页
       } else {
         toast.error('保存訂單時出錯')
@@ -457,7 +495,7 @@ const CartPage2 = ({
               )}
               <span style={{ fontSize: 20 }}>同會員資料</span>
             </button>
-            <div className="row d-flex justify-content-between">
+            <div className="row d-flex justify-content-between py-2">
               <div className={`col-4  `}>
                 <input
                   type="text"
@@ -523,6 +561,15 @@ const CartPage2 = ({
             </div>
           </form>
         </div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: '#f8dc9a',
+              color: '#363636',
+            },
+          }}
+        />
       </div>
     </>
   )
