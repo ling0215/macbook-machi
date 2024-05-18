@@ -25,7 +25,7 @@ const CardCourse = () => {
           <div className="w-350 no-border f-16 featured-card">
             <Link href="/class/detail" passHref className="no-underline">
               <Image
-                src={`/images/course/card/${course.course_id}_1.jpg`}
+                src={`/images/course/slide/${course.course_id}_1.jpg`}
                 alt={course.name}
                 layout="absolute"
                 width={282} 
