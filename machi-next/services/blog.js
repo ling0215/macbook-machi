@@ -51,7 +51,7 @@ export const fetchBetterArticles = async (
     )}&selectedCategories=${encodeURIComponent(categoriesString)}`
   )
 }
-
+//特定文章
 export const fetchRawArticle = async (url = 0) => {
   try {
     const response = await axiosInstance.get(`/blog/${url}`)
@@ -68,7 +68,7 @@ export const fetchRawArticle = async (url = 0) => {
     return []
   }
 }
-
+//儲存留言
 export function postMessage(message) {
   return axiosInstance.post('/blog/commit', { message })
 }
@@ -77,10 +77,12 @@ export function postMessage(message) {
 export const fetchComments = async (articleId) => {
   try {
     const response = await axiosInstance.get(
-      `/blog/comments?articleId=${articleId}`
+      `/blog/comments/${articleId}` // 修改這裡
     )
     return response.data
   } catch (error) {
     console.error(error)
+    return [] // 返回一個空陣列，以防發生錯誤
   }
 }
+
