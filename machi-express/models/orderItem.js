@@ -13,6 +13,10 @@ export default async function (sequelize) {
       order_id_fk: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Order', // 这是被引用的表的名字
+          key: 'id', // 这是被引用表的主键
+        },
       },
       order_product_type: {
         type: DataTypes.STRING(50),

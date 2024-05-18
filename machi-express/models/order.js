@@ -40,7 +40,6 @@ export default async function (sequelize) {
       },
       order_status: {
         type: DataTypes.STRING(50),
-        allowNull: false,
       },
       order_createtime: {
         type: DataTypes.DATE,
