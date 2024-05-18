@@ -8,26 +8,31 @@ export default async function (sequelize) {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true, // 新增這一行
+        autoIncrement: true,
       },
       order_id_fk: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      order_produce_id: {
+      order_product_type: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+      order_product_id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
       },
-      order_produce_name: {
+      order_product_name: {
         type: DataTypes.STRING(50),
+        allowNull: false,
       },
-      order_produce_count: {
+      order_product_detail: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      },
+      order_product_count: {
         type: DataTypes.INTEGER,
-      },
-      order_produce_type: {
-        type: DataTypes.STRING(50),
-      },
-      order_produce_detail: {
-        type: DataTypes.STRING(50),
+        allowNull: false,
       },
     },
     {
