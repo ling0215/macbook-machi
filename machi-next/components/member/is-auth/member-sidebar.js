@@ -10,16 +10,19 @@ function MemberSidebar() {
           <Link href="/member/account" className={`${styles['member-sidebar']} p-2`} >會員資料</Link>
         </li>
         <li className='p-2'>
-          <Link href="/member/account/order-query" className={`${styles['member-sidebar']} p-2`} >訂單查詢</Link>
+          <Link href="/member/update-password" className={`${styles['member-sidebar']} p-2`} >修改密碼</Link>
         </li>
         <li className='p-2'>
-          <Link href="/member/account/favorite-products" className={`${styles['member-sidebar']} p-2`} >收藏商品</Link>
+          <Link href="/member/order-query" className={`${styles['member-sidebar']} p-2`} >訂單查詢</Link>
         </li>
         <li className='p-2'>
-          <Link href="/member/account/favorite-articles" className={`${styles['member-sidebar']} p-2 `} >收藏文章</Link>
+          <Link href="/member/favorite-products" className={`${styles['member-sidebar']} p-2`} >收藏商品</Link>
         </li>
         <li className='p-2'>
-          <Link href="/member/account/coupons" className={`${styles['member-sidebar']} p-2`} >專屬優惠券</Link>
+          <Link href="/member/favorite-articles" className={`${styles['member-sidebar']} p-2 `} >收藏文章</Link>
+        </li>
+        <li className='p-2'>
+          <Link href="/member/coupons" className={`${styles['member-sidebar']} p-2`} >專屬優惠券</Link>
         </li>
       </ul>
     </div>

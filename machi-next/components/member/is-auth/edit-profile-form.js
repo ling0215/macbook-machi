@@ -4,6 +4,7 @@ import { updateProfile } from '@/services/user'
 import { getUserById } from '@/services/user'
 import { updateProfileAvatar } from '@/services/user'
 import Image from 'next/image'
+import Link from 'next/link'
 // import { FaDisplay } from 'react-icons/fa6'
 
 function EditProfileForm() {
@@ -188,13 +189,11 @@ function EditProfileForm() {
             </div>
 
             <div className="form-group my-2 mb-5 text-primary-dark fw-bold">
-              <button
-                type="button"
-                className="btn btn-brown text-white"
-                onClick={() => {}}
-              >
-                修改密碼
-              </button>
+              <Link href="/member/account/update-password">
+                <button type="button" className="btn btn-brown text-white">
+                  修改密碼
+                </button>
+              </Link>
             </div>
             <div
               className="btn-group"
