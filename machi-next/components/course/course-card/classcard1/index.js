@@ -4,11 +4,30 @@ import styles from './classcard1.module.scss'
 import Image from "next/image";
 import Link from "next/link";
 import {IoCartOutline, IoHeartOutline} from "react-icons/io5";
+import { addFav, removeFav, getFavs } from '@/services/user'
+import { useCart } from '@/hooks/cart-type-state'
+import { AuthProvider, useAuth } from '@/hooks/use-auth'
 
 
 
 export default function CourseCard1({course}) {
   const imageUrl = `/images/course/slide/${course.course_id}_1.jpg`//暫時標記
+ //我的最愛
+ const { favorites, setFavorites } = useAuth()
+ const isFavorite = favorites.includes(course.course_id)
+
+ const handleFavoriteClick = async () => {
+   if (isFavorite) {
+     await removeFav(course.course_id)
+   } else {
+     await addFav(course.course_id)
+   }
+   const newFavorites = await getFavs()
+   // console.log(newFavorites.data.data.favorites)
+   setFavorites(newFavorites.data.data.favorites)
+ }
+ //我的最愛
+
     return (
         <div id="page-content-wrapper" className="col">
         <div className="container-fluid">
@@ -31,7 +50,17 @@ export default function CourseCard1({course}) {
                 <div class="col-md-8" >
                   <div className={styles.cardbody}>
                     <h5 class="car d-title fw-bolder "
-                    className={styles.cardtext1}>{course.course_name.slice(0, 20)}  <IoHeartOutline className={styles.heartIcon} /></h5>
+                    className={styles.cardtext1}>{course.course_name.slice(0, 20)}  {isFavorite ? (
+                      <IoHeart
+                        className={styles.heartIcon}
+                        onClick={handleFavoriteClick}
+                      />
+                    ) : (
+                      <IoHeartOutline
+                        className={styles.heartIcon}
+                        onClick={handleFavoriteClick}
+                      />
+                    )} </h5>
                     
                     <p class="card-text fw-bolder"
                     className={styles.cardtext1}>
