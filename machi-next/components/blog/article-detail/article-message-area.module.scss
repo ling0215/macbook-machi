@@ -59,7 +59,7 @@
     }
 
     span {
-        margin-left: 10px;
+        // margin-left: 10px;
         color: #785e4c;
         font-weight: bold;
     }
@@ -91,4 +91,13 @@
         background-color: #ffffff00;
         color: #78A1BB;
     }
+}
+
+.floor{
+    vertical-align: top;
+    // margin-right: 10px;
+    // margin-left: 0px;
+}
+.floor-name{
+    margin-left: 10px;
 }
