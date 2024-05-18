@@ -7,7 +7,7 @@ export function CustomizeProvider({ children }) {
     sizePrice: { size: '', price: '' },
     layer: '',
     flavor: '',
-    deco: [],
+    deco: '',
     preview: '', // 預覽示意圖
   })
 
@@ -16,7 +16,7 @@ export function CustomizeProvider({ children }) {
       sizePrice: { size: '', price: '' },
       layer: '',
       flavor: '',
-      deco: [],
+      deco: '',
       preview: '', // 預覽示意圖
     })
   }
