@@ -8,6 +8,7 @@ import { addToCart } from '@/services/cart'
 import Swal from 'sweetalert2'
 import { AuthProvider, useAuth } from '@/hooks/use-auth'
 import { addFav, removeFav, getFavs } from '@/services/user'
+import { useCart } from '@/hooks/cart-type-state'
 
 export default function ProductCard({ product }) {
   const imageUrl = `/images/product/card/${product.product_id}1.jpg`
@@ -23,6 +24,8 @@ export default function ProductCard({ product }) {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     },
   })
+
+  const { addItem } = useCart()
 
   //我的最愛
   const { favorites, setFavorites } = useAuth()
@@ -76,16 +79,14 @@ export default function ProductCard({ product }) {
               onClick={async () => {
                 const response = await checkAuth()
                 if (response.data.status === 'success') {
-                  const uid = response.data.data.user.user_id
                   const data = {
-                    type: 'product',
-                    id: product.product_id,
-                    name: product.product_name, // 產品名稱
-                    price: product.product_price_small, // 產品價格
-                    quantity: 1, // 數量
-                    subtitle: product.product_subtitle_middle ? '6吋' : '', // 產品副標題
+                    product_id_fk: product.product_id,
+                    product_name: product.product_name, // 產品名稱
+                    product_price: product.product_price_small, // 產品價格
+                    product_count: 1, // 數量
+                    product_subtitle: product.product_subtitle_small, //產品副標題
                   }
-                  addToCart(uid, data)
+                  addItem(data)
                     .then((response) => {
                       console.log('添加成功:', response)
                       Toast.fire({

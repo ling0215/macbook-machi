@@ -30,8 +30,8 @@ export default async function (sequelize) {
       product_count: {
         type: DataTypes.INTEGER,
       },
-      product_total: {
-        type: DataTypes.INTEGER,
+      course_address: {
+        type: DataTypes.STRING(50),
       },
       course_id_fk: {
         type: DataTypes.INTEGER,
@@ -45,8 +45,8 @@ export default async function (sequelize) {
       course_count: {
         type: DataTypes.INTEGER,
       },
-      course_total: {
-        type: DataTypes.INTEGER,
+      course_date: {
+        type: DataTypes.STRING(50),
       },
       custom_size: {
         type: DataTypes.STRING,
@@ -66,8 +66,8 @@ export default async function (sequelize) {
       custom_count: {
         type: DataTypes.INTEGER,
       },
-      custom_total: {
-        type: DataTypes.INTEGER,
+      custom_img: {
+        type: DataTypes.STRING(50),
       },
     },
     {

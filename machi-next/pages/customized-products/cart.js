@@ -24,13 +24,15 @@ export default function CustomizedCart() {
       setCustomTotNum(customTotNum - 1)
     }
   }
+
   const customCart = {
     custom_count: customTotNum,
     custom_price: customize.sizePrice.price,
     custom_size: customize.sizePrice.size,
     custom_layer: customize.layer,
     custom_flavor: customize.flavor,
-    custom_decor: customize.deco.join(','),
+    custom_decor: customize.deco,
+    custom_preview: customize.preview,
   }
 
   const addCart = () => {
@@ -42,6 +44,8 @@ export default function CustomizedCart() {
         confirmButtonColor: '#ab927d',
       })
     })
+    console.log('customCart')
+    console.log(customCart)
   }
 
   return (
