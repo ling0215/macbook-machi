@@ -109,6 +109,7 @@ const CartPage2 = ({
       toast.error('請輸入正確的電話號碼')
       return
     }
+
     const data = {
       data: {
         user_id_fk: auth.userData.user_id,
@@ -147,28 +148,26 @@ const CartPage2 = ({
       ],
     }
 
-    addToOrder(auth.userData.id, data)
-      .then((response) => {
-        console.log(data)
-        console.log(response)
-        if (!response.error) {
-          setOrderItem(response)
-          Swal.fire({
-            title: '結帳成功',
-            text: '感謝您的購買！',
-            icon: 'success',
-            confirmButtonColor: '#ab927d',
-          })
-          onClickPageTo3() // 如果保存成功，跳转到下一页
-        } else {
-          // 处理response.error的情况
-          console.error('Error in response:', response.error)
-        }
-      })
-      .catch((error) => {
-        console.error('Error adding to order:', error)
-        // 你可以在这里处理错误情况
-      })
+    try {
+      const response = await addToOrder(auth.userData.id, data)
+      console.log(data)
+      console.log(response)
+
+      if (!response.error) {
+        setOrderItem(response)
+        Swal.fire({
+          title: '結帳成功',
+          text: '感謝您的購買！',
+          icon: 'success',
+          confirmButtonColor: '#ab927d',
+        })
+      } else {
+        console.error('Error in response:', response.error)
+      }
+    } catch (error) {
+      console.error('Error adding to order:', error)
+      // 你可以在这里处理错误情况
+    }
   }
 
   return (

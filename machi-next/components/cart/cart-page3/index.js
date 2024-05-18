@@ -1,10 +1,14 @@
 import { useEffect } from 'react'
 import styles from './page3.module.scss'
 
-const CartPage3 = () => {
+const CartPage3 = (orderItem) => {
   useEffect(() => {
     window.scrollTo(0, 0) // 每当组件重新渲染时，将窗口滚动到顶部
   }, [])
+
+  if (!orderItem || !orderItem.data || !orderItem.items) {
+    return <div>Loading...</div>
+  }
   return (
     <>
       <div
@@ -62,36 +66,41 @@ const CartPage3 = () => {
           <div className={`text-brown h5`}>商品資料</div>
           <div className={`d-flex align-items-center justify-content-between `}>
             <div className={`${styles['h6']} text-dark-grey`}>訂購日期</div>
-            <div className={`${styles['h6']} text-dark-grey`}>2024-03-26</div>
+            <div className={`${styles['h6']} text-dark-grey`}>
+              {orderItem.data.order_createtime}
+            </div>
           </div>
           <div className={`d-flex align-items-center justify-content-between `}>
             <div className={`${styles['h6']} text-dark-grey`}>訂單編號</div>
             <div className={`${styles['h6']} text-dark-grey`}>
-              dokidoki55688
+              {orderItem.items.order_item_id}
             </div>
           </div>
           <div
             className={`d-flex align-items-center justify-content-between pb-4 ${styles['text-border-brown']}`}
           >
             <div className={`${styles['h6']} text-dark-grey`}>付款方式</div>
-            <div className={`${styles['h6']} text-dark-grey`}>信用卡支付</div>
+            <div className={`${styles['h6']} text-dark-grey`}>
+              {orderItem.data.order_payment}
+            </div>
           </div>
           <div className={`text-brown h5`}>購買項目</div>
-          <div className={`d-flex align-items-center justify-content-between `}>
-            <div className={`${styles['h6']} text-dark-grey`}>經典檸檬派*1</div>
-            <div className={`${styles['h6']} text-dark-grey`}>$ 1050</div>
-          </div>
-          <div className={`d-flex align-items-center justify-content-between `}>
-            <div className={`${styles['h6']} text-dark-grey`}>脆皮鳳梨酥*1</div>
-            <div className={`${styles['h6']} text-dark-grey`}>$ 950</div>
-          </div>
-          <div className={`d-flex align-items-center justify-content-between`}>
-            <div className={`${styles['h6']} text-dark-grey`}>折扣總額</div>
-            <div className={`${styles['h6']} text-dark-grey`}>$ 888</div>
-          </div>
+          {orderItem.items.map((item) => (
+            <div
+              className="d-flex align-items-center justify-content-between"
+              key={item.order_item_id}
+            >
+              <div className={`${styles['h6']} text-dark-grey`}>
+                {item.order_product_name}
+              </div>
+              <div className={`${styles['h6']} text-dark-grey`}>
+                {item.order_product_count} x ${item.order_product_detail}
+              </div>
+            </div>
+          ))}
           <div className={`d-flex align-items-center justify-content-between`}>
             <div className={`h4 text-brown`}>商品總額</div>
-            <div className={`h5 text-brown`}>$ 1800</div>
+            <div className={`h5 text-brown`}>{orderItem.data.order_total}</div>
           </div>
           <div className={`d-flex align-items-center justify-content-end py-4`}>
             <div className={`h5 ${styles['custom-button']}  text-white `}>
