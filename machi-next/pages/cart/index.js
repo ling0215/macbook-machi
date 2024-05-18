@@ -7,6 +7,7 @@ import CartPage3 from '@/components/cart/cart-page3'
 export default function CartMain() {
   const [showPage, setShowPage] = useState(1)
   const [selectedItems, setSelectedItems] = useState()
+  const [orderItem, setOrderItem] = useState()
 
   const handleClick = (page) => {
     setShowPage(page)
@@ -33,15 +34,11 @@ export default function CartMain() {
             onClickPageTo3={() => handleClick(3)}
             selectedItems={selectedItems}
             onSelectItems={handleSelectedItems}
+            setOrderItem={setOrderItem}
           />
         )
       case 3:
-        return (
-          <CartPage3
-            selectedItems={selectedItems}
-            onSelectItems={handleSelectedItems}
-          />
-        )
+        return <CartPage3 orderItem={orderItem} />
       default:
         return null
     }

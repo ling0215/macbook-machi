@@ -37,13 +37,14 @@ router.post('/', async (req, res) => {
       order_product_name: item.product_name,
       order_product_detail: item.product_detail,
       order_product_count: item.product_count,
+      order_product_price: item.product_price,
     }))
 
     // 创建OrderItem
     const createdOrderItems = await OrderItem.bulkCreate(orderItems) // 使用 bulkCreate 一次性创建多个 OrderItem
 
     // 返回成功响应
-    res.json({ status: 'success', data: order, items: createdOrderItems })
+    res.json({ status: 'success', data: order, items: orderItems })
   } catch (error) {
     // 捕获并处理错误
     console.error('Error creating order and order items:', error)
