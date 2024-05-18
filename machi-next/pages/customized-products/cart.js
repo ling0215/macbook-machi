@@ -32,6 +32,7 @@ export default function CustomizedCart() {
     custom_layer: customize.layer,
     custom_flavor: customize.flavor,
     custom_decor: customize.deco,
+    custom_img: customize.preview,
   }
 
   const addCart = () => {
@@ -79,10 +80,6 @@ export default function CustomizedCart() {
                 <span>價格：</span>
                 <span>{`NT$${customize.sizePrice.price}`}</span>
               </div>
-              {/* <div className="lynn-cart-price">
-                <span>數量：</span>
-                <span>NT$1,080</span>
-              </div> */}
 
               {/* 數量按鈕 */}
               <div className="lynn-cart-price">
@@ -102,8 +99,7 @@ export default function CustomizedCart() {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                       style={{ width: '24px' }}
-                      // onClick={() => decrement(item.id, item.type)} // 减少数量的点击事件
-                      onClick={customDecrement}
+                      onClick={customDecrement} // 减少数量的點擊事件
                     >
                       -
                     </button>
@@ -116,8 +112,7 @@ export default function CustomizedCart() {
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0 border-brown`}
                       style={{ width: '24px' }}
-                      // onClick={() => increment(item.id, item.type)} // 增加数量的点击事件
-                      onClick={customIncrement}
+                      onClick={customIncrement} // 增加数量的點擊事件
                     >
                       +
                     </button>
