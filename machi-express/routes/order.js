@@ -37,6 +37,7 @@ router.post('/', async (req, res) => {
       order_product_name: item.product_name,
       order_product_detail: item.product_detail,
       order_product_count: item.product_count,
+      order_product_price: item.product_price,
     }))
 
     // 创建OrderItem
