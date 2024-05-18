@@ -5,6 +5,8 @@ import Myeditor from '@/components/blog/article-add/Myeditor'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { publish } from '@/services/blog'
+import { checkAuth } from '@/services/user'
+
 
 export default function PublishForm() {
   const [editorLoaded, setEditorLoaded] = useState(false)
@@ -14,6 +16,23 @@ export default function PublishForm() {
   const router = useRouter()
   const [category, setCategory] = useState([]) // 新增的 state
   const categories = ['蛋糕', '泡芙', '餅乾', '教學']
+  
+      useEffect(() => {
+        const fetchUserInfo = async () => {
+          try {
+            const response = await checkAuth()
+            console.log(response) // 新增的 console.log
+
+            if (response.status === 200) {
+              setAuthor(response.data.data.user.user_id) // 將用戶 ID 設置為 author 的初始值
+            }
+          } catch (error) {
+            console.error(error)
+          }
+        }
+      
+        fetchUserInfo()
+      }, [])
 
   const saveToDb = async (event) => {
     event.preventDefault()
@@ -69,9 +88,20 @@ export default function PublishForm() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
+        <div className="input-group mb-2">
+          <span className="input-group-text"  style={{ display: 'none' }}>作者</span>
+          <input
+            className="form-control"
+            type="number"
+            name="author"
+            value={author}
+            readOnly
+            style={{ display: 'none' }}
+          />
+        </div>
         <div className="">
           <div className="">
-            <span className="">類別 ：</span>
+            <span className="">標籤 ：</span>
             {categories.map((cat) => (
               <label key={cat}>
                 <input
@@ -102,3 +132,7 @@ export default function PublishForm() {
     </>
   )
 }
+
+
+
+
