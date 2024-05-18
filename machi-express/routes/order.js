@@ -26,10 +26,9 @@ router.post('/', async (req, res) => {
       order_phone: req.body.data.phone,
       order_amount: req.body.data.amount,
       order_total: req.body.data.total,
-    // }).then(await OrderItem.create() => {
-     
+      // }).then(await OrderItem.create() => {
     })
-    res.json({ status: 'success', data: cartData, Items: })
+    res.json({ status: 'success', data: cartData, Items: cartData })
   } catch (error) {
     console.error('Error fetching cart items:', error)
     res.status(500).json({ status: 'error', message: 'Internal server error' })
