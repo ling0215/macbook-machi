@@ -28,7 +28,7 @@ const CardBlog = () => {
         >
           <div className="col-md-6 d-flex justify-content-center">
             <Link
-              href="/blog/detail"
+              href={`/blog/${article.article_id}`}
               passHref
               className="no-underline d-flex align-items-center"
             >
@@ -45,7 +45,7 @@ const CardBlog = () => {
               {article.article_title}
             </div>
             <br />
-            {}
+            { }
             <div className="d-flex mb-3 article-date">
               {new Date(article.article_createtime)
                 .toLocaleDateString('zh-TW', {
