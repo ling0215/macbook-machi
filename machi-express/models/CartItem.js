@@ -46,8 +46,7 @@ export default async function (sequelize) {
         type: DataTypes.INTEGER,
       },
       course_date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+        type: DataTypes.STRING(50),
       },
       custom_size: {
         type: DataTypes.STRING,

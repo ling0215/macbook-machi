@@ -200,7 +200,12 @@ router.post('/', authenticate, async (req, res) => {
       addItemData[fieldName] = cartItem.name
     }
 
-    if (newType === 'product') {
+    if (newType === 'course') {
+      addItemData.course_addess = cartItem.address
+      addItemData.course_date = cartItem.course_date
+    }
+
+    if (newType === '') {
       addItemData.product_subtitle = cartItem.subtitle
     }
 

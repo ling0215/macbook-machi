@@ -71,8 +71,8 @@ export const CartTypeProvider = ({ children }) => {
               name: item.course_name,
               image: `/images/course/slide/${item.course_id_fk}_1.jpg`,
               type: 'course',
-              coursetime: '2024/08/10',
-              address: '復興堡',
+              course_date: item.course_date,
+              address: item.course_addess,
             }
           } else if (item.cart_item_id) {
             return {
@@ -132,8 +132,8 @@ export const CartTypeProvider = ({ children }) => {
         name: item.course_name,
         image: '',
         type: 'course',
-        coursetime: '2024/08/10',
-        address: '復興堡',
+        course_date: item.course_date,
+        address: item.course_addess,
       }
     } else if (item.custom_price) {
       newItem = {
