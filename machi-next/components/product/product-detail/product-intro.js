@@ -34,7 +34,12 @@ function ProductIntro(pid) {
         style={{ display: activeButton === 'intro' ? 'block' : 'none' }}
       >
         <div className="list-group-flush p-2 py-3 mb-4 border">
-          <h4 id="title">{pid.pid}</h4>
+          <h5 id="title">{pid.pid}</h5>
+          <img 
+            src={`/images/product/card/${pid.pid}1.jpg`}
+            className="img-fluid"
+            style={{width:'100%',height:'500px',objectFit:'cover'}} 
+          />
         </div>
       </div>
       <div

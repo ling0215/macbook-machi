@@ -5,6 +5,7 @@ import ProductIntro from '@/components/product/product-detail/product-intro'
 import { useCart } from '@/hooks/cart-type-state'
 import { checkAuth } from '@/services/user'
 import { addToCart } from '@/services/cart'
+import styles from './product-detail.module.scss'
 
 export default function ProductDetail(product) {
   const newProduct = product.product
@@ -98,14 +99,14 @@ export default function ProductDetail(product) {
             {/* <div className={` h4 `}>小計NT${item.subtotal}</div> */}
             <div className="col-md-5 d-flex justify-content-center align-items-center text-primary-dark">
               <p className="pe-2">售價</p>
-              <h4 className="text-primary-dark">{price}</h4>
+              <h4 className="text-primary-dark">NT${price}</h4>
             </div>
           </div>
 
-          <div className="mb-4 d-flex justify-content-center align-items-center ">
+          <div className="mb-4 d-flex justify-content-center align-items-center w-100">
             <div className="col-6 pe-2">
               <button
-                className="btn btn-outline-brown btn-lg w-100 cartBtn"
+                className="btn btn-outline-brown w-100 cartBtn"
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
@@ -131,17 +132,17 @@ export default function ProductDetail(product) {
                   }
                 }}
               >
-                <IoCartOutline className="fs-3 text-brown" /> 加入購物車
+                <IoCartOutline className="fs-3 pb-1 cart-icon" /> 加入購物車
               </button>
             </div>
             <div className="col-6 ps-2">
-              <button className="btn btn-brown text-white btn-lg w-100 buynowBtn">
+              <button className="btn btn-brown text-white w-100 buynowBtn">
                 立即購買
               </button>
             </div>
           </div>
-          <button className="btn btn-outline-gary col-md-6 text-start text-primary-dark">
-            <IoHeartOutline className="fs-3 text-primary-dark" /> 加入追蹤清單
+          <button className="btn col-md-5 text-center text-primary-dark fw-bold">
+            <IoHeartOutline className="fs-4 pb-1 text-primary-dark" /> 加入追蹤清單
           </button>
         </div>
       </div>
@@ -153,6 +154,9 @@ export default function ProductDetail(product) {
         .btn-outline-brown:hover {
           background-color: var(--brown);
           color: white; 
+        }
+        .cart-icon:hover {
+          color: white;
         }
       `}</style>
     </>

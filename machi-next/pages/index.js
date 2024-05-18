@@ -71,7 +71,7 @@ function Home() {
             </h2>
             <div className="article-block">
               {Array(2).fill().map((_, index) => (
-                <div key={index} className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card">
+                <div key={index} className="row row-cols-1 row-cols-md-2 d-flex py-4 align-items-center article-card text-start">
                   <div className="col-md-6 d-flex justify-content-center">
                     <Link href="/blog/detail" passHref className="no-underline d-flex align-items-center">
                       <img loading="lazy" src="/course.jpg" className="img-fluid" alt="文章圖片" />
