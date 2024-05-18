@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Carousel from '@/components/product/product-detail/carousel'
-import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
+import { IoCartOutline } from 'react-icons/io5'
+import FavFcon from '@/components/product/product-list/fav-icon'
 import ProductIntro from '@/components/product/product-detail/product-intro'
 import { useCart } from '@/hooks/cart-type-state'
 import { checkAuth } from '@/services/user'
@@ -141,9 +142,9 @@ export default function ProductDetail(product) {
               </button>
             </div>
           </div>
-          <button className="btn col-md-5 text-center text-primary-dark fw-bold">
-            <IoHeartOutline className="fs-4 pb-1 text-primary-dark" /> 加入追蹤清單
-          </button>
+          <div className="col-md-6 text-start text-primary-dark">
+            <FavFcon id={newProduct.product_id} style="fs-3 text-primary-dark" /> 加入追蹤清單
+          </div>
         </div>
       </div>
       <div className="row mt-5">
