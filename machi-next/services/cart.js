@@ -48,10 +48,10 @@ export const removeFromCart = async (userId, itemId, itemType) => {
 
 export const addToOrder = async (id, data) => {
   return axiosInstance
-    .post(`/order?id=${id}`, { data })
+    .post(`/order?user_id=${id}`, { data })
     .then((res) => res.data)
     .catch((error) => {
-      console.error('添加到购物车时出错:', error)
+      console.error('添加到訂單时出错:', error)
       return { error }
     })
 }

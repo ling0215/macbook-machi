@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
 
     // 创建订单
     const order = await Order.create({
-      user_id_fk: userId,
+      user_id_fk: req.body.data.data.user_id_fk,
       order_payment: req.body.data.data.payment,
       order_username: req.body.data.data.username,
       order_address: req.body.data.data.address,

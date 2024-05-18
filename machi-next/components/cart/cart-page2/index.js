@@ -8,6 +8,8 @@ import { RiCheckboxBlankCircleLine, RiCheckboxCircleLine } from 'react-icons/ri'
 import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from 'react-icons/md'
 import toast, { Toaster } from 'react-hot-toast'
 
+import { addToOrder } from '@/services/cart'
+
 const CartPage2 = ({
   onClickPageTo1,
   onClickPageTo3,
@@ -40,6 +42,17 @@ const CartPage2 = ({
           0
         )
       : 0)
+
+  const checkAmount =
+    (selectedItems.products.length > 0
+      ? selectedItems.products.reduce((acc, cur) => acc + cur.quantity, 0)
+      : 0) +
+    (selectedItems.courses.length > 0
+      ? selectedItems.courses.reduce((acc, cur) => acc + cur.quantity, 0)
+      : 0) +
+    (selectedItems.custom.length > 0
+      ? selectedItems.custom.reduce((acc, cur) => acc + cur.quantity, 0)
+      : 0)
   const { auth } = useAuth()
   console.log(auth)
   const [payState, setPayState] = useState('')
@@ -50,9 +63,9 @@ const CartPage2 = ({
 
   useEffect(() => {
     if (userDetail === true && auth.userData) {
-      setTransName(auth.userData.user_name || '') // 假设 auth.userData.name 是用户的真实姓名
-      setTransPhone(auth.userData.user_phone || '') // 假设 auth.userData.phone 是用户的电话号码
-      setTransAddress(auth.userData.user_address || '') // 假设 auth.userData.address 是用户的地址
+      setTransName(auth.userData.user_name || '') // 假设 auth.userData.user_name 是用户的真实姓名
+      setTransPhone(auth.userData.user_phone || '') // 假设 auth.userData.user_phone 是用户的电话号码
+      setTransAddress(auth.userData.user_address || '') // 假设 auth.userData.user_address 是用户的地址
     } else {
       // 清除输入框的状态
       setTransName('')
@@ -60,6 +73,57 @@ const CartPage2 = ({
       setTransAddress('')
     }
   }, [userDetail, auth.userData])
+
+  const saveOrderData = async () => {
+    const data = {
+      data: {
+        user_id_fk: auth.userData.user_id,
+        payment: payState,
+        username: transName,
+        address: transAddress,
+        phone: transPhone,
+        amount: checkAmount,
+        total: checkTotal, // 假设总金额即为 total
+      },
+      items: [
+        ...selectedItems.products.map((item) => ({
+          product_type: 'Product',
+          product_id: item.id,
+          product_name: item.name,
+          product_detail: item.specification,
+          product_count: item.quantity,
+        })),
+        ...selectedItems.custom.map((item) => ({
+          product_type: 'Custom',
+          product_id: item.id,
+          product_name: item.name,
+          product_detail: item.specification,
+          product_count: item.quantity,
+        })),
+        ...selectedItems.courses.map((item) => ({
+          product_type: 'Course',
+          product_id: item.id,
+          product_name: item.name,
+          product_detail: item.course_date,
+          product_count: item.quantity,
+        })),
+      ],
+    }
+
+    try {
+      const response = await addToOrder(auth.userData.id, data)
+      if (!response.error) {
+        toast.success('訂單已成功保存')
+        onClickPageTo3() // 如果保存成功，跳转到下一页
+      } else {
+        toast.error('保存訂單時出錯')
+      }
+    } catch (error) {
+      console.error('保存訂單時出錯:', error)
+      toast.error('保存訂單時出錯')
+    }
+  }
+
   return (
     <>
       <div
@@ -449,7 +513,8 @@ const CartPage2 = ({
             <div className={`d-flex justify-content-center`}>
               <button
                 className={`${styles['cart-button']} `}
-                onClick={onClickPageTo3}
+                onClick={saveOrderData}
+                type="button"
               >
                 <div className={`${styles['text']} ${styles['link-button']}`}>
                   前往結帳
