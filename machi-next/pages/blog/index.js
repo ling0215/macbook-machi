@@ -21,6 +21,11 @@ export default function BlogIndex() {
   const [endDate, setEndDate] = useState('01/01/2050')
   const [selectedCategories, setSelectedCategories] = useState([])
 
+  const handlePageChange = (page) => {
+    window.scrollTo(0, 0);
+    setPage(page);
+  }
+
   useEffect(() => {
     // console.log('search:', search)
     // console.log('page:', page)
@@ -48,6 +53,7 @@ export default function BlogIndex() {
         }
       })
   }, [search, page, startDate, endDate, selectedCategories])
+
 
   // function AirDatepickerReact(props) {
   //   let $input = useRef()
@@ -143,7 +149,7 @@ export default function BlogIndex() {
               key={page}
               totalPages={totalPages}
               currentPage={page}
-              onPageChange={setPage}
+              onPageChange={handlePageChange}
             />
           </div>
         </div>

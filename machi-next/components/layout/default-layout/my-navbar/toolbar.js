@@ -25,6 +25,7 @@ export default function Toolbar({ handleShow }) {
   }, [])
 
   return (
+    <>
     <ul className="navbar-nav pe-2 ms-auto">
       <li className="nav-item">
         <Link
@@ -91,14 +92,14 @@ export default function Toolbar({ handleShow }) {
           <li>
             {user ? (
               <Link
-                className="dropdown-item text-center"
+                className="dropdown-item text-center btn btn-brown"
                 href="/member/account"
               >
                 會員專區
               </Link>
             ) : (
               <Link
-                className="dropdown-item text-center"
+                className="dropdown-item text-center btn btn-brown"
                 href="/member/register"
               >
                 {' '}
@@ -112,14 +113,14 @@ export default function Toolbar({ handleShow }) {
           <li>
             {user ? (
               <button
-                className="dropdown-item text-center"
+                className="dropdown-item text-center btn btn-brown"
                 onClick={handleLogout}
               >
                 登出
               </button>
             ) : (
               <Link
-                className="dropdown-item text-center"
+                className="dropdown-item text-center btn btn-brown"
                 href="/member/login" // 將 "/login" 替換為你的登入頁面的 URL
               >
                 登入
@@ -144,5 +145,6 @@ export default function Toolbar({ handleShow }) {
         </span>
       </li> */}
     </ul>
+    </>
   )
 }

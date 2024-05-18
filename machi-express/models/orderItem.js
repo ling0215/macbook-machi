@@ -15,7 +15,7 @@ export default async function (sequelize) {
         allowNull: false,
         references: {
           model: 'Order', // 这是被引用的表的名字
-          key: 'id', // 这是被引用表的主键
+          key: 'order_id', // 这是被引用表的主键
         },
       },
       order_product_type: {
@@ -39,6 +39,7 @@ export default async function (sequelize) {
         allowNull: false,
       },
       order_product_price: {
+        // 新增的欄位
         type: DataTypes.INTEGER,
         allowNull: false,
       },

@@ -102,13 +102,14 @@ export default function ArticleMessageArea({ articleId }) {
             <div className={styles[`user-message`]}>
               <div className={styles[`user-name`]}>
                 <div className={styles[`img-s`]}>
-                  <img src={`http://localhost:3005/avatar/${comment?.user?.user_id}.jpg`}
+                <span className={styles[`floor`]}>{index + 1}F</span>                  
+                <img src={`http://localhost:3005/avatar/${comment?.user?.user_id}.jpg`}
                     onError={(e) => {
                       e.target.onerror = null
                       e.target.src = 'http://localhost:3005/avatar/0.jpg'
                     }}
                     alt="" />
-                  <span>{comment.user.user_account}</span>
+                  <span className={styles[`floor-name`]}>{comment.user.user_account}</span>
                 </div>
                 <div
                   className={styles[`create-time`]}>{comment.article_comment_createtime.split('T')[0]}
@@ -127,6 +128,7 @@ export default function ArticleMessageArea({ articleId }) {
         <div className={styles[`message-input`]}>
           <div className={styles['message']}>
             <textarea
+            className={styles['myTextarea']}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="輸入留言..."

@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import styles from './product.module.scss'
 import Image from 'next/image'
-import { IoCartOutline, IoHeartOutline, IoHeart } from 'react-icons/io5'
+import { IoCartOutline } from 'react-icons/io5'
+import FavFcon from './fav-icon'
 import { checkAuth } from '@/services/user'
 import { addToCart } from '@/services/cart'
 import Swal from 'sweetalert2'
@@ -58,17 +59,8 @@ export default function ProductCard({ product }) {
             />
           </Link>
           <div className={styles.cardInfo}>
-            {isFavorite ? (
-              <IoHeart
-                className={styles.heartIcon}
-                onClick={handleFavoriteClick}
-              />
-            ) : (
-              <IoHeartOutline
-                className={styles.heartIcon}
-                onClick={handleFavoriteClick}
-              />
-            )}
+            
+            <FavFcon id={product.product_id} style={styles.heartIcon} />
             <h5 className={styles.cardText}>{product.product_name}</h5>
             <p className={styles.typeText}>{product.product_category}</p>
             <h5 className={styles.currency}>

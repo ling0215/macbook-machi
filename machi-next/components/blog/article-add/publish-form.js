@@ -5,6 +5,9 @@ import Myeditor from '@/components/blog/article-add/Myeditor'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { publish } from '@/services/blog'
+import { checkAuth } from '@/services/user'
+import Swal from 'sweetalert2'
+
 
 export default function PublishForm() {
   const [editorLoaded, setEditorLoaded] = useState(false)
@@ -13,36 +16,68 @@ export default function PublishForm() {
   const [data, setData] = useState('')
   const router = useRouter()
   const [category, setCategory] = useState([]) // 新增的 state
-  const categories = ['蛋糕', '泡芙', '餅乾', '教學']
+  const categories = ['蛋糕', '泡芙', '塔派', '餅乾', '點心', '馬卡龍', '教學']
+  
+      useEffect(() => {
+        const fetchUserInfo = async () => {
+          try {
+            const response = await checkAuth()
+            console.log(response) // 新增的 console.log
 
-  const saveToDb = async (event) => {
-    event.preventDefault()
-    try {
-      const response = await publish({ title, author, article: data, category })
-      console.log(response)
-      if (response.status === 200) {
-        alert('文章新增成功')
-        router.push('/blog')
-      } else {
-        alert(`寫入失敗: ${response.data.message}`)
+            if (response.status === 200) {
+              setAuthor(response.data.data.user.user_id) // 將用戶 ID 設置為 author 的初始值
+            }
+          } catch (error) {
+            console.error(error)
+          }
+        }
+      
+        fetchUserInfo()
+      }, [])
+
+      const saveToDb = async (event) => {
+        event.preventDefault()
+        try {
+          const response = await publish({ title, author, article: data, category })
+          console.log(response)
+          if (response.status === 200) {
+            Swal.fire({
+              icon: 'success',
+              title: '成功',
+              text: '文章新增成功',
+            })
+            router.push('/blog')
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: '失敗',
+              text: `寫入失敗: ${response.data.message}`,
+            })
+          }
+        } catch (error) {
+          console.error(error)
+        }
       }
-    } catch (error) {
-      console.error(error)
-    }
-  }
   useEffect(() => {
     setEditorLoaded(true)
   }, [])
 
   const handleCategoryChange = (event) => {
-    const selectedCategory = event.target.value
+    const selectedCategory = event.target.value;
     if (category.includes(selectedCategory)) {
-      setCategory(category.filter((cat) => cat !== selectedCategory))
+      setCategory(category.filter((cat) => cat !== selectedCategory));
     } else {
-      setCategory([...category, selectedCategory])
+      if (category.length < 4) {
+        setCategory([...category, selectedCategory]);
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: '最多只能選擇四個標籤',
+        })
+      }
     }
-    // console.log(setCategory)
-  }
+  };
   return (
     <>
       <Head>
@@ -69,9 +104,20 @@ export default function PublishForm() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
+        <div className="input-group mb-2">
+          <span className="input-group-text"  style={{ display: 'none' }}>作者</span>
+          <input
+            className="form-control"
+            type="number"
+            name="author"
+            value={author}
+            readOnly
+            style={{ display: 'none' }}
+          />
+        </div>
         <div className="">
           <div className="">
-            <span className="">類別 ：</span>
+            <span className="">標籤 ：</span>
             {categories.map((cat) => (
               <label key={cat}>
                 <input
@@ -102,3 +148,7 @@ export default function PublishForm() {
     </>
   )
 }
+
+
+
+

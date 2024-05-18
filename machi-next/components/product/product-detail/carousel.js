@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -34,13 +34,25 @@ export default function Carousel(pid) {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={`/images/product/card/${pid.pid}1.jpg`} />
+          <img 
+            src={`/images/product/card/${pid.pid}1.jpg`}
+            className="img-fluid"
+            style={{width:'100%', objectFit:'cover'}} 
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/images/product/card/${pid.pid}2.jpg`} />
+          <img 
+            src={`/images/product/card/${pid.pid}2.jpg`}
+            className="img-fluid"
+            style={{width:'100%', objectFit:'cover'}} 
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/images/product/card/${pid.pid}3.jpg`} />
+          <img 
+            src={`/images/product/card/${pid.pid}3.jpg`}
+            className="img-fluid"
+            style={{width:'100%', objectFit:'cover'}} 
+          />
         </SwiperSlide>
       </Swiper>
       <Swiper
@@ -51,15 +63,28 @@ export default function Carousel(pid) {
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
+        style={{width:'100%',objectFit:'cover'}}
       >
         <SwiperSlide>
-          <img src={`/images/product/card/${pid.pid}1.jpg`} />
+          <img 
+            src={`/images/product/card/${pid.pid}1.jpg`}
+            className="img-fluid img-thumbnail"
+            style={{width:'100%',objectFit:'fill'}}
+            />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/images/product/card/${pid.pid}2.jpg`} />
+          <img 
+            src={`/images/product/card/${pid.pid}2.jpg`}
+            className="img-fluid img-thumbnail"
+            style={{width:'100%',objectFit:'fill'}}
+            />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={`/images/product/card/${pid.pid}3.jpg`} />
+          <img 
+            src={`/images/product/card/${pid.pid}3.jpg`}
+            className="img-fluid img-thumbnail"
+            style={{width:'100%',objectFit:'fill'}}
+           />
         </SwiperSlide>
       </Swiper>
     </>
