@@ -6,8 +6,14 @@ import { FaTruckFast } from 'react-icons/fa6'
 import { useAuth } from '@/hooks/use-auth'
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleLine } from 'react-icons/ri'
 import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from 'react-icons/md'
+import toast, { Toaster } from 'react-hot-toast'
 
-const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
+const CartPage2 = ({
+  onClickPageTo1,
+  onClickPageTo3,
+  selectedItems,
+  onSelectItems,
+}) => {
   console.log('樓下為page2')
   console.log(selectedItems)
 
@@ -105,7 +111,7 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
           <button
             div
             className={` ${styles['step-button']}`}
-            onClick={onClickPage}
+            onClick={onClickPageTo1}
           >
             <div className={` ${styles['step-button-text']} `}>上一步</div>
           </button>
@@ -441,13 +447,14 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
               <div className={`${styles['h6']} `}>NT$ {checkTotal}</div>
             </div>
             <div className={`d-flex justify-content-center`}>
-              <Link href="/cart/cart-order" passHref>
-                <button className={`${styles['cart-button']} `}>
-                  <div className={`${styles['text']} ${styles['link-button']}`}>
-                    前往結帳
-                  </div>
-                </button>
-              </Link>
+              <button
+                className={`${styles['cart-button']} `}
+                onClick={onClickPageTo3}
+              >
+                <div className={`${styles['text']} ${styles['link-button']}`}>
+                  前往結帳
+                </div>
+              </button>
             </div>
           </form>
         </div>
