@@ -295,7 +295,7 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
                         >
                           地點:
                         </div>
-                        <div className={`h5 mb-0`}>{item.address}</div>
+                        <div className={`h5 mb-0`}>{item.course_address}</div>
                       </div>
                       <div className={`d-flex g-3 justify-content-between col`}>
                         <div className={`h4`}>人數:{item.quantity}</div>

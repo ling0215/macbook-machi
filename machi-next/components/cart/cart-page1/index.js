@@ -564,7 +564,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   style={{ gap: '0.5rem' }}
                 >
                   <div className={`h5 mr-1`}>地點:</div>
-                  <div className={`h5`}>{item.address}</div>
+                  <div className={`h5`}>{item.course_address}</div>
                 </div>
                 <div className={`d-flex g-3 justify-content-between col ps-5`}>
                   <div className={`h4`}>人數:{item.quantity}</div>

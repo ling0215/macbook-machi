@@ -71,8 +71,8 @@ export const CartTypeProvider = ({ children }) => {
               name: item.course_name,
               image: `/images/course/slide/${item.course_id_fk}_1.jpg`,
               type: 'course',
-              course_date: '0000',
-              address: item.course_addess,
+              course_date: item.course_date,
+              course_address: item.course_address,
             }
           } else if (item.cart_item_id) {
             return {
@@ -112,7 +112,7 @@ export const CartTypeProvider = ({ children }) => {
 
     let userId = auth.userData.user_id
     let newItem = {}
-
+    console.log(item)
     if (item.product_id_fk) {
       newItem = {
         uid: userId,
@@ -132,8 +132,8 @@ export const CartTypeProvider = ({ children }) => {
         name: item.course_name,
         image: '',
         type: 'course',
-        course_date: '0000',
-        address: item.course_addess,
+        course_date: item.course_date,
+        course_address: item.course_address,
       }
     } else if (item.custom_price) {
       newItem = {

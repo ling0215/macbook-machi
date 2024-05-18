@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'
 
 export default async function (sequelize) {
   return sequelize.define(
-    'CartItem',
+    'OrderItem',
     {
       order_item_id: {
         type: DataTypes.INTEGER,

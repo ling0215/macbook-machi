@@ -198,7 +198,7 @@ router.post('/', authenticate, async (req, res) => {
     }
 
     if (newType === 'course') {
-      addItemData.course_addess = cartItem.address
+      addItemData.course_address = cartItem.course_address
       addItemData.course_date = cartItem.course_date
     }
 
