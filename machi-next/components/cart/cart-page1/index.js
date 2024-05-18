@@ -557,7 +557,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   style={{ gap: '0.5rem' }}
                 >
                   <div className={`h5 mr-1`}>上課時間:</div>
-                  <div className={`h5`}>{item.classtime}</div>
+                  <div className={`h5`}>{item.course_date}</div>
                 </div>
                 <div
                   className={`d-flex justify-content-start card-text col ps-5`}

@@ -71,7 +71,7 @@ export const CartTypeProvider = ({ children }) => {
               name: item.course_name,
               image: `/images/course/slide/${item.course_id_fk}_1.jpg`,
               type: 'course',
-              course_date: item.course_date,
+              course_date: '0000',
               address: item.course_addess,
             }
           } else if (item.cart_item_id) {
@@ -132,7 +132,7 @@ export const CartTypeProvider = ({ children }) => {
         name: item.course_name,
         image: '',
         type: 'course',
-        course_date: item.course_date,
+        course_date: '0000',
         address: item.course_addess,
       }
     } else if (item.custom_price) {

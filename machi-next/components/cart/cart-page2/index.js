@@ -284,7 +284,7 @@ const CartPage2 = ({ onClickPage, selectedItems, onSelectItems }) => {
                         >
                           上課時間:
                         </div>
-                        <div className={`h5 mb-0`}>{item.classtime}</div>
+                        <div className={`h5 mb-0`}>{item.course_date}</div>
                       </div>
                       <div
                         className={`d-flex justify-content-start card-text col `}

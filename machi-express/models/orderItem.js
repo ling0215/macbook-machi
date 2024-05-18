@@ -17,21 +17,21 @@ export default async function (sequelize) {
       order_produce_id: {
         type: DataTypes.INTEGER,
       },
-      orde_produce_name: {
+      order_produce_name: {
         type: DataTypes.STRING(50),
       },
-      order_address: {
-        type: DataTypes.STRING(50),
-      },
-      oorde_produce_type: {
+      order_produce_count: {
         type: DataTypes.INTEGER,
+      },
+      order_produce_type: {
+        type: DataTypes.STRING(50),
       },
       order_produce_detail: {
         type: DataTypes.STRING(50),
       },
     },
     {
-      tableName: 'cart_item',
+      tableName: 'order_item',
       timestamps: false,
       paranoid: false,
       underscored: true,

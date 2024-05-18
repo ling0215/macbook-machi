@@ -11,7 +11,7 @@ const { CartItem, Course } = sequelize.models
 
 // 獲得某會員id的有加入到購物清單中的商品id們
 // 此路由只有登入會員能使用
-router.get('/', authenticate, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const userId = req.query.user_id // 从查询参数中获取用户 ID
     const cartItems = await CartItem.findAll({
@@ -161,9 +161,6 @@ router.post('/', authenticate, async (req, res) => {
     let fieldPrice
     let fieldQuantity
 
-    //product參數 1.product_subtitle
-    let productSubtitle
-
     switch (newType) {
       case 'product':
         fieldId = 'product_id_fk'
@@ -214,7 +211,7 @@ router.post('/', authenticate, async (req, res) => {
       addItemData.custom_layer = cartItem.layer
       addItemData.custom_decor = cartItem.decor
       addItemData.custom_flavor = cartItem.flavor
-      addItemData.custom_img = cartItem.custom_img
+      // addItemData.custom_img = cartItem.custom_img
     }
 
     const adddItem = await CartItem.create(addItemData)

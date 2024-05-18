@@ -13,16 +13,6 @@ export const fetchCart = async (userId) => {
     })
 }
 
-export const fetchCourses = async (userId) => {
-  return axiosInstance
-    .get(`/cart/course?user_id=${userId}`)
-    .then((res) => res.data)
-    .catch((error) => {
-      console.error('获取购物车数据时出错:', error)
-      return { error }
-    })
-}
-
 // 添加商品到购物车的函数 整理中
 export const addToCart = async (uid, data) => {
   return axiosInstance

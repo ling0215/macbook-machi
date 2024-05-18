@@ -44,7 +44,7 @@ export default async function (sequelize) {
       },
     },
     {
-      tableName: 'cart_item',
+      tableName: 'order',
       timestamps: false,
       paranoid: false,
       underscored: true,
