@@ -80,29 +80,7 @@ export default function ArticleMessageArea({ articleId }) {
     }
   }
 
-  const handleReplySubmit = async () => {
-    try {
-      // 讀取回覆的內容
-      const content = replyContent
 
-      // 發送一個請求來添加回覆
-      // 你需要根據你的 API 調整這個請求
-      await postReply({
-        commentId: replyingTo,
-        content: content,
-        // 其他需要的數據...
-      })
-
-      // 清空回覆輸入框
-      setReplyContent('')
-
-      // 更新留言列表
-      getComments()
-    } catch (error) {
-      // 處理錯誤
-      console.error(error)
-    }
-  }
   return (
     <>
       {/* 未登入狀態
@@ -130,7 +108,7 @@ export default function ArticleMessageArea({ articleId }) {
                       e.target.src = 'http://localhost:3005/avatar/0.jpg'
                     }}
                     alt="" />
-                  <span>{comment.user.user_name}</span>
+                  <span>{comment.user.user_account}</span>
                 </div>
                 <div
                   className={styles[`create-time`]}>{comment.article_comment_createtime.split('T')[0]}
@@ -140,28 +118,7 @@ export default function ArticleMessageArea({ articleId }) {
                 <p>{comment.article_comment_content}</p>
               </div>
               <div className={styles[`message-btn`]}>
-                <div>
-                  <button className="" onClick={() => setReplyingTo(comment.article_comment_id)}>
-                    回覆留言
-                    <TiMessages
-                      style={{
-                        fontSize: '1rem',
-                        marginLeft: '5px',
-                        marginBottom: '4px',
-                      }}
-                    />
-                  </button>
-                  {replyingTo === comment.article_comment_id && (
-                    <div className={styles['reply-input']}>
-                      <textarea
-                        value={replyContent}
-                        onChange={(e) => setReplyContent(e.target.value)}
-                        placeholder="輸入回覆..."
-                      />
-                      <button onClick={handleReplySubmit}>送出回覆</button>
-                    </div>
-                  )}
-                </div>
+                
               </div>
             </div>
           </div>

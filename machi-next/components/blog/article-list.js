@@ -35,10 +35,6 @@ const ArticlesList = ({ articles }) => {
           <div className={styles[`dropdown-position`]}>
             {isOpen && (
               <div className={styles[`dropdown-menu`]}>
-                <li onClick={() => console.log('選項1被點擊')}>
-                  我的文章
-                  <FaPenToSquare />{' '}
-                </li>
                 <Link
                   href={`/blog/publish`}
                   type="button"

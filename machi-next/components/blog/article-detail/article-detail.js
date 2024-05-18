@@ -45,7 +45,7 @@ const ArticleDetail = ({ articleId }) => {
           }}
           alt=""
         />
-        {article?.user?.user_name}{' '}
+        {article?.user?.user_account}{' '}
       </div>
       <div className={styles['article-btn']}>
         {categories.map((category, index) => (
