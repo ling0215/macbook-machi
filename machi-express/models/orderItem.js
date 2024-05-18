@@ -1,0 +1,40 @@
+import { DataTypes } from 'sequelize'
+
+export default async function (sequelize) {
+  return sequelize.define(
+    'OrderItem',
+    {
+      order_item_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true, // 新增這一行
+      },
+      order_id_fk: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      order_produce_id: {
+        type: DataTypes.INTEGER,
+      },
+      order_produce_name: {
+        type: DataTypes.STRING(50),
+      },
+      order_produce_count: {
+        type: DataTypes.INTEGER,
+      },
+      order_produce_type: {
+        type: DataTypes.STRING(50),
+      },
+      order_produce_detail: {
+        type: DataTypes.STRING(50),
+      },
+    },
+    {
+      tableName: 'order_item',
+      timestamps: false,
+      paranoid: false,
+      underscored: true,
+    }
+  )
+}
