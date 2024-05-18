@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function ArticleCategory({ handleCategoryClick }) {
-  const categories = ['蛋糕', '泡芙', '餅乾', '教學']
+  const categories = ['蛋糕', '泡芙', '塔派', '餅乾', '點心', '馬卡龍', '教學']
 
 
   //   return (

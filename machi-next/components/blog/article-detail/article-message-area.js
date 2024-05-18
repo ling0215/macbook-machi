@@ -128,6 +128,7 @@ export default function ArticleMessageArea({ articleId }) {
         <div className={styles[`message-input`]}>
           <div className={styles['message']}>
             <textarea
+            className={styles['myTextarea']}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="輸入留言..."
