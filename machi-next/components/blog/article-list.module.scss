@@ -24,10 +24,10 @@
     }
 }
 
-.list-h {
-    max-height: 1000px;
+// .list-h {
+//     max-height: 1000px;
     
-}
+// }
 .more{
     display: flex;
     justify-content: flex-end;
@@ -73,3 +73,30 @@
         color: #ab927d;
     }
 }
+
+.link-style-m {
+    margin-block: 20px;
+}
+
+
+
+.image-m {
+    text-align: center;
+}
+@media (max-width: 390px) {
+    .article-list-pc {
+        //   flex-direction: column;
+        display: none;
+    }
+  }
+  
+// 手機版
+
+
+  @media (min-width: 391px) {
+    .article-list-mobile {
+        //   flex-direction: column;
+        display: none;
+    }
+    
+  }
