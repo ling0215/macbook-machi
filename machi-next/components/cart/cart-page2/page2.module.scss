@@ -62,13 +62,14 @@
 }
 
 .step-button {
-  background: var(--secondary, #f8dc9a);
+  background: #c0c0c0;
+  font-family: "RobotoMono-Bold", sans-serif;
   width: 160px;
   height: 48px;
   border-radius: 5px;
   border-style: solid;
   border-color: var(--primary-dark, #785e4c);
-  border-width: 1px;
+  border-width: 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -76,16 +77,19 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  &:hover{
+    
+    background: #959595;
+  }
 }
 .step-button-text {
-  color: var(--white, #ffffff);
+  color: #ffffff;
   text-align: left;
-  font-family: var(--h4-font-family, "Roboto-Regular", sans-serif);
-  font-size: var(--h4-font-size, 24px);
-  line-height: var(--h4-line-height);
-  font-weight: var(--h4-font-weight, 400);
+  font-family: "RobotoMono-Bold", sans-serif;
+  font-size:20px;
+
   position: relative;
-  -webkit-text-stroke: 0.5px var(--black, #252525);
+
 }
 
 .pay-content{
@@ -95,7 +99,7 @@
 }
 
 .pay-button {
-  background: var(--grey, #c0c0c0);
+  background: #c0c0c0;
   border-radius: 3px;
   border-style: solid;
   border-color: var(--primary-dark, #785e4c);
@@ -109,11 +113,11 @@
   width: 110px;
   height: 39px;
   position: relative;
-  box-shadow: var(---box-shadow, 3px 4px 4px 0px rgba(0, 0, 0, 0.25));
+
   overflow: hidden;
   white-space: nowrap;
   &:hover{
-    border-width: 2px;
+    border-width: 1px;
   }
 }
 
@@ -145,11 +149,11 @@
 
 .cart-button {
   width: 192px;
-  background: var(--brown, #ab927d);
+  background: #cebbaa;
   border-radius: 3px;
   border-style: solid;
   border-color: var(--primary-dark, #785e4c);
-  border-width: 0.5px;
+  border-width: 0px;
   padding: 10px 48px 10px 48px;
   display: flex;
   flex-direction: row;
@@ -159,6 +163,9 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  &:hover {
+    background: #b4a394;
+  }
   .text{
     color: var(--white, #ffffff);
     text-align: left;

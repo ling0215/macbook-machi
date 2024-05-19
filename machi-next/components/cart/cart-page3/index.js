@@ -31,13 +31,13 @@ const CartPage3 = ({ orderItem }) => {
 
     if (orderItem && orderItem.items) {
       const productItems = orderItem.items.filter(
-        (item) => item.order_product_type === 'Product'
+        (item) => item.order_product_type === 'product'
       )
       const courseItems = orderItem.items.filter(
-        (item) => item.order_product_type === 'Course'
+        (item) => item.order_product_type === 'course'
       )
       const customItems = orderItem.items.filter(
-        (item) => item.order_product_type === 'Custom'
+        (item) => item.order_product_type === 'custom'
       )
 
       setProducts(productItems)
@@ -196,13 +196,13 @@ const CartPage3 = ({ orderItem }) => {
           </div>
           <div className={`d-flex align-items-center justify-content-end py-4`}>
             <button
-              className={`h5 ${styles['custom-button']} text-white`}
+              className={`h5 ${styles['custom-button-home']} text-white`}
               onClick={() => router.push('/')} // 这里是返回首页的URL
             >
               返回首頁
             </button>
             <button
-              className={`h5 ${styles['custom-button']} bg-brown text-white ms-3`}
+              className={`h5 ${styles['custom-button-order']} text-white ms-3`}
               onClick={() => router.push('/member/order-query')} // 这里是历史订单的URL
             >
               歷史訂單
