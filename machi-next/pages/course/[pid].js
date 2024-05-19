@@ -128,7 +128,7 @@ const Toast = Swal.mixin({
 
   return (
     <>
-      <div className="row mt-5 mx-2 d-flex justify-content-center ">
+      <div className="row mt-5 mx-10 d-flex justify-content-center ">
         <div className="col-md-5">
           <div className="position-sticky" style={{ top: '2rem' }}>
             <Swiper
