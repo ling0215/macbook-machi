@@ -164,7 +164,7 @@ export default function LoginForm() {
           </form>
         </div>
       </div>
-      <div className={` mt-5 text-primary-dark ${styles['hr-sect']}`}>
+      {/* <div className={` mt-5 text-primary-dark ${styles['hr-sect']}`}>
         快速登入
       </div>
       <div className="row mb-5">
@@ -175,7 +175,7 @@ export default function LoginForm() {
             <FacebookLogo className="mx-3" />
           </div>
         </div>
-      </div>
+      </div> */}
     </main>
   )
 }

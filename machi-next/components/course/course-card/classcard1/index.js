@@ -87,11 +87,12 @@ export default function CourseCard1({course}) {
                     </p>
                     <p class="card-text fw-bolder"
                     className={styles.cardtext1}>
-                      課堂地點:台北市北投區裕民六路130號1樓
+                      課堂地點:台北市北投區裕民六路130號1樓<br/>
+                      課堂日期:{formattedDate}<br/>
+                      講師:{course.course_teacher}
                     </p>
-                    <p class="card-text fw-bolder"
-                    className={styles.cardtext1}>課堂日期:{formattedDate}</p>
-                    <p class="card-text fw-bolder" className={styles.cardtext1}>講師:{course.course_teacher}</p>
+                    
+                    
                     
 
                     <p class="card-text" className={styles.cardtext1} dangerouslySetInnerHTML={{ __html: course.course_description }}>

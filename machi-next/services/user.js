@@ -156,3 +156,36 @@ export const getCoursesByIds = async (courseIds) => {
     `/favorites/coursesByIds?ids=${encodeURIComponent(courseIds.join(','))}`
   )
 }
+
+//獲得歷史訂單
+export const fetchBetterOrders = async (
+  page = 1,
+  perpage = 8,
+  startDate = '1970-01-01',
+  endDate = '2050-01-01',
+  userId = 0,
+  selectedStatus = ''
+) => {
+  return await axiosInstance.get(
+    `/order/better?page=${page}&perpage=${perpage}&start=${startDate}&end=${endDate}&userId=${userId}&selectedStatus=${encodeURIComponent(
+      selectedStatus
+    )}`
+  )
+}
+
+// 獲取特定訂單的訂單項目
+export const fetchOrderItems = async (oid) => {
+  try {
+    const response = await axiosInstance.get(`/order/orderItems?oid=${oid}`)
+    if (response.status === 200) {
+      const orderItems = response.data
+      return orderItems
+    } else {
+      console.error('Failed to fetch order items:', response.statusText)
+      return []
+    }
+  } catch (error) {
+    console.error('Error fetching order items:', error)
+    return []
+  }
+}

@@ -173,7 +173,23 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
 
     return { totalQuantity, totalPrice }
   }
-  const textProductItem = ['草莓', '芒果', '香蕉']
+  const dateMagic = (data) => {
+    const inputDateStr = data
+
+    // 创建 Date 对象
+    const date = new Date(inputDateStr)
+
+    // 获取年份、月份、日期、小时和分钟
+    const year = date.getUTCFullYear()
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0')
+    const day = String(date.getUTCDate()).padStart(2, '0')
+    const hours = String(date.getUTCHours()).padStart(2, '0')
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0')
+
+    // 组合成所需的格式
+    const formatted = `${year}-${month}-${day}-${hours}:${minutes}`
+    return formatted
+  }
   return (
     <>
       <div
@@ -516,7 +532,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   style={{ gap: '0.5rem' }}
                 >
                   <div className={`h5 mr-1`}>上課時間:</div>
-                  <div className={`h5`}>{item.course_date}</div>
+                  <div className={`h5`}>{dateMagic(item.course_date)}</div>
                 </div>
                 <div
                   className={`d-flex justify-content-start card-text col ps-5 `}

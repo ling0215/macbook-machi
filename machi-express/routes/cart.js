@@ -108,7 +108,6 @@ router.delete('/', authenticate, async (req, res) => {
     switch (newType) {
       case 'product':
         fieldName = 'product_id_fk'
-
         break
       case 'course':
         fieldName = 'course_id_fk'

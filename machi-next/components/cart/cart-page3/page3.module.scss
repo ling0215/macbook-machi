@@ -19,14 +19,14 @@
   color: var(--brown);
 }
 
-.custom-button {
-  background-color:  #f8dc9a;
+.custom-button-home {
+  background: #c0c0c0;
   width: 160px;
   height: 48px;
   border-radius: 3px;
   border-style: solid;
   border-color: var(--primary-dark, #785e4c);
-  border-width: 1px;
+  border-width: 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,9 +34,30 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  // -webkit-text-stroke: 0.4000000059604645px var(--primary-dark, #785e4c);
+  &:hover {
+    background: #959595;
+  }
 }
 
+.custom-button-order{
+  background: #cebbaa;
+  width: 160px;
+  height: 48px;
+  border-radius: 3px;
+  border-style: solid;
+  border-color: var(--primary-dark, #785e4c);
+  border-width: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background: #b4a394;
+  }
+}
 
 
 

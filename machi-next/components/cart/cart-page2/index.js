@@ -4,6 +4,7 @@ import styles from './page2.module.scss'
 import Swal from 'sweetalert2'
 import { FaTruckFast } from 'react-icons/fa6'
 import { useAuth } from '@/hooks/use-auth'
+import { useCart } from '@/hooks/cart-type-state'
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleLine } from 'react-icons/ri'
 import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from 'react-icons/md'
 import toast, { Toaster } from 'react-hot-toast'
@@ -17,29 +18,36 @@ const CartPage2 = ({
   onSelectItems,
   setOrderItem,
 }) => {
+  const { cart, items, decrement, increment, removeItem, addItem } = useCart()
   useEffect(() => {
     window.scrollTo(0, 0) // 每当组件重新渲染时，将窗口滚动到顶部
   }, [])
 
-  const checkTotal =
-    (selectedItems.products.length > 0
+  const productTotal =
+    selectedItems.products.length > 0
       ? selectedItems.products.reduce(
           (acc, cur) => acc + cur.price * cur.quantity,
           0
         )
-      : 0) +
-    (selectedItems.courses.length > 0
+      : 0
+
+  const courseTotal =
+    selectedItems.courses.length > 0
       ? selectedItems.courses.reduce(
           (acc, cur) => acc + cur.price * cur.quantity,
           0
         )
-      : 0) +
-    (selectedItems.custom.length > 0
+      : 0
+
+  const customTotal =
+    selectedItems.custom.length > 0
       ? selectedItems.custom.reduce(
           (acc, cur) => acc + cur.price * cur.quantity,
           0
         )
-      : 0)
+      : 0
+
+  const checkTotal = productTotal + courseTotal + customTotal
 
   const checkAmount =
     (selectedItems.products.length > 0
@@ -51,6 +59,7 @@ const CartPage2 = ({
     (selectedItems.custom.length > 0
       ? selectedItems.custom.reduce((acc, cur) => acc + cur.quantity, 0)
       : 0)
+
   const { auth } = useAuth()
   console.log(auth)
   const [payState, setPayState] = useState('')
@@ -119,7 +128,7 @@ const CartPage2 = ({
       },
       items: [
         ...selectedItems.products.map((item) => ({
-          product_type: 'Product',
+          product_type: 'product',
           product_id: item.id,
           product_name: item.name,
           product_detail: item.specification,
@@ -127,7 +136,7 @@ const CartPage2 = ({
           product_price: item.price,
         })),
         ...selectedItems.custom.map((item) => ({
-          product_type: 'Custom',
+          product_type: 'custom',
           product_id: item.id,
           product_name: item.name,
           product_detail: item.specification,
@@ -135,7 +144,7 @@ const CartPage2 = ({
           product_price: item.price,
         })),
         ...selectedItems.courses.map((item) => ({
-          product_type: 'Course',
+          product_type: 'course',
           product_id: item.id,
           product_name: item.name,
           product_detail: item.course_date,
@@ -145,28 +154,52 @@ const CartPage2 = ({
       ],
     }
 
-    try {
-      const response = await addToOrder(auth.userData.id, data)
-      console.log(data)
-      console.log(response)
+    const response = await addToOrder(auth.userData.id, data)
 
-      if (!response.error) {
-        setOrderItem(response)
-        Swal.fire({
-          title: '結帳成功',
-          text: '感謝您的購買！',
-          icon: 'success',
-          confirmButtonColor: '#ab927d',
-        })
-      } else {
-        console.error('Error in response:', response.error)
-      }
-    } catch (error) {
-      console.error('Error adding to order:', error)
-      // 你可以在这里处理错误情况
+    if (!response.error) {
+      setOrderItem(response)
+      Swal.fire({
+        title: '結帳成功',
+        text: '感謝您的購買！',
+        icon: 'success',
+        confirmButtonColor: '#ab927d',
+      })
+      clearPurchasedItems(response.items)
+      onClickPageTo3() // 在成功设置订单项后跳转到第3页
+    } else {
+      console.error('Error in response:', response.error)
     }
   }
 
+  const clearPurchasedItems = (items) => {
+    items.forEach((item) => {
+      removeItem(
+        auth.userData.user_id,
+        item.order_product_id,
+        item.order_product_type
+      )
+      console.log(auth.userData.user_id)
+      console.log(item.order_product_id)
+      console.log(item.order_product_type)
+    })
+  }
+  const dateMagic = (data) => {
+    const inputDateStr = data
+
+    // 创建 Date 对象
+    const date = new Date(inputDateStr)
+
+    // 获取年份、月份、日期、小时和分钟
+    const year = date.getUTCFullYear()
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0')
+    const day = String(date.getUTCDate()).padStart(2, '0')
+    const hours = String(date.getUTCHours()).padStart(2, '0')
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0')
+
+    // 组合成所需的格式
+    const formatted = `${year}-${month}-${day}-${hours}:${minutes}`
+    return formatted
+  }
   return (
     <>
       <div
@@ -220,7 +253,7 @@ const CartPage2 = ({
             className={` ${styles['step-button']}`}
             onClick={onClickPageTo1}
           >
-            <div className={` ${styles['step-button-text']} `}>上一步</div>
+            <div className={`${styles['step-button-text']} `}>上一步</div>
           </button>
 
           {selectedItems &&
@@ -397,7 +430,9 @@ const CartPage2 = ({
                         >
                           上課時間:
                         </div>
-                        <div className={`h5 mb-0`}>{item.course_date}</div>
+                        <div className={`h5 mb-0`}>
+                          {dateMagic(item.course_date)}
+                        </div>
                       </div>
                       <div
                         className={`d-flex justify-content-start card-text col `}
@@ -533,26 +568,28 @@ const CartPage2 = ({
                 />
               </div>
             </div>
-            <div className={`d-flex justify-content-between py-2`}>
-              <div className={`${styles['h6']} `}>選擇優惠券</div>
-              <button className={`${styles['coupon-button']} `}>
-                <div className={`${styles['text']} `}>選擇</div>
-              </button>
-            </div>
+
             <div className={`d-flex justify-content-between py-2`}>
               <div className={`${styles['h6']} `}>商品總計 </div>
-              <div className={`${styles['h6']} `}>NT$ {checkTotal}</div>
+              <div className={`${styles['h6']} `}>NT$ {productTotal}</div>
+            </div>
+
+            <div className={`d-flex justify-content-between py-2`}>
+              <div className={`${styles['h6']} `}>訂製總計 </div>
+              <div className={`${styles['h6']} `}>NT$ {customTotal}</div>
             </div>
             <div
               className={`${styles['text-border-brown']} d-flex justify-content-between py-2 pb-4`}
             >
-              <div className={`${styles['h6']} `}>折扣總計</div>
-              <div className={`${styles['h6']}    text-heart`}>-NT$ 2345 </div>
+              <div className={`${styles['h6']} `}>課程總計</div>
+              <div className={`${styles['h6']}  `}>NT$ {courseTotal}</div>
             </div>
+
             <div className={`d-flex justify-content-between py-2 pb-4`}>
-              <div className={`${styles['h6']} `}>商品總金額</div>
+              <div className={`${styles['h6']} `}>總購買金額</div>
               <div className={`${styles['h6']} `}>NT$ {checkTotal}</div>
             </div>
+
             <div className={`d-flex justify-content-center`}>
               <button
                 className={`${styles['cart-button']} `}
