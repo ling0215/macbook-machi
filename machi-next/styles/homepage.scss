@@ -44,7 +44,7 @@
 .full-background {
     position: relative;
     width: 100vw;
-    background-image: url('/background.jpg');
+    background-image: url('/background-1.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -79,6 +79,7 @@
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
     position: relative;
     
     &:hover {
@@ -180,3 +181,22 @@
         
     }
 }
+
+.intro img:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.qa-background {
+    position: relative;
+    width: 100vw;
+    background-color: var(--primary-1);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+
