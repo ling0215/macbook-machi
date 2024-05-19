@@ -11,7 +11,7 @@ import { AuthProvider, useAuth } from '@/hooks/use-auth'
 import { addFav, removeFav, getFavs } from '@/services/user'
 import { useCart } from '@/hooks/cart-type-state'
 
-export default function ProductCard({ product }) {
+export default function GridProductCard({ product }) {
   const imageUrl = `/images/product/card/${product.product_id}1.jpg`
 
   const Toast = Swal.mixin({
@@ -47,6 +47,7 @@ export default function ProductCard({ product }) {
     <>
       <div className="col-6">
         <div className={`${styles.cardBody}`}>
+          <FavFcon id={product.product_id} style={styles.heartIcon} />
           <Link href={`/product/${product.product_id}`} passHref>
             <Image
               src={imageUrl}
@@ -59,8 +60,6 @@ export default function ProductCard({ product }) {
             />
           </Link>
           <div className={styles.cardInfo}>
-            
-            <FavFcon id={product.product_id} style={styles.heartIcon} />
             <h5 className={styles.cardText}>{product.product_name}</h5>
             <p className={styles.typeText}>{product.product_category}</p>
             <h5 className={styles.currency}>
