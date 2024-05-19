@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '@/hooks/use-auth'
-import { getProductsByIds } from '@/services/user'
+import { getCoursesByIds } from '@/services/user'
 import Image from 'next/image'
 import Link from 'next/link'
 
-function FavoriteProducts() {
+function FavoriteCourses() {
   const { favorites, setFavorites } = useAuth()
-  const [products, setProducts] = useState([])
+  const [courses, setCourses] = useState([])
 
-  const productFavorites = favorites.filter((num) => num > 10821)
+  const coursesFavorites = favorites.filter((num) => num < 10821)
+  console.log(courses)
 
   useEffect(() => {
-    getProductsByIds(productFavorites)
+    getCoursesByIds(coursesFavorites)
       .then((response) => {
-        setProducts(response.data.data)
+        setCourses(response.data.data)
         console.log(response.data.data)
       })
       .catch((error) => {
@@ -45,22 +46,22 @@ function FavoriteProducts() {
         <hr className="my-3 mt-5" />
 
         <div className="row mt-5">
-          {products.map((product, index) => (
+          {courses.map((course, index) => (
             <div key={index} className="col-md-3 col-6 g-3">
               <div className="card">
-                <Link href={`/product/${product.product_id}`}>
+                <Link href={`/course/${course.course_id}`}>
                   <Image
                     loading="lazy"
-                    src={`/images/product/card/${product.product_id}1.jpg`}
-                    alt={product.product_name}
+                    src={`/images/course/slide/${course.course_id}_1.jpg`}
+                    alt={course.course_name}
                     width={200}
                     height={200}
                     className="card-img-top"
                   />
                 </Link>
                 <div className="card-body text-center">
-                  <p className="card-text">{product.product_name}</p>
-                  <p className="card-text">NT${product.product_price_small}</p>
+                  <p className="card-text">{course.course_name}</p>
+                  <p className="card-text">NT${course.course_price}</p>
                 </div>
               </div>
             </div>
@@ -79,4 +80,4 @@ function FavoriteProducts() {
   )
 }
 
-export default FavoriteProducts
+export default FavoriteCourses

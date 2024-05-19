@@ -275,7 +275,7 @@ function EditProfileForm() {
               <label>
                 手機號碼
                 <input
-                  className="form-control"
+                  className="form-control px-5"
                   type="tel"
                   name="user_phone"
                   value={form.user_phone}
@@ -287,7 +287,7 @@ function EditProfileForm() {
               <label>
                 地址
                 <input
-                  className="form-control"
+                  className="form-control px-5"
                   type="text"
                   name="user_address"
                   value={form.user_address}
