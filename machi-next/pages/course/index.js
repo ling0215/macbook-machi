@@ -95,18 +95,18 @@ export default function CoursePage() {
     <div className="row mt-2 mb-3">
         <h5 className="card-text d-flex justify-content-between align-items-center">
           <div className="input-group">
-            <input
-              type="text"
-              placeholder="請輸入關鍵字"
-              className="form-control"
-              style={{
-                width: '150px',
-                height: '40px',
-                backgroundColor: 'white',
-                borderColor: 'light-brown',
-              }}
-              onChange={handleSearchChange}
-            />
+          <input
+                type="text"
+                placeholder="請輸入關鍵字"
+                className="form-control"
+                style={{
+                  width: '150px',
+                  height: '40px',
+                  backgroundColor: 'white',
+                  borderColor: 'light-brown',
+                }}
+                onChange={handleSearchChange}
+              />
             <span className="input-group-text">
               <i className="bi bi-search"></i>
             </span>
@@ -188,7 +188,7 @@ export default function CoursePage() {
         )}
    
   </div>
-;
+
       </div>
       <Pagination
         totalPages={totalPages}
