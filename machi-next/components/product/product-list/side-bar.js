@@ -27,13 +27,13 @@ export default function Sidebar({ setCategory, setPriceRange }) {
             <div className="bg-white me-3" id="sidebar-wrapper">
               <div className="scroll sticky-md-top">
                 <div
-                  className="accordion accordion-flush"
+                  className="accordion accordion-flush border rounded"
                   id="accordionFlushExample"
                 >
                   <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button
-                        className="accordion-button collapsed"
+                        className="accordion-button collapsed bg-light-grey"
                         type="button"
                         data-bs-toggle="collapse"
                         aria-expanded="false"
@@ -67,29 +67,29 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                       id="panelsStayOpen-collapseOne"
                       className="accordion-collapse collapse"
                     >
-                      <div className="accordion-body px-1">
-                        <div
+                      <div className="accordion-body px-3">
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('塔')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') handleCategoryChange('塔')
                           }}
                         >
                           塔
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('派')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') handleCategoryChange('派')
                           }}
                         >
                           派
-                        </div>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -111,11 +111,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                       id="panelsStayOpen-collapseTwo"
                       className="accordion-collapse collapse"
                     >
-                      <div className="accordion-body px-1">
-                        <div
+                      <div className="accordion-body px-3">
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('戚風蛋糕')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -123,11 +123,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           戚風蛋糕
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('千層蛋糕')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -135,11 +135,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           千層蛋糕
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('乳酪蛋糕')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -147,11 +147,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           乳酪蛋糕
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('提拉米蘇')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -159,11 +159,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           提拉米蘇
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('慕斯蛋糕')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -171,11 +171,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           慕斯蛋糕
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('磅蛋糕')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -183,7 +183,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           磅蛋糕
-                        </div>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -205,11 +205,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                       id="panelsStayOpen-collapseThree"
                       className="accordion-collapse collapse"
                     >
-                      <div className="accordion-body px-1">
-                        <div
+                      <div className="accordion-body px-3">
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none  d-block hover-button"
                           onClick={() => handleCategoryChange('達克瓦茲')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -217,11 +217,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           達克瓦茲
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('曲奇餅乾')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -229,11 +229,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           曲奇餅乾
-                        </div>
-                        <div
+                        </p>
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('馬卡龍')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -241,7 +241,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           馬卡龍
-                        </div>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -263,11 +263,11 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                       id="panelsStayOpen-collapseFour"
                       className="accordion-collapse collapse"
                     >
-                      <div className="accordion-body px-1">
-                        <div
+                      <div className="accordion-body px-3">
+                        <p
                           role="button"
                           tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
+                          className="text-decoration-none d-block hover-button"
                           onClick={() => handleCategoryChange('巧克力')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
@@ -275,24 +275,24 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           }}
                         >
                           巧克力
-                        </div>
+                        </p>
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <label htmlFor="range" className="form-label mt-3">
+                  <div className="range p-3">
+                    <label htmlFor="range" className="form-label text-primary-dark">
                       價格區間
                     </label>
                     <input
                       type="range"
-                      className="form-range"
+                      className="form-range text-brown"
                       min={0}
                       max={3000}
                       step="100"
                       id="range"
                       onChange={handleRangeChange}
                     />
-                    <span id="rangeValue">NT$0 ～ NT${range}</span>
+                    <span id="rangeValue" className="text-primary-dark fw-bold">NT$0 ～ NT${range}</span>
                   </div>
                 </div>
               </div>
@@ -300,6 +300,18 @@ export default function Sidebar({ setCategory, setPriceRange }) {
           </div>
         </div>
       </div>
+      <style jsx>{`
+        .accordion-button {
+          color: var(--primary-dark);
+        }
+        .accordion-body p {
+          border-bottom: 1px solid #E2E2E2;
+          color: var(--primary-dark);
+        }
+        .form-range::-webkit-slider-thumb {
+          background-color: var(--secondary)
+        }
+      `}</style>
     </>
   )
 }
