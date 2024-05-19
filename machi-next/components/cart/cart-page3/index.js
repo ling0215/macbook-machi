@@ -130,7 +130,7 @@ const CartPage3 = ({ orderItem }) => {
 
           {products.length > 0 && (
             <>
-              <div className={`text-brown ${styles['h6']}`}>商品</div>
+              <div className={`text-brown ${styles['h6']}`}>一般商品</div>
               {products.map((item) => (
                 <div
                   className="d-flex align-items-center justify-content-between"
@@ -138,6 +138,26 @@ const CartPage3 = ({ orderItem }) => {
                 >
                   <div className={`text-dark-grey`}>
                     {item.order_product_name}
+                  </div>
+                  <div className={`text-dark-grey`}>
+                    <span>數量: {item.order_product_count}</span>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
+
+          {customs.length > 0 && (
+            <>
+              <div className={`text-brown ${styles['h6']}`}>客製商品</div>
+              {customs.map((item) => (
+                <div
+                  className="d-flex align-items-center justify-content-between"
+                  key={item.order_item_id}
+                >
+                  <div className={`text-dark-grey`}>
+                    {item.order_product_name}
+                    <span>({item.order_product_detail})</span>
                   </div>
                   <div className={`text-dark-grey`}>
                     <span>數量: {item.order_product_count}</span>
@@ -160,26 +180,6 @@ const CartPage3 = ({ orderItem }) => {
                   </div>
                   <div className={` text-dark-grey`}>
                     <span>人數: {item.order_product_count}</span>
-                  </div>
-                </div>
-              ))}
-            </>
-          )}
-
-          {customs.length > 0 && (
-            <>
-              <div className={`text-brown ${styles['h6']}`}>客製商品</div>
-              {customs.map((item) => (
-                <div
-                  className="d-flex align-items-center justify-content-between"
-                  key={item.order_item_id}
-                >
-                  <div className={`text-dark-grey`}>
-                    {item.order_product_name}
-                    <span>({item.order_product_detail})</span>
-                  </div>
-                  <div className={`text-dark-grey`}>
-                    <span>數量: {item.order_product_count}</span>
                   </div>
                 </div>
               ))}

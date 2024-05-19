@@ -55,7 +55,7 @@
 .cart-button-text {
   color: var(--white, #ffffff);
   text-align: left;
-  font-family: "RobotoMono-Bold", sans-serif;
+
   font-size: 18px;
   font-weight: 700;
   position: relative;
@@ -63,7 +63,7 @@
 
 .step-button {
   background: #c0c0c0;
-  font-family: "RobotoMono-Bold", sans-serif;
+
   width: 160px;
   height: 48px;
   border-radius: 5px;
@@ -85,10 +85,9 @@
 .step-button-text {
   color: #ffffff;
   text-align: left;
-  font-family: "RobotoMono-Bold", sans-serif;
   font-size:20px;
-
   position: relative;
+  
 
 }
 
@@ -140,7 +139,7 @@
   overflow: hidden;
   .text {
     color: var(--brown, #ab927d);
-    font-family: "Roboto-Bold", sans-serif;
+
     font-size: 18px;
     font-weight: 700;
     position: relative;
@@ -169,7 +168,7 @@
   .text{
     color: var(--white, #ffffff);
     text-align: left;
-    font-family: "RobotoMono-Bold", sans-serif;
+
     font-size: 18px;
     font-weight: 700;
     position: relative;
