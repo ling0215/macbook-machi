@@ -76,6 +76,20 @@ const handleFavoriteClick = async () => {
   
   //時間用
 
+//通知用
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  },
+});
+//
+
   const router = useRouter()
 
   const getCourse = async (pid) => {
@@ -268,11 +282,9 @@ const handleFavoriteClick = async () => {
                     }
                     addItem(data)
                       .then((response) => {
-                        Swal.fire({
-                          title: '已加入購物車',
-                          text: '您的課程已成功加入購物車！',
+                        Toast.fire({
                           icon: 'success',
-                          confirmButtonColor: '#ab927d',
+                          title: '成功加入購物車',
                         })
                       })
                       .catch((error) => {
@@ -363,15 +375,16 @@ const handleFavoriteClick = async () => {
             
             <div className="list-group-flush p-2 py-3 mb-4 border">
 <h4 id="title">｜講堂時間與地點｜</h4>
-<p className="list-group-item">
+<p className={`${styles.text1} product-desc mb-4 text1`}>
 ►講堂日期：<FormattedDate dateString={course.data.course.course_start_time} />~<FormattedDate dateString={course.data.course.course_end_time} />
 </p>
 <p className="list-group-item">
 ►講堂費用：{course.data.course.course_price}
 </p>
-<h4 id="title">｜講堂介紹｜</h4>
+<h4 id="title" >｜講堂介紹｜</h4>
 <p
-            className="product-desc mb-4"
+            className={`${styles.text1} product-desc mb-4 text1`}
+            
             dangerouslySetInnerHTML={{
               __html: course.data.course.course_description_full,
             }}
@@ -387,16 +400,14 @@ const handleFavoriteClick = async () => {
         >
            <div className="list-group-flush p-2 py-3 mb-4 border">
           <div className="list-group-flush p-2 py-3 mb-4 border">
-          <h4 id="title">｜講師名稱｜</h4>
-          <p className="list-group-item">
+          <h4 id="title" >｜講師名稱｜</h4>
+          <p className={`${styles.text1} list-group-item`}>
           {course.data.course.course_teacher}
 </p>
-<p className="list-group-item">
 
-</p>
-<h4 id="title">｜講師經歷｜</h4>
+<h4 id="title" >｜講師經歷｜</h4>
 <p
-            className="product-desc mb-4"
+           className={`${styles.text1} product-desc mb-4 text1`}
             dangerouslySetInnerHTML={{
               __html: course.data.course.course_teacher_description,
             }}
