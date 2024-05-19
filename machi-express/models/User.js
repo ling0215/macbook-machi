@@ -20,11 +20,11 @@ export default async function (sequelize) {
       },
       user_account: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       user_password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       user_email: {
         type: DataTypes.STRING,
@@ -74,10 +74,12 @@ export default async function (sequelize) {
       user_createtime: {
         type: DataTypes.DATE,
         allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
       user_updatetime: {
         type: DataTypes.DATE,
         allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
     },
     {

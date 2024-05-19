@@ -38,8 +38,8 @@ router.post('/', async function (req, res, next) {
   // 要加到access token中回傳給前端的資料
   // 存取令牌(access token)只需要id和username就足夠，其它資料可以再向資料庫查詢
   let returnUser = {
-    id: 0,
-    username: '',
+    user_id: 0,
+    user_account: '',
     google_uid: '',
     line_uid: '',
   }
@@ -55,18 +55,18 @@ router.post('/', async function (req, res, next) {
 
     // 回傳給前端的資料
     returnUser = {
-      id: dbUser.id,
-      username: dbUser.username,
+      user_id: dbUser.user_id,
+      user_account: dbUser.user_account,
       google_uid: dbUser.google_uid,
       line_uid: dbUser.line_uid,
     }
   } else {
     // 2-2. 不存在 -> 建立一個新會員資料(無帳號與密碼)，只有google來的資料 -> 執行登入工作
     const user = {
-      name: displayName,
-      email: email,
+      user_account: displayName,
+      user_email: email,
       google_uid,
-      photo_url: photoURL,
+      user_image: photoURL,
     }
 
     // 新增會員資料
@@ -74,8 +74,8 @@ router.post('/', async function (req, res, next) {
 
     // 回傳給前端的資料
     returnUser = {
-      id: newUser.id,
-      username: '',
+      user_id: newUser.user_id,
+      user_account: newUser.user_account,
       google_uid: newUser.google_uid,
       line_uid: newUser.line_uid,
     }
