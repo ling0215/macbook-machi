@@ -76,6 +76,20 @@ const handleFavoriteClick = async () => {
   
   //時間用
 
+//通知用
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  },
+});
+//
+
   const router = useRouter()
 
   const getCourse = async (pid) => {
@@ -114,13 +128,13 @@ const handleFavoriteClick = async () => {
 
   return (
     <>
-      <div className="row mt-5 mx-2 d-flex justify-content-center ">
+      <div className="row mt-5 mx-10 d-flex justify-content-center ">
         <div className="col-md-5">
           <div className="position-sticky" style={{ top: '2rem' }}>
             <Swiper
               style={{
-                width: '50vh',
-                height: '50vh',
+                width: '60vh',
+                height: '60vh',
               }}
               autoplay={{
                 delay: 2500,
@@ -253,7 +267,8 @@ const handleFavoriteClick = async () => {
           <div className="mb-4 d-flex justify-content-center align-items-center ">
             <div className="col-6 pe-2">
               <button
-                className="btn btn-outline-brown btn-lg w-100 cartBtn"
+                className={`${styles.dbtn} btn btn-outline-brown btn-lg w-100 cartBtn`}
+                
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
@@ -268,11 +283,9 @@ const handleFavoriteClick = async () => {
                     }
                     addItem(data)
                       .then((response) => {
-                        Swal.fire({
-                          title: '已加入購物車',
-                          text: '您的課程已成功加入購物車！',
+                        Toast.fire({
                           icon: 'success',
-                          confirmButtonColor: '#ab927d',
+                          title: '成功加入購物車',
                         })
                       })
                       .catch((error) => {
@@ -284,13 +297,14 @@ const handleFavoriteClick = async () => {
                   }
                 }}
               >
-                <IoCartOutline className="fs-3 text-brown" /> 加入購物車
+                <IoCartOutline className='fs-3 text-brown' /> 加入購物車
               </button>
             </div>
             <div className="col-6 ps-2">
               <Link href={'/cart'}>
               <button
                 className="btn btn-brown text-white btn-lg w-100 buynowBtn"
+                
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
@@ -363,15 +377,16 @@ const handleFavoriteClick = async () => {
             
             <div className="list-group-flush p-2 py-3 mb-4 border">
 <h4 id="title">｜講堂時間與地點｜</h4>
-<p className="list-group-item">
+<p className={`${styles.text1} product-desc mb-4 text1`}>
 ►講堂日期：<FormattedDate dateString={course.data.course.course_start_time} />~<FormattedDate dateString={course.data.course.course_end_time} />
 </p>
 <p className="list-group-item">
 ►講堂費用：{course.data.course.course_price}
 </p>
-<h4 id="title">｜講堂介紹｜</h4>
+<h4 id="title" >｜講堂介紹｜</h4>
 <p
-            className="product-desc mb-4"
+            className={`${styles.text1} product-desc mb-4 text1`}
+            
             dangerouslySetInnerHTML={{
               __html: course.data.course.course_description_full,
             }}
@@ -387,16 +402,14 @@ const handleFavoriteClick = async () => {
         >
            <div className="list-group-flush p-2 py-3 mb-4 border">
           <div className="list-group-flush p-2 py-3 mb-4 border">
-          <h4 id="title">｜講師名稱｜</h4>
-          <p className="list-group-item">
+          <h4 id="title" >｜講師名稱｜</h4>
+          <p className={`${styles.text1} list-group-item`}>
           {course.data.course.course_teacher}
 </p>
-<p className="list-group-item">
 
-</p>
-<h4 id="title">｜講師經歷｜</h4>
+<h4 id="title" >｜講師經歷｜</h4>
 <p
-            className="product-desc mb-4"
+           className={`${styles.text1} product-desc mb-4 text1`}
             dangerouslySetInnerHTML={{
               __html: course.data.course.course_teacher_description,
             }}

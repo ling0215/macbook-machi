@@ -54,7 +54,6 @@ export const login = async (loginData = {}) => {
  * 登出用
  */
 export const logout = async () => {
-
   return await axiosInstance.post('/auth/logout', {})
 }
 /**
@@ -142,4 +141,34 @@ export const parseJwt = (token) => {
   const base64Payload = token.split('.')[1]
   const payload = Buffer.from(base64Payload, 'base64')
   return JSON.parse(payload.toString())
+}
+
+//獲得收藏商品使用
+export const getProductsByIds = async (productIds) => {
+  return await axiosInstance.get(
+    `/favorites/productsByIds?ids=${encodeURIComponent(productIds.join(','))}`
+  )
+}
+
+// 獲得收藏課程使用
+export const getCoursesByIds = async (courseIds) => {
+  return await axiosInstance.get(
+    `/favorites/coursesByIds?ids=${encodeURIComponent(courseIds.join(','))}`
+  )
+}
+
+//獲得歷史訂單
+export const fetchBetterOrders = async (
+  page = 1,
+  perpage = 8,
+  startDate = '1970-01-01',
+  endDate = '2050-01-01',
+  userId = 0,
+  selectedStatus = ''
+) => {
+  return await axiosInstance.get(
+    `/order/better?page=${page}&perpage=${perpage}&start=${startDate}&end=${endDate}&userId=${userId}&selectedStatus=${encodeURIComponent(
+      selectedStatus
+    )}`
+  )
 }

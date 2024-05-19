@@ -36,7 +36,7 @@ const CardCourse = () => {
                 <h5 className="card-text fw-bold card-title mt-3">
                   {course.course_name}
                 </h5>
-                <p className="card-text type-text mb-2">講師：呂昇達</p>
+                <p className="card-text type-text mb-2">講師：{course.course_teacher}</p>
                 <p className="h-currency bold h-now">
                   NT${course.course_price.toLocaleString()} &nbsp;
                 </p>

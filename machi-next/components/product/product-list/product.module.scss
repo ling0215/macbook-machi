@@ -1,4 +1,4 @@
-// product-card
+// grid-product-card
 .cardBody {
     width: 100%;
     height: 400px; // 固定卡片高度
@@ -9,6 +9,7 @@
     border-radius: 8px;
     overflow: hidden;
     border-radius: 5px;
+    position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     &:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -38,7 +39,7 @@
 .typeText {
     color: var(--dark-grey);
     font-weight: normal;
-    margin: auto 0;
+    margin: 5px 0;
 }
 .currency {
     font-weight: bold;
@@ -55,7 +56,6 @@
 .cartIcon {
     font-size: 20px;
     color: var(--white);
-    margin-right: 8px;
 }
 .cartBtn {
     width: 80%;
@@ -64,7 +64,6 @@
     padding: 5px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,6 +77,7 @@
 
         .cardBody {
             width: 100%;
+            height: 330px;
         }
 
         .cardImg {
@@ -86,18 +86,16 @@
             overflow: hidden;
         }
 
+        .cardText {
+            font-size: medium;
+            margin-top: 0.5rem;
+        }
+
         .badge {
             position: relative;
             top: 0;
             left: 0;   
         } 
-
-        .heartIcon {
-            font-size: 30px;
-            position: absolute;
-            top: 10px;
-            left: 190px;
-        }
 
         .cartIcon {
             font-size: 20px;
@@ -106,19 +104,27 @@
         .cartBtn {
             width: 80%;
             height: 100%;
-            margin-top:1vh;
+            margin-bottom:1vh;
         }
         
     }
-    @media (max-width: 992px) {
-        .cardBody {
-          height: auto;
-        }
-        .cardImg {
-          height: 100%;
-        }
-    }
+// list-product-card
+.heartIconList {
+    font-size: 30px;
+    color: var(--heart);
+    position: absolute;
+    top: 7%;
+    left: 93%;
+}
 
+@media screen and (max-width: 768px) {
+    .heartIconList {
+        position: absolute;
+        top: 7%;
+        left: 85%;
+    }
+    
+}
 
 // filter
 .viewtype {

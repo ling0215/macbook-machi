@@ -5,14 +5,14 @@ import { useCustomize } from '@/hooks/use-customize'
 import toast, { Toaster } from 'react-hot-toast'
 
 export default function CustomizedSize() {
-  const { customize, setSizePrice } = useCustomize()
+  const { setSizePrice } = useCustomize()
+
   const notify = (size, price) =>
     toast.success(`您已選擇 ${size} 蛋糕尺寸，價格為 ${price} `)
 
   const handleSizePriceChange = (size, price) => {
     setSizePrice(size, price)
   }
-
   // 使用 handleSizePriceChange 來設定 size 和 price
 
   return (

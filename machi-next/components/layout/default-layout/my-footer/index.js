@@ -43,12 +43,7 @@ export default function MyFooter() {
               >
                 收藏清單
               </Link>
-              <Link
-                href="#"
-                className="d-block mb-2 text-decoration-none text-white"
-              >
-                專屬優惠券
-              </Link>
+             
             </div>
             <div className="col-12 col-md">
               <Link

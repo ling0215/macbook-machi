@@ -59,11 +59,13 @@ export default function CourseCard({ course }) {
                     )}
             
             {course.course_name && (
-  <h5 className={styles.cardText}>{course.course_name.slice(0, 8)}</h5>
+  <h5 className={styles.cardText}>{course.course_name.slice(0, 6)}</h5>
 )}
             <p className={styles.typeText}  dangerouslySetInnerHTML={{
                 __html: course.course_category
-              }}></p>
+              }}>
+                {/* 123 */}
+              </p>
             <h5 className={styles.currency}>NT${course.course_price}</h5>
             <Link href={`/course/${course.course_id}`}>
             <button className={styles.cartBtn} >
