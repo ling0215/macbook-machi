@@ -37,8 +37,26 @@ export default function PublishForm() {
 
       const saveToDb = async (event) => {
         event.preventDefault()
+
+        const parser = new DOMParser()
+
+        // 使用 DOMParser 解析用戶輸入的 HTML
+        const doc = parser.parseFromString(data, 'text/html')
+      
+        // 選擇所有的圖片元素
+        const images = doc.querySelectorAll('img')
+      
+        // 遍歷每一個圖片元素，並設定其寬度為 100%
+        images.forEach((img) => {
+          img.style.width = '100%'
+          img.style.height = 'auto'
+        })
+      
+        // 將修改後的 HTML 轉換回字符串
+        const newData = doc.body.innerHTML
+
         try {
-          const response = await publish({ title, author, article: data, category })
+          const response = await publish({ title, author, article: newData, category })
           console.log(response)
           if (response.status === 200) {
             Swal.fire({
