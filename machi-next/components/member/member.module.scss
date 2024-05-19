@@ -137,4 +137,25 @@
   transform: translateY(-50%) translateX(10px) rotate(-45deg); 
   /* 滑鼠懸停時水平向右移動10px，旋轉-45度(deg)，將箭頭轉為正向 */
 }
+// 手機板
+@media (max-width: 391px) {
+  // 會員資料
+  .menu {
+    width: 100% !important;
+    
+  }
+  .menu ul li:after {
+    transform: translateY(-0%) rotate(44deg) ;
+    transition: transform 0.2s ease; 
+  }
+  // 修改密碼
+  .password-container{
+    width: 75% !important;
+  }
+ .no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ }
+}
 

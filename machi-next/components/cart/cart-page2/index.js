@@ -597,7 +597,7 @@ const CartPage2 = ({
                 type="button"
               >
                 <div className={`${styles['text']} ${styles['link-button']}`}>
-                  前往結帳
+                  前往付款
                 </div>
               </button>
             </div>
