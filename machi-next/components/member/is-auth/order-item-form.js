@@ -14,19 +14,22 @@ export default function OrderItemForm() {
   useEffect(() => {
     if (oid) {
       fetchOrderItems(oid).then((response) => {
+        console.log(response);
         const productItems = response.filter(
-          (item) => item.order_product_type === 'Product'
+          (item) => item.order_product_type === 'product'
         )
         const customItems = response.filter(
-          (item) => item.order_product_type === 'Custom'
+          (item) => item.order_product_type === 'custom'
         )
         const courseItems = response.filter(
-          (item) => item.order_product_type === 'Course'
+          (item) => item.order_product_type === 'course'
         )
         setProductItems(productItems)
         setCustomItems(customItems)
         setCourseItems(courseItems)
         setOrderItems(response)
+
+
       })
     }
   }, [oid])
@@ -34,6 +37,7 @@ export default function OrderItemForm() {
   console.log(productItems)
   console.log(customItems)
   console.log(courseItems)
+
 
   function formatDate(dateString) {
     const date = new Date(dateString)

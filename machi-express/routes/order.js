@@ -12,7 +12,6 @@ const { Order, OrderItem } = sequelize.models
 //獲取訂單項目
 router.get('/orderItems', authenticate, async (req, res) => {
   const orderId = req.query.oid
-  console.log(111)
 
   try {
     const orderItems = await OrderItem.findAll({
