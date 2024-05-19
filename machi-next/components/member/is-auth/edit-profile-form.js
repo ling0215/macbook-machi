@@ -41,6 +41,7 @@ function EditProfileForm() {
       ) {
         setForm({
           user_account: response.data.data.user.user_account,
+          user_name: response.data.data.user.user_name,
           user_email: response.data.data.user.user_email,
           user_gender: response.data.data.user.user_gender,
           user_birthday: response.data.data.user.user_birthday,
@@ -275,7 +276,7 @@ function EditProfileForm() {
               <label>
                 手機號碼
                 <input
-                  className="form-control px-5"
+                  className="form-control"
                   type="tel"
                   name="user_phone"
                   value={form.user_phone}
@@ -287,7 +288,7 @@ function EditProfileForm() {
               <label>
                 地址
                 <input
-                  className="form-control px-5"
+                  className="form-control"
                   type="text"
                   name="user_address"
                   value={form.user_address}
