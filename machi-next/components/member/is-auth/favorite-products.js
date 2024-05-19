@@ -3,8 +3,10 @@ import { useAuth } from '@/hooks/use-auth'
 import { getProductsByIds } from '@/services/user'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function FavoriteProducts() {
+  const router = useRouter()
   const { favorites, setFavorites } = useAuth()
   const [products, setProducts] = useState([])
 
@@ -21,12 +23,10 @@ function FavoriteProducts() {
       })
   }, [favorites])
 
-  const items = [
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-  ]
+  const isFavoriteProductsPage = router.pathname === '/member/favorite-products'
+  const buttonClass = isFavoriteProductsPage
+    ? 'btn-brown text-white'
+    : 'btn-outline-brown'
 
   return (
     <>
@@ -34,7 +34,7 @@ function FavoriteProducts() {
         <div className="d-flex justify-content-start gap-3">
           <Link href={`/member/favorite-products`}>
             {' '}
-            <button className="btn btn-outline-brown">商品收藏</button>{' '}
+            <button className={`btn ${buttonClass}`}>商品收藏</button>{' '}
           </Link>
           <Link href={`/member/favorite-courses`}>
             {' '}
@@ -59,8 +59,8 @@ function FavoriteProducts() {
                   />
                 </Link>
                 <div className="card-body text-center">
-                  <p className="card-text">{product.product_name}</p>
-                  <p className="card-text">NT${product.product_price_small}</p>
+                  <p className="card-text text-brown">{product.product_name}</p>
+                  <p className="card-text text-primary-dark">NT${product.product_price_small}</p>
                 </div>
               </div>
             </div>

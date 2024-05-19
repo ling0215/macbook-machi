@@ -2,36 +2,79 @@ import React from 'react'
 import Link from 'next/link'
 import styles from './product.module.scss'
 import Image from 'next/image'
-import { IoCartOutline, IoHeartOutline } from 'react-icons/io5'
+import { IoCartOutline } from 'react-icons/io5'
+import FavFcon from './fav-icon'
+import Swal from 'sweetalert2'
 
 export default function ListProductCard({ product }) {
   const imageUrl = `/images/product/card/${product.product_id}1.jpg`
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+  })
+
   return (
     <>
-      <div className={`col-6`}>
-        <div className={`row`}>
-          <Link href="/product/detail" passHref>
-            <Image
-              src={imageUrl}
-              className={styles.cardImg}
-              alt="productImg"
-              placeholder="blur"
-              blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" // 這是一個空白的 GIF，你需要根據你的需求來設定這個值
-              width={230} // 你需要根據你的需求來設定這個值
-              height={230} // 你需要根據你的需求來設定這個值
-            />
-          </Link>
-          <div className={`row ${styles.cardInfo}`}>
-            <IoHeartOutline className={styles.heartIcon} />
-            <h5 className={styles.cardText}>{product.product_name}</h5>
-            <p className={styles.typeText}>{product.product_category}</p>
-            <h5 className={styles.currency}>NT${product.product_price_small}</h5>
-            <button className={`${styles.cartBtn}`}>
-              <IoCartOutline className={styles.cartIcon} /> 加入購物車
-            </button>
-          </div>
-        </div>
-      </div>
+
+        {/* <div className="container-fluid">
+          <div className="row row-cols-1 row-cols-md-1 g-4 d-flex flex-row"> */}
+            <div className="card w-100" style={{ height: 'auto' }}>
+              <div className="row g-0 h-100">
+                <div className="col-md-4 d-flex align-items-center py-2">
+                  <Link href={`/product/${product.product_id}`} passHref>
+                    <Image
+                      src={imageUrl}
+                      className={`img-fluid rounded ${styles['img-pc']} ${styles['img-mobile']}`}
+                      alt="productImg"
+                      placeholder="blur"
+                      blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      width={180}
+                      height={180}
+                      objectFit="cover"
+                    />
+                  </Link>
+                </div>
+                <div className="col-md-8 mt-2">
+                  <div className="card-body d-flex flex-column justify-content-between h-100">
+                    <div className="col-md-12">
+                      <div className="d-flex justify-content-between align-items-center">
+                        <h5 className={styles.cardText}>{product.product_name.slice(0, 20)}</h5>
+                        <FavFcon
+                          id={product.product_id}
+                          style={`${styles.heartIconList} d-flex justify-content-end`}
+                        />
+                      </div>
+                      <p className="card-text mt-2">{product.product_category}</p>
+                    </div>
+                    <div className="col-md-12">
+                      <div className="d-flex justify-content-between mt-3">
+                        <p className="card-text text-primary-dark fw-bold fs-4">
+                          NT${product.product_price_small}
+                        </p>
+                        <button
+                          className={`btn btn-outline-primary w-50 mb-2 ${styles.cartBtn}`}
+                        >
+                          <IoCartOutline className={styles.cartIcon} /> 加入購物車
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {/* </div>
+        </div> */}
+      <style jsx>{`
+       
+      `}</style>
     </>
   )
 }

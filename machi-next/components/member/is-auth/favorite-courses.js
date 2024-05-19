@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/use-auth'
 import { getCoursesByIds } from '@/services/user'
 import Image from 'next/image'
 import Link from 'next/link'
 
 function FavoriteCourses() {
+  const router = useRouter()
   const { favorites, setFavorites } = useAuth()
   const [courses, setCourses] = useState([])
 
   const coursesFavorites = favorites.filter((num) => num < 10821)
-  console.log(courses)
 
   useEffect(() => {
     getCoursesByIds(coursesFavorites)
@@ -22,12 +23,10 @@ function FavoriteCourses() {
       })
   }, [favorites])
 
-  const items = [
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-    { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
-  ]
+  const isFavoriteProductsPage = router.pathname === '/member/favorite-courses'
+  const buttonClass = isFavoriteProductsPage
+    ? 'btn-brown text-white'
+    : 'btn-outline-brown'
 
   return (
     <>
@@ -35,11 +34,11 @@ function FavoriteCourses() {
         <div className="d-flex justify-content-start gap-3">
           <Link href={`/member/favorite-products`}>
             {' '}
-            <button className="btn btn-outline-brown">商品收藏</button>{' '}
+            <button className={`btn btn-outline-brown`}>商品收藏</button>{' '}
           </Link>
           <Link href={`/member/favorite-courses`}>
             {' '}
-            <button className="btn btn-outline-brown">課程收藏</button>{' '}
+            <button className={`btn ${buttonClass}`}>課程收藏</button>{' '}
           </Link>
         </div>
 
@@ -60,8 +59,8 @@ function FavoriteCourses() {
                   />
                 </Link>
                 <div className="card-body text-center">
-                  <p className="card-text">{course.course_name}</p>
-                  <p className="card-text">NT${course.course_price}</p>
+                  <p className="card-text text-brown">{course.course_name}</p>
+                  <p className="card-text text-primary-dark">NT${course.course_price}</p>
                 </div>
               </div>
             </div>

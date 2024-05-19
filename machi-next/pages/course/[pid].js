@@ -40,27 +40,27 @@ export default function Detail() {
         course_start_time: '',
         course_end_time: '',
         course_status: '',
-        course_teacher:'',
-        course_teacher_description:''
+        course_teacher: '',
+        course_teacher_description: '',
       },
     },
   })
-//我的最愛
-const { favorites, setFavorites } = useAuth()
-const isFavorite = favorites.includes(course.data.course.course_id)
+  //我的最愛
+  const { favorites, setFavorites } = useAuth()
+  const isFavorite = favorites.includes(course.data.course.course_id)
 
-const handleFavoriteClick = async () => {
-  if (isFavorite) {
-    await removeFav(course.data.course.course_id)
-  } else {
-    await addFav(course.data.course.course_id)
+  const handleFavoriteClick = async () => {
+    if (isFavorite) {
+      await removeFav(course.data.course.course_id)
+    } else {
+      await addFav(course.data.course.course_id)
+    }
+    const newFavorites = await getFavs()
+    // console.log(newFavorites.data.data.favorites)
+    setFavorites(newFavorites.data.data.favorites)
   }
-  const newFavorites = await getFavs()
-  // console.log(newFavorites.data.data.favorites)
-  setFavorites(newFavorites.data.data.favorites)
-}
-//我的最愛
-  
+  //我的最愛
+
   const [quantity, setQuantity] = useState(1)
   //cart
   const { addItem } = useCart()
@@ -69,12 +69,23 @@ const handleFavoriteClick = async () => {
 
   //時間用
 
+  const dateString = '2024-05-17T13:41:19.000Z'
 
-  const dateString = "2024-05-17T13:41:19.000Z";
-
-
-  
   //時間用
+
+  //通知用
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+  })
+  //
 
   const router = useRouter()
 
@@ -114,13 +125,13 @@ const handleFavoriteClick = async () => {
 
   return (
     <>
-      <div className="row mt-5 mx-2 d-flex justify-content-center ">
+      <div className="row mt-5 mx-10 d-flex justify-content-center ">
         <div className="col-md-5">
           <div className="position-sticky" style={{ top: '2rem' }}>
             <Swiper
               style={{
-                width: '50vh',
-                height: '50vh',
+                width: '60vh',
+                height: '60vh',
               }}
               autoplay={{
                 delay: 2500,
@@ -195,13 +206,23 @@ const handleFavoriteClick = async () => {
 
           <div className="mb-4">
             <p className="product-desc mb-4">
-              課程時間:<FormattedDate dateString={course.data.course.course_start_time} />~<FormattedDate dateString={course.data.course.course_end_time} />
+              課程時間:
+              <FormattedDate
+                dateString={course.data.course.course_start_time}
+              />
+              ~<FormattedDate dateString={course.data.course.course_end_time} />
             </p>
             <p className="product-desc mb-4">
-              報名開始:<FormattedDate1 dateString={course.data.course.course_enroll_start} />
+              報名開始:
+              <FormattedDate1
+                dateString={course.data.course.course_enroll_start}
+              />
             </p>
             <p className="product-desc mb-4">
-              報名截止:<FormattedDate1 dateString={course.data.course.course_enroll_end} />
+              報名截止:
+              <FormattedDate1
+                dateString={course.data.course.course_enroll_end}
+              />
             </p>
           </div>
           {/* 數量按鈕 */}
@@ -253,7 +274,7 @@ const handleFavoriteClick = async () => {
           <div className="mb-4 d-flex justify-content-center align-items-center ">
             <div className="col-6 pe-2">
               <button
-                className="btn btn-outline-brown btn-lg w-100 cartBtn"
+                className={`${styles.dbtn} btn btn-outline-brown btn-lg w-100 cartBtn`}
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
@@ -264,15 +285,12 @@ const handleFavoriteClick = async () => {
                       course_count: quantity, // 數量
                       course_address: course.data.course.course_location,
                       course_date: course.data.course.course_start_time,
-                      
                     }
                     addItem(data)
                       .then((response) => {
-                        Swal.fire({
-                          title: '已加入購物車',
-                          text: '您的課程已成功加入購物車！',
+                        Toast.fire({
                           icon: 'success',
-                          confirmButtonColor: '#ab927d',
+                          title: '成功加入購物車',
                         })
                       })
                       .catch((error) => {
@@ -288,7 +306,6 @@ const handleFavoriteClick = async () => {
               </button>
             </div>
             <div className="col-6 ps-2">
-              <Link href={'/cart'}>
               <button
                 className="btn btn-brown text-white btn-lg w-100 buynowBtn"
                 onClick={async () => {
@@ -305,7 +322,15 @@ const handleFavoriteClick = async () => {
 
                     addItem(data)
                       .then((response) => {
-                        console.log('添加成功:', response)
+                        Swal.fire({
+                          title: '已加入購物車',
+                          text: '您的商品已成功加入購物車！',
+                          icon: 'success',
+                          confirmButtonColor: '#ab927d',
+                          confirmButtonText: '前往購物車',
+                        }).then(() => {
+                          window.location.href = '/cart'
+                        })
                       })
                       .catch((error) => {
                         console.error('添加失敗:', error)
@@ -318,7 +343,6 @@ const handleFavoriteClick = async () => {
               >
                 立即購買
               </button>
-              </Link>
             </div>
           </div>
           <button
@@ -360,52 +384,52 @@ const handleFavoriteClick = async () => {
           style={{ display: activeButton === 'intro' ? 'block' : 'none' }}
         >
           <div className="list-group-flush p-2 py-3 mb-4 border">
-            
             <div className="list-group-flush p-2 py-3 mb-4 border">
-<h4 id="title">｜講堂時間與地點｜</h4>
-<p className="list-group-item">
-►講堂日期：<FormattedDate dateString={course.data.course.course_start_time} />~<FormattedDate dateString={course.data.course.course_end_time} />
-</p>
-<p className="list-group-item">
-►講堂費用：{course.data.course.course_price}
-</p>
-<h4 id="title">｜講堂介紹｜</h4>
-<p
-            className="product-desc mb-4"
-            dangerouslySetInnerHTML={{
-              __html: course.data.course.course_description_full,
-            }}
-          ></p>
-
-
-</div>
+              <h4 id="title">｜講堂時間與地點｜</h4>
+              <p className={`${styles.text1} product-desc mb-4 text1`}>
+                ►講堂日期：
+                <FormattedDate
+                  dateString={course.data.course.course_start_time}
+                />
+                ~
+                <FormattedDate
+                  dateString={course.data.course.course_end_time}
+                />
+              </p>
+              <p className="list-group-item">
+                ►講堂費用：{course.data.course.course_price}
+              </p>
+              <h4 id="title">｜講堂介紹｜</h4>
+              <p
+                className={`${styles.text1} product-desc mb-4 text1`}
+                dangerouslySetInnerHTML={{
+                  __html: course.data.course.course_description_full,
+                }}
+              ></p>
+            </div>
           </div>
         </div>
         <div
           className="content"
           style={{ display: activeButton === 'other' ? 'block' : 'none' }}
         >
-           <div className="list-group-flush p-2 py-3 mb-4 border">
           <div className="list-group-flush p-2 py-3 mb-4 border">
-          <h4 id="title">｜講師名稱｜</h4>
-          <p className="list-group-item">
-          {course.data.course.course_teacher}
-</p>
-<p className="list-group-item">
+            <div className="list-group-flush p-2 py-3 mb-4 border">
+              <h4 id="title">｜講師名稱｜</h4>
+              <p className={`${styles.text1} list-group-item`}>
+                {course.data.course.course_teacher}
+              </p>
 
-</p>
-<h4 id="title">｜講師經歷｜</h4>
-<p
-            className="product-desc mb-4"
-            dangerouslySetInnerHTML={{
-              __html: course.data.course.course_teacher_description,
-            }}
-          ></p>
-<p className="list-group-item">
-
-</p>
+              <h4 id="title">｜講師經歷｜</h4>
+              <p
+                className={`${styles.text1} product-desc mb-4 text1`}
+                dangerouslySetInnerHTML={{
+                  __html: course.data.course.course_teacher_description,
+                }}
+              ></p>
+              <p className="list-group-item"></p>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </>

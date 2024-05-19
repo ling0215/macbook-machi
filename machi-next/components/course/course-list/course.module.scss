@@ -42,7 +42,7 @@
     color: var(--white);
     position: absolute;
     top: 0.5vh;
-    left: 9.5vw;
+    right: 0.5vw;
 }
 .cartIcon {
     font-size: 20px;
@@ -112,3 +112,13 @@
     width: 50px;
     height: 50px;
 }
+@media screen and (max-width: 390px) {
+    .cardBody {
+        width: 100%;
+    }
+    .cardImg {
+        width: 100%; /* 圖片寬度佔滿父元素 */
+        height: 20vh; 
+        overflow: hidden;
+    }
+   }

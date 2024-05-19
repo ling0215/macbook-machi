@@ -21,11 +21,6 @@ function LoginNavBar() {
             忘記密碼
           </Link>
         </li>
-        <li>
-        <Link href="/member/order-query" className={`${styles['content-nav']} p-2 px-4 mx-2 text-decoration-none`}>
-            訂單查詢
-          </Link>
-        </li>
       </ul>
     </nav>
   );
