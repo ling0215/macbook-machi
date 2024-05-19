@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import CartPage1 from '@/components/cart/cart-page1'
 import CartPage2 from '@/components/cart/cart-page2'
@@ -8,6 +8,7 @@ export default function CartMain() {
   const [showPage, setShowPage] = useState(1)
   const [selectedItems, setSelectedItems] = useState()
   const [orderItem, setOrderItem] = useState()
+  console.log(orderItem)
 
   const handleClick = (page) => {
     setShowPage(page)
@@ -16,6 +17,17 @@ export default function CartMain() {
   const handleSelectedItems = (items) => {
     setSelectedItems(items)
   }
+
+  const handleOrderItems = (items) => {
+    setOrderItem(items)
+  }
+
+  useEffect(() => {
+    if (orderItem) {
+      // 当 orderItem 更新时，跳转到 Page 3
+      handleClick(3)
+    }
+  }, [orderItem])
 
   const renderPage = () => {
     switch (showPage) {
@@ -31,10 +43,10 @@ export default function CartMain() {
         return (
           <CartPage2
             onClickPageTo1={() => handleClick(1)}
-            onClickPageTo3={() => handleClick(3)}
+            onClickPageTo3={() => handleClick(3)} // 这里不需要手动跳转
             selectedItems={selectedItems}
             onSelectItems={handleSelectedItems}
-            setOrderItem={setOrderItem}
+            setOrderItem={handleOrderItems} // 确保这里传递了正确的函数
           />
         )
       case 3:
