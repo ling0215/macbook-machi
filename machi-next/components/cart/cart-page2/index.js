@@ -107,6 +107,11 @@ const CartPage2 = ({
   }, [userDetail, auth.userData])
 
   const saveOrderData = async () => {
+    if (payState !== 'creditCard' && payState !== 'linePay') {
+      toast.error('請選擇付款方式')
+      return
+    }
+
     if (transName === '' || transAddress === '') {
       toast.error('請輸入姓名和地址')
       return
@@ -253,7 +258,7 @@ const CartPage2 = ({
             className={` ${styles['step-button']}`}
             onClick={onClickPageTo1}
           >
-            <div className={`${styles['step-button-text']} `}>上一步</div>
+            <div className={`${styles['step-button-text']}`}>上一步</div>
           </button>
 
           {selectedItems &&
@@ -266,8 +271,7 @@ const CartPage2 = ({
                 }}
               >
                 <div
-                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
-                  style={{ height: 64 }}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} pb-2 pt-4`}
                 >
                   <div className={` h3`}>MACHI</div>
                   <div className={` h3`}>商品</div>
@@ -283,7 +287,7 @@ const CartPage2 = ({
                       <img
                         src={item.image}
                         className={`product-img-1`}
-                        style={{ width: 140, height: 140 }}
+                        style={{ width: 140, height: 140, objectFit: 'cover' }}
                       />
                     </div>
                     <div
@@ -327,8 +331,7 @@ const CartPage2 = ({
                 }}
               >
                 <div
-                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
-                  style={{ height: 64 }}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} pb-2 pt-5`}
                 >
                   <div className={` h3`}>MACHI</div>
                   <div className={` h3`}>客製商品</div>
@@ -344,7 +347,7 @@ const CartPage2 = ({
                       <img
                         src={item.image}
                         className={`product-img-1`}
-                        style={{ width: 140, height: 140 }}
+                        style={{ width: 140, height: 140, objectFit: 'cover' }}
                       />
                     </div>
                     <div
@@ -390,10 +393,7 @@ const CartPage2 = ({
                 }}
               >
                 <div
-                  style={{
-                    height: 64,
-                  }}
-                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} pb-2 pt-5`}
                 >
                   <div className={` h3`}>MACHI</div>
                   <div className={` h3`}>課程</div>
@@ -410,7 +410,7 @@ const CartPage2 = ({
                       <img
                         src={item.image}
                         className={`product-img-1`}
-                        style={{ width: 140, height: 140 }}
+                        style={{ width: 140, height: 140, objectFit: 'cover' }}
                       />
                     </div>
                     <div
@@ -459,17 +459,18 @@ const CartPage2 = ({
         </div>
 
         <div className="col"></div>
-        <div className={`${styles['pay-area']} col-md-5 ticky-md-top `}>
+        <div className={`${styles['pay-area']} col-md-5 `}>
           <div></div>
           <div
-            className={
-              'h5 text-primary-dark d-flex justify-content-start d-flex align-items-center ticky-md-top  '
-            }
-            style={{ height: 64 }}
+            className={'h5 text-primary-dark position-relative'}
+            style={{ height: 60 }} // 調整高度以適應兩行文本
           >
-            <FaTruckFast className={' mx-1'} size={24}></FaTruckFast>
-            請輸入完整資料
+            <div className="position-absolute" style={{ bottom: 0, left: 0 }}>
+              <FaTruckFast className={'mx-1'} size={24} />
+              <span>配送範圍僅台北.新北.桃園</span>
+            </div>
           </div>
+
           <form
             className={`${styles['pay-content']} px-3 py-4 sticky-md-top mb-3 `}
             method="post"
@@ -479,10 +480,20 @@ const CartPage2 = ({
               className={`d-flex justify-content-between pb-3 ${styles['text-border-brown']} `}
             >
               <button
-                className={`${styles['pay-button']} ${styles['h6']}`}
+                className={`${styles['pay-button']} ${styles['h6']} ${
+                  payState === 'bankpay' ? styles['selected'] : ''
+                }`}
                 type="button"
+                onClick={() => {
+                  setPayState('bankpay')
+                }}
               >
-                <RiCheckboxBlankCircleLine></RiCheckboxBlankCircleLine>銀行轉帳
+                {payState === 'bankpay' ? (
+                  <RiCheckboxCircleLine />
+                ) : (
+                  <RiCheckboxBlankCircleLine />
+                )}
+                銀行轉帳
               </button>
               <button
                 className={`${styles['pay-button']} ${styles['h6']} ${
@@ -564,7 +575,7 @@ const CartPage2 = ({
                   className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}  ${styles['form-control']} ${styles['custom-input']}`}
                   value={transAddress}
                   onChange={(e) => setTransAddress(e.target.value)}
-                  placeholder="請填寫完整地址"
+                  placeholder="請填寫完整配送地址"
                 />
               </div>
             </div>

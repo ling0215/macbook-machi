@@ -7,6 +7,7 @@ import CartPage3 from '@/components/cart/cart-page3'
 export default function CartMain() {
   const [showPage, setShowPage] = useState(1)
   const [selectedItems, setSelectedItems] = useState()
+  const [backSelectedItems, setBackSelectedItems] = useState()
   const [orderItem, setOrderItem] = useState()
   console.log(orderItem)
 
@@ -21,6 +22,11 @@ export default function CartMain() {
   const handleOrderItems = (items) => {
     setOrderItem(items)
   }
+  useEffect(() => {
+    if (showPage === 2) {
+      setBackSelectedItems(selectedItems)
+    }
+  }, [showPage])
 
   useEffect(() => {
     if (orderItem) {

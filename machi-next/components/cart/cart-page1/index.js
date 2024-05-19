@@ -2,8 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useCart } from '@/hooks/cart-type-state'
 import styles from './page1.module.scss'
 import { FaCheck } from 'react-icons/fa6'
+import { size } from 'lodash'
 
-const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
+const CartPage1 = ({
+  onClickPage,
+  onSelectItems,
+  selectedItems,
+  backSelectedItems,
+}) => {
   const { cart, items, decrement, increment, removeItem, addItem } = useCart()
 
   // console.log(`傳入page1的cart$`)
@@ -270,7 +276,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 <img
                   src={item.image}
                   alt=""
-                  style={{ width: 140, height: 140 }}
+                  style={{ width: 140, height: 140, objectFit: 'cover' }}
                 />
               </div>
               <div
@@ -314,7 +320,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   className={`d-flex g-3 justify-content-between col addbuton`}
                 >
                   <div
-                    className={`btn-group d-flex   `}
+                    className={`btn-group d-flex  ${styles['btn-count']} `}
                     role={`group`}
                     aria-label={`Basic mixed styles example `}
                     style={{
@@ -325,7 +331,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   >
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0`}
-                      style={{ width: '28px' }}
+                      style={{ width: 28, fontSize: 22 }}
                       onClick={() => decrement(item.uid, item.id, item.type)} // 减少数量的点击事件
                     >
                       -
@@ -337,7 +343,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                     </button>
                     <button
                       className={` btn btn-outline-light text-primary-dark h4  mb-0`}
-                      style={{ width: '28px' }}
+                      style={{ width: 28, fontSize: 22 }}
                       onClick={() => increment(item.uid, item.id, item.type)} // 增加数量的点击事件
                     >
                       +
@@ -390,7 +396,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 <img
                   src={item.image}
                   alt="自訂商品"
-                  style={{ width: 140, height: 140 }}
+                  style={{ width: 140, height: 140, objectFit: 'cover' }}
                 />
               </div>
               <div
@@ -434,18 +440,13 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                   className={`d-flex g-3 justify-content-between col addbuton`}
                 >
                   <div
-                    className={`btn-group d-flex   `}
+                    className={`btn-group d-flex    ${styles['btn-count']}`}
                     role={`group`}
                     aria-label={`Basic mixed styles example `}
-                    style={{
-                      width: '128px',
-                      height: '48px',
-                      border: '1px solid #ab927d;',
-                    }}
                   >
                     <button
                       className={` btn btn-outline-light text-primary-dark h4 mb-0`}
-                      style={{ width: '28px' }}
+                      style={{ width: 28, fontSize: 22 }}
                       onClick={() => decrement(item.uid, item.id, item.type)} // 减少数量的点击事件
                     >
                       -
@@ -456,8 +457,8 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                       {item.quantity}
                     </button>
                     <button
-                      className={` btn btn-outline-light text-primary-dark h4  mb-0`}
-                      style={{ width: '28px' }}
+                      className={` btn btn-outline-light text-primary-dark h4   mb-0`}
+                      style={{ width: 28, fontSize: 22 }}
                       onClick={() => increment(item.uid, item.id, item.type)} // 增加数量的点击事件
                     >
                       +
@@ -510,7 +511,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
                 <img
                   src={item.image}
                   className={`product-img-1`}
-                  style={{ width: 140, height: 140 }}
+                  style={{ width: 140, height: 140, objectFit: 'cover' }}
                 />
               </div>
               <div
@@ -569,7 +570,7 @@ const CartPage1 = ({ onClickPage, onSelectItems, selectedItems }) => {
             className={`${styles['cart-button']}`}
             onClick={handleClickConfirm}
           >
-            <div className={`${styles['cart-button-text']}`}>前往結帳</div>
+            <div className={`${styles['cart-button-text']}`}>確認購買</div>
           </button>
         </div>
       </div>
