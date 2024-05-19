@@ -65,6 +65,7 @@ export default function LoginForm() {
         })
 
         console.log('已登入', userData)
+        router.push('/')
       } else {
         console.log('登入後無資料')
         // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
