@@ -267,7 +267,8 @@ const Toast = Swal.mixin({
           <div className="mb-4 d-flex justify-content-center align-items-center ">
             <div className="col-6 pe-2">
               <button
-                className="btn btn-outline-brown btn-lg w-100 cartBtn"
+                className={`${styles.dbtn} btn btn-outline-brown btn-lg w-100 cartBtn`}
+                
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
@@ -296,13 +297,14 @@ const Toast = Swal.mixin({
                   }
                 }}
               >
-                <IoCartOutline className="fs-3 text-brown" /> 加入購物車
+                <IoCartOutline className='fs-3 text-brown' /> 加入購物車
               </button>
             </div>
             <div className="col-6 ps-2">
               <Link href={'/cart'}>
               <button
                 className="btn btn-brown text-white btn-lg w-100 buynowBtn"
+                
                 onClick={async () => {
                   const response = await checkAuth()
                   if (response.data.status === 'success') {
