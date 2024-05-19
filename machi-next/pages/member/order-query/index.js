@@ -25,13 +25,6 @@ function OrderQuery() {
           <OrderQueryForm />
         </div>
       </div>
-      {/* <ul>
-        {orders.map(order => (
-          <li key={order.id}>
-            {order.date} - {order.amount} - {order.status}
-          </li>
-        ))}
-      </ul> */}
     </>
   )
 }
