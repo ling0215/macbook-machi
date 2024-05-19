@@ -17,9 +17,6 @@ const CartPage2 = ({
   onSelectItems,
   setOrderItem,
 }) => {
-  console.log('樓下為page2')
-  console.log(selectedItems)
-
   useEffect(() => {
     window.scrollTo(0, 0) // 每当组件重新渲染时，将窗口滚动到顶部
   }, [])

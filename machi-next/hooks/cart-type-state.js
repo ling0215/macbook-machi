@@ -23,6 +23,7 @@ export const CartTypeProvider = ({ children }) => {
   const [cartState, setCartState] = useState(init([]))
   const [error, setError] = useState(null)
   const { auth } = useAuth()
+  console.log(auth)
   const [formattedCartItems, setFormattedCartItems] = useState([])
   const [cartUpdated, setCartUpdated] = useState(false)
 
@@ -75,21 +76,13 @@ export const CartTypeProvider = ({ children }) => {
               course_address: item.course_address,
             }
           } else if (item.cart_item_id) {
-            const userId = auth.userData.user_id // 请替换为你的实际用户ID
-            const today = new Date()
-            const year = today.getFullYear()
-            const month = String(today.getMonth() + 1).padStart(2, '0')
-            const day = String(today.getDate()).padStart(2, '0')
-
-            const formattedDate = `${year}-${month}-${day}`
-            const customImgUrl = `http://localhost:3005/customize/${userId}_${formattedDate}.jpg`
             return {
               uid: auth.userData.user_id,
               id: item.cart_item_id,
               quantity: item.custom_count,
               price: item.custom_price,
               name: '自訂商品',
-              image: customImgUrl,
+              image: item.custom_img,
               type: 'custom',
               specification: `${item.custom_size},${item.custom_layer},${item.custom_flavor},${item.custom_decor}`,
             }
@@ -144,15 +137,6 @@ export const CartTypeProvider = ({ children }) => {
         course_address: item.course_address,
       }
     } else if (item.custom_price) {
-      const userId = auth.userData.user_id // 请替换为你的实际用户ID
-      const today = new Date()
-      const year = today.getFullYear()
-      const month = String(today.getMonth() + 1).padStart(2, '0')
-      const day = String(today.getDate()).padStart(2, '0')
-
-      const formattedDate = `${year}-${month}-${day}`
-      const customImgUrl = `http://localhost:3005/customize/${userId}_${formattedDate}.jpg`
-      console.log(customImgUrl)
       newItem = {
         uid: userId,
         quantity: item.custom_count,
@@ -161,7 +145,7 @@ export const CartTypeProvider = ({ children }) => {
         layer: item.custom_layer,
         flavor: item.custom_flavor,
         decor: item.custom_decor,
-        custom_img: customImgUrl,
+        custom_img: `http://localhost:3005/customize/${item.custom_img}.jpg`,
         type: 'custom',
       }
     }
