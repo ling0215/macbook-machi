@@ -130,8 +130,8 @@ export default function Detail() {
           <div className="position-sticky" style={{ top: '2rem' }}>
             <Swiper
               style={{
-                width: '60vh',
-                height: '60vh',
+                width: '45vh',
+                height: '45vh',
               }}
               autoplay={{
                 delay: 2500,
