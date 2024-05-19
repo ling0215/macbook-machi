@@ -133,8 +133,8 @@ const Toast = Swal.mixin({
           <div className="position-sticky" style={{ top: '2rem' }}>
             <Swiper
               style={{
-                width: '50vh',
-                height: '50vh',
+                width: '45vh',
+                height: '45vh',
               }}
               autoplay={{
                 delay: 2500,
