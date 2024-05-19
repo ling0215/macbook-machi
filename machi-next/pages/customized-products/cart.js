@@ -10,7 +10,7 @@ import { useState } from 'react'
 import Swal from 'sweetalert2'
 
 export default function CustomizedCart() {
-  const { customize, setDefaultCustomize } = useCustomize()
+  const { customize, setDefaultCustomize, pictureUrl } = useCustomize()
   const [customTotNum, setCustomTotNum] = useState(1)
   const { addItem } = useCart()
   let totPrice = customize.sizePrice.price * customTotNum
@@ -24,6 +24,8 @@ export default function CustomizedCart() {
       setCustomTotNum(customTotNum - 1)
     }
   }
+  // console.log(111)
+  // console.log(pictureUrl)
 
   const customCart = {
     custom_count: customTotNum,
@@ -32,10 +34,11 @@ export default function CustomizedCart() {
     custom_layer: customize.layer,
     custom_flavor: customize.flavor,
     custom_decor: customize.deco,
-    custom_img: customize.preview,
+    custom_img: pictureUrl,
     // custom_preview: customize.preview,
   }
 
+  console.log(customCart)
   const addCart = () => {
     addItem(customCart).then(() => {
       Swal.fire({

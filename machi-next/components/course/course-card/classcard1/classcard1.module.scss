@@ -4,15 +4,21 @@
 .ps-3{
     font-size: 1px;
 }
+
+
 .btn-info{
     margin-left: 10px;
     margin-right: 5px;
         border-style:none; 
        font-size:18px;
-        color: var(--primary-dark);
-        background-color: #f8dc9a;
+       
+        color: white;
+        background-color: var(--light-brown);
         width: 90px;
         border-radius: 5px;
+        &:hover{
+            background-color: var(--brown);
+            } 
 }
 .class-date{
     margin: 5px;
@@ -34,7 +40,7 @@
     border-radius: 5px;
     object-fit: cover; 
     width: 100%; /* 圖片寬度佔滿父元素 */
-    height: 318px;
+    height: 353px;
     
     overflow: hidden;
 }
@@ -55,4 +61,10 @@
     display: -webkit-box;
     -webkit-line-clamp: 3; /* 顯示的行數 */
     -webkit-box-orient: vertical;
+    color: var(--primary-dark);
+    font-weight: bold;
 }
+
+
+
+

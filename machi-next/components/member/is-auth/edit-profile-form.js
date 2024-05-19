@@ -12,6 +12,7 @@ function EditProfileForm() {
   const { setAuth } = useAuth()
   const [form, setForm] = useState({
     user_account: '',
+    user_name: '',
     user_email: '',
     user_gender: '',
     user_birthday: '2000-01-01',
@@ -179,7 +180,7 @@ function EditProfileForm() {
         <div className="col p-2">
           <form
             onSubmit={handleSubmit}
-            className="d-flex flex-column mx-5 my-3"
+            className="d-flex flex-column mx-5 mt-3"
           >
             <div className="form-group my-2 text-primary-dark fw-bold">
               <label>
@@ -188,7 +189,7 @@ function EditProfileForm() {
               </label>
             </div>
 
-            <div className="form-group my-2 mb-5 text-primary-dark fw-bold">
+            <div className="form-group my-1 mb-5 text-primary-dark fw-bold">
               <Link href="/member/account/update-password">
                 <button type="button" className="btn btn-brown text-white">
                   修改密碼
@@ -234,7 +235,7 @@ function EditProfileForm() {
                 不願透漏
               </button>
             </div>
-            <div className="form-group my-3 text-primary-dark fw-bold">
+            <div className="form-group my-2 text-primary-dark fw-bold">
               <label>
                 使用者名稱
                 <input
@@ -246,7 +247,19 @@ function EditProfileForm() {
                 />
               </label>
             </div>
-            <div className="form-group my-3 text-primary-dark fw-bold">
+            <div className="form-group my-2 text-primary-dark fw-bold">
+              <label>
+                真實姓名
+                <input
+                  className="form-control"
+                  type="text"
+                  name="user_name"
+                  value={form.user_name}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="form-group my-2 text-primary-dark fw-bold">
               <label>
                 生日
                 <input
@@ -258,11 +271,11 @@ function EditProfileForm() {
                 />
               </label>
             </div>
-            <div className="form-group my-3 text-primary-dark fw-bold">
+            <div className="form-group my-2 text-primary-dark fw-bold">
               <label>
                 手機號碼
                 <input
-                  className="form-control"
+                  className="form-control px-5"
                   type="tel"
                   name="user_phone"
                   value={form.user_phone}
@@ -270,11 +283,11 @@ function EditProfileForm() {
                 />
               </label>
             </div>
-            <div className="form-group my-3 text-primary-dark fw-bold">
+            <div className="form-group my-2 text-primary-dark fw-bold">
               <label>
                 地址
                 <input
-                  className="form-control"
+                  className="form-control px-5"
                   type="text"
                   name="user_address"
                   value={form.user_address}

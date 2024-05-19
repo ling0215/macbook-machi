@@ -13,6 +13,7 @@ import { QueryTypes, Op } from 'sequelize'
 測試連結:
 /products?page=3&perpage=10&brand_ids=1,2,4&cat_ids=4,5,6,10,11,12&color_ids=1,2&size_ids=2,3&tag_ids=1,2,4&name_like=e&price_gte=1500&price_lte=10000&sort=price&order=asc
 */
+
 // GET 獲得所有資料，加入分頁與搜尋字串功能，單一資料表處理
 router.get('/', async (req, res) => {
   const {
@@ -24,9 +25,6 @@ router.get('/', async (req, res) => {
     max = 3000, // 新增的查詢參數
   } = req.query
 
-  console.log(111111111111)
-  console.log(req.query.search)
-  console.log(2222222222222)
   // !!注意: 以下都要檢查各query參數值的正確性，或給定預設值，要不然可能會產生資料庫查詢錯誤
   // 建立例如: `CONCAT(",", color, ",") REGEXP ",(1|2),"`
   const genConcatRegexp = (param, column) => {

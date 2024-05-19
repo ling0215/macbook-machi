@@ -1,8 +1,14 @@
 import { createContext, useState, useContext } from 'react'
+import { updateCustomizePicture } from '@/services/customize'
 
 const CustomizeContext = createContext(null)
 
 export function CustomizeProvider({ children }) {
+  const [pictureUrl, setPictureUrl] = useState(null)
+  const updatePictureUrl = (url) => {
+    setPictureUrl(url)
+  }
+
   const [customize, setCustomize] = useState({
     sizePrice: { size: '', price: '' },
     layer: '',
@@ -51,6 +57,8 @@ export function CustomizeProvider({ children }) {
         setFlavor,
         setDeco,
         setPreview,
+        pictureUrl, // 新的狀態
+        updatePictureUrl, // 新的函數
       }}
     >
       {children}

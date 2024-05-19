@@ -15,10 +15,8 @@ const CartPage2 = ({
   onClickPageTo3,
   selectedItems,
   onSelectItems,
+  setOrderItem,
 }) => {
-  console.log('樓下為page2')
-  console.log(selectedItems)
-
   useEffect(() => {
     window.scrollTo(0, 0) // 每当组件重新渲染时，将窗口滚动到顶部
   }, [])
@@ -76,7 +74,7 @@ const CartPage2 = ({
     }
 
     if (missingDetails.length > 0) {
-      noDetail = `您的${missingDetails.join('、')} 尚未輸入`
+      noDetail = `您的${missingDetails.join('、')} 尚未提供`
     }
 
     if (userDetail === true) {
@@ -108,6 +106,7 @@ const CartPage2 = ({
       toast.error('請輸入正確的電話號碼')
       return
     }
+
     const data = {
       data: {
         user_id_fk: auth.userData.user_id,
@@ -125,6 +124,7 @@ const CartPage2 = ({
           product_name: item.name,
           product_detail: item.specification,
           product_count: item.quantity,
+          product_price: item.price,
         })),
         ...selectedItems.custom.map((item) => ({
           product_type: 'Custom',
@@ -132,6 +132,7 @@ const CartPage2 = ({
           product_name: item.name,
           product_detail: item.specification,
           product_count: item.quantity,
+          product_price: item.price,
         })),
         ...selectedItems.courses.map((item) => ({
           product_type: 'Course',
@@ -139,26 +140,30 @@ const CartPage2 = ({
           product_name: item.name,
           product_detail: item.course_date,
           product_count: item.quantity,
+          product_price: item.price,
         })),
       ],
     }
 
     try {
       const response = await addToOrder(auth.userData.id, data)
+      console.log(data)
+      console.log(response)
+
       if (!response.error) {
+        setOrderItem(response)
         Swal.fire({
           title: '結帳成功',
           text: '感謝您的購買！',
           icon: 'success',
           confirmButtonColor: '#ab927d',
         })
-        onClickPageTo3() // 如果保存成功，跳转到下一页
       } else {
-        toast.error('保存訂單時出錯')
+        console.error('Error in response:', response.error)
       }
     } catch (error) {
-      console.error('保存訂單時出錯:', error)
-      toast.error('保存訂單時出錯')
+      console.error('Error adding to order:', error)
+      // 你可以在这里处理错误情况
     }
   }
 

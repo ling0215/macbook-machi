@@ -1,6 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useAuth } from '@/hooks/use-auth'
+import { getProductsByIds } from '@/services/user'
+import Image from 'next/image'
+import Link from 'next/link'
 
 function FavoriteProducts() {
+  const { favorites, setFavorites } = useAuth()
+  const [products, setProducts] = useState([])
+
+  const productFavorites = favorites.filter((num) => num > 10821)
+
+  useEffect(() => {
+    getProductsByIds(productFavorites)
+      .then((response) => {
+        setProducts(response.data.data)
+        console.log(response.data.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching products:', error)
+      })
+  }, [favorites])
+
   const items = [
     { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
     { name: '小山園草莓塔', price: 'NT$480', imgSrc: '...' },
@@ -12,57 +32,42 @@ function FavoriteProducts() {
     <>
       <div className="container p-5 border rounded">
         <div className="d-flex justify-content-start gap-3">
-          <button className="btn btn-outline-brown">課程訂單</button>
-          <button className="btn btn-outline-brown">收藏商品</button>
+          <Link href={`/member/favorite-products`}>
+            {' '}
+            <button className="btn btn-outline-brown">商品收藏</button>{' '}
+          </Link>
+          <Link href={`/member/favorite-courses`}>
+            {' '}
+            <button className="btn btn-outline-brown">課程收藏</button>{' '}
+          </Link>
         </div>
-        <div className="mt-4 d-flex gap-3">
-          <div className="d-flex align-items-center gap-3 flex-grow-1">
-            <div className="col-3">查詢訂單時間</div>
-            <input
-              type="date"
-              className="form-control"
-              defaultValue="2024-01-01"
-            />
-            <div className="border-top border-2 w-25"></div>
-            <input
-              type="date"
-              className="form-control"
-              defaultValue="2024-01-02"
-            />
-          </div>
-          <div className="d-flex gap-3">
-            <button className="btn btn-brown text-white">確定送出</button>
-            <button className="btn btn-brown text-white">取消查詢</button>
-          </div>
-        </div>
+
         <hr className="my-3 mt-5" />
-        <div className="d-flex justify-content-around text-primary-dark">
-          <div className="fw-bold">訂單項目</div>
-          <div>訂單日期</div>
-          <div>訂單編號</div>
-          <div>訂單金額</div>
-          <div>訂單狀態</div>
-        </div>
-        <hr className="my-3" />
+
         <div className="row mt-5">
-          {items.map((item, index) => (
-            <div key={index} className="col-md-3 col-6">
+          {products.map((product, index) => (
+            <div key={index} className="col-md-3 col-6 g-3">
               <div className="card">
-                <img
-                  loading="lazy"
-                  src="/images/product/list/strawberry-tart-01.jpg"
-                  className="card-img-top"
-                  alt="商品圖片"
-                />
+                <Link href={`/product/${product.product_id}`}>
+                  <Image
+                    loading="lazy"
+                    src={`/images/product/card/${product.product_id}1.jpg`}
+                    alt={product.product_name}
+                    width={200}
+                    height={200}
+                    className="card-img-top"
+                  />
+                </Link>
                 <div className="card-body text-center">
-                  <p className="card-text">小山園草莓塔</p>
-                  <p className="card-text">NT$480</p>
+                  <p className="card-text">{product.product_name}</p>
+                  <p className="card-text">NT${product.product_price_small}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
       <style jsx>{`
         .btn-outline-brown:hover {
           background-color: var(--brown);

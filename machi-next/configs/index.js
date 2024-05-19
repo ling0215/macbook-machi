@@ -49,5 +49,7 @@ export const pathsLocaleMap = {
   'order':'訂單',
   'blog':'部落格',
   'course':'課程',
+  'update-password':'修改密碼',
+  'publish':'發佈文章',
 }
 /* eslint-enable */

@@ -7,6 +7,9 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 import authenticate from '#middlewares/authenticate.js'
 import sequelize from '#configs/db.js'
 const { ProductFavorite } = sequelize.models
+const { Course } = sequelize.models
+const { Product } = sequelize.models
+import { QueryTypes, Op } from 'sequelize'
 
 // 獲得某會員id的有加入到我的最愛清單中的商品id們
 // 此路由只有登入會員能使用
@@ -70,6 +73,62 @@ router.delete('/:id', authenticate, async (req, res, next) => {
 
   // 成功
   return res.json({ status: 'success', data: null })
+})
+
+//獲得收藏商品
+router.get('/productsByIds', async (req, res) => {
+  const { ids } = req.query
+  const productIds = ids ? ids.split(',').map(Number) : []
+
+  try {
+    const products = await Product.findAll({
+      where: {
+        product_id: {
+          [Op.in]: productIds,
+        },
+      },
+    })
+
+    return res.json({
+      status: 'success',
+      data: products,
+    })
+  } catch (e) {
+    console.log(e)
+
+    return res.json({
+      status: 'error',
+      message: '無法查詢到資料，查詢字串可能有誤',
+    })
+  }
+})
+
+//獲得收藏課程
+router.get('/coursesByIds', async (req, res) => {
+  const { ids } = req.query
+  const courseIds = ids ? ids.split(',').map(Number) : []
+
+  try {
+    const courses = await Course.findAll({
+      where: {
+        course_id: {
+          [Op.in]: courseIds,
+        },
+      },
+    })
+
+    return res.json({
+      status: 'success',
+      data: courses,
+    })
+  } catch (e) {
+    console.log(e)
+
+    return res.json({
+      status: 'error',
+      message: '無法查詢到資料，查詢字串可能有誤',
+    })
+  }
 })
 
 export default router

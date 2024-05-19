@@ -17,7 +17,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
   const handleCategoryChange = (value) => {
     setCategory(value)
   }
-
+  
   
 
   return (
@@ -32,6 +32,20 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                   className="accordion accordion-flush"
                   id="accordionFlushExample"
                 >
+                  <h2 className="accordion-header">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        aria-expanded="false"
+                        onClick={() => handleCategoryChange('')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleCategoryChange('')
+                        }}
+                      >
+                        所有商品
+                      </button>
+                    </h2>
                   <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button
@@ -100,7 +114,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                     </div>
                   </div>
 
-                  <div className="accordion-item">
+                  {/* <div className="accordion-item">
                     <h2 className="accordion-header">
                       <button
                         className="accordion-button collapsed"
@@ -216,10 +230,10 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                           role="button"
                           tabIndex={0}
                           className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('達克瓦茲')}
+                          onClick={() => handleCategoryChange('呂昇達')}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter')
-                              handleCategoryChange('達克瓦茲')
+                              handleCategoryChange('呂昇達')
                           }}
                         >
                           呂昇達
@@ -250,7 +264,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                  
 
