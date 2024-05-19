@@ -22,272 +22,136 @@ export default function Sidebar({ setCategory, setPriceRange }) {
 
   return (
     <>
-      {/* 左側篩選 */}
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="d-flex" id="wrapper">
-            <div className="bg-white me-3" id="sidebar-wrapper">
-              <div className="scroll sticky-md-top">
-                <div
-                  className="accordion accordion-flush"
-                  id="accordionFlushExample"
-                >
+    {/* 左側篩選 */}
+    <div className="row">
+      <div className="col-sm-12">
+        <div className="d-flex" id="wrapper">
+          <div className="bg-white me-3" id="sidebar-wrapper">
+            <div className="scroll sticky-md-top">
+              <div
+                className="accordion accordion-flush border rounded"
+                id="accordionFlushExample"
+              >
+                <div className="accordion-item">
                   <h2 className="accordion-header">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        aria-expanded="false"
-                        onClick={() => handleCategoryChange('')}
+                    <button
+                      className="accordion-button collapsed bg-light-grey"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      aria-expanded="false"
+                      onClick={() => handleCategoryChange('')}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') handleCategoryChange('')
+                      }}
+                    >
+                      所有商品
+                    </button>
+                  </h2>
+                  <div
+                    id="panelsStayOpen-collapseFour"
+                    className="accordion-collapse collapse"
+                  ></div>
+                </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      aria-expanded="false"
+                      data-bs-target="#panelsStayOpen-collapseOne"
+                      aria-controls="panelsStayOpen-collapseOne"
+                    >
+                      課程類別
+                    </button>
+                  </h2>
+                  <div
+                    id="panelsStayOpen-collapseOne"
+                    className="accordion-collapse collapse"
+                  >
+                    <div className="accordion-body px-3">
+                      <p
+                        role="button"
+                        tabIndex={0}
+                        className="text-decoration-none d-block hover-button"
+                        onClick={() => handleCategoryChange('蛋糕')}
                         onKeyDown={(e) => {
-                          if (e.key === 'Enter') handleCategoryChange('')
+                          if (e.key === 'Enter') handleCategoryChange('蛋糕')
                         }}
                       >
-                        所有商品
-                      </button>
-                    </h2>
-                  <div className="accordion-item">
-                    <h2 className="accordion-header">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        aria-expanded="false"
-                        data-bs-target="#panelsStayOpen-collapseOne"
-                        aria-controls="panelsStayOpen-collapseOne"
+                        蛋糕
+                      </p>
+                      <p
+                        role="button"
+                        tabIndex={0}
+                        className="text-decoration-none d-block hover-button"
+                        onClick={() => handleCategoryChange('麵包')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleCategoryChange('麵包')
+                        }}
                       >
-                        課程類別
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseOne"
-                      className="accordion-collapse collapse"
-                    >
-                      <div className="accordion-body px-1">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('蛋糕')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleCategoryChange('蛋糕')
-                          }}
-                        >
-                          蛋糕
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('餅乾')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleCategoryChange('餅乾')
-                          }}
-                        >
-                          餅乾
-                        </div>
-                        
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('麵包')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleCategoryChange('麵包')
-                          }}
-                        >
-                          麵包
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('精緻點心')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleCategoryChange('精緻點心')
-                          }}
-                        >
-                          精緻點心
-                        </div>
-                        
-                      </div>
+                        麵包
+                      </p>
+                      <p
+                        role="button"
+                        tabIndex={0}
+                        className="text-decoration-none d-block hover-button"
+                        onClick={() => handleCategoryChange('精緻點心')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleCategoryChange('精緻點心')
+                        }}
+                      >
+                        精緻點心
+                      </p>
+                      <p
+                        role="button"
+                        tabIndex={0}
+                        className="text-decoration-none d-block hover-button"
+                        onClick={() => handleCategoryChange('餅乾')}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleCategoryChange('餅乾')
+                        }}
+                      >
+                       餅乾
+                      </p>
                     </div>
                   </div>
+                </div>
 
-                  {/* <div className="accordion-item">
-                    <h2 className="accordion-header">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        aria-expanded="false"
-                        data-bs-target="#panelsStayOpen-collapseTwo"
-                        aria-controls="panelsStayOpen-collapseTwo"
-                      >
-                        報名狀態
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseTwo"
-                      className="accordion-collapse collapse"
-                    >
-                      <div className="accordion-body px-1">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('蛋糕')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('蛋糕')
-                          }}
-                        >
-                          蛋糕
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('餅乾')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('餅乾')
-                          }}
-                        >
-                          餅乾
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('乳酪蛋糕')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('乳酪蛋糕')
-                          }}
-                        >
-                          台北市
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('提拉米蘇')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('提拉米蘇')
-                          }}
-                        >
-                          提拉米蘇
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('慕斯蛋糕')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('慕斯蛋糕')
-                          }}
-                        >
-                          慕斯蛋糕
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('磅蛋糕')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('磅蛋糕')
-                          }}
-                        >
-                          磅蛋糕
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="accordion-item">
-                    <h2 className="accordion-header">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        aria-expanded="false"
-                        data-bs-target="#panelsStayOpen-collapseThree"
-                        aria-controls="panelsStayOpen-collapseThree"
-                      >
-                        講師選擇
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseThree"
-                      className="accordion-collapse collapse"
-                    >
-                      <div className="accordion-body px-1">
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('呂昇達')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('呂昇達')
-                          }}
-                        >
-                          呂昇達
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('曲奇餅乾')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('曲奇餅乾')
-                          }}
-                        >
-                          威力
-                        </div>
-                        <div
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none text-primary d-block hover-button"
-                          onClick={() => handleCategoryChange('蘋果')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('蘋果')
-                          }}
-                        >
-                          蘋果
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-
-                 
-
-                  <label htmlFor="range" className="form-label mt-3">
-                    價格區間<p> {sliderValue}元以下</p>
+               
+                <div className="range p-3">
+                  <label htmlFor="range" className="form-label text-primary-dark">
+                    價格區間
                   </label>
                   <input
-        type="range"
-        className="form-range"
-        min={4000}
-        max={10000}
-        step={1000}
-        id="range"
-        value={sliderValue}
-        onChange={handleRangeChange}
-      />
-
+                    type="range"
+                    className="form-range text-brown"
+                    min={0}
+                    max={10000}
+                    step="100"
+                    id="range"
+                    onChange={handleRangeChange}
+                  />
+                  <span id="rangeValue" className="text-primary-dark fw-bold">NT$0 ～ NT${sliderValue}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
+    <style jsx>{`
+      .accordion-button {
+        color: var(--primary-dark);
+      }
+      .accordion-body p {
+        border-bottom: 1px solid #E2E2E2;
+        color: var(--primary-dark);
+      }
+      .form-range::-webkit-slider-thumb {
+        background-color: var(--secondary)
+      }
+    `}</style>
+  </>
   )
 }
