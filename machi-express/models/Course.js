@@ -62,6 +62,12 @@ export default async function (sequelize) {
         type: DataTypes.TINYINT,
         allowNull: false,
         defaultValue: 1,
+      },course_teacher: {
+        type: DataTypes.STRING(600),
+        allowNull: false,
+      },course_teacher_description: {
+        type: DataTypes.STRING(600),
+        allowNull: false,
       },
     },
     {

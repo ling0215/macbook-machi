@@ -19,9 +19,6 @@ import path from 'path'
 import multer from 'multer'
 // const date = new Date()
 // const formattedDate = date.toISOString().split('.')[0].replace('T', ' ')
-const date = new Date()
-const formattedDate = date.toISOString().split('T')[0]
-// 輸出格式為 "YYYY-MM-DD"
 
 // multer的設定值 - START
 const storage = multer.diskStorage({
@@ -31,7 +28,21 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, callback) {
     // 經授權後，req.user帶有會員的id
-    const newFilename = req.user.user_id + '_' + formattedDate
+    const date = new Date()
+    const formattedDate = date
+      .toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      })
+      .replace(/:/g, '')
+      .replace(/\//g, '')
+      .replace(/, /g, '')
+    const newFilename = formattedDate
     // 新檔名由表單傳來的req.body.newFilename決定
     callback(null, newFilename + path.extname(file.originalname))
   },
@@ -49,7 +60,7 @@ router.post(
       console.log(req.file)
       return res.json({
         status: 'success',
-        data: { avatar: req.file.filename },
+        data: { picture: req.file.filename },
       })
     } else {
       console.log('upload failed')
