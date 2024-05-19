@@ -83,7 +83,7 @@ export default function BlogIndex() {
   }
   return (
     <>
-      <div className="container">
+      <div className="container db-none">
         <div className="row">
           <div className="col-3">
             {/* <div className="input-container">
@@ -152,6 +152,78 @@ export default function BlogIndex() {
               onPageChange={handlePageChange}
             />
           </div>
+        </div>
+      </div>
+      {/* 390 */}
+
+      <div className="container ds-none">
+        <div className="">
+          <div className="">
+            {/* <div className="input-container">
+              <input
+                type="text"
+                className="input-field"
+                placeholder="請輸入關鍵字"
+                style={{ flex: '1' }}
+                onChange={(event) => setSearch(event.target.value)}
+              />
+              <FaSearch />
+            </div> */}
+            <div className="input-group">
+            <input
+              type="text"
+              placeholder="請輸入關鍵字"
+              className="form-control"
+              style={{
+                width: '150px',
+                height: '40px',
+                backgroundColor: 'white',
+                borderColor: 'light-brown',
+                flex: '1',
+              }}
+                onChange={(event) => setSearch(event.target.value)}
+            />
+            <span className="input-group-text">
+              <i className="bi bi-search"></i>
+            </span>
+          </div>
+            <br />
+            <div className="">
+    
+              <h6 className="article-sidebar article-sidebar-m pt-2">文章分類</h6>
+              <Category
+                // setPage={setPage}
+                // articless={articless || []}
+                // setSelectedCategories={setSelectedCategories}
+                // selectedCategories={selectedCategories}
+                handleCategoryClick={handleCategoryClick}
+              />
+              <h6 className="article-sidebar article-sidebar-m pt-2">日期區間</h6>
+              <div className='article-date'>
+                <Date
+                  range={true}
+                  setStartDate={setStartDate}
+                  setEndDate={setEndDate}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div className="container ">
+              <ul className="article-list">
+                <List
+                  articles={articless || []}
+                  selectedCategories={selectedCategories}
+                />
+              </ul>
+            </div>
+          </div>
+            <Pagination
+              key={page}
+              totalPages={totalPages}
+              currentPage={page}
+              onPageChange={handlePageChange}
+            />
         </div>
       </div>
     </>

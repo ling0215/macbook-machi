@@ -1,5 +1,5 @@
 import express from 'express'
-import { Op } from 'sequelize'
+import { Op, or } from 'sequelize'
 const router = express.Router()
 
 // 检查空物件, 转换req.params为数字
@@ -8,6 +8,33 @@ import authenticate from '#middlewares/authenticate.js'
 import sequelize from '#configs/db.js'
 
 const { Order, OrderItem } = sequelize.models
+
+//獲取訂單項目
+router.get('/orderItems', authenticate, async (req, res) => {
+  const orderId = req.query.oid
+  console.log(111)
+
+  try {
+    const orderItems = await OrderItem.findAll({
+      where: {
+        order_id_fk: orderId,
+      },
+    })
+
+    if (orderItems) {
+      res.json(orderItems)
+    } else {
+      res.status(404).send('No order items found for the given order ID')
+    }
+  } catch (error) {
+    console.error('Error fetching order items:', error)
+    res.status(500).json({
+      status: 'error',
+      message: 'Internal server error',
+      error: error.message,
+    })
+  }
+})
 
 // GET - 獲取訂單
 router.get('/better', async (req, res) => {

@@ -73,6 +73,7 @@ function AirDatepickerReact({ setStartDate, setEndDate, ...props }) {
         }
       },
     })
+    // dp.current.show()
   }, [])
 
   useEffect(() => {

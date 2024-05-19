@@ -172,3 +172,20 @@ export const fetchBetterOrders = async (
     )}`
   )
 }
+
+// 獲取特定訂單的訂單項目
+export const fetchOrderItems = async (oid) => {
+  try {
+    const response = await axiosInstance.get(`/order/orderItems?oid=${oid}`)
+    if (response.status === 200) {
+      const orderItems = response.data
+      return orderItems
+    } else {
+      console.error('Failed to fetch order items:', response.statusText)
+      return []
+    }
+  } catch (error) {
+    console.error('Error fetching order items:', error)
+    return []
+  }
+}

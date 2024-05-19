@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { fetchBetterOrders } from '@/services/user'
 import Pagination from '@/components/product/product-list/pagination'
+import { checkAuth } from '@/services/user'
+import Link from 'next/link'
 
 export default function OrderQueryForm() {
   const [orders, setOrders] = useState({ orders: [] })
@@ -14,7 +16,18 @@ export default function OrderQueryForm() {
   const [startDate, setStartDate] = useState('1970-01-01')
   const [endDate, setEndDate] = useState('2050-01-01')
   const [selectedStatus, setSelectedStatus] = useState('')
-  const userId = 6
+  const [userId, setUserId] = useState(null)
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const res = await checkAuth()
+      const id = res.data.data.user.user_id
+      console.log(id)
+      setUserId(id)
+    }
+
+    fetchUserId()
+  }, [])
 
   useEffect(() => {
     const getOrders = async () => {
@@ -120,7 +133,12 @@ export default function OrderQueryForm() {
           >
             <div>{order.order_username}</div>
             <div>{order.order_createtime}</div>
-            <div>{order.order_id}</div>
+            <Link
+              href={`/member/order-query/${order.order_id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <div className="text-primary-dark">{order.order_id}</div>
+            </Link>
             <div>{order.order_payment}</div>
             <div>{order.order_status}</div>
             {/* 其他需要顯示的訂單資訊 */}
