@@ -1,60 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { checkAuth } from '@/services/user' // 引入 checkAuth 函數
+import CartMain from '@/components/cart'
 
-import CartPage1 from '@/components/cart/cart-page1'
-import CartPage2 from '@/components/cart/cart-page2'
-import CartPage3 from '@/components/cart/cart-page3'
+export default function CartindexIndex() {
+  const router = useRouter() // 使用 useRouter hook 來獲取 router 物件
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-export default function CartMain() {
-  const [showPage, setShowPage] = useState(1)
-  const [selectedItems, setSelectedItems] = useState()
-  const [orderItem, setOrderItem] = useState()
-  console.log(orderItem)
-
-  const handleClick = (page) => {
-    setShowPage(page)
-  }
-
-  const handleSelectedItems = (items) => {
-    setSelectedItems(items)
-  }
-
-  const handleOrderItems = (items) => {
-    setOrderItem(items)
-  }
-
+  // 使用 useEffect 來監聽 auth.isAuth 的變化
   useEffect(() => {
-    if (orderItem) {
-      // 当 orderItem 更新时，跳转到 Page 3
-      handleClick(3)
-    }
-  }, [orderItem])
+    checkAuth().then((response) => {
+      if (response.data.status !== 'success') {
+        router.push('/member/login')
+      } else {
+        setIsAuthenticated(true)
+      }
+    })
+  }, [router])
 
-  const renderPage = () => {
-    switch (showPage) {
-      case 1:
-        return (
-          <CartPage1
-            onClickPage={() => handleClick(2)}
-            selectedItems={selectedItems}
-            onSelectItems={handleSelectedItems}
-          />
-        )
-      case 2:
-        return (
-          <CartPage2
-            onClickPageTo1={() => handleClick(1)}
-            onClickPageTo3={() => handleClick(3)} // 这里不需要手动跳转
-            selectedItems={selectedItems}
-            onSelectItems={handleSelectedItems}
-            setOrderItem={handleOrderItems} // 确保这里传递了正确的函数
-          />
-        )
-      case 3:
-        return <CartPage3 orderItem={orderItem} />
-      default:
-        return null
-    }
-  }
-
-  return renderPage()
+  return isAuthenticated ? <CartMain /> : null
 }
