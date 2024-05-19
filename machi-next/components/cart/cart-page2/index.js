@@ -67,6 +67,9 @@ const CartPage2 = ({
   const [transName, setTransName] = useState('')
   const [transPhone, setTransPhone] = useState('')
   const [transAddress, setTransAddress] = useState('')
+  const [criCard, setCriCard] = useState('')
+  const [backCard, setBackCard] = useState('')
+  const [cardDate, setCardDate] = useState('')
 
   useEffect(() => {
     let noDetail = ''
@@ -205,6 +208,21 @@ const CartPage2 = ({
     const formatted = `${year}-${month}-${day}-${hours}:${minutes}`
     return formatted
   }
+  const handleCardChange = (e) => {
+    let value = e.target.value.replace(/\D/g, '') // 移除非數字字符
+    value = value.slice(0, 16) // 限制最多輸入16個數字
+    value = value.replace(/(.{4})/g, '$1 ').trim() // 每4個數字添加一個空格
+    setCriCard(value)
+  }
+
+  const handleCardDateChange = (e) => {
+    let value = e.target.value.replace(/\D/g, '') // 移除非數字字符
+    if (value.length > 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2, 4) // 在適當位置添加斜杠
+    }
+    setCardDate(value.slice(0, 5)) // 限制最多輸入5個字符（包括斜杠）
+  }
+
   return (
     <>
       <div
@@ -529,6 +547,7 @@ const CartPage2 = ({
                 Line pay
               </button>
             </div>
+
             <div className="h5 pt-2">收件人資訊</div>
             <button
               className={`${styles['h6']} text-grey pb-2`}
@@ -569,7 +588,7 @@ const CartPage2 = ({
             <div
               className={`${styles['text-border-brown']} row d-flex pt-2 pb-5 `}
             >
-              <div className={`= col `}>
+              <div className={` col `}>
                 <input
                   type="text"
                   className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}  ${styles['form-control']} ${styles['custom-input']}`}
@@ -580,22 +599,47 @@ const CartPage2 = ({
               </div>
             </div>
 
-            <div className={`d-flex justify-content-between py-2`}>
-              <div className={`${styles['h6']} `}>商品總計 </div>
-              <div className={`${styles['h6']} `}>NT$ {productTotal}</div>
-            </div>
-
-            <div className={`d-flex justify-content-between py-2`}>
-              <div className={`${styles['h6']} `}>訂製總計 </div>
-              <div className={`${styles['h6']} `}>NT$ {customTotal}</div>
-            </div>
-            <div
-              className={`${styles['text-border-brown']} d-flex justify-content-between py-2 pb-4`}
-            >
-              <div className={`${styles['h6']} `}>課程總計</div>
-              <div className={`${styles['h6']}  `}>NT$ {courseTotal}</div>
-            </div>
-
+            {payState === 'creditCard' && (
+              <div
+                className={`row d-flex justify-content-between py-2 ${styles['text-border-brown']} `}
+              >
+                {' '}
+                <div className={` row d-flex py-2 `}>
+                  <div className={` col `}>
+                    信用卡/簽帳金融卡卡號
+                    <input
+                      type="text"
+                      className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}  ${styles['form-control']} ${styles['custom-input']}`}
+                      value={criCard}
+                      onChange={handleCardChange}
+                      placeholder="0000 0000 0000 0000"
+                    />
+                  </div>
+                </div>
+                <div className="row d-flex justify-content-between py-2">
+                  <div className={`col-4  `}>
+                    背面末三碼
+                    <input
+                      type="text"
+                      className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
+                      value={backCard}
+                      onChange={(e) => setBackCard(e.target.value)}
+                      placeholder="000"
+                    />
+                  </div>
+                  <div className="col-6">
+                    卡片到期日
+                    <input
+                      type="text"
+                      className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
+                      value={cardDate}
+                      onChange={handleCardDateChange}
+                      placeholder="MM/YY"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
             <div className={`d-flex justify-content-between py-2 pb-4`}>
               <div className={`${styles['h6']} `}>總購買金額</div>
               <div className={`${styles['h6']} `}>NT$ {checkTotal}</div>
@@ -608,7 +652,7 @@ const CartPage2 = ({
                 type="button"
               >
                 <div className={`${styles['text']} ${styles['link-button']}`}>
-                  前往付款
+                  確認支付
                 </div>
               </button>
             </div>
