@@ -225,13 +225,13 @@ export default function LoginForm() {
           </form>
         </div>
       </div>
-      <div className={` mt-5 text-primary-dark ${styles['hr-sect']}`}>
+      {/* <div className={` mt-5 text-primary-dark ${styles['hr-sect']}`}>
         快速登入
       </div>
       <div className="row mb-5">
         <div className="col-sm-12 text-start">
           <div className="d-flex justify-content-center">
-            {/* <LineLogo className="mx-3" /> */}
+            <LineLogo className="mx-3" />
             <button
               style={{
                 background: 'none',
@@ -243,10 +243,10 @@ export default function LoginForm() {
             >
               <GoogleLogo className="mx-3" />
             </button>
-            {/* <FacebookLogo className="mx-3" /> */}
+            <FacebookLogo className="mx-3" />
           </div>
         </div>
-      </div>
+      </div> */}
     </main>
   )
 }
