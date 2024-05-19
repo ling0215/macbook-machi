@@ -20,7 +20,7 @@ function MemberSidebar() {
   return (
     <>
       <div className="container">
-        <div className="d-flex my-5">
+        <div className="d-sm-flex d-block my-5">
           <MemberNavBar />
           <UpdatePassword />
         </div>

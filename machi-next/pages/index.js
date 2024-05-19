@@ -84,7 +84,7 @@ function Home() {
       </div>
 
       {/* 精選區塊 */}
-      <div className="container col-xxl-10 px-5 py-5 my-5 featured-bgc">
+      <div className="container col-xxl-10 py-5 my-5 featured-bgc">
         <div className="container text-center">
           <h2
             className="pb-2 mb-5 text-center mt-2 section-heading"
@@ -104,7 +104,7 @@ function Home() {
           >
             精選課程
           </h2>
-          <div className="row row-cols-2 row-cols-md-4 g-4">
+          <div className="row row-cols-2 row-cols-md-4 g-4  d-flex">
             <CardCourse />
           </div>
         </div>
@@ -112,7 +112,68 @@ function Home() {
       {/* <Featured /> */}
 
       {/* 商品類別區塊 */}
-      <CategoryCard category={category} />
+      {/* <CategoryCard category={category} /> */}
+
+      {/* QA區塊 */}
+      {/* <div className="container ol-xxl-10 featured-bgc p-0 my-5 d-flex justify-content-between">
+        <Image
+          src="./bg-1.png"
+          className="d-block img-fluid "
+          alt="qa photo"
+          width="400"
+          height="300"
+          loading="lazy"
+        />
+        <Image
+          src="./bg-2.png"
+          className="d-block img-fluid position-absolute bottom-0 end-0"
+          alt="qa photo"
+          width="100"
+          height="100"
+          loading="lazy"
+        />
+      </div> */}
+      {/* 原料介紹 */}
+      <div className="px-4 py-4 qa-background intro">
+        <div className="container my-5">
+          <h2
+            className="pb-2 mb-5 text-center section-heading"
+            style={{ borderBottom: '1px solid #785e4c' }}
+          >
+            嚴選原料
+          </h2>
+          <div className="row d-flex justify-content-center">
+            <div className="col-6 col-md-3 p-2">
+              <img
+                src="/images/features/ingredient-1.jpg"
+                className="img-fluid img-thumbnail"
+                alt="ingredient-1"
+              />
+            </div>
+            <div className="col-6 col-md-3 p-2">
+              <img
+                src="/images/features/ingredient-2.jpg"
+                className="img-fluid img-thumbnail"
+                alt="ingredient-2"
+              />
+            </div>
+            <div className="col-6 col-md-3 p-2">
+              <img
+                src="/images/features/ingredient-3.jpg"
+                className="img-fluid img-thumbnail"
+                alt="ingredient-3"
+              />
+            </div>
+            <div className="col-6 col-md-3 p-2">
+              <img
+                src="/images/features/ingredient-4.jpg"
+                className="img-fluid img-thumbnail"
+                alt="ingredient-4"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
       <style global jsx>
         {`

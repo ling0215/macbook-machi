@@ -55,7 +55,7 @@ export default function OrderQueryForm() {
 
   return (
     <>
-      <div className="container p-5 border rounded">
+      <div className="container p-2 border rounded">
         <div className="d-flex justify-content-start gap-3">
           <button
             className={`btn ${
@@ -78,7 +78,7 @@ export default function OrderQueryForm() {
             已完成
           </button>
         </div>
-        <div className="mt-4 d-flex gap-3">
+        <div className="mt-4  gap-3">
           <div className="d-flex align-items-center gap-3 flex-grow-1">
             <div className="w-100 text-primary-dark">查詢訂單時間</div>
             <input
@@ -95,7 +95,7 @@ export default function OrderQueryForm() {
               onChange={(e) => setTempEndDate(e.target.value)}
             />
           </div>
-          <div className="d-flex align-items-center gap-3">
+          <div className="d-flex mt-2 justify-content-end align-items-center gap-3">
             <button
               className="btn btn-brown text-white"
               onClick={() => {

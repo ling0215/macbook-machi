@@ -34,13 +34,15 @@ function ProductIntro({ pid, description }) {
         style={{ display: activeButton === 'intro' ? 'block' : 'none' }}
       >
         <div className="list-group-flush p-2 py-3 mb-4 border">
-          <h4 id="title">｜商品特色｜</h4>
-          <p>{description}</p>
-          <img 
-            src={`/images/product/card/${pid}1.jpg`}
-            className="img-fluid img-thumbnail w-75 rounded mx-auto d-block mb-5"
-            style={{width:'100%',objectFit:'cover'}} 
-          />
+          <div className="list-group-flush p-2 py-3 mb-4">
+            <h4 id="title">｜商品特色｜</h4>
+            <p>{description}</p>
+            <img 
+              src={`/images/product/card/${pid}1.jpg`}
+              className="img-fluid img-thumbnail w-75 rounded mx-auto d-block mb-5"
+              style={{width:'100%',objectFit:'cover'}} 
+            />
+          </div>
         </div>
       </div>
       <div

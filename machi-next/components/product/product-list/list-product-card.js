@@ -28,7 +28,7 @@ export default function ListProductCard({ product }) {
           <div className="row row-cols-1 row-cols-md-1 g-4 d-flex flex-row"> */}
             <div className="card w-100" style={{ height: 'auto' }}>
               <div className="row g-0 h-100">
-                <div className="col-md-4 d-flex align-items-center py-2">
+                <div className="col-md-3 d-flex align-items-center py-2">
                   <Link href={`/product/${product.product_id}`} passHref>
                     <Image
                       src={imageUrl}
@@ -36,7 +36,7 @@ export default function ListProductCard({ product }) {
                       alt="productImg"
                       placeholder="blur"
                       blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      width={180}
+                      width={200}
                       height={180}
                       objectFit="cover"
                     />
@@ -55,8 +55,8 @@ export default function ListProductCard({ product }) {
                       <p className="card-text mt-2">{product.product_category}</p>
                     </div>
                     <div className="col-md-12">
-                      <div className="d-flex justify-content-between mt-3">
-                        <p className="card-text text-primary-dark fw-bold fs-4">
+                      <div className="card-text d-flex justify-content-between mt-3">
+                        <p className=" text-primary-dark fw-bold fs-4">
                           NT${product.product_price_small}
                         </p>
                         <button
