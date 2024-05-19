@@ -52,37 +52,36 @@ const ArticlesList = ({ articles }) => {
 
   return (
     <>
-      <div className={styles[`list-h`]}>
-        <div className={styles[`menu`]}>
-          <button
-            className={`btn`}
-            id="listview"
-            onClick={() => {
-              setIsOpen((prevIsOpen) => {
-                return !prevIsOpen
-              })
-            }}
-          >
-            <i className="bi bi-list"></i>
-          </button>
-          <div className={styles[`dropdown-position`]}>
-            {isOpen && (
-              <div className={styles[`dropdown-menu`]}>
-                <Link
-                  href={`/blog/publish`}
-                  type="button"
-                  className={styles[`link-style`]}
-                  onClick={handleAddArticleClick}
-                >
-                  <li onClick={() => console.log('選項2被點擊')}>
-                    新增文章
-                    <MdAdd />
-                  </li>
-                </Link>{' '}
-              </div>
-            )}
-          </div>
+      <div className={`${styles['list-h']} ${styles['article-list-pc']}`}>        <div className={styles[`menu`]}>
+        <button
+          className={`btn`}
+          id="listview"
+          onClick={() => {
+            setIsOpen((prevIsOpen) => {
+              return !prevIsOpen
+            })
+          }}
+        >
+          <i className="bi bi-list"></i>
+        </button>
+        <div className={styles[`dropdown-position`]}>
+          {isOpen && (
+            <div className={styles[`dropdown-menu`]}>
+              <Link
+                href={`/blog/publish`}
+                type="button"
+                className={styles[`link-style`]}
+                onClick={handleAddArticleClick}
+              >
+                <li onClick={() => console.log('選項2被點擊')}>
+                  新增文章
+                  <MdAdd />
+                </li>
+              </Link>{' '}
+            </div>
+          )}
         </div>
+      </div>
         {articles.map((article) => (
           <li key={article.article_id}>
             <div className="list-array">
@@ -98,6 +97,73 @@ const ArticlesList = ({ articles }) => {
                 </div>
                 <div className="mx-4 article-text">
                   <ul className="article-list acticle-tag">
+                    {article.article_category?.split(',').map((category) => (
+                      <li key={category} className="p-1 me-2">
+                        {category}
+                      </li>
+                    ))}
+                  </ul>
+                  <h4 className="pt-2">{article.article_title}</h4>
+                  <span>
+                    {article.article_createtime
+                      ? article.article_createtime.split('T')[0]
+                      : ''}
+                  </span>
+                  <p>
+                    {article.article_content
+                      ? stripHtmlTagsAndEntities(article.article_content)
+                      : ''}
+                  </p>
+                  <div className={styles[`more`]}>
+                    <Link
+                      href={`/blog/${article.article_id}`}
+                      type="button"
+                      className={styles[`link-style`]}
+                    >
+                      READ MORE
+                      <FaCaretRight />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))}
+      </div>
+      {/* 手機板 */}
+      <div className={`${styles['list-h']} ${styles['article-list-mobile']}`}>
+        <div className={styles[`menu`]}>
+          <div className={styles[``]}>
+            <div className={styles[``]}>
+              <Link
+                href={`/blog/publish`}
+                type="button"
+                className={`${styles['link-style']} ${styles['link-style-m']}`}              // onClick={handleAddArticleClick}
+              >
+                <li onClick={() => console.log('選項2被點擊')}>
+                  新增文章
+                  <MdAdd />
+                </li>
+              </Link>{' '}
+            </div>
+
+          </div>
+        </div>
+        {articles.map((article) => (
+          <li key={article.article_id} className='article-color-m'>
+            <div className="list-array ">
+              <div className={styles[`image-m`]}>
+                <Image
+                  src={article.firstImageUrl || '/images/blog/article2.jpg'}
+                  alt=""
+                  width={315}
+                  height={250}
+                  priority
+                />
+              </div>
+              <div className="article-content-m">
+                <div className="mx-2 article-text-m">
+                  <ul className="article-list acticle-tag-m">
                     {article.article_category?.split(',').map((category) => (
                       <li key={category} className="p-1 me-2">
                         {category}
