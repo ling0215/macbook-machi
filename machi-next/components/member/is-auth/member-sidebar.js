@@ -4,9 +4,9 @@ import styles from '../member.module.scss'
 
 function MemberSidebar() {
   return (
-    <div className={`${styles['menu']} d-none d-lg-block col-lg-5 me-lg-5`}>
+    <div className={`${styles['menu']} d-lg-block d-lg-block   me-lg-5`}>
       <ul className='d-flex flex-column list-unstyled'>
-        <li className='p-2'>
+        <li className='p-2 '>
           <Link href="/member/account" className={`${styles['member-sidebar']} p-2`} >會員資料</Link>
         </li>
         <li className='p-2'>

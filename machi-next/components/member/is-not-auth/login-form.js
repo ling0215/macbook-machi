@@ -1,18 +1,80 @@
-import React from 'react'
-import styles from '../member.module.scss'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Swal from 'sweetalert2'
+import styles from '../member.module.scss'
 import LineLogo from '@/components/icons/line-logo'
 import GoogleLogo from '@/components/icons/google-logo'
 import FacebookLogo from '@/components/icons/facebook-logo'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { login } from '@/services/user'
-import { useAuth } from '@/hooks/use-auth'
-import { checkAuth, getFavs } from '@/services/user'
-import Swal from 'sweetalert2'
+import { useAuth, initUserData } from '@/hooks/use-auth'
+import useFirebase from '@/hooks/use-firebase'
+import {
+  login,
+  checkAuth,
+  getFavs,
+  googleLogin,
+  logout,
+  parseJwt,
+  getUserById,
+} from '@/services/user'
 
 export default function LoginForm() {
+  //GOOGLE登入
+  const { logoutFirebase, loginGoogleRedirect, initApp } = useFirebase()
   const { auth, setAuth } = useAuth()
+
+  useEffect(() => {
+    initApp(callbackGoogleLoginRedirect)
+  }, [])
+
+  const callbackGoogleLoginRedirect = async (providerData) => {
+    console.log(providerData)
+
+    // 如果目前react(next)已經登入中，不需要再作登入動作
+    if (auth.isAuth) return
+
+    // 向伺服器進行登入動作
+    const res = await googleLogin(providerData)
+
+    console.log(res.data)
+
+    if (res.data.status === 'success') {
+      // 從JWT存取令牌中解析出會員資料
+      // 注意JWT存取令牌中只有id, username, google_uid, line_uid在登入時可以得到
+      const jwtUser = parseJwt(res.data.data.accessToken)
+      // console.log(jwtUser)
+
+      const res1 = await getUserById(jwtUser.user_id)
+      //console.log(res1.data)
+
+      if (res1.data.status === 'success') {
+        // 只需要initUserData中的定義屬性值，詳見use-auth勾子
+        const dbUser = res1.data.data.user
+        const userData = { ...initUserData }
+
+        for (const key in userData) {
+          if (Object.hasOwn(dbUser, key)) {
+            userData[key] = dbUser[key] || ''
+          }
+        }
+
+        // 設定到全域狀態中
+        setAuth({
+          isAuth: true,
+          userData,
+        })
+
+        console.log('已登入', userData)
+        router.push('/')
+      } else {
+        console.log('登入後無資料')
+        // 這裡可以讓會員登出，因為這也算登入失敗，有可能會造成資料不統一
+      }
+    } else {
+      console.log('登入失敗')
+    }
+  }
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -164,18 +226,28 @@ export default function LoginForm() {
           </form>
         </div>
       </div>
-      {/* <div className={` mt-5 text-primary-dark ${styles['hr-sect']}`}>
+      <div className={` mt-5 text-primary-dark ${styles['hr-sect']}`}>
         快速登入
       </div>
       <div className="row mb-5">
         <div className="col-sm-12 text-start">
           <div className="d-flex justify-content-center">
-            <LineLogo className="mx-3" />
-            <GoogleLogo className="mx-3" />
-            <FacebookLogo className="mx-3" />
+            {/* <LineLogo className="mx-3" /> */}
+            <button
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+              }}
+              onClick={loginGoogleRedirect}
+            >
+              <GoogleLogo className="mx-3" />
+            </button>
+            {/* <FacebookLogo className="mx-3" /> */}
           </div>
         </div>
-      </div> */}
+      </div>
     </main>
   )
 }

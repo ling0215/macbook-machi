@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { updatePassword, checkAuth } from '@/services/user'
 import Swal from 'sweetalert2'
+import styles from '../member.module.scss'
 
 const Toast = Swal.mixin({
   toast: true,
@@ -59,14 +60,16 @@ function UpdatePassword() {
   }
   return (
     <>
-      <div className="row ms-5 w-50 border rounded d-flex justify-content-center align-items-center">
-        <div className="col p-2 d-flex justify-content-center align-items-center">
+      <div className={`${styles['password-container']} row ms-5 w-50 border rounded d-flex justify-content-center align-items-center`}
+      >
+        <div className={`${styles['password-from']} col p-2 d-flex justify-content-center align-items-center`}
+        >
           <form
             className="d-flex flex-column mx-5 my-3"
             onSubmit={handleSubmit}
           >
-            <div className="form-group my-3 text-primary-dark fw-bold">
-              <label>
+            <div className={`${styles['password-label']} form-group my-3 text-primary-dark fw-bold`}>
+              <label className={styles['no-wrap']}>
                 輸入原密碼
                 <input
                   className="form-control"
