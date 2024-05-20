@@ -112,6 +112,18 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                       className="accordion-collapse collapse"
                     >
                       <div className="accordion-body px-3">
+                      <p
+                          role="button"
+                          tabIndex={0}
+                          className="text-decoration-none d-block hover-button"
+                          onClick={() => handleCategoryChange('乳酪蛋糕')}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter')
+                              handleCategoryChange('乳酪蛋糕')
+                          }}
+                        >
+                          乳酪蛋糕
+                        </p>
                         <p
                           role="button"
                           tabIndex={0}
@@ -136,18 +148,7 @@ export default function Sidebar({ setCategory, setPriceRange }) {
                         >
                           千層蛋糕
                         </p>
-                        <p
-                          role="button"
-                          tabIndex={0}
-                          className="text-decoration-none d-block hover-button"
-                          onClick={() => handleCategoryChange('乳酪蛋糕')}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter')
-                              handleCategoryChange('乳酪蛋糕')
-                          }}
-                        >
-                          乳酪蛋糕
-                        </p>
+                        
                         <p
                           role="button"
                           tabIndex={0}

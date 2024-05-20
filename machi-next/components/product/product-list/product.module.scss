@@ -99,6 +99,9 @@
         top: 0;
         left: 0;   
     } 
+    .currency {
+        font-size: 16px;
+    }
 
     .heartIcon {
         font-size: 26px;
@@ -123,7 +126,7 @@
     width: 100%;
     height: auto;
     text-decoration: none;
-    margin-top: 15px;
+    margin-top: 30px;
 
 }
 .listProductCardTitle {
@@ -164,10 +167,17 @@
     justify-content: center;
     padding: 8px;
     object-fit: cover;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 .listCurrency {
     font-size: 22px;
 }
+
+.listProductCardText {
+    padding-left: 15px;
+}
+
 @media screen and (max-width: 768px) {
     .listProductCard {
         margin: 10px;
@@ -179,9 +189,7 @@
         width: 150px;
         display: flex;
         align-items: center;
-    }
-    .listProductCardText {
-        
+        padding-left: 10px;
     }
     .listProductCardTitle {
         font-size: 16px;
@@ -195,20 +203,32 @@
     }
     .listCurrency {
         font-size: 16px;
+        position: absolute;
+        right: 20px;
+        top: 67px;
     }
     .listCartBtn {
         font-size: 12px;
         width: 110px;
         padding-inline: 0;
         position: absolute;
-        right: 10px;
+        right: 15px;
+        top: 110px;
     }
 }
 
+// search-bar
+.searchBar {
+    width: 100%;
+    padding-left: 8px ;
+}
 
-
-// filter
-.viewtype {
-    width: 50px;
-    height: 50px;
+@media screen and (max-width: 768px) {
+    .searchBar {
+        width: 100%;
+        padding: 0 ;
+    }
+    .searchBarBtn {
+        width: 170px;
+    }
 }

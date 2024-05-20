@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast'
 
 export default function ProductList({ products, view }) {
   return (
-    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-2">
+    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 ms-2">
       {products.map(product => (
         view === 'grid' ? (
           <GridProductCard key={product.id} product={product} name={product.name} />

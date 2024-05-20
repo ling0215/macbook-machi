@@ -26,6 +26,10 @@ function Home() {
       setCategory(response) // 更新狀態
     })
   }, [])
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <>
       {/* 首頁輪播 */}
@@ -33,7 +37,7 @@ function Home() {
       {/* 關於 Machi */}
       <div className="container col-xxl-10 px-4 py-2">
         <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
-          <div className="col-lg-6 about">
+          <div className="col-lg-6 about" data-aos="fade-down" data-aos-duration="3000">
             <h2 className="fw-bold lh-1 mb-3 about-title">關於 Machi</h2>
             <p className="about-text">Since 2015</p>
             <p className="about-text">
@@ -54,7 +58,8 @@ function Home() {
               </Link>
             </div> */}
           </div>
-          <div className="col-10 col-sm-8 col-lg-6 mx-auto">
+          <div className="col-10 col-sm-8 col-lg-6 mx-auto"
+               data-aos="fade-right" data-aos-duration="2000">
             <Image
               src="/images/heroes/aboutphoto.svg"
               className="d-block mx-lg-auto img-fluid "
@@ -65,18 +70,19 @@ function Home() {
             />
           </div>
         </div>
-      </div>
-
+        </div>
       {/* 最新消息區塊 */}
       <div className="px-4 py-5 full-background">
         <div className="container py-5 latestnew-bgc">
           <div className="text-center article-section">
             <h2
               className="pb-2 mb-5 text-center section-heading"
+              data-aos="zoom-in" data-aos-duration="3000"
               style={{ borderBottom: '1px solid #785e4c' }}
             >
               最新消息
             </h2>
+            <h6 className='text-brown mt-1'>latest news</h6>
             <div className="article-block">
               <CardBlog />
             </div>
@@ -89,6 +95,7 @@ function Home() {
         <div className="container text-center">
           <h2
             className="pb-2 mb-5 text-center mt-2 section-heading"
+            data-aos="zoom-in" data-aos-duration="3000"
             style={{ borderBottom: '1px solid #785e4c' }}
           >
             精選商品
@@ -101,6 +108,7 @@ function Home() {
         <div className="container text-center">
           <h2
             className="pb-2 mb-5 text-center mt-5 section-heading"
+            data-aos="zoom-in" data-aos-duration="3000"
             style={{ borderBottom: '1px solid #785e4c' }}
           >
             精選課程
@@ -139,6 +147,7 @@ function Home() {
         <div className="container my-5">
           <h2
             className="pb-2 mb-5 text-center section-heading"
+            data-aos="zoom-in" data-aos-duration="3000"
             style={{ borderBottom: '1px solid #785e4c' }}
           >
             嚴選原料

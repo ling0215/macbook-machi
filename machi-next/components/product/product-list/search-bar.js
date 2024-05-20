@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './product.module.scss';
 
 export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
   const handleSearchChange = (event) => {
@@ -18,9 +19,9 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
 
   return (
     <>
-      <div className="d-flex p-2 justify-content-between align-items-center">
-        <div className="row mt-2 mb-3">
-          <h5 className="card-text d-flex justify-content-between align-items-center">
+      <div className={`d-flex justify-content-between align-items-center ${styles.searchBar}`}>
+        <div className='row-2 mt-2 mb-3'>
+          <h5 className={`card-text d-flex justify-content-between align-items-center ${styles.searchBarBtn}`}>
             <div className="input-group">
               <input
                 type="text"
@@ -41,7 +42,7 @@ export default function SearchBar({ setSearch, setSort, setOrder, setView }) {
             </div>
           </h5>
         </div>
-        <div className="row mt-2 mb-3 d-flex justify-content-between">
+        <div className="row-4 mt-2 mb-3 d-flex justify-content-between">
           <div className="col-auto">
             <div className="dropdown">
               <button

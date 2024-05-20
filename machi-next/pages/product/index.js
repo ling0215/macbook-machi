@@ -4,6 +4,7 @@ import SearchBar from '@/components/product/product-list/search-bar';
 import Sidebar from '@/components/product/product-list/side-bar';
 import Pagination from '@/components/product/product-list/pagination';
 import { getProducts } from '@/services/product'; // 請根據實際路徑進行調整
+import { MdMargin } from 'react-icons/md';
 
 export default function ProductPage() {
   const [products, setProducts] = useState([]);
@@ -45,6 +46,7 @@ export default function ProductPage() {
       />
       <div style={{ display: 'flex' }}>
         <Sidebar setCategory={setCategory} setPriceRange={setPriceRange} />
+        {/* <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '25px' }}> */}
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <ProductList products={products} view={view} /> {/* 傳遞 view */}
           <Pagination
