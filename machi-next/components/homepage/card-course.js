@@ -29,7 +29,7 @@ const CardCourse = () => {
                 alt={course.name}
                 layout="absolute"
                 className="card-img-top"
-                style={{ width: '100%', height: '320px' }}
+                style={{ width: '100%', height: '320px', objectFit: 'cover'}}
               />
               <div className="card-body no-space-x">
                 <h5 className="card-text fw-bold card-title mt-3">
