@@ -384,7 +384,7 @@ export default function Detail() {
           style={{ display: activeButton === 'intro' ? 'block' : 'none' }}
         >
           <div className="list-group-flush p-2 py-3 mb-4 border">
-            <div className="list-group-flush p-2 py-3 mb-4 border">
+            <div className="list-group-flush p-2 py-3 mb-4 ">
               <h4 id="title">｜講堂時間與地點｜</h4>
               <p className={`${styles.text1} product-desc mb-4 text1`}>
                 ►講堂日期：
@@ -414,7 +414,7 @@ export default function Detail() {
           style={{ display: activeButton === 'other' ? 'block' : 'none' }}
         >
           <div className="list-group-flush p-2 py-3 mb-4 border">
-            <div className="list-group-flush p-2 py-3 mb-4 border">
+            <div className="list-group-flush p-2 py-3 mb-4 ">
               <h4 id="title">｜講師名稱｜</h4>
               <p className={`${styles.text1} list-group-item`}>
                 {course.data.course.course_teacher}
