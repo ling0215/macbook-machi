@@ -100,7 +100,7 @@
 .article-section {
     align-items: center;
     margin-bottom: 10px;
-    padding: 0 30px;
+    // padding: 0 30px;
     position: relative;
     z-index: 1;  // 确保内容在背景之上
     // 其他内容样式
@@ -153,8 +153,9 @@
 
 }
 
-.article-date {
+.ling-article-date {
     color: var(--primary-dark);
+    margin-top: 30px;
 }
 
 .btn-grey {
@@ -162,23 +163,6 @@
     &:hover { 
         background-color: var(--dark-grey);
         color: var(--white);
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .article-block {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-    .article-card {
-        width: 100%;
-        margin-bottom: 10px;
-        &:hover {
-            box-shadow: 0px 5px 53.9px 0px rgba(166, 166, 166, 0.25);
-        }
-        
     }
 }
 
@@ -199,4 +183,50 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+    
+    .article-card {
+        flex-direction: row !important;
+    }
+    .article-right {
+        padding-left: 1rem;
+    }
+    .article-card .col-md-6 {
+        max-width: 50%;
+        flex: 0 0 50%;
+    }
+    .article-card img {
+        width: 100%;
+        height: auto;
+    }
+    .article-title {
+        font-size: 14px ;
+    }
+    .read-more{
+        width: 80px;
+    }
+    .article-block {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .article-card {
+        width: 100%;
+        margin-bottom: 10px;
+        &:hover {
+            box-shadow: 0px 5px 53.9px 0px rgba(166, 166, 166, 0.25);
+        }
+        
+    }
+}
+
+//card-course.js
+@media screen and (max-width: 768px) {
+    .courseCaed-m {
+        height: 159px;
+        object-fit: cover;
+    }
+}
+
 

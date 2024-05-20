@@ -40,13 +40,12 @@ const CardBlog = () => {
               />
             </Link>
           </div>
-          <div className="col-md-6 article-right">
+          <div className="col-md-6 article-right d-flex flex-column ps-0">
             <div className="mt-2 mb-2 d-flex article-title">
               {article.article_title}
             </div>
             <br />
-            { }
-            <div className="d-flex mb-3 article-date">
+            <div className="d-flex text-start mb-3 ling-article-date">
               {new Date(article.article_createtime)
                 .toLocaleDateString('zh-TW', {
                   year: 'numeric',
@@ -63,6 +62,7 @@ const CardBlog = () => {
           </div>
         </div>
       ))}
+
     </>
   )
 }

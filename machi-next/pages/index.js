@@ -9,11 +9,12 @@ import PlaceholderText from '@/components/common/placeholder-text'
 import { fetchCategory } from '@/services/index'
 import Featured from '@/components/homepage/featured'
 import FeaturedCard from '@/components/homepage/featured-card'
-
 import CardBlog from '@/components/homepage/card-blog'
 import CardProduct from '@/components/homepage/card-product'
 import CardCourse from '@/components/homepage/card-course'
 // 請根據實際路徑進行調整
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Home() {
   const [category, setCategory] = useState([]) //[變數名稱, 狀態變數]
@@ -68,7 +69,7 @@ function Home() {
 
       {/* 最新消息區塊 */}
       <div className="px-4 py-5 full-background">
-        <div className="container px-5 py-5 latestnew-bgc">
+        <div className="container py-5 latestnew-bgc">
           <div className="text-center article-section">
             <h2
               className="pb-2 mb-5 text-center section-heading"

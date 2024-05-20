@@ -24,12 +24,14 @@ const CardCourse = () => {
         >
           <div className="w-350 no-border f-16 featured-card">
             <Link href={`/course/${course.course_id}`} passHref className="no-underline">
-              <img
+              <Image
                 src={`/images/course/slide/${course.course_id}_1.jpg`}
                 alt={course.name}
                 layout="absolute"
-                className="card-img-top"
-                style={{ width: '100%', height: '320px', objectFit: 'cover'}}
+                height={300}
+                width={300}
+                objectFit='cover'
+                className="card-img-top courseCaed-m"
               />
               <div className="card-body no-space-x">
                 <h5 className="card-text fw-bold card-title mt-3">

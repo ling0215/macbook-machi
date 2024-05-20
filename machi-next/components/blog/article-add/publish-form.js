@@ -63,6 +63,7 @@ export default function PublishForm() {
               icon: 'success',
               title: '成功',
               text: '文章新增成功',
+              confirmButtonColor: '#ab927d',
             })
             router.push('/blog')
           } else {
@@ -70,6 +71,7 @@ export default function PublishForm() {
               icon: 'error',
               title: '失敗',
               text: `寫入失敗: ${response.data.message}`,
+              confirmButtonColor: '#ab927d',
             })
           }
         } catch (error) {

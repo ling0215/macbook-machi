@@ -22,8 +22,8 @@ export default function Sidebar({ setCategory, setPriceRange }) {
     <>
       {/* 左側篩選 */}
       <div className="row">
-        <div className="col-sm-12">
-          <div className="d-flex" id="wrapper">
+        <div className="col-sm-12 nolist-m">
+          <div className="d-flex " id="wrapper">
             <div className="bg-white me-3" id="sidebar-wrapper">
               <div className="scroll sticky-md-top">
                 <div
@@ -311,6 +311,12 @@ export default function Sidebar({ setCategory, setPriceRange }) {
         .form-range::-webkit-slider-thumb {
           background-color: var(--secondary)
         }
+        @media screen and (max-width: 768px) {
+          .nolist-m {
+            display: none;
+          }
+        }
+        
       `}</style>
     </>
   )
