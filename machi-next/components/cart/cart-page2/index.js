@@ -67,6 +67,9 @@ const CartPage2 = ({
   const [transName, setTransName] = useState('')
   const [transPhone, setTransPhone] = useState('')
   const [transAddress, setTransAddress] = useState('')
+  const [criCard, setCriCard] = useState('')
+  const [backCard, setBackCard] = useState('')
+  const [cardDate, setCardDate] = useState('')
 
   useEffect(() => {
     let noDetail = ''
@@ -107,6 +110,11 @@ const CartPage2 = ({
   }, [userDetail, auth.userData])
 
   const saveOrderData = async () => {
+    if (payState !== 'creditCard' && payState !== 'linePay') {
+      toast.error('請選擇付款方式')
+      return
+    }
+
     if (transName === '' || transAddress === '') {
       toast.error('請輸入姓名和地址')
       return
@@ -200,6 +208,21 @@ const CartPage2 = ({
     const formatted = `${year}-${month}-${day}-${hours}:${minutes}`
     return formatted
   }
+  const handleCardChange = (e) => {
+    let value = e.target.value.replace(/\D/g, '') // 移除非數字字符
+    value = value.slice(0, 16) // 限制最多輸入16個數字
+    value = value.replace(/(.{4})/g, '$1 ').trim() // 每4個數字添加一個空格
+    setCriCard(value)
+  }
+
+  const handleCardDateChange = (e) => {
+    let value = e.target.value.replace(/\D/g, '') // 移除非數字字符
+    if (value.length > 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2, 4) // 在適當位置添加斜杠
+    }
+    setCardDate(value.slice(0, 5)) // 限制最多輸入5個字符（包括斜杠）
+  }
+
   return (
     <>
       <div
@@ -253,7 +276,7 @@ const CartPage2 = ({
             className={` ${styles['step-button']}`}
             onClick={onClickPageTo1}
           >
-            <div className={`${styles['step-button-text']} `}>上一步</div>
+            <div className={`${styles['step-button-text']}`}>上一步</div>
           </button>
 
           {selectedItems &&
@@ -266,8 +289,7 @@ const CartPage2 = ({
                 }}
               >
                 <div
-                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
-                  style={{ height: 64 }}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} pb-2 pt-4`}
                 >
                   <div className={` h3`}>MACHI</div>
                   <div className={` h3`}>商品</div>
@@ -283,7 +305,7 @@ const CartPage2 = ({
                       <img
                         src={item.image}
                         className={`product-img-1`}
-                        style={{ width: 140, height: 140 }}
+                        style={{ width: 140, height: 140, objectFit: 'cover' }}
                       />
                     </div>
                     <div
@@ -327,8 +349,7 @@ const CartPage2 = ({
                 }}
               >
                 <div
-                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
-                  style={{ height: 64 }}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} pb-2 pt-5`}
                 >
                   <div className={` h3`}>MACHI</div>
                   <div className={` h3`}>客製商品</div>
@@ -344,7 +365,7 @@ const CartPage2 = ({
                       <img
                         src={item.image}
                         className={`product-img-1`}
-                        style={{ width: 140, height: 140 }}
+                        style={{ width: 140, height: 140, objectFit: 'cover' }}
                       />
                     </div>
                     <div
@@ -390,10 +411,7 @@ const CartPage2 = ({
                 }}
               >
                 <div
-                  style={{
-                    height: 64,
-                  }}
-                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} py-3`}
+                  className={` d-flex gap-2  product-tittle ${styles['border-borwn']} pb-2 pt-5`}
                 >
                   <div className={` h3`}>MACHI</div>
                   <div className={` h3`}>課程</div>
@@ -410,7 +428,7 @@ const CartPage2 = ({
                       <img
                         src={item.image}
                         className={`product-img-1`}
-                        style={{ width: 140, height: 140 }}
+                        style={{ width: 140, height: 140, objectFit: 'cover' }}
                       />
                     </div>
                     <div
@@ -459,17 +477,18 @@ const CartPage2 = ({
         </div>
 
         <div className="col"></div>
-        <div className={`${styles['pay-area']} col-md-5 ticky-md-top `}>
+        <div className={`${styles['pay-area']} col-md-5 `}>
           <div></div>
           <div
-            className={
-              'h5 text-primary-dark d-flex justify-content-start d-flex align-items-center ticky-md-top  '
-            }
-            style={{ height: 64 }}
+            className={'h5 text-primary-dark position-relative'}
+            style={{ height: 60 }} // 調整高度以適應兩行文本
           >
-            <FaTruckFast className={' mx-1'} size={24}></FaTruckFast>
-            請輸入完整資料
+            <div className="position-absolute" style={{ bottom: 0, left: 0 }}>
+              <FaTruckFast className={'mx-1'} size={24} />
+              <span>配送範圍僅台北.新北.桃園</span>
+            </div>
           </div>
+
           <form
             className={`${styles['pay-content']} px-3 py-4 sticky-md-top mb-3 `}
             method="post"
@@ -479,10 +498,20 @@ const CartPage2 = ({
               className={`d-flex justify-content-between pb-3 ${styles['text-border-brown']} `}
             >
               <button
-                className={`${styles['pay-button']} ${styles['h6']}`}
+                className={`${styles['pay-button']} ${styles['h6']} ${
+                  payState === 'bankpay' ? styles['selected'] : ''
+                }`}
                 type="button"
+                onClick={() => {
+                  setPayState('bankpay')
+                }}
               >
-                <RiCheckboxBlankCircleLine></RiCheckboxBlankCircleLine>銀行轉帳
+                {payState === 'bankpay' ? (
+                  <RiCheckboxCircleLine />
+                ) : (
+                  <RiCheckboxBlankCircleLine />
+                )}
+                銀行轉帳
               </button>
               <button
                 className={`${styles['pay-button']} ${styles['h6']} ${
@@ -518,6 +547,7 @@ const CartPage2 = ({
                 Line pay
               </button>
             </div>
+
             <div className="h5 pt-2">收件人資訊</div>
             <button
               className={`${styles['h6']} text-grey pb-2`}
@@ -558,33 +588,58 @@ const CartPage2 = ({
             <div
               className={`${styles['text-border-brown']} row d-flex pt-2 pb-5 `}
             >
-              <div className={`= col `}>
+              <div className={` col `}>
                 <input
                   type="text"
                   className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}  ${styles['form-control']} ${styles['custom-input']}`}
                   value={transAddress}
                   onChange={(e) => setTransAddress(e.target.value)}
-                  placeholder="請填寫完整地址"
+                  placeholder="請填寫完整配送地址"
                 />
               </div>
             </div>
 
-            <div className={`d-flex justify-content-between py-2`}>
-              <div className={`${styles['h6']} `}>商品總計 </div>
-              <div className={`${styles['h6']} `}>NT$ {productTotal}</div>
-            </div>
-
-            <div className={`d-flex justify-content-between py-2`}>
-              <div className={`${styles['h6']} `}>訂製總計 </div>
-              <div className={`${styles['h6']} `}>NT$ {customTotal}</div>
-            </div>
-            <div
-              className={`${styles['text-border-brown']} d-flex justify-content-between py-2 pb-4`}
-            >
-              <div className={`${styles['h6']} `}>課程總計</div>
-              <div className={`${styles['h6']}  `}>NT$ {courseTotal}</div>
-            </div>
-
+            {payState === 'creditCard' && (
+              <div
+                className={`row d-flex justify-content-between py-2 ${styles['text-border-brown']} `}
+              >
+                {' '}
+                <div className={` row d-flex py-2 `}>
+                  <div className={` col `}>
+                    信用卡/簽帳金融卡卡號
+                    <input
+                      type="text"
+                      className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']}  ${styles['form-control']} ${styles['custom-input']}`}
+                      value={criCard}
+                      onChange={handleCardChange}
+                      placeholder="0000 0000 0000 0000"
+                    />
+                  </div>
+                </div>
+                <div className="row d-flex justify-content-between py-2">
+                  <div className={`col-4  `}>
+                    背面末三碼
+                    <input
+                      type="text"
+                      className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
+                      value={backCard}
+                      onChange={(e) => setBackCard(e.target.value)}
+                      placeholder="000"
+                    />
+                  </div>
+                  <div className="col-6">
+                    卡片到期日
+                    <input
+                      type="text"
+                      className={`form-control w-100 ${styles['form-control']} ${styles['cart-custom-bootstrap']} ${styles['form-control']} ${styles['custom-input']}`}
+                      value={cardDate}
+                      onChange={handleCardDateChange}
+                      placeholder="MM/YY"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
             <div className={`d-flex justify-content-between py-2 pb-4`}>
               <div className={`${styles['h6']} `}>總購買金額</div>
               <div className={`${styles['h6']} `}>NT$ {checkTotal}</div>
@@ -597,7 +652,7 @@ const CartPage2 = ({
                 type="button"
               >
                 <div className={`${styles['text']} ${styles['link-button']}`}>
-                  前往付款
+                  確認支付
                 </div>
               </button>
             </div>

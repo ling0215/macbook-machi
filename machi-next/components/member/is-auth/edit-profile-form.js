@@ -5,6 +5,7 @@ import { getUserById } from '@/services/user'
 import { updateProfileAvatar } from '@/services/user'
 import Image from 'next/image'
 import Link from 'next/link'
+import Swal from 'sweetalert2'
 // import { FaDisplay } from 'react-icons/fa6'
 
 function EditProfileForm() {
@@ -110,6 +111,22 @@ function EditProfileForm() {
 
     // 在更新資料後取得新的使用者資料
     fetchUserData()
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      },
+    })
+    Toast.fire({
+      icon: 'success',
+      title: '成功更新資料',
+    })
   }
   const handleReset = (e) => {
     e.preventDefault() // 阻止表单提交
@@ -132,6 +149,8 @@ function EditProfileForm() {
               <Image
                 src={
                   avatarSelected
+                    ? form.user_image
+                    : form.user_image.startsWith('https')
                     ? form.user_image
                     : `http://localhost:3005/avatar/${
                         form.user_image

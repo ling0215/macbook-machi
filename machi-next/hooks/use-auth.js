@@ -106,7 +106,6 @@ export const AuthProvider = ({ children }) => {
       }
       // 設到全域狀態中
       setAuth({ isAuth: true, userData })
-      // console.log(userData)
     } else {
       console.warn(res.data)
 

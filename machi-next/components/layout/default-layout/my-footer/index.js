@@ -10,6 +10,7 @@ import { FiMapPin } from 'react-icons/fi'
 import { MdOutlineMail } from 'react-icons/md'
 import { FiPhone } from 'react-icons/fi'
 import { MdOutlineAccessTime } from 'react-icons/md'
+import { logout } from '@/services/user'
 
 export default function MyFooter() {
   return (
@@ -43,7 +44,6 @@ export default function MyFooter() {
               >
                 收藏清單
               </Link>
-             
             </div>
             <div className="col-12 col-md">
               <Link
@@ -84,29 +84,30 @@ export default function MyFooter() {
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <FiMapPin size={20} />&nbsp;
-                320桃園市中壢區新生路421號
+                <FiMapPin size={20} />
+                &nbsp; 320桃園市中壢區新生路421號
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <MdOutlineMail size={20} />&nbsp;
-                machi@gmail.com
+                <MdOutlineMail size={20} />
+                &nbsp; machi@gmail.com
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
               >
-                <FiPhone size={20} />&nbsp;
-                (03)452-1234
+                <FiPhone size={20} />
+                &nbsp; (03)452-1234
               </Link>
               <Link
                 href="#"
                 className="d-block mb-2 text-decoration-none text-white"
+                onClick={logout}
               >
-                <MdOutlineAccessTime size={20} />&nbsp;
-                12:00-20:00
+                <MdOutlineAccessTime size={20} />
+                &nbsp; 12:00-20:00
               </Link>
             </div>
             <div className="col-12 col-md">
