@@ -82,7 +82,6 @@ function Home() {
             >
               最新消息
             </h2>
-            <h6 className='text-brown mt-1'>latest news</h6>
             <div className="article-block">
               <CardBlog />
             </div>
@@ -118,7 +117,6 @@ function Home() {
           </div>
         </div>
       </div>
-      {/* <Featured /> */}
 
       {/* 商品類別區塊 */}
       {/* <CategoryCard category={category} /> */}
