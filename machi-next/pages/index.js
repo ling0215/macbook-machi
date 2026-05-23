@@ -117,29 +117,6 @@ function Home() {
           </div>
         </div>
       </div>
-
-      {/* 商品類別區塊 */}
-      {/* <CategoryCard category={category} /> */}
-
-      {/* QA區塊 */}
-      {/* <div className="container ol-xxl-10 featured-bgc p-0 my-5 d-flex justify-content-between">
-        <Image
-          src="./bg-1.png"
-          className="d-block img-fluid "
-          alt="qa photo"
-          width="400"
-          height="300"
-          loading="lazy"
-        />
-        <Image
-          src="./bg-2.png"
-          className="d-block img-fluid position-absolute bottom-0 end-0"
-          alt="qa photo"
-          width="100"
-          height="100"
-          loading="lazy"
-        />
-      </div> */}
       {/* 原料介紹 */}
       <div className="px-4 py-4 qa-background intro">
         <div className="container my-5">
